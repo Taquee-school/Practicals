@@ -1,0 +1,142 @@
+.practical-file {
+  height: fit-content;
+  min-height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 10px 200px 10px;
+  background-color: white;
+  font-family: Arial, sans-serif;
+}
+
+.practical-section {
+  margin: 0 0 50px 0;
+}
+
+.practical-section-header {
+  text-decoration: underline;
+  margin: 0 0 5px 0;
+  font: 400 20px Arial;
+}
+
+.practical-section-content {
+  margin: 5px 0 0 0;
+  font: 400 18px Arial;
+}
+
+.practical-main-formula {
+  font: 700 18px Arial;
+  text-align: center;
+  margin: 15px auto;
+}
+
+.moved-div {
+  width: 100%;
+  padding: 0 0 0 30px;
+}
+
+.moved-div p {
+  margin: 0;
+  font: 400 18px Arial;
+}
+
+.practical-section-input-div {
+  display: flex;
+  gap: 0;
+}
+
+.practical-section-input-div p {
+  margin: 0;
+  font: 400 18px Arial;
+}
+
+.practical-section-input-div input {
+  width: 70px;
+  padding: 0;
+  margin: 0 2px 0 10px;
+  border: none;
+  border-bottom: 1px solid black;
+  font: 400 18px Arial;
+  text-align: center;
+}
+.practical-section-input-div input:focus {
+  outline: none;
+}
+
+.observation-table-div {
+  max-width: 100%;
+  overflow-x: scroll;
+  margin: 25px 0;
+}
+.observation-table-div::-webkit-scrollbar {
+  display: none;
+}
+
+.observation-table {
+  height: 100%;
+  margin: 0;
+  gap: 0;
+  padding: 0;
+  display: flex;
+}
+
+.observation-table-column {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.observation-table-column:nth-child(1) {
+  width: 50px;
+}
+
+.observation-table-column-header {
+  max-height: 60px;
+  border: 1px solid black;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+  text-align: center;
+}
+
+.observation-table input {
+  min-height: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 1;
+  flex-grow: 1;
+  padding: 0;
+  border: 1px solid black;
+  border-radius: 0px;
+  text-align: center;
+  background: transparent;
+}
+
+.observation-table input:focus {
+  outline: none;
+  background: rgba(240, 240, 240);
+}
+
+.pas-div {
+  display: flex;
+}
+
+.pas-number-div {
+  width: 10%;
+  font: 400 18px Arial;
+  text-align: center;
+}
+
+.pas-text-div {
+  width: 90%;
+  text-align: left;
+}
+
+.pas-div p {
+  margin: 2.5px 0;
+  font: 400 18px Arial;
+}

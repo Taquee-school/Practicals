@@ -1,0 +1,305 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lilita+One&family=Momo+Trust+Display&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+@keyframes shrink {
+  0% {
+    height: 12%;
+  }
+  50% {
+    height: 3%;
+  }
+  100% {
+    height: 12%;
+  }
+}
+
+@keyframes expand {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+  background: transparent;
+  font-family: "Inter", sans-serif;
+}
+
+a, button, input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+#loading-screen {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  gap: 1vw;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.bar {
+  height: 12%;
+  width: 5%;
+  border-radius: 1rem;
+  background: black;
+  animation: shrink 1.5s ease-in-out infinite;
+}
+
+.bar:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.bar:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.bar:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.bar:nth-child(5) {
+  animation-delay: 0.8s;
+}
+.bar:nth-child(6) {
+  animation-delay: 1s;
+}
+.bar:nth-child(7) {
+  animation-delay: 0.8s;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+#inner-app {
+  height: 90%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  gap: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  display: flex;
+}
+#inner-app::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-header {
+  height: 7%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tab-header p {
+  font: 700 18px Arial;
+}
+
+.tab-header button {
+  cursor: pointer;
+  border: none;
+  color: black;
+  font-size: 25px;
+}
+.tab-header i {
+  cursor: pointer;
+}
+
+#home-tab,
+#practical-tab {
+  min-height: 100%;
+  max-height: 100%;
+  max-width: 100vw;
+  min-width: 100vw;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgb(235, 235, 235);
+}
+
+#practical-tab::-webkit-scrollbar {
+  display: none;
+}
+
+.practicals-list-div {
+  height: fit-content;
+  width: 100%;
+  margin: 10px 0 0 0;
+  padding: 0 0 200px 0;
+  gap: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.practicals-list-div .practicals-list-class-header {
+  margin: 25px auto 10px 20px;
+  align-self: flex-start;
+  font: 700 22px black;
+}
+
+.practicals-list {
+  height: fit-content;
+  width: 96%;
+  overflow: hidden;
+  margin: 0;
+  gap: 2px;
+  border: none;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.practicals-list button {
+  cursor: pointer;
+  height: 60px;
+  width: 100%;
+  padding: 0 15px;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 400 18px black;
+  background: rgba(255,255,255);
+  transition: all 0.2s ease;
+}
+
+.practicals-list button:hover {
+  background-color: rgb(245, 245, 245);
+}
+.practicals-list button:active {
+  transform: translateX(-30px);
+}
+
+#practical-tab-header {
+  height: 7%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: rgb(235, 235, 235);
+}
+
+#practical-tab-header button {
+  height: 100%;
+  border: none;
+  background: transparent;
+}
+#practical-tab-header button i {
+  font-size: 20px;
+}
+
+#practical-tab-header p {
+  font: 700 20px "Inter";
+  margin: 0 0 0 10px;
+}
+
+#practical-container {
+  height: 93%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background: white;
+}
+#practical-container::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 0;
+}
+#practical-container::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+#nav {
+  height: 10%;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px 0 0 0;
+  gap: 3%;
+  border: none;
+  border-top: 0.2px solid rgb(0,0,0,0.2);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  background: rgb(235, 235, 235);
+}
+#nav a {
+  cursor: pointer;
+  gap: 2px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.navigation-icon-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.navigation-icon-div {
+  padding: 20px 35px;
+  border-radius: 20px;
+}
+.navigation-icon-div.active {
+  background: white;
+}
+
+#nav a i {
+  position: absolute;
+  z-index: 1;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  margin: auto;
+  flex-shrink: 0;
+  font-size: 22px;
+}
+
+#nav p {
+  margin: 0;
+  font: 500 14px Arial;
+  transition: all 0.2s linear;
+}

@@ -1,0 +1,243 @@
+let bn_sonometer = createListButton(class11_list, "sonometer-btn", "Sonometer");
+bn_sonometer.addEventListener("click", () =>
+  openFile(sonometerDiv, "Sonometer")
+);
+
+let sonometerDiv = document.createElement("div");
+sonometerDiv.className = "practical-file";
+
+let snm_objectiveDiv = document.createElement("div");
+sonometerDiv.appendChild(snm_objectiveDiv);
+snm_objectiveDiv.className = "practical-section";
+
+snm_objectiveDiv.appendChild(
+  createTextField("practical-section-header", "OBJECT:")
+);
+
+snm_objectiveDiv.appendChild(createTextField("practical-section-content", ""));
+
+let snm_apparatusDiv = document.createElement("div");
+sonometerDiv.appendChild(snm_apparatusDiv);
+snm_apparatusDiv.className = "practical-section";
+
+snm_apparatusDiv.appendChild(
+  createTextField("practical-section-header", "APPARATUS USED:")
+);
+
+snm_apparatusDiv.appendChild(createTextField("practical-section-content", ""));
+
+let snm_formulaDiv = document.createElement("div");
+sonometerDiv.appendChild(snm_formulaDiv);
+snm_formulaDiv.className = "practical-section";
+
+snm_formulaDiv.appendChild(
+  createTextField("practical-section-header", "FORMULA USED:")
+);
+
+snm_formulaDiv.appendChild(createTextField("practical-main-formula", ""));
+
+snm_formulaDiv.appendChild(createTextField("practical-section-content", ""));
+
+let snm_formulaBelonging = document.createElement("div");
+snm_formulaDiv.appendChild(snm_formulaBelonging);
+snm_formulaBelonging.className = "moved-div";
+
+snm_formulaBelonging.appendChild(createTextField("", ""));
+
+let snm_observationDiv = document.createElement("div");
+sonometerDiv.appendChild(snm_observationDiv);
+snm_observationDiv.className = "practical-section";
+
+snm_observationDiv.appendChild(
+  createTextField("practical-section-header", "OBSERVATION:")
+);
+
+let snm_mainScaleDivInput = createInput(
+  "snm-distance-moved-by-circular-scale-input",
+  "number",
+  0,
+  measureEssentials_snm
+);
+snm_observationDiv.appendChild(
+  createPAS(
+    "1",
+    createInputDiv(
+      "Distance moved by the circular scale along the main scale(x): ",
+      snm_mainScaleDivInput
+    ),
+    true
+  )
+);
+
+let snm_vernierScaleDivInput = createInput(
+  "snm-revolution-of-circular-scale-input",
+  "number",
+  0,
+  measureEssentials_snm
+);
+snm_observationDiv.appendChild(
+  createPAS(
+    "2",
+    createInputDiv(
+      "Number of Total revolutions made by the circular is scared along many scale (y): ",
+      snm_vernierScaleDivInput
+    ),
+    true
+  )
+);
+
+let snm_leastCountInput = createInput(
+  "snm-least-count-input",
+  "number",
+  0,
+  null,
+  true
+);
+snm_observationDiv.appendChild(
+  createPAS(
+    "5",
+    createInputDiv(
+      "Least Count of the screw Gauge (L.C) = (Pitch/n): ",
+      snm_leastCountInput,
+      "mm"
+    ),
+    true
+  )
+);
+
+snm_observationDiv.appendChild(createPAS("6", "Zero Error"));
+
+let snm_zeroErrorDiv = document.createElement("div");
+snm_observationDiv.appendChild(snm_zeroErrorDiv);
+snm_zeroErrorDiv.className = "moved-div";
+
+let snm_ze1Input = createInput(
+  "snm-zero-error-1-input",
+  "number",
+  0,
+  measureEssentials_snm
+);
+snm_zeroErrorDiv.appendChild(
+  createPAS("a", createInputDiv("Zero Error: ", snm_ze1Input), true)
+);
+
+let snm_ze2Input = createInput(
+  "snm-zero-error-2-input",
+  "number",
+  0,
+  measureEssentials_snm
+);
+snm_zeroErrorDiv.appendChild(
+  createPAS("b", createInputDiv("Zero Error: ", snm_ze2Input), true)
+);
+
+let snm_ze3Input = createInput(
+  "snm-zero-error-3-input",
+  "number",
+  0,
+  measureEssentials_snm
+);
+snm_zeroErrorDiv.appendChild(
+  createPAS("c", createInputDiv("Zero Error: ", snm_ze3Input), true)
+);
+
+let snm_meanZeroErrorInput = createInput(
+  "snm-mean-zero-error-input",
+  "number",
+  0,
+  null,
+  true
+);
+snm_observationDiv.appendChild(
+  createPAS(
+    "7",
+    createInputDiv("Mean zero error: ", snm_meanZeroErrorInput),
+    true
+  )
+);
+
+let snm_zeroCorrectionInput = createInput(
+  "snm-zero-correction-input",
+  "number",
+  0,
+  null,
+  true
+);
+snm_observationDiv.appendChild(
+  createPAS(
+    "8",
+    createInputDiv("Zero correction: ", snm_zeroCorrectionInput),
+    true
+  )
+);
+
+let snm_diameterTableDiv = document.createElement("div");
+snm_diameterTableDiv.className = "observation-table-div";
+snm_observationDiv.appendChild(snm_diameterTableDiv);
+
+let snm_diameterTable = document.createElement("div");
+snm_diameterTable.className = "observation-table";
+snm_diameterTableDiv.appendChild(snm_diameterTable);
+
+snm_diameterTable.appendChild(
+  createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
+);
+
+let snm_meanDiameterInput = createInput(
+  "snm-mean-observed-diameter-input",
+  "number",
+  0
+);
+snm_observationDiv.appendChild(
+  createInputDiv("Mean observed diameter: ", snm_meanDiameterInput, "mm")
+);
+
+let snm_correctedDiameterInput = createInput(
+  "snm-corrected-diameter-input",
+  "number",
+  0
+);
+snm_observationDiv.appendChild(
+  createInputDiv("corrected diameter: ", snm_correctedDiameterInput, "mm")
+);
+
+let snm_resultDiv = document.createElement("div");
+sonometerDiv.appendChild(snm_resultDiv);
+snm_resultDiv.className = "practical-section";
+
+snm_resultDiv.appendChild(
+  createTextField("practical-section-header", "RESULT:")
+);
+
+let snm_masspulInput = createInput(
+  "snm-mass-per-unit-length-input",
+  "number",
+  0
+);
+snm_masspulInput.style.width = "100px";
+snm_resultDiv.appendChild(
+  createInputDiv(
+    "The mass per unit length of the wire is found to be: ",
+    snm_masspulInput,
+    "kg/m"
+  )
+);
+
+let snm_precautionsDiv = document.createElement("div");
+sonometerDiv.appendChild(snm_precautionsDiv);
+snm_precautionsDiv.className = "practical-section";
+
+snm_precautionsDiv.appendChild(
+  createTextField(
+    "practical-section-header",
+    "PRECAUTIONS AND SOURCES OF ERRORS:"
+  )
+);
+
+snm_precautionsDiv.appendChild(createPAS("1", ""));
+snm_precautionsDiv.appendChild(createPAS("2", ""));
+snm_precautionsDiv.appendChild(createPAS("3", ""));
+snm_precautionsDiv.appendChild(createPAS("4", ""));
+snm_precautionsDiv.appendChild(createPAS("5", ""));
+
+function measureEssentials_snm() {}
