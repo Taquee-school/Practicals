@@ -24,6 +24,7 @@
 body {
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -32,7 +33,9 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-a, button, input {
+a,
+button,
+input {
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -190,7 +193,7 @@ a, button, input {
   justify-content: space-between;
   align-items: center;
   font: 400 18px black;
-  background: rgba(255,255,255);
+  background: rgba(255, 255, 255);
   transition: all 0.2s ease;
 }
 
@@ -250,7 +253,7 @@ a, button, input {
   padding: 10px 0 0 0;
   gap: 3%;
   border: none;
-  border-top: 0.2px solid rgb(0,0,0,0.2);
+  border-top: 0.2px solid rgb(0, 0, 0, 0.2);
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
