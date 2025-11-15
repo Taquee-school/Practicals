@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css"
+    />
+    <title>PRACTICALS</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="practical.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="inner-app">
+        <div id="home-tab">
+          <div class="practicals-list-div">
+            <p class="practicals-list-class-header">Class 11</p>
+            <div class="practicals-list" id="class-11"></div>
+            <p class="practicals-list-class-header">Class 12</p>
+            <div class="practicals-list" id="class-12"></div>
+          </div>
+        </div>
+        <div id="practical-tab" class="light">
+          <div id="practical-tab-header">
+            <button onclick="changeTab(homeTab, bnHome)">
+              <i class="ph-bold ph-arrow-left"></i>
+            </button>
+            <p id="experiment-name"></p>
+          </div>
+          <div id="practical-container"></div>
+        </div>
+      </div>
+
+      <div id="nav">
+        <a id="home-button" class="a">
+          <div class="navigation-icon-container">
+            <div class="navigation-icon-div active" id="home-icon"></div>
+            <i class="ph-bold ph-list-bullets"></i>
+          </div>
+          <p>Home</p>
+        </a>
+        <a id="practical-button" class="na">
+          <div class="navigation-icon-container">
+            <div class="navigation-icon-div" id="practical-icon"></div>
+            <i class="ph-fill ph-file-text"></i>
+          </div>
+          <p>Practical</p>
+        </a>
+      </div>
+    </div>
+    <div id="loading-screen">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <script defer src="script.js"></script>
+    <script defer src="screwGauge.js"></script>
+    <script defer src="vernierCalipers.js"></script>
+    <script defer src="spherometer.js"></script>
+    <script defer src="parallelogram.js"></script>
+    <script defer src="simplePendulum.js"></script>
+    <script defer src="sonometer.js"></script>
+    <script defer src="helicalSpring.js"></script>
+    <script defer src="resonanceTube.js"></script>
+    <script defer src="OhmsLaw.js"></script>
+    <script defer src="pnJunction.js"></script>
+    <script defer src="meterBridge.js"></script>
+    <script defer src="halfDeflection.js"></script>
+    <script defer src="acSonometer.js"></script>
+    <script defer src="concaveMirror.js"></script>
+  </body>
+</html>
