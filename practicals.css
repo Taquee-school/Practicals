@@ -108,7 +108,6 @@
   display: none;
 }
 
-
 .practical-main-formula {
   font: 700 20px Arial;
   text-align: center;
@@ -261,16 +260,30 @@
 }
 
 .video-container {
-    width: 100vw;
-    height: 56.25vw;
-    overflow: hidden;
-    box-sizing: border-box;
-    background: rgb(100, 100, 100);
+  position: relative;
+  width: 100vw;
+  height: 56.25vw;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: rgb(100, 100, 100);
+}
+
+.help-video-text {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
 }
 
 .video-player {
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: transparent;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
 }

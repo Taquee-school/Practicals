@@ -20,6 +20,8 @@ let experimentName = document.getElementById("experiment-name");
 let class11_list = document.getElementById("class-11");
 let class12_list = document.getElementById("class-12");
 
+let NavigationDiv = document.getElementById("navigation-div");
+
 // OPTIONAL PANEL =====================
 // #region Option Panel
 let optionPanel = document.getElementById("option-panel");
@@ -149,10 +151,113 @@ function setTheme(theme) {
   applyTheme();
 }
 
+// NAV STYLE PANEL ========================
+// #region Nav style Panel
+let appliedNavBarStyle = "sticky";
+let appliedNavBarStyleI = null;
+let selectedNavBarStyle = "sticky";
+let selectedNavBarStyleI = null;
+
+let NavBarStylePanel = document.getElementById("navigation-bar-panel");
+let bnNavBarStyle = document.getElementById("navigation-bar-btn");
+bnNavBarStyle.addEventListener("click", showNavBarStylePanel);
+
+let cancelNavBarStyle = document.getElementById("cancel-btn-navigation-bar");
+cancelNavBarStyle.addEventListener("click", hideNavBarStylePanel);
+
+let confirmNavBarStyle = document.getElementById("confirm-btn-navigation-bar");
+confirmNavBarStyle.addEventListener("click", applyNavBarStyle);
+
+let bnSticky = document.getElementById("sticky-btn-navigation-bar");
+let stickyIcon = document.getElementById("sticky-icon");
+appliedNavBarStyleI = stickyIcon;
+selectedNavBarStyleI = stickyIcon;
+bnSticky.addEventListener("click", () => {
+  selectedNavBarStyleI.className = "ph-bold ph-circle";
+  selectedNavBarStyle = "sticky";
+  selectedNavBarStyleI = stickyIcon;
+  selectedNavBarStyleI.className = "ph-fill ph-radio-button";
+});
+
+let bnFloating = document.getElementById("floating-btn-navigation-bar");
+let floatingIcon = document.getElementById("floating-icon");
+bnFloating.addEventListener("click", () => {
+  selectedNavBarStyleI.className = "ph-bold ph-circle";
+  selectedNavBarStyle = "floating";
+  selectedNavBarStyleI = floatingIcon;
+  selectedNavBarStyleI.className = "ph-fill ph-radio-button";
+});
+
+function applyNavBarStyle() {
+  NavigationDiv.style.animation = "flash 0.3s ease";
+  NavigationDiv.addEventListener(
+    "animationend",
+    () => {
+      NavigationDiv.style.animation = "none";
+      NavigationDiv.classList.remove(appliedNavBarStyle);
+      appliedNavBarStyleI = selectedNavBarStyleI;
+      appliedNavBarStyle = selectedNavBarStyle;
+      NavigationDiv.classList.add(appliedNavBarStyle);
+      hideNavBarStylePanel();
+      localStorage.setItem("navigation-bar", appliedNavBarStyle);
+    },
+    { once: true }
+  );
+}
+
+function showNavBarStylePanel() {
+  if ((NavBarStylePanel.style.display = "none")) {
+    hideOptionPanel();
+    bnNavBarStyle.removeEventListener("click", showNavBarStylePanel);
+    NavBarStylePanel.style.display = "flex";
+    NavBarStylePanel.style.animation = "appear 0.3s ease";
+    NavBarStylePanel.addEventListener(
+      "animationend",
+      () => {
+        NavBarStylePanel.style.animation = "none";
+        bnNavBarStyle.addEventListener("click", hideNavBarStylePanel);
+      },
+      { once: true }
+    );
+  }
+}
+
+function hideNavBarStylePanel() {
+  if ((NavBarStylePanel.style.display = "flex")) {
+    selectedNavBarStyleI.className = "ph-bold ph-circle";
+    selectedNavBarStyleI = appliedNavBarStyleI;
+    selectedNavBarStyleI.className = "ph-fill ph-radio-button";
+    bnNavBarStyle.removeEventListener("click", hideNavBarStylePanel);
+    NavBarStylePanel.style.animation = "disappear 0.3s ease";
+    NavBarStylePanel.addEventListener(
+      "animationend",
+      () => {
+        NavBarStylePanel.style.animation = "none";
+        NavBarStylePanel.style.display = "none";
+        bnNavBarStyle.addEventListener("click", showNavBarStylePanel);
+      },
+      { once: true }
+    );
+  }
+}
+
+function setNavBarStyle(navigationBar) {
+  let navigationBarMap = { floating: floatingIcon, sticky: stickyIcon };
+  selectedNavBarStyleI.className = "ph-bold ph-circle";
+  selectedNavBarStyleI = navigationBarMap[navigationBar];
+  selectedNavBarStyle = navigationBar;
+  selectedNavBarStyleI.className = "ph-fill ph-radio-button";
+  applyNavBarStyle();
+}
+
 function checkLocalStorage() {
   let theme = localStorage.getItem("theme");
   if (theme) {
     setTheme(theme);
+  }
+  let navBarStyle = localStorage.getItem("navigation-bar");
+  if (navBarStyle) {
+    setNavBarStyle(navBarStyle);
   }
 }
 
@@ -227,6 +332,9 @@ helpPanel.appendChild(helpVideoHeader);
 
 let videoContainer = createDiv("video-container");
 helpPanel.appendChild(videoContainer);
+
+let helpVideoText = createTextField("help-video-text", "Video is not available for this experiment !");
+videoContainer.appendChild(helpVideoText);
 
 let videoFrame = document.createElement("iframe");
 videoFrame.className = "video-player";

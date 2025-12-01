@@ -1,4 +1,3 @@
-// SCREW GAUGE SECTION ============================================
 // #region Screw Gauge
 let bn_screwGauge = createListButton(
   class11_list,
@@ -9,6 +8,7 @@ bn_screwGauge.addEventListener("click", () => {
   openFile(screwGaugeDiv, "Screw Gauge");
   videoFrame.src =
     "https://drive.google.com/file/d/1lBkIvbWmfZWRDs6etad8C4U_xo8DQn25/preview";
+  helpVideoText.style.display = "none";
 });
 
 let screwGaugeDiv = createDiv("practical-file");
@@ -242,6 +242,12 @@ scg_observationDiv.appendChild(
   )
 );
 
+scg_observationDiv.appendChild(
+  createTextField(
+    "observation-table-header",
+    "Table for the measurement of diameter of wire"
+  )
+);
 let scg_diameterTableDiv = createDiv("observation-table-div");
 scg_observationDiv.appendChild(scg_diameterTableDiv);
 
@@ -258,8 +264,7 @@ scg_diameterTable.appendChild(
     "scg-msr",
     "number",
     0,
-    measureDiameter_scg,
-    false
+    measureDiameter_scg
   )
 );
 scg_diameterTable.appendChild(
@@ -269,8 +274,7 @@ scg_diameterTable.appendChild(
     "scg-div",
     "number",
     0,
-    measureDiameter_scg,
-    false
+    measureDiameter_scg
   )
 );
 scg_diameterTable.appendChild(
@@ -422,7 +426,6 @@ function measureDiameter_scg() {
 
 // #endregion
 
-// VERNIER CALIPERS SECTION========================================
 // #region Vernier Calipers
 let bn_vernierCalipers = createListButton(
   class11_list,
@@ -433,6 +436,7 @@ bn_vernierCalipers.addEventListener("click", () => {
   openFile(vernierCalipersDiv, "Vernier Calipers");
   videoFrame.src =
     "https://drive.google.com/file/d/1ZMe6Il6GPCpOwDmVozfzEH7xWi6AZvEn/preview";
+  helpVideoText.style.display = "none";
 });
 
 let vernierCalipersDiv = createDiv("practical-file");
@@ -501,11 +505,21 @@ vnc_formulaDiv.appendChild(
 let vnc_formulaBelonging = createDiv("moved-div");
 vnc_formulaDiv.appendChild(vnc_formulaBelonging);
 
-vnc_formulaBelonging.appendChild(createTextField(null, "V = volume of the material of the hollow cylinder."));
-vnc_formulaBelonging.appendChild(createTextField(null, "de = external diameter of the cylinder."));
-vnc_formulaBelonging.appendChild(createTextField(null, "he = external height of the cylinder."));
-vnc_formulaBelonging.appendChild(createTextField(null, "di = internal diameter of the cylinder."));
-vnc_formulaBelonging.appendChild(createTextField(null, "hi = internal height of the cylinder"));
+vnc_formulaBelonging.appendChild(
+  createTextField(null, "V = volume of the material of the hollow cylinder.")
+);
+vnc_formulaBelonging.appendChild(
+  createTextField(null, "de = external diameter of the cylinder.")
+);
+vnc_formulaBelonging.appendChild(
+  createTextField(null, "he = external height of the cylinder.")
+);
+vnc_formulaBelonging.appendChild(
+  createTextField(null, "di = internal diameter of the cylinder.")
+);
+vnc_formulaBelonging.appendChild(
+  createTextField(null, "hi = internal height of the cylinder")
+);
 
 let vnc_observationDiv = createDiv("practical-section");
 vernierCalipersDiv.appendChild(vnc_observationDiv);
@@ -629,7 +643,12 @@ vnc_observationDiv.appendChild(
   )
 );
 
-vnc_observationDiv.appendChild(createTextField("observation-table-header", "Table for the measurement of external diameter"));
+vnc_observationDiv.appendChild(
+  createTextField(
+    "observation-table-header",
+    "Table for the measurement of external diameter"
+  )
+);
 
 let vnc_externalDiameterTableDiv = createDiv("observation-table-div");
 vnc_observationDiv.appendChild(vnc_externalDiameterTableDiv);
@@ -689,7 +708,11 @@ let vnc_meanExternalDiameterInput = createInput(
   0
 );
 vnc_observationDiv.appendChild(
-  createInputDiv("Mean observed internal height: ", vnc_meanExternalDiameterInput, "cm")
+  createInputDiv(
+    "Mean observed internal height: ",
+    vnc_meanExternalDiameterInput,
+    "cm"
+  )
 );
 
 let vnc_correctedExternalDiameterInput = createInput(
@@ -698,11 +721,19 @@ let vnc_correctedExternalDiameterInput = createInput(
   0
 );
 vnc_observationDiv.appendChild(
-  createInputDiv("corrected internal height: ", vnc_correctedExternalDiameterInput, "cm")
+  createInputDiv(
+    "corrected internal height: ",
+    vnc_correctedExternalDiameterInput,
+    "cm"
+  )
 );
 
-
-vnc_observationDiv.appendChild(createTextField("observation-table-header", "Table for the measurement of internal diameter"));
+vnc_observationDiv.appendChild(
+  createTextField(
+    "observation-table-header",
+    "Table for the measurement of internal diameter"
+  )
+);
 let vnc_internalDiameterTableDiv = createDiv("observation-table-div");
 vnc_observationDiv.appendChild(vnc_internalDiameterTableDiv);
 
@@ -761,7 +792,11 @@ let vnc_meanInternalDiameterInput = createInput(
   0
 );
 vnc_observationDiv.appendChild(
-  createInputDiv("Mean observed internal height: ", vnc_meanInternalDiameterInput, "cm")
+  createInputDiv(
+    "Mean observed internal height: ",
+    vnc_meanInternalDiameterInput,
+    "cm"
+  )
 );
 
 let vnc_correctedInternalDiameterInput = createInput(
@@ -770,11 +805,19 @@ let vnc_correctedInternalDiameterInput = createInput(
   0
 );
 vnc_observationDiv.appendChild(
-  createInputDiv("corrected internal height: ", vnc_correctedInternalDiameterInput, "cm")
+  createInputDiv(
+    "corrected internal height: ",
+    vnc_correctedInternalDiameterInput,
+    "cm"
+  )
 );
 
-
-vnc_observationDiv.appendChild(createTextField("observation-table-header", "Table for the measurement of external height"));
+vnc_observationDiv.appendChild(
+  createTextField(
+    "observation-table-header",
+    "Table for the measurement of external height"
+  )
+);
 let vnc_externalHeightTableDiv = createDiv("observation-table-div");
 vnc_observationDiv.appendChild(vnc_externalHeightTableDiv);
 
@@ -833,7 +876,11 @@ let vnc_meanExternalHeightInput = createInput(
   0
 );
 vnc_observationDiv.appendChild(
-  createInputDiv("Mean observed external height: ", vnc_meanExternalHeightInput, "cm")
+  createInputDiv(
+    "Mean observed external height: ",
+    vnc_meanExternalHeightInput,
+    "cm"
+  )
 );
 
 let vnc_correctedExternalHeightInput = createInput(
@@ -842,11 +889,19 @@ let vnc_correctedExternalHeightInput = createInput(
   0
 );
 vnc_observationDiv.appendChild(
-  createInputDiv("corrected external height: ", vnc_correctedExternalHeightInput, "cm")
+  createInputDiv(
+    "corrected external height: ",
+    vnc_correctedExternalHeightInput,
+    "cm"
+  )
 );
 
-
-vnc_observationDiv.appendChild(createTextField("observation-table-header", "Table for the measurement of internal height"));
+vnc_observationDiv.appendChild(
+  createTextField(
+    "observation-table-header",
+    "Table for the measurement of internal height"
+  )
+);
 let vnc_internalHeightTableDiv = createDiv("observation-table-div");
 vnc_observationDiv.appendChild(vnc_internalHeightTableDiv);
 
@@ -905,7 +960,11 @@ let vnc_meanInternalHeightInput = createInput(
   0
 );
 vnc_observationDiv.appendChild(
-  createInputDiv("Mean observed internal height: ", vnc_meanInternalHeightInput, "cm")
+  createInputDiv(
+    "Mean observed internal height: ",
+    vnc_meanInternalHeightInput,
+    "cm"
+  )
 );
 
 let vnc_correctedInternalHeightInput = createInput(
@@ -914,7 +973,11 @@ let vnc_correctedInternalHeightInput = createInput(
   0
 );
 vnc_observationDiv.appendChild(
-  createInputDiv("corrected internal height: ", vnc_correctedInternalHeightInput, "cm")
+  createInputDiv(
+    "corrected internal height: ",
+    vnc_correctedInternalHeightInput,
+    "cm"
+  )
 );
 
 let vnc_resultDiv = createDiv("practical-section");
@@ -948,11 +1011,33 @@ vnc_precautionsDiv.appendChild(
   )
 );
 
-vnc_precautionsDiv.appendChild(createPAS("1", "We should carefully examine the working of the vernier Calipers before starting the experiment. If its motion is not smooth it should be oiled."));
-vnc_precautionsDiv.appendChild(createPAS("2", "We should carefully record zero error."));
-vnc_precautionsDiv.appendChild(createPAS("3", "The object should be gripped firmly between the jaws without any pressure."));
-vnc_precautionsDiv.appendChild(createPAS("4", "The vernier should be first tightly screwed in position only then the observation should be taken. "));
-vnc_precautionsDiv.appendChild(createPAS("5", "The jaws may not be exactly at right angle to the main scale."));
+vnc_precautionsDiv.appendChild(
+  createPAS(
+    "1",
+    "We should carefully examine the working of the vernier Calipers before starting the experiment. If its motion is not smooth it should be oiled."
+  )
+);
+vnc_precautionsDiv.appendChild(
+  createPAS("2", "We should carefully record zero error.")
+);
+vnc_precautionsDiv.appendChild(
+  createPAS(
+    "3",
+    "The object should be gripped firmly between the jaws without any pressure."
+  )
+);
+vnc_precautionsDiv.appendChild(
+  createPAS(
+    "4",
+    "The vernier should be first tightly screwed in position only then the observation should be taken. "
+  )
+);
+vnc_precautionsDiv.appendChild(
+  createPAS(
+    "5",
+    "The jaws may not be exactly at right angle to the main scale."
+  )
+);
 
 function measureEssentials_vnc() {
   measureExternalDiameter_vnc();
@@ -981,13 +1066,13 @@ function measureVolume_vnc() {}
 
 // #endregion
 
-// SONOMETER SECTION===============================================
 // #region Sonometer
 let bn_sonometer = createListButton(class11_list, "sonometer-btn", "Sonometer");
 bn_sonometer.addEventListener("click", () => {
   openFile(sonometerDiv, "Sonometer");
   videoFrame =
     "https://drive.google.com/file/d/140FEbQuZcTjWiXsHGKzhvhvzk7ETLBuC/preview";
+  helpVideoText.style.display = "none";
 });
 
 let sonometerDiv = createDiv("practical-file");
@@ -1238,7 +1323,6 @@ function measureEssentials_snm() {}
 
 // #endregion
 
-// PARALLELOGRAM SECTION===========================================
 // #region Parallelogram
 let bn_parallelogram = createListButton(
   class11_list,
@@ -1249,6 +1333,7 @@ bn_parallelogram.addEventListener("click", () => {
   openFile(parallelogramDiv, "Parallelogram");
   videoFrame.src =
     "https://drive.google.com/file/d/1e52vBtlWzb3vhqnFmYRSVS3NfdGcy0eT/preview";
+  helpVideoText.style.display = "none";
 });
 
 let parallelogramDiv = createDiv("practical-file");
@@ -1499,7 +1584,6 @@ function measureEssentials_prl() {}
 
 // #endregion
 
-// SIMPLE PENDULUM SECTION=========================================
 // #region Simple Pendulum
 let bn_simplePendulum = createListButton(
   class11_list,
@@ -1510,6 +1594,7 @@ bn_simplePendulum.addEventListener("click", () => {
   openFile(simplePendulumDiv, "Simple Pendulum");
   videoFrame.src =
     "https://drive.google.com/file/d/1qhtfKsVuH3hUYDStS2UO8es-zy8yDg8u/preview";
+  helpVideoText.style.display = "none";
 });
 
 let simplePendulumDiv = createDiv("practical-file");
@@ -1760,7 +1845,6 @@ function measureEssentials_spl() {}
 
 // #endregion
 
-// SPHEROMETER SECTION ============================================
 // #region Spherometer
 let bn_spherometer = createListButton(
   class11_list,
@@ -1770,6 +1854,7 @@ let bn_spherometer = createListButton(
 bn_spherometer.addEventListener("click", () => {
   openFile(spherometerDiv, "Spherometer");
   videoFrame.src = "";
+  helpVideoText.style.display = "flex";
 });
 
 let spherometerDiv = createDiv("practical-file");
@@ -2020,7 +2105,6 @@ function measureEssentials_spm() {}
 
 // #endregion
 
-// HELICAL SPRING SECTION =========================================
 // #region Helical Spring
 let bn_helicalSpring = createListButton(
   class11_list,
@@ -2030,6 +2114,7 @@ let bn_helicalSpring = createListButton(
 bn_helicalSpring.addEventListener("click", () => {
   openFile(helicalSpringDiv, "Helical Spring");
   videoFrame.src = "";
+  helpVideoText.style.display = "flex";
 });
 
 let helicalSpringDiv = createDiv("practical-file");
@@ -2280,7 +2365,6 @@ function measureEssentials_hls() {}
 
 // #endregion
 
-// RESONANCE TUBE SECTION =========================================
 // #region Resonance Tube
 let bn_resonanceTube = createListButton(
   class11_list,
@@ -2290,6 +2374,7 @@ let bn_resonanceTube = createListButton(
 bn_resonanceTube.addEventListener("click", () => {
   openFile(resonanceTubeDiv, "Resonance Tube");
   videoFrame.src = "";
+  helpVideoText.style.display = "flex";
 });
 
 let resonanceTubeDiv = createDiv("practical-file");
@@ -2540,17 +2625,15 @@ function measureEssentials_rst() {}
 
 // #endregion Resonance Tube
 
-// OHMS LAW SECTION ===============================================
 // #region Ohms Law
 let bn_OhmsLaw = createListButton(class12_list, "ohms-law-btn", "Ohm's Law");
 bn_OhmsLaw.addEventListener("click", () => {
   openFile(ohmsLawDiv, "Ohms Law");
   videoFrame.src = "";
+  helpVideoText.style.display = "flex";
 });
 
 let ohmsLawDiv = createDiv("practical-file");
-
-
 
 let ohl_diagramDiv = createDiv("practical-section");
 ohmsLawDiv.appendChild(ohl_diagramDiv);
@@ -2561,14 +2644,14 @@ ohl_diagramDiv.appendChild(
 
 let ohl_diagram_light = document.createElement("img");
 ohl_diagram_light.className = "practical-file-diagram light";
-ohl_diagram_light.src = "https://www.dropbox.com/scl/fi/whmdoej0i7eeips0myoej/Ohms-Law-Diagram-light.png?rlkey=o1qu81cgncd0awiw3fpr2i3ez&st=d1755qgt&raw=1";
+ohl_diagram_light.src =
+  "https://www.dropbox.com/scl/fi/whmdoej0i7eeips0myoej/Ohms-Law-Diagram-light.png?rlkey=o1qu81cgncd0awiw3fpr2i3ez&st=d1755qgt&raw=1";
 ohl_diagramDiv.appendChild(ohl_diagram_light);
 let ohl_diagram_dark = document.createElement("img");
 ohl_diagram_dark.className = "practical-file-diagram dark";
-ohl_diagram_dark.src = "https://www.dropbox.com/scl/fi/i1045hhk50lit3uo4i184/Ohms-Law-Diagram-dark.jpg?rlkey=efee7vrdl0c8bua2ln8rrqo4s&st=3il3wycv&raw=1";
+ohl_diagram_dark.src =
+  "https://www.dropbox.com/scl/fi/i1045hhk50lit3uo4i184/Ohms-Law-Diagram-dark.jpg?rlkey=efee7vrdl0c8bua2ln8rrqo4s&st=3il3wycv&raw=1";
 ohl_diagramDiv.appendChild(ohl_diagram_dark);
-
-
 
 let ohl_objectiveDiv = createDiv("practical-section");
 ohmsLawDiv.appendChild(ohl_objectiveDiv);
@@ -2663,6 +2746,12 @@ ohl_observationDiv.appendChild(
   createInputDiv("Least count of voltmeter: ", ohl_voltmeterLcInput, "V")
 );
 
+ohl_observationDiv.appendChild(
+  createTextField(
+    "observation-table-header",
+    "Table for the measurement of resistance of wire"
+  )
+);
 let ohl_resistanceTableDiv = createDiv("observation-table-div");
 ohl_observationDiv.appendChild(ohl_resistanceTableDiv);
 
@@ -2836,7 +2925,7 @@ function measureResistance_ohl() {
 
     if (a_div > 0) {
       sum_r += r;
-      validReadings ++;
+      validReadings++;
     }
   }
 
@@ -2846,17 +2935,19 @@ function measureResistance_ohl() {
 }
 // #endregion
 
-// PN Junction SECTION ====================================
 // #region PN Junction
-let bn_pnJunction = createListButton(class12_list, "pn-junction-btn", "PN Junction");
+let bn_pnJunction = createListButton(
+  class12_list,
+  "pn-junction-btn",
+  "PN Junction"
+);
 bn_pnJunction.addEventListener("click", () => {
   openFile(pnJunctionDiv, "PN Junction");
   videoFrame.src = "";
+  helpVideoText.style.display = "flex";
 });
 
 let pnJunctionDiv = createDiv("practical-file");
-
-
 
 let pnj_diagramDiv = createDiv("practical-section");
 pnJunctionDiv.appendChild(pnj_diagramDiv);
@@ -2867,14 +2958,14 @@ pnj_diagramDiv.appendChild(
 
 let pnj_diagram_light = document.createElement("img");
 pnj_diagram_light.className = "practical-file-diagram light";
-pnj_diagram_light.src = "https://www.dropbox.com/scl/fi/dtl830l22dosovrvkxzjd/PN-Junction-Diagram-light.png?rlkey=ko5r25q1im4jkp2in9j4vqh6g&st=9acp7ww1&raw=1";
+pnj_diagram_light.src =
+  "https://www.dropbox.com/scl/fi/dtl830l22dosovrvkxzjd/PN-Junction-Diagram-light.png?rlkey=ko5r25q1im4jkp2in9j4vqh6g&st=9acp7ww1&raw=1";
 pnj_diagramDiv.appendChild(pnj_diagram_light);
 let pnj_diagram_dark = document.createElement("img");
 pnj_diagram_dark.className = "practical-file-diagram dark";
-pnj_diagram_dark.src = "https://www.dropbox.com/scl/fi/0maucl2ced013svrz0cpw/PN-Junction-Diagram-dark.jpg?rlkey=fhdpvtaxszfsbd52g3xytlm4l&st=h7kr1hcs&raw=1";
+pnj_diagram_dark.src =
+  "https://www.dropbox.com/scl/fi/0maucl2ced013svrz0cpw/PN-Junction-Diagram-dark.jpg?rlkey=fhdpvtaxszfsbd52g3xytlm4l&st=h7kr1hcs&raw=1";
 pnj_diagramDiv.appendChild(pnj_diagram_dark);
-
-
 
 let pnj_objectiveDiv = createDiv("practical-section");
 pnJunctionDiv.appendChild(pnj_objectiveDiv);
@@ -2994,6 +3085,12 @@ pnj_observationDiv.appendChild(
   createInputDiv("Least count of ammeter: ", pnj_ammeterLcInput, "mA")
 );
 
+pnj_observationDiv.appendChild(
+  createTextField(
+    "observation-table-header",
+    "Table for the measurement of current"
+  )
+);
 let pnj_characteristicsTableDiv = createDiv("observation-table-div");
 pnj_observationDiv.appendChild(pnj_characteristicsTableDiv);
 
@@ -3081,7 +3178,8 @@ pnj_resultPDiv.className = "practical-section-input-div";
 
 let resultP = document.createElement("p");
 pnj_resultPDiv.appendChild(resultP);
-resultP.textContent = "The static and dynamic resistances of the p-n junction diode under forward biased condition are found to be";
+resultP.textContent =
+  "The static and dynamic resistances of the p-n junction diode under forward biased condition are found to be";
 resultP.appendChild(pnj_staticResistanceInput);
 let resultPspan1 = document.createElement("span");
 resultPspan1.textContent = "Ω and";
@@ -3091,13 +3189,7 @@ let resultPspan2 = document.createElement("span");
 resultPspan2.textContent = "Ω respectively.";
 resultP.appendChild(resultPspan2);
 
-pnj_resultDiv.appendChild(
-  createPAS(
-    "2",
-    pnj_resultPDiv,
-    true
-  )
-);
+pnj_resultDiv.appendChild(createPAS("2", pnj_resultPDiv, true));
 
 let pnj_precautionsDiv = createDiv("practical-section");
 pnJunctionDiv.appendChild(pnj_precautionsDiv);
@@ -3176,7 +3268,7 @@ function measureResistance_pnj() {
 
     if (v_div > 0) {
       sum_sr += v / c;
-      validReadings ++;
+      validReadings++;
     }
   }
   meanSR = sum_sr / validReadings;
@@ -3184,17 +3276,19 @@ function measureResistance_pnj() {
 }
 // #endregion
 
-// METER BRIDGE SECTION ===================================
 // #region Meter Bridge
-let bn_meterBridge = createListButton(class12_list, "meter-bridge-btn", "Meter Bridge");
+let bn_meterBridge = createListButton(
+  class12_list,
+  "meter-bridge-btn",
+  "Meter Bridge"
+);
 bn_meterBridge.addEventListener("click", () => {
   openFile(meterBridgeDiv, "Meter Bridge");
   videoFrame.src = "";
+  helpVideoText.style.display = "flex";
 });
 
 let meterBridgeDiv = createDiv("practical-file");
-
-
 
 let mbr_diagramDiv = createDiv("practical-section");
 meterBridgeDiv.appendChild(mbr_diagramDiv);
@@ -3205,14 +3299,14 @@ mbr_diagramDiv.appendChild(
 
 let mbr_diagram_light = document.createElement("img");
 mbr_diagram_light.className = "practical-file-diagram light";
-mbr_diagram_light.src = "https://www.dropbox.com/scl/fi/d76l9ffrs915x3cgde96h/Meter-Bridge-Diagram-light.jpg?rlkey=j1u7r8jbeu35zlvt8jnzxdthb&st=ln1ubssz&raw=1";
+mbr_diagram_light.src =
+  "https://www.dropbox.com/scl/fi/d76l9ffrs915x3cgde96h/Meter-Bridge-Diagram-light.jpg?rlkey=j1u7r8jbeu35zlvt8jnzxdthb&st=ln1ubssz&raw=1";
 mbr_diagramDiv.appendChild(mbr_diagram_light);
 let mbr_diagram_dark = document.createElement("img");
 mbr_diagram_dark.className = "practical-file-diagram dark";
-mbr_diagram_dark.src = "https://www.dropbox.com/scl/fi/lm49teqr7w9yw5jpedpm6/Meter-Bridge-Diagram-dark.png?rlkey=8j9s6ofhfd4ny6wrhkss4hk8e&st=jk5oru9d&raw=1";
+mbr_diagram_dark.src =
+  "https://www.dropbox.com/scl/fi/lm49teqr7w9yw5jpedpm6/Meter-Bridge-Diagram-dark.png?rlkey=8j9s6ofhfd4ny6wrhkss4hk8e&st=jk5oru9d&raw=1";
 mbr_diagramDiv.appendChild(mbr_diagram_dark);
-
-
 
 let mbr_objectiveDiv = createDiv("practical-section");
 meterBridgeDiv.appendChild(mbr_objectiveDiv);
@@ -3221,7 +3315,12 @@ mbr_objectiveDiv.appendChild(
   createTextField("practical-section-header", "OBJECT:")
 );
 
-mbr_objectiveDiv.appendChild(createTextField("practical-section-content", "To find the resistance of a given wire using a meter Bridge and hence determine the specific resistance of its material."));
+mbr_objectiveDiv.appendChild(
+  createTextField(
+    "practical-section-content",
+    "To find the resistance of a given wire using a meter Bridge and hence determine the specific resistance of its material."
+  )
+);
 
 let mbr_apparatusDiv = createDiv("practical-section");
 meterBridgeDiv.appendChild(mbr_apparatusDiv);
@@ -3230,7 +3329,12 @@ mbr_apparatusDiv.appendChild(
   createTextField("practical-section-header", "APPARATUS USED:")
 );
 
-mbr_apparatusDiv.appendChild(createTextField("practical-section-content", "A meter Bridge,an unknown resistance in the form of wire, a resistance box, a jockey, a key, a galvanometer, a Lechlanche cell, thick connecting wires, sand paper,screw gauge,etc."));
+mbr_apparatusDiv.appendChild(
+  createTextField(
+    "practical-section-content",
+    "A meter Bridge,an unknown resistance in the form of wire, a resistance box, a jockey, a key, a galvanometer, a Lechlanche cell, thick connecting wires, sand paper,screw gauge,etc."
+  )
+);
 
 let mbr_formulaDiv = createDiv("practical-section");
 meterBridgeDiv.appendChild(mbr_formulaDiv);
@@ -3239,37 +3343,71 @@ mbr_formulaDiv.appendChild(
   createTextField("practical-section-header", "FORMULA USED:")
 );
 
-mbr_formulaDiv.appendChild(createTextField("practical-section-content", "Since meter Bridge works on the principle of wheatstone bridge,etc."));
+mbr_formulaDiv.appendChild(
+  createTextField(
+    "practical-section-content",
+    "Since meter Bridge works on the principle of wheatstone bridge,etc."
+  )
+);
 
-mbr_formulaDiv.appendChild(createPAS("1", "Under the balance condition, we have the following working formula:"));
+mbr_formulaDiv.appendChild(
+  createPAS(
+    "1",
+    "Under the balance condition, we have the following working formula:"
+  )
+);
 
-mbr_formulaDiv.appendChild(createTextField("practical-main-formula", "P/Q = R/X"));
+mbr_formulaDiv.appendChild(
+  createTextField("practical-main-formula", "P/Q = R/X")
+);
 
-mbr_formulaDiv.appendChild(createPAS("2", "For a meter Bridge, the unknown resistance is given by:"));
+mbr_formulaDiv.appendChild(
+  createPAS("2", "For a meter Bridge, the unknown resistance is given by:")
+);
 
-mbr_formulaDiv.appendChild(createTextField("practical-main-formula", "X = lQ/(100-l)"));
+mbr_formulaDiv.appendChild(
+  createTextField("practical-main-formula", "X = lQ/(100-l)")
+);
 
-mbr_formulaDiv.appendChild(createTextField("practical-section-content", "Where,"));
+mbr_formulaDiv.appendChild(
+  createTextField("practical-section-content", "Where,")
+);
 let mbr_formulaBelonging = createDiv("moved-div");
 mbr_formulaDiv.appendChild(mbr_formulaBelonging);
 
-mbr_formulaBelonging.appendChild(createTextField(null, "X = is the resistor of unknown value,"));
-mbr_formulaBelonging.appendChild(createTextField(null, "l = is the balancing length and"));
-mbr_formulaBelonging.appendChild(createTextField(null, "Q = is the resistance from the resistance box."));
+mbr_formulaBelonging.appendChild(
+  createTextField(null, "X = is the resistor of unknown value,")
+);
+mbr_formulaBelonging.appendChild(
+  createTextField(null, "l = is the balancing length and")
+);
+mbr_formulaBelonging.appendChild(
+  createTextField(null, "Q = is the resistance from the resistance box.")
+);
 
-mbr_formulaDiv.appendChild(createPAS("3", "Specific resistance() of the of the material is given by:"));
+mbr_formulaDiv.appendChild(
+  createPAS("3", "Specific resistance() of the of the material is given by:")
+);
 
-mbr_formulaDiv.appendChild(createTextField("practical-main-formula", "¶ = RA/l = XπD2/4l"));
+mbr_formulaDiv.appendChild(
+  createTextField("practical-main-formula", "¶ = RA/l = XπD2/4l")
+);
 
-mbr_formulaDiv.appendChild(createTextField("practical-section-content", "Where,"));
+mbr_formulaDiv.appendChild(
+  createTextField("practical-section-content", "Where,")
+);
 let mbr_formulaBelonging2 = createDiv("moved-div");
 mbr_formulaDiv.appendChild(mbr_formulaBelonging2);
 
-mbr_formulaBelonging2.appendChild(createTextField(null, "X = is the resistor of unknown value,"));
-mbr_formulaBelonging2.appendChild(createTextField(null, "l = is the balancing length and"));
-mbr_formulaBelonging2.appendChild(createTextField(null, "D = is the diameter of the wire."));
-
-
+mbr_formulaBelonging2.appendChild(
+  createTextField(null, "X = is the resistor of unknown value,")
+);
+mbr_formulaBelonging2.appendChild(
+  createTextField(null, "l = is the balancing length and")
+);
+mbr_formulaBelonging2.appendChild(
+  createTextField(null, "D = is the diameter of the wire.")
+);
 
 let mbr_observationDiv = createDiv("practical-section");
 meterBridgeDiv.appendChild(mbr_observationDiv);
@@ -3278,27 +3416,120 @@ mbr_observationDiv.appendChild(
   createTextField("practical-section-header", "OBSERVATION:")
 );
 
-
-let mbr_leastCountInput = createInput(
-  "mbr-least-count-input",
+//METER BRIDGE OBSERVATIONS------------
+let mbr_scaleLcInput = createInput(
+  "mbr-scale-least-count-input",
   "number",
   0,
-  null,
-  true
+  measureEssentials_mbr
 );
 mbr_observationDiv.appendChild(
   createPAS(
-    "5",
+    "1",
+    createInputDiv("Least count of meter scale:", mbr_scaleLcInput, "cm."),
+    true
+  )
+);
+
+let mbr_wireLengthInput = createInput(
+  "mbr-scale-least-count-input",
+  "number",
+  0,
+  measureEssentials_mbr
+);
+mbr_observationDiv.appendChild(
+  createPAS(
+    "2",
+    createInputDiv("Length of wire:", mbr_wireLengthInput, "cm."),
+    true
+  )
+);
+
+mbr_observationDiv.appendChild(
+  createTextField(
+    "observation-table-header",
+    "Table for the measurement of balancing length"
+  )
+);
+let mbr_sonometerTableDiv = createDiv("observation-table-div");
+mbr_observationDiv.appendChild(mbr_sonometerTableDiv);
+
+let mbr_sonometerTable = createDiv("observation-table");
+mbr_sonometerTableDiv.appendChild(mbr_sonometerTable);
+
+mbr_sonometerTable.appendChild(
+  createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
+);
+mbr_sonometerTable.appendChild(
+  createColumn(
+    "Resistance Q ()",
+    5,
+    "mbr-Q",
+    "number",
+    0,
+    measureResistance_mbr
+  )
+);
+mbr_sonometerTable.appendChild(
+  createColumn(
+    "Position of balance point D (cm)",
+    5,
+    "mbr-D",
+    "number",
+    [4.9, 9.8, 14.7, 19.6, 24.5],
+    null,
+    true
+  )
+);
+mbr_sonometerTable.appendChild(
+  createColumn(
+    "Balancing length AD = l (cm)",
+    5,
+    "mbr-AD",
+    "number",
+    0,
+    measureResistance_mbr
+  )
+);
+mbr_sonometerTable.appendChild(
+  createColumn(
+    "Length DC = 100-l (cm)",
+    5,
+    "mbr-DC",
+    "number",
+    0,
+    measureResistance_mbr
+  )
+);
+mbr_sonometerTable.appendChild(
+  createColumn("X = Q/100-l ()", 5, "acs-X", "number", 0, null, true)
+);
+
+let mbr_sgLeastCountInput = createInput(
+  "mbr-sg-lc-input",
+  "number",
+  0,
+  measureEssentials_mbr
+);
+mbr_observationDiv.appendChild(
+  createPAS(
+    "3",
     createInputDiv(
-      "Least Count of the screw Gauge (L.C) = (Pitch/no of circular divisions): ",
-      mbr_leastCountInput,
+      "Least count of screw gauge (LC) = Pitch/(no. of circular division) = ",
+      mbr_sgLeastCountInput,
       "mm"
     ),
     true
   )
 );
 
-mbr_observationDiv.appendChild(createPAS("6", "Zero Error"));
+mbr_observationDiv.appendChild(
+  createPAS(
+    "4",
+    createTextField("practical-section-content", "Zero error (e):"),
+    true
+  )
+);
 
 let mbr_zeroErrorDiv = createDiv("moved-div");
 mbr_observationDiv.appendChild(mbr_zeroErrorDiv);
@@ -3310,7 +3541,7 @@ let mbr_ze1Input = createInput(
   measureEssentials_mbr
 );
 mbr_zeroErrorDiv.appendChild(
-  createPAS("a", createInputDiv("Zero Error: ", mbr_ze1Input, "mm"), true)
+  createPAS("a", createInputDiv("Zero Error: ", mbr_ze1Input), true)
 );
 
 let mbr_ze2Input = createInput(
@@ -3320,7 +3551,7 @@ let mbr_ze2Input = createInput(
   measureEssentials_mbr
 );
 mbr_zeroErrorDiv.appendChild(
-  createPAS("b", createInputDiv("Zero Error: ", mbr_ze2Input, "mm"), true)
+  createPAS("b", createInputDiv("Zero Error: ", mbr_ze2Input), true)
 );
 
 let mbr_ze3Input = createInput(
@@ -3330,11 +3561,11 @@ let mbr_ze3Input = createInput(
   measureEssentials_mbr
 );
 mbr_zeroErrorDiv.appendChild(
-  createPAS("c", createInputDiv("Zero Error: ", mbr_ze3Input, "mm"), true)
+  createPAS("c", createInputDiv("Zero Error: ", mbr_ze3Input), true)
 );
 
 let mbr_meanZeroErrorInput = createInput(
-  "mbr-mean-zero-error-input",
+  "mbr-sg-mean-ze-input",
   "number",
   0,
   null,
@@ -3342,14 +3573,14 @@ let mbr_meanZeroErrorInput = createInput(
 );
 mbr_observationDiv.appendChild(
   createPAS(
-    "7",
-    createInputDiv("Mean zero error: ", mbr_meanZeroErrorInput, "mm"),
+    "5",
+    createInputDiv("Mean zero error = ", mbr_meanZeroErrorInput, ""),
     true
   )
 );
 
 let mbr_zeroCorrectionInput = createInput(
-  "mbr-zero-correction-input",
+  "mbr-sg-zc-input",
   "number",
   0,
   null,
@@ -3357,38 +3588,89 @@ let mbr_zeroCorrectionInput = createInput(
 );
 mbr_observationDiv.appendChild(
   createPAS(
-    "8",
-    createInputDiv("Zero correction: ", mbr_zeroCorrectionInput, "mm"),
+    "6",
+    createInputDiv("Zero correction = ", mbr_zeroCorrectionInput, ""),
     true
   )
 );
 
-let mbr_diameterTableDiv = createDiv("observation-table-div");
-mbr_observationDiv.appendChild(mbr_diameterTableDiv);
+mbr_observationDiv.appendChild(
+  createTextField(
+    "observation-table-header",
+    "Table for the measurement of diameter of wire"
+  )
+);
+let mbr_sgTableDiv = createDiv("observation-table-div");
+mbr_observationDiv.appendChild(mbr_sgTableDiv);
 
-let mbr_diameterTable = createDiv("observation-table");
-mbr_diameterTableDiv.appendChild(mbr_diameterTable);
+let mbr_sgTable = createDiv("observation-table");
+mbr_sgTableDiv.appendChild(mbr_sgTable);
 
-mbr_diameterTable.appendChild(
+mbr_sgTable.appendChild(
   createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
+);
+mbr_sgTable.appendChild(
+  createColumn(
+    "Main scale reading (MSR) (mm)",
+    5,
+    "mbr-msr",
+    "number",
+    0,
+    measureDiameter_mbr,
+    false
+  )
+);
+mbr_sgTable.appendChild(
+  createColumn(
+    "Circular scale reading (CSR)",
+    5,
+    "mbr-csr",
+    "number",
+    0,
+    measureDiameter_mbr,
+    false
+  )
+);
+mbr_sgTable.appendChild(
+  createColumn(
+    "Observed Diameter (mm)",
+    5,
+    "mbr-d-obs",
+    "number",
+    0,
+    null,
+    true
+  )
 );
 
 let mbr_meanDiameterInput = createInput(
-  "mbr-mean-observed-diameter-input",
+  "mbr-sg-mean-d-input",
   "number",
-  0
+  0,
+  null,
+  true
 );
 mbr_observationDiv.appendChild(
-  createInputDiv("Mean observed diameter: ", mbr_meanDiameterInput, "mm")
+  createInputDiv("Mean diameter = ", mbr_meanDiameterInput, "cm")
 );
 
 let mbr_correctedDiameterInput = createInput(
-  "mbr-corrected-diameter-input",
+  "mbr-sg-mean-corr-d-input",
   "number",
-  0
+  0,
+  null,
+  true
 );
 mbr_observationDiv.appendChild(
-  createInputDiv("corrected diameter: ", mbr_correctedDiameterInput, "mm")
+  createInputDiv("Mean corrected diameter = ", mbr_correctedDiameterInput, "cm")
+);
+
+let mbr_masspulInput = createInput(
+  "mbr-wire-mass-input",
+  "number",
+  0,
+  null,
+  true
 );
 
 let mbr_resultDiv = createDiv("practical-section");
@@ -3410,7 +3692,8 @@ mbr_resultDiv.appendChild(
       "The value of resistance of the given wire is found to be: ",
       mbr_resistanceInput,
       "."
-    )
+    ),
+    true
   )
 );
 
@@ -3421,12 +3704,13 @@ let mbr_specificResistanceInput = createInput(
 );
 mbr_resultDiv.appendChild(
   createPAS(
-    "1",
+    "2",
     createInputDiv(
       "The value of specific resistance of the material of the wire is found to be: ",
       mbr_specificResistanceInput,
       "m."
-    )
+    ),
+    true
   )
 );
 
@@ -3448,18 +3732,25 @@ mbr_precautionsDiv.appendChild(createPAS("5", ""));
 
 function measureEssentials_mbr() {}
 
+function measureDiameter_mbr() {}
+
+function measureResistance_mbr() {}
+
 // #endregion
 
-// HALF DEFLECTION SECTION =================================
 // #region Half Deflection
-let bn_halfDeflection = createListButton(class12_list, "half-deflection-btn", "Half Deflection");
+let bn_halfDeflection = createListButton(
+  class12_list,
+  "half-deflection-btn",
+  "Half Deflection"
+);
 bn_halfDeflection.addEventListener("click", () => {
   openFile(halfDeflectionDiv, "Half Deflection");
   videoFrame.src = "";
+  helpVideoText.style.display = "flex";
 });
 
 let halfDeflectionDiv = createDiv("practical-file");
-
 
 
 let hdf_diagramDiv = createDiv("practical-section");
@@ -3471,14 +3762,14 @@ hdf_diagramDiv.appendChild(
 
 let hdf_diagram_light = document.createElement("img");
 hdf_diagram_light.className = "practical-file-diagram light";
-hdf_diagram_light.src = "https://www.dropbox.com/scl/fi/5evszrk8ta01xvmqyyisf/Half-Deflection-Diagram-light.png?rlkey=tvrt0n2sgzmpxmheyfqvmfcr4&st=vtzcnafu&raw=1";
+hdf_diagram_light.src =
+  "https://www.dropbox.com/scl/fi/5evszrk8ta01xvmqyyisf/Half-Deflection-Diagram-light.png?rlkey=tvrt0n2sgzmpxmheyfqvmfcr4&st=vtzcnafu&raw=1";
 hdf_diagramDiv.appendChild(hdf_diagram_light);
 let hdf_diagram_dark = document.createElement("img");
 hdf_diagram_dark.className = "practical-file-diagram dark";
-hdf_diagram_dark.src = "https://www.dropbox.com/scl/fi/zroghzg59g6fj8663pq80/Half-Deflection-Diagram-dark.jpg?rlkey=1ha3fnvbevtkgvtghpdynsjhj&st=vjcju4rh&raw=1";
+hdf_diagram_dark.src =
+  "https://www.dropbox.com/scl/fi/zroghzg59g6fj8663pq80/Half-Deflection-Diagram-dark.jpg?rlkey=1ha3fnvbevtkgvtghpdynsjhj&st=vjcju4rh&raw=1";
 hdf_diagramDiv.appendChild(hdf_diagram_dark);
-
-
 
 let hdf_objectiveDiv = createDiv("practical-section");
 halfDeflectionDiv.appendChild(hdf_objectiveDiv);
@@ -3487,7 +3778,12 @@ hdf_objectiveDiv.appendChild(
   createTextField("practical-section-header", "OBJECT:")
 );
 
-hdf_objectiveDiv.appendChild(createTextField("practical-section-content", ""));
+hdf_objectiveDiv.appendChild(
+  createTextField(
+    "practical-section-content",
+    "To study the current and voltage relationship (Ohm's Law) using an ammeter and voltmeter."
+  )
+);
 
 let hdf_apparatusDiv = createDiv("practical-section");
 halfDeflectionDiv.appendChild(hdf_apparatusDiv);
@@ -3496,7 +3792,12 @@ hdf_apparatusDiv.appendChild(
   createTextField("practical-section-header", "APPARATUS USED:")
 );
 
-hdf_apparatusDiv.appendChild(createTextField("practical-section-content", ""));
+hdf_apparatusDiv.appendChild(
+  createTextField(
+    "practical-section-content",
+    "Resistance coils, a battery eliminator(0-3 V), DC voltmeter(range: 3V), DC ammeter(range: 500mA), a rheostat one plug key, thick connecting wires, sand paper, etc."
+  )
+);
 
 let hdf_formulaDiv = createDiv("practical-section");
 halfDeflectionDiv.appendChild(hdf_formulaDiv);
@@ -3505,14 +3806,23 @@ hdf_formulaDiv.appendChild(
   createTextField("practical-section-header", "FORMULA USED:")
 );
 
-hdf_formulaDiv.appendChild(createTextField("practical-main-formula", ""));
+hdf_formulaDiv.appendChild(
+  createTextField(
+    "practical-section-content",
+    "Ohm's law states that the ratio of potential difference between any two points of a conductor to the electric current flowing through it is constant, provided the physical conditions namely temperature, pressure,etc. remains constant."
+  )
+);
 
-hdf_formulaDiv.appendChild(createTextField("practical-section-content", ""));
+hdf_formulaDiv.appendChild(
+  createTextField("practical-main-formula", "G = RS/(R-S)")
+);
 
-let hdf_formulaBelonging = createDiv("moved-div");
-hdf_formulaDiv.appendChild(hdf_formulaBelonging);
-
-hdf_formulaBelonging.appendChild(createTextField("", ""));
+hdf_formulaDiv.appendChild(
+  createTextField(
+    "practical-section-content",
+    "R Is the resistance in series with galvanometer and shunt resistance is S."
+  )
+);
 
 let hdf_observationDiv = createDiv("practical-section");
 halfDeflectionDiv.appendChild(hdf_observationDiv);
@@ -3521,150 +3831,72 @@ hdf_observationDiv.appendChild(
   createTextField("practical-section-header", "OBSERVATION:")
 );
 
-let hdf_mainScaleDivInput = createInput(
-  "hdf-distance-moved-by-circular-scale-input",
-  "number",
-  0,
-  measureEssentials_hdf
-);
-hdf_observationDiv.appendChild(
-  createPAS(
-    "1",
-    createInputDiv(
-      "Distance moved by the circular scale along the main scale(x): ",
-      hdf_mainScaleDivInput
-    ),
-    true
-  )
-);
+hdf_observationDiv.appendChild(createTextField("observation-table-header", "Table for the resistance of galvanometer by half deflection method"));
+let hdf_resistanceTableDiv = createDiv("observation-table-div");
+hdf_observationDiv.appendChild(hdf_resistanceTableDiv);
 
-let hdf_vernierScaleDivInput = createInput(
-  "hdf-revolution-of-circular-scale-input",
-  "number",
-  0,
-  measureEssentials_hdf
-);
-hdf_observationDiv.appendChild(
-  createPAS(
-    "2",
-    createInputDiv(
-      "Number of Total revolutions made by the circular is scared along many scale (y): ",
-      hdf_vernierScaleDivInput
-    ),
-    true
-  )
-);
+let hdf_resistanceTable = createDiv("observation-table");
+hdf_resistanceTableDiv.appendChild(hdf_resistanceTable);
 
-let hdf_leastCountInput = createInput(
-  "hdf-least-count-input",
-  "number",
-  0,
-  null,
-  true
-);
-hdf_observationDiv.appendChild(
-  createPAS(
-    "5",
-    createInputDiv(
-      "Least Count of the screw Gauge (L.C) = (Pitch/n): ",
-      hdf_leastCountInput,
-      "mm"
-    ),
-    true
-  )
-);
-
-hdf_observationDiv.appendChild(createPAS("6", "Zero Error"));
-
-let hdf_zeroErrorDiv = createDiv("moved-div");
-hdf_observationDiv.appendChild(hdf_zeroErrorDiv);
-
-let hdf_ze1Input = createInput(
-  "hdf-zero-error-1-input",
-  "number",
-  0,
-  measureEssentials_hdf
-);
-hdf_zeroErrorDiv.appendChild(
-  createPAS("a", createInputDiv("Zero Error: ", hdf_ze1Input), true)
-);
-
-let hdf_ze2Input = createInput(
-  "hdf-zero-error-2-input",
-  "number",
-  0,
-  measureEssentials_hdf
-);
-hdf_zeroErrorDiv.appendChild(
-  createPAS("b", createInputDiv("Zero Error: ", hdf_ze2Input), true)
-);
-
-let hdf_ze3Input = createInput(
-  "hdf-zero-error-3-input",
-  "number",
-  0,
-  measureEssentials_hdf
-);
-hdf_zeroErrorDiv.appendChild(
-  createPAS("c", createInputDiv("Zero Error: ", hdf_ze3Input), true)
-);
-
-let hdf_meanZeroErrorInput = createInput(
-  "hdf-mean-zero-error-input",
-  "number",
-  0,
-  null,
-  true
-);
-hdf_observationDiv.appendChild(
-  createPAS(
-    "7",
-    createInputDiv("Mean zero error: ", hdf_meanZeroErrorInput),
-    true
-  )
-);
-
-let hdf_zeroCorrectionInput = createInput(
-  "hdf-zero-correction-input",
-  "number",
-  0,
-  null,
-  true
-);
-hdf_observationDiv.appendChild(
-  createPAS(
-    "8",
-    createInputDiv("Zero correction: ", hdf_zeroCorrectionInput),
-    true
-  )
-);
-
-let hdf_diameterTableDiv = createDiv("observation-table-div");
-hdf_observationDiv.appendChild(hdf_diameterTableDiv);
-
-let hdf_diameterTable = createDiv("observation-table");
-hdf_diameterTableDiv.appendChild(hdf_diameterTable);
-
-hdf_diameterTable.appendChild(
+hdf_resistanceTable.appendChild(
   createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
+);
+hdf_resistanceTable.appendChild(
+  createColumn(
+    "Resistance R ()",
+    5,
+    "hdf-R",
+    "number",
+    0,
+    measureEssentials_hdf
+  )
+);
+hdf_resistanceTable.appendChild(
+  createColumn(
+    "Deflection in galvanometer div (n)",
+    5,
+    "hdf-N",
+    "number",
+    0,
+    measureEssentials_hdf
+  )
+);
+hdf_resistanceTable.appendChild(
+  createColumn(
+    "Half deflection (n/2)",
+    5,
+    "hdf-half-N",
+    "number",
+    0,
+    measureEssentials_hdf
+  )
+);
+hdf_resistanceTable.appendChild(
+  createColumn(
+    "Required shunt S ()",
+    5,
+    "hdf-S",
+    "number",
+    0,
+    measureEssentials_hdf
+  )
+);
+hdf_resistanceTable.appendChild(
+  createColumn(
+    "Galvanometer resistance G = RS/(R-S) ()",
+    5,
+    "hdf-G",
+    "number",
+    0,
+    null,
+    true
+  )
 );
 
 let hdf_meanDiameterInput = createInput(
   "hdf-mean-observed-diameter-input",
   "number",
   0
-);
-hdf_observationDiv.appendChild(
-  createInputDiv("Mean observed diameter: ", hdf_meanDiameterInput, "mm")
-);
-
-let hdf_correctedDiameterInput = createInput(
-  "hdf-corrected-diameter-input",
-  "number",
-  0
-);
-hdf_observationDiv.appendChild(
-  createInputDiv("corrected diameter: ", hdf_correctedDiameterInput, "mm")
 );
 
 let hdf_resultDiv = createDiv("practical-section");
@@ -3674,17 +3906,20 @@ hdf_resultDiv.appendChild(
   createTextField("practical-section-header", "RESULT:")
 );
 
-let hdf_masspulInput = createInput(
+let hdf_resistanceInput = createInput(
   "hdf-mass-per-unit-length-input",
   "number",
   0
 );
-hdf_masspulInput.style.width = "100px";
 hdf_resultDiv.appendChild(
-  createInputDiv(
-    "The mass per unit length of the wire is found to be: ",
-    hdf_masspulInput,
-    "kg/m"
+  createPAS(
+    "1",
+    createInputDiv(
+      "Resistance of galvanometer(G) by half deflection method is found to be ",
+      hdf_resistanceInput,
+      "."
+    ),
+    true
   )
 );
 
@@ -3708,17 +3943,19 @@ function measureEssentials_hdf() {}
 
 // #endregion
 
-// AC SONOMETER SECTION ====================================
 // #region AC Sonometer
-let bn_acsonometer = createListButton(class12_list, "ac-sonometer-btn", "AC Sonometer");
+let bn_acsonometer = createListButton(
+  class12_list,
+  "ac-sonometer-btn",
+  "AC Sonometer"
+);
 bn_acsonometer.addEventListener("click", () => {
   openFile(acSonometerDiv, "AC Sonometer");
   videoFrame.src = "";
+  helpVideoText.style.display = "flex";
 });
 
 let acSonometerDiv = createDiv("practical-file");
-
-
 
 let acs_diagramDiv = createDiv("practical-section");
 acSonometerDiv.appendChild(acs_diagramDiv);
@@ -3729,14 +3966,14 @@ acs_diagramDiv.appendChild(
 
 let acs_diagram_light = document.createElement("img");
 acs_diagram_light.className = "practical-file-diagram light";
-acs_diagram_light.src = "https://www.dropbox.com/scl/fi/xaw4w9h4enspf22tnsx7r/AC-Sonometer-Diagram-light.png?rlkey=n4n2b2baxhiimyxpe96wn6tsz&st=06oenawp&raw=1";
+acs_diagram_light.src =
+  "https://www.dropbox.com/scl/fi/xaw4w9h4enspf22tnsx7r/AC-Sonometer-Diagram-light.png?rlkey=n4n2b2baxhiimyxpe96wn6tsz&st=06oenawp&raw=1";
 acs_diagramDiv.appendChild(acs_diagram_light);
 let acs_diagram_dark = document.createElement("img");
 acs_diagram_dark.className = "practical-file-diagram dark";
-acs_diagram_dark.src = "https://www.dropbox.com/scl/fi/5upv53sqleb7vsqirlf1e/AC-Sonometer-Diagram-dark.jpg?rlkey=jaj5vt4883utifrjb86zk2d8n&st=fio4t3ko&raw=1";
+acs_diagram_dark.src =
+  "https://www.dropbox.com/scl/fi/5upv53sqleb7vsqirlf1e/AC-Sonometer-Diagram-dark.jpg?rlkey=jaj5vt4883utifrjb86zk2d8n&st=fio4t3ko&raw=1";
 acs_diagramDiv.appendChild(acs_diagram_dark);
-
-
 
 let acs_objectiveDiv = createDiv("practical-section");
 acSonometerDiv.appendChild(acs_objectiveDiv);
@@ -3905,6 +4142,12 @@ acs_observationDiv.appendChild(
   createInputDiv("Density of the wire:", acs_densityInput, "kg/m³")
 );
 
+acs_observationDiv.appendChild(
+  createTextField(
+    "observation-table-header",
+    "Table for the measurement of diameter of wire"
+  )
+);
 let acs_sgTableDiv = createDiv("observation-table-div");
 acs_observationDiv.appendChild(acs_sgTableDiv);
 
@@ -3986,6 +4229,12 @@ acs_observationDiv.appendChild(
 );
 
 //SONOMETER OBSERVATIONS------------
+acs_observationDiv.appendChild(
+  createTextField(
+    "observation-table-header",
+    "Table for the measurement of frequency"
+  )
+);
 let acs_sonometerTableDiv = createDiv("observation-table-div");
 acs_observationDiv.appendChild(acs_sonometerTableDiv);
 
@@ -4209,7 +4458,7 @@ function measureFrequency_acs() {
 
     if (V > 0) {
       v_sum += V;
-      validReadings ++;
+      validReadings++;
     }
   }
 
@@ -4218,7 +4467,6 @@ function measureFrequency_acs() {
 }
 // #endregion
 
-// CONVEX LENS SECTION =====================================
 // #region Convex Lens
 let bn_convexLens = createListButton(
   class12_list,
@@ -4228,11 +4476,10 @@ let bn_convexLens = createListButton(
 bn_convexLens.addEventListener("click", () => {
   openFile(convexLensDiv, "Convex Lens");
   videoFrame.src = "";
+  helpVideoText.style.display = "flex";
 });
 
 let convexLensDiv = createDiv("practical-file");
-
-
 
 let cvl_diagramDiv = createDiv("practical-section");
 convexLensDiv.appendChild(cvl_diagramDiv);
@@ -4249,8 +4496,6 @@ let cvl_diagram_dark = document.createElement("img");
 cvl_diagram_dark.className = "practical-file-diagram dark";
 cvl_diagram_dark.src = "";
 cvl_diagramDiv.appendChild(cvl_diagram_dark);
-
-
 
 let cvl_objectiveDiv = createDiv("practical-section");
 convexLensDiv.appendChild(cvl_objectiveDiv);
@@ -4299,10 +4544,7 @@ cvl_formulaDiv.appendChild(
 );
 
 cvl_formulaDiv.appendChild(
-  createTextField(
-    "practical-section-content",
-    "Where,"
-  )
+  createTextField("practical-section-content", "Where,")
 );
 
 let cvl_observationDiv = createDiv("practical-section");
@@ -4442,6 +4684,12 @@ cvl_observationDiv.appendChild(
   )
 );
 
+cvl_observationDiv.appendChild(
+  createTextField(
+    "observation-table-header",
+    "Table for the measurement of focal length of mirror"
+  )
+);
 let cvl_distanceTableDiv = createDiv("observation-table-div");
 cvl_observationDiv.appendChild(cvl_distanceTableDiv);
 
@@ -4601,34 +4849,56 @@ let cvl_precautionsDiv = createDiv("practical-section");
 convexLensDiv.appendChild(cvl_precautionsDiv);
 
 cvl_precautionsDiv.appendChild(
-  createTextField(
-    "practical-section-header",
-    "PRECAUTIONS:"
-  )
+  createTextField("practical-section-header", "PRECAUTIONS:")
 );
 
-cvl_precautionsDiv.appendChild(createPAS("1", "The tips of the needles should be as high as the optical centre of the lens."));
-cvl_precautionsDiv.appendChild(createPAS("2", "The uprights supporting the needles and the mirror should be rigid."));
-cvl_precautionsDiv.appendChild(createPAS("3", "Parallax of the image and object needle should be removed tip to tip."));
-cvl_precautionsDiv.appendChild(createPAS("4", "The object and the image needles should be clearly distinguished from each other and they should not be interchanged for different sets of observations."));
-cvl_precautionsDiv.appendChild(createPAS("5", "Index correction for both u and v should be properly determined and must be applied."));
-
-
+cvl_precautionsDiv.appendChild(
+  createPAS(
+    "1",
+    "The tips of the needles should be as high as the optical centre of the lens."
+  )
+);
+cvl_precautionsDiv.appendChild(
+  createPAS(
+    "2",
+    "The uprights supporting the needles and the mirror should be rigid."
+  )
+);
+cvl_precautionsDiv.appendChild(
+  createPAS(
+    "3",
+    "Parallax of the image and object needle should be removed tip to tip."
+  )
+);
+cvl_precautionsDiv.appendChild(
+  createPAS(
+    "4",
+    "The object and the image needles should be clearly distinguished from each other and they should not be interchanged for different sets of observations."
+  )
+);
+cvl_precautionsDiv.appendChild(
+  createPAS(
+    "5",
+    "Index correction for both u and v should be properly determined and must be applied."
+  )
+);
 
 let cvl_SOEDiv = createDiv("practical-section");
 convexLensDiv.appendChild(cvl_SOEDiv);
 
 cvl_SOEDiv.appendChild(
-  createTextField(
-    "practical-section-header",
-    "SOURCES OF ERRORS:"
-  )
+  createTextField("practical-section-header", "SOURCES OF ERRORS:")
 );
 
 cvl_SOEDiv.appendChild(createPAS("1", "The uprights may not be vertical."));
 cvl_SOEDiv.appendChild(createPAS("2", "Parallax removal may not be perfect."));
 cvl_SOEDiv.appendChild(createPAS("3", "The convex lens is very thick."));
-cvl_SOEDiv.appendChild(createPAS("4", "The principal axis of the lens may not be parallel to the optical bench."));
+cvl_SOEDiv.appendChild(
+  createPAS(
+    "4",
+    "The principal axis of the lens may not be parallel to the optical bench."
+  )
+);
 
 // VARIABLES =============================
 let cvl_lengthOfNeedle = null;
@@ -4690,7 +4960,6 @@ function measureFocalLength_cvl() {
 }
 // #endregion
 
-// CONCAVE MIRROR SECTION ==================================
 // #region Concave Mirror
 let bn_concaveMirror = createListButton(
   class12_list,
@@ -4700,11 +4969,10 @@ let bn_concaveMirror = createListButton(
 bn_concaveMirror.addEventListener("click", () => {
   openFile(concaveMirrorDiv, "Concave Mirror");
   videoFrame.src = "";
+  helpVideoText.style.display = "flex";
 });
 
 let concaveMirrorDiv = createDiv("practical-file");
-
-
 
 let ccm_diagramDiv = createDiv("practical-section");
 concaveMirrorDiv.appendChild(ccm_diagramDiv);
@@ -4715,14 +4983,14 @@ ccm_diagramDiv.appendChild(
 
 let ccm_diagram_light = document.createElement("img");
 ccm_diagram_light.className = "practical-file-diagram light";
-ccm_diagram_light.src = "https://www.dropbox.com/scl/fi/a6xgzzzzonu7s2ov7kjwu/Concave-Mirror-Diagram-light.jpg?rlkey=hp30jp9xxgj4tngc55l5mz81h&st=l997u7qs&raw=1";
+ccm_diagram_light.src =
+  "https://www.dropbox.com/scl/fi/a6xgzzzzonu7s2ov7kjwu/Concave-Mirror-Diagram-light.jpg?rlkey=hp30jp9xxgj4tngc55l5mz81h&st=l997u7qs&raw=1";
 ccm_diagramDiv.appendChild(ccm_diagram_light);
 let ccm_diagram_dark = document.createElement("img");
 ccm_diagram_dark.className = "practical-file-diagram dark";
-ccm_diagram_dark.src = "https://www.dropbox.com/scl/fi/723aztc9lp7x2uqiaiush/Concave-Mirror-Diagram-dark.jpg?rlkey=sr2clqviq6z8l6vlzwphqdb0s&st=tx5edilk&raw=1";
+ccm_diagram_dark.src =
+  "https://www.dropbox.com/scl/fi/723aztc9lp7x2uqiaiush/Concave-Mirror-Diagram-dark.jpg?rlkey=sr2clqviq6z8l6vlzwphqdb0s&st=tx5edilk&raw=1";
 ccm_diagramDiv.appendChild(ccm_diagram_dark);
-
-
 
 let ccm_objectiveDiv = createDiv("practical-section");
 concaveMirrorDiv.appendChild(ccm_objectiveDiv);
@@ -4914,6 +5182,12 @@ ccm_observationDiv.appendChild(
   )
 );
 
+ccm_observationDiv.appendChild(
+  createTextField(
+    "observation-table-header",
+    "Table for the measurement of focal length of mirror"
+  )
+);
 let ccm_distanceTableDiv = createDiv("observation-table-div");
 ccm_observationDiv.appendChild(ccm_distanceTableDiv);
 
@@ -5073,10 +5347,7 @@ let ccm_precautionsDiv = createDiv("practical-section");
 concaveMirrorDiv.appendChild(ccm_precautionsDiv);
 
 ccm_precautionsDiv.appendChild(
-  createTextField(
-    "practical-section-header",
-    "PRECAUTIONS:"
-  )
+  createTextField("practical-section-header", "PRECAUTIONS:")
 );
 
 ccm_precautionsDiv.appendChild(createPAS("1", ""));
@@ -5085,16 +5356,11 @@ ccm_precautionsDiv.appendChild(createPAS("3", ""));
 ccm_precautionsDiv.appendChild(createPAS("4", ""));
 ccm_precautionsDiv.appendChild(createPAS("5", ""));
 
-
-
 let ccm_SOEDiv = createDiv("practical-section");
 concaveMirrorDiv.appendChild(ccm_SOEDiv);
 
 ccm_SOEDiv.appendChild(
-  createTextField(
-    "practical-section-header",
-    "SOURCES OF ERRORS:"
-  )
+  createTextField("practical-section-header", "SOURCES OF ERRORS:")
 );
 
 ccm_SOEDiv.appendChild(createPAS("1", ""));

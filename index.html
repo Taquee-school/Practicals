@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Permissions-Policy" content="unload=(self)">
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link
       rel="stylesheet"
@@ -31,6 +32,10 @@
               <i class="ph-fill ph-paint-roller"></i>
               <p>Theme</p>
             </button>
+            <button id="navigation-bar-btn" class="option-panel-btn ripple">
+              <i class="ph-fill ph-compass"></i>
+              <p>Navigation bar</p>
+            </button>
           </div>
 
           <div class="added-panel" id="theme-panel">
@@ -48,6 +53,26 @@
                 <p>cancel</p>
               </button>
               <button id="confirm-btn-theme">
+                <p>ok</p>
+              </button>
+            </div>
+          </div>
+
+          <div class="added-panel" id="navigation-bar-panel">
+            <p class="added-panel-header">Navigation bar style</p>
+            <button id="floating-btn-navigation-bar" class="option-panel-btn ripple">
+              <i id="floating-icon" class="ph-bold ph-circle"></i>
+              <p>Floating</p>
+            </button>
+            <button id="sticky-btn-navigation-bar" class="option-panel-btn ripple">
+              <i id="sticky-icon" class="ph-fill ph-radio-button"></i>
+              <p>sticky</p>
+            </button>
+            <div class="added-panel-btn-div">
+              <button id="cancel-btn-navigation-bar">
+                <p>cancel</p>
+              </button>
+              <button id="confirm-btn-navigation-bar">
                 <p>ok</p>
               </button>
             </div>
