@@ -21,6 +21,35 @@
   }
 }
 
+@keyframes appear {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes disappear {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
 body {
   height: 100vh;
   width: 100vw;
@@ -30,7 +59,6 @@ body {
   margin: 0;
   padding: 0;
   gap: 0;
-  background: transparent;
   font-family: "Inter", sans-serif;
 }
 body::-webkit-scrollbar {
@@ -39,11 +67,16 @@ body::-webkit-scrollbar {
 
 a,
 button,
+i,
+p,
+div,
 input {
   -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 #app {
+  position: relative;
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -53,7 +86,22 @@ input {
   gap: 0;
   display: flex;
   flex-direction: column;
-  background: transparent;
+}
+#app.light {
+  background: rgb(235, 235, 235);
+}
+#app.dark {
+  background: black;
+}
+#app.light i,
+#app.light p,
+#app.light input {
+  color: black;
+}
+#app.dark i,
+#app.dark p,
+#app.dark input {
+  color: rgb(255, 255, 255);
 }
 
 #inner-app {
@@ -73,31 +121,8 @@ input {
   display: none;
 }
 
-.tab-header {
-  height: 7%;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.tab-header p {
-  font: 700 18px Arial;
-}
-
-.tab-header button {
-  cursor: pointer;
-  border: none;
-  color: black;
-  font-size: 25px;
-}
-.tab-header i {
-  cursor: pointer;
-}
-
 .inner-app-tab {
+  position: relative;
   height: 100%;
   max-width: 100vw;
   min-width: 100vw;
@@ -112,16 +137,126 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgb(235, 235, 235);
 }
 .inner-app-tab::-webkit-scrollbar {
   display: none;
 }
 
-.practicals-list-div {
+.added-panel-header {
+  font: 500 20px Arial;
+}
+
+.added-panel {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   height: fit-content;
+  width: 60%;
+  overflow: hidden;
+  margin: auto;
+  padding: 0 20px;
+  border-radius: 20px;
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+}
+#option-panel {
+  z-index: 1;
+  top: 7%;
+  right: 20px;
+  bottom: auto;
+  left: auto;
+  width: 30%;
+  min-width: fit-content;
+  margin: 0;
+  padding: 0 15px;
+}
+#app.dark .added-panel {
+  background: rgb(60, 60, 60);
+}
+#app.light .added-panel {
+  border: 0.5px solid rgb(200, 200, 200);
+  background: rgb(255, 255, 255);
+  box-shadow: 0 0 5px rgb(200, 200, 200);
+}
+
+.added-panel-btn-div {
   width: 100%;
-  margin: 10px 0 0 0;
+  gap: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+.added-panel-btn-div button {
+  border: none;
+  background: transparent;
+}
+.added-panel-btn-div button p {
+  font: 500 16px Arial;
+}
+
+.option-panel-btn {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  gap: 15px;
+  border: none;
+  display: flex;
+  background: transparent;
+  justify-content: flex-start;
+  align-items: center;
+}
+.option-panel-btn p {
+  font: 500 16px Arial;
+}
+.option-panel-btn i {
+  font-size: 18px;
+}
+
+.top-bar {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: auto;
+  left: 0;
+  flex-shrink: 0;
+  height: 50px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#app.light .top-bar {
+  background-color: rgb(235, 235, 235);
+}
+#app.dark .top-bar {
+  background-color: rgb(0, 0, 0);
+}
+
+.practical-type-header {
+  font: 500 25px "Inter", sans-serif;
+}
+
+.top-bar button {
+  height: 40px;
+  width: 40px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+}
+.top-bar button i {
+  font-size: 25px;
+}
+
+.practicals-list-div {
+  flex-grow: 1;
+  width: 100%;
+  margin: 50px 0 0 0;
   padding: 0 0 200px 0;
   gap: 0;
   display: flex;
@@ -129,26 +264,32 @@ input {
   align-items: center;
 }
 
-.practicals-list-div .practicals-list-class-header {
-  margin: 25px auto 10px 20px;
+.practicals-list-class-header {
+  margin: 0 auto 0 20px;
   align-self: flex-start;
-  font: 700 22px black;
+  font: 700 20px Arial;
 }
 
 .practicals-list {
   height: fit-content;
   width: 96%;
   overflow: hidden;
-  margin: 0;
-  gap: 2px;
+  margin: 10px 0 30px 0;
   border: none;
-  border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+.practicals-list.list-view {
+  border-radius: 15px;
+  gap: 2px;
+}
+.practicals-list.grid-view {
+  border-radius: 15px;
+  gap: 20px;
+}
 
-.practicals-list button {
+.practicals-list.list-view button {
   cursor: pointer;
   height: 60px;
   width: 100%;
@@ -157,75 +298,92 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font: 400 18px black;
-  background: rgba(255, 255, 255);
+  font: 400 18px Arial;
   transition: all 0.2s ease;
 }
 
-.practicals-list button:hover {
-  background-color: rgb(245, 245, 245);
+.practicals-list.grid-view button {
+  cursor: pointer;
+  height: 200px;
+  width: 100%;
+  padding: 0 15px;
+  border: none;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+#app.light .practicals-list button {
+  background: rgba(255, 255, 255);
+}
+#app.dark .practicals-list button {
+  background: rgb(30, 30, 30);
 }
 .practicals-list button:active {
   transform: translateX(-30px);
 }
 
-#practical-tab-header {
-  height: 7%;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background: rgb(235, 235, 235);
+.practicals-list p {
+  font: 400 20px Arial;
+}
+.practicals-list i {
+  font-size: 23px;
 }
 
-#practical-tab-header button {
-  height: 100%;
-  border: none;
-  background: transparent;
-}
-#practical-tab-header button i {
-  font-size: 20px;
-}
-
-#practical-tab-header p {
-  font: 700 20px "Inter";
-  margin: 0 0 0 10px;
-}
-
-#practical-container {
-  height: 93%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  overflow-y: scroll;
+#app.light .practical-tab-panel {
   background: white;
 }
-#practical-container::-webkit-scrollbar {
-  width: 5px;
-  border-radius: 0;
-}
-#practical-container::-webkit-scrollbar-thumb {
-  border-radius: 0;
-  background: rgba(0, 0, 0, 0.3);
+#app.dark .practical-tab-panel {
+  background: rgb(10, 10, 10);
 }
 
-#nav {
-  height: 10%;
-  width: 100%;
+#navigation-div {
+  position: absolute;
+  z-index: 1;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 80px;
   flex-shrink: 0;
   box-sizing: border-box;
   margin: 0;
   padding: 10px 0 0 0;
-  gap: 3%;
-  border: none;
-  border-top: 0.2px solid rgb(0, 0, 0, 0.2);
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
+}
+#navigation-div.sticky {
+  height: 10%;
+  width: 100%;
+  border: none;
+}
+#navigation-div.floating {
+  bottom: 15px;
+  margin: 0 auto;
+  height: 7%;
+  width: 95%;
+  border-radius: 40px;
+}
+#app.light #navigation-div.sticky {
+  border-top: 0.2px solid rgb(0, 0, 0, 0.2);
   background: rgb(235, 235, 235);
 }
-#nav a {
+#app.dark #navigation-div.sticky {
+  border-top: 0.5px solid rgb(50, 50, 50);
+  background: rgb(0, 0, 0);
+}
+#app.light #navigation-div.floating {
+  border: 0.2px solid rgb(0, 0, 0, 0.2);
+  background: rgb(235, 235, 235);
+}
+#app.dark #navigation-div.floating {
+  border: 0.5px solid rgb(50, 50, 50);
+  background: rgb(0, 0, 0);
+}
+
+#navigation-div button {
   cursor: pointer;
   gap: 2px;
   padding: 0;
@@ -248,31 +406,51 @@ input {
 }
 
 .navigation-icon-div {
-  padding: 20px 35px;
+  padding: 16px 35px;
   border-radius: 20px;
 }
-.navigation-icon-div.active {
+#app.light .navigation-icon-div.active {
   background: white;
 }
+#app.dark .navigation-icon-div.active {
+  background: rgb(60, 60, 60);
+}
 
-#nav a i {
+#navigation-div button i {
   position: absolute;
   z-index: 1;
   top: auto;
   right: auto;
   bottom: auto;
   left: auto;
-  margin: auto;
   flex-shrink: 0;
-  font-size: 22px;
+  margin: auto;
+  font-size: 20px;
 }
 
-#nav p {
+#navigation-div p {
   margin: 0;
   font: 500 14px Arial;
   transition: all 0.2s linear;
 }
 
+button.ripple {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-span {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+  pointer-events: none;
+}
+#app.light .ripple-span {
+  background: rgba(0, 0, 0, 0.3);
+}
+#app.dark .ripple-span {
+  background: rgba(255, 255, 255, 0.3);
+}
 
 #loading-screen {
   height: 100%;

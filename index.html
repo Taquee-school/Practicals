@@ -13,45 +13,84 @@
     />
     <title>Practicals by Noor Taquee</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="practical.css" />
+    <link rel="stylesheet" href="practicals.css" />
   </head>
   <body>
-    <div id="app">
+    <div id="app" class="dark">
       <div id="inner-app">
         <div id="home-tab" class="inner-app-tab light">
+          <div class="top-bar">
+            <p class="practical-type-header">Physics Practicals</p>
+            <button id="options-btn" class="ripple">
+              <i class="ph-bold ph-dots-three-vertical"></i>
+            </button>
+          </div>
+
+          <div class="added-panel" id="option-panel">
+            <button id="theme-btn" class="option-panel-btn ripple">
+              <i class="ph-fill ph-paint-roller"></i>
+              <p>Theme</p>
+            </button>
+          </div>
+
+          <div class="added-panel" id="theme-panel">
+            <p class="added-panel-header">Choose Theme</p>
+            <button id="light-btn-theme" class="option-panel-btn ripple">
+              <i id="light-icon" class="ph-bold ph-circle"></i>
+              <p>Light</p>
+            </button>
+            <button id="dark-btn-theme" class="option-panel-btn ripple">
+              <i id="dark-icon" class="ph-fill ph-radio-button"></i>
+              <p>Dark</p>
+            </button>
+            <div class="added-panel-btn-div">
+              <button id="cancel-btn-theme">
+                <p>cancel</p>
+              </button>
+              <button id="confirm-btn-theme">
+                <p>ok</p>
+              </button>
+            </div>
+          </div>
+
           <div class="practicals-list-div">
             <p class="practicals-list-class-header">Class 11</p>
-            <div class="practicals-list" id="class-11"></div>
+            <div class="practicals-list list-view" id="class-11"></div>
             <p class="practicals-list-class-header">Class 12</p>
-            <div class="practicals-list" id="class-12"></div>
+            <div class="practicals-list list-view" id="class-12"></div>
           </div>
         </div>
         <div id="practical-tab" class="inner-app-tab light">
-          <div id="practical-tab-header">
-            <button onclick="changeTab(homeTab, bnHome)">
-              <i class="ph-bold ph-arrow-left"></i>
+          <div id="practical-tab-header" class="tab-header">
+            <div>
+              <button class="back-btn ripple">
+                <i class="ph-bold ph-arrow-left"></i>
+              </button>
+              <p id="experiment-name"></p>
+            </div>
+            <button id="help-button" class="back-btn ripple">
+              <i class="ph-bold ph-question-mark"></i>
             </button>
-            <p id="experiment-name"></p>
           </div>
-          <div id="practical-container"></div>
+          <div id="practical-container" class="practical-tab-panel"></div>
         </div>
       </div>
 
-      <div id="nav">
-        <a id="home-button" class="a">
+      <div id="navigation-div" class="sticky">
+        <button id="home-button" class="active">
           <div class="navigation-icon-container">
             <div class="navigation-icon-div active" id="home-icon"></div>
             <i class="ph-bold ph-list-bullets"></i>
           </div>
           <p>Home</p>
-        </a>
-        <a id="practical-button" class="na">
+        </button>
+        <button id="practical-button">
           <div class="navigation-icon-container">
             <div class="navigation-icon-div" id="practical-icon"></div>
             <i class="ph-fill ph-file-text"></i>
           </div>
           <p>Practical</p>
-        </a>
+        </button>
       </div>
     </div>
     <div id="loading-screen">
@@ -62,21 +101,13 @@
       <div class="bar"></div>
       <div class="bar"></div>
     </div>
-    <script defer src="script.js"></script>
-    <script defer src="screwGauge.js"></script>
-    <script defer src="vernierCalipers.js"></script>
-    <script defer src="spherometer.js"></script>
-    <script defer src="parallelogram.js"></script>
-    <script defer src="simplePendulum.js"></script>
-    <script defer src="sonometer.js"></script>
-    <script defer src="helicalSpring.js"></script>
-    <script defer src="resonanceTube.js"></script>
-    <script defer src="OhmsLaw.js"></script>
-    <script defer src="pnJunction.js"></script>
-    <script defer src="meterBridge.js"></script>
-    <script defer src="halfDeflection.js"></script>
-    <script defer src="acSonometer.js"></script>
-    <script defer src="convexLens.js"></script>
-    <script defer src="concaveMirror.js"></script>
+    <script>
+function reloadPage() {
+  window.location.reload()
+}
+    </script>
+    <script src="UIhelperFunctions.js" onerror="reloadPage()"></script>
+    <script src="script.js" onerror="reloadPage()"></script>
+    <script defer src="practicals.js" onerror="reloadPage()"></script>
   </body>
 </html>

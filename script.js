@@ -7,13 +7,11 @@ let homeTab = document.getElementById("home-tab");
 let practicalTab = document.getElementById("practical-tab");
 
 let bnHome = document.getElementById("home-button");
-bnHome.addEventListener("click", () => changeTab(homeTab, homeIcon));
+bnHome.addEventListener("click", () => changeTab(homeTab));
 let homeIcon = document.getElementById("home-icon");
 
 let bnPractical = document.getElementById("practical-button");
-bnPractical.addEventListener("click", () =>
-  changeTab(practicalTab, practicalIcon)
-);
+bnPractical.addEventListener("click", () => changeTab(practicalTab));
 let practicalIcon = document.getElementById("practical-icon");
 
 let practicalContainer = document.getElementById("practical-container");
@@ -22,141 +20,154 @@ let experimentName = document.getElementById("experiment-name");
 let class11_list = document.getElementById("class-11");
 let class12_list = document.getElementById("class-12");
 
-let class11_practicals = {};
+// OPTIONAL PANEL =====================
+// #region Option Panel
+let optionPanel = document.getElementById("option-panel");
+let bnOption = document.getElementById("options-btn");
+bnOption.addEventListener("click", showOptionPanel);
 
-function createListButton(cr, id, btT) {
-  let btn = document.createElement("button");
-  cr.appendChild(btn);
-  btn.id = id;
-
-  btn.appendChild(createTextField(null, btT));
-
-  let ic = document.createElement("i");
-  ic.className = "ph-bold ph-caret-right";
-  btn.appendChild(ic);
-
-  return btn;
+function showOptionPanel() {
+  bnOption.removeEventListener("click", showOptionPanel);
+  optionPanel.style.display = "flex";
+  optionPanel.style.animation = "appear 0.3s ease";
+  optionPanel.addEventListener(
+    "animationend",
+    () => {
+      optionPanel.style.animation = "none";
+      bnOption.addEventListener("click", hideOptionPanel);
+    },
+    { once: true }
+  );
 }
 
-function createTextField(clas, content) {
-  let p = document.createElement("p");
-  p.className = clas;
-  p.textContent = content;
-
-  return p;
-}
-
-function createInput(
-  id,
-  type,
-  value = 0,
-  inputFunction = null,
-  readOnly = false
-) {
-  let input = document.createElement("input");
-  if (id) input.id = id;
-  input.type = type;
-  input.value = value;
-  input.oninput = inputFunction;
-  input.readOnly = readOnly;
-  return input;
-}
-
-function createInputDiv(label, input, extra = null) {
-  let div = document.createElement("div");
-  div.className = "practical-section-input-div";
-  let p1 = document.createElement("p");
-  p1.textContent = label;
-  div.appendChild(p1);
-  p1.appendChild(input);
-  if (extra) {
-    let p2 = document.createElement("span");
-    p2.textContent = extra;
-    p1.appendChild(p2);
+function hideOptionPanel() {
+  if ((optionPanel.style.display = "flex")) {
+    bnOption.removeEventListener("click", hideOptionPanel);
+    optionPanel.style.animation = "disappear 0.3s ease";
+    optionPanel.addEventListener(
+      "animationend",
+      () => {
+        optionPanel.style.animation = "none";
+        optionPanel.style.display = "none";
+        bnOption.addEventListener("click", showOptionPanel);
+      },
+      { once: true }
+    );
   }
-  return div;
 }
 
-function createColumn(
-  header,
-  no,
-  pattern,
-  type,
-  value,
-  inputFunction,
-  readOnly = false
-) {
-  let column = document.createElement("div");
-  column.className = "observation-table-column";
-  let columnHeader = document.createElement("div");
-  columnHeader.className = "observation-table-column-header";
-  column.appendChild(columnHeader);
-  let columnHeaderp = document.createElement("p");
-  columnHeaderp.textContent = header;
-  columnHeader.appendChild(columnHeaderp);
+// #endregion
 
-  for (let i = 1; i <= no; i++) {
-    if (Array.isArray(value)) {
-      if (pattern) {
-        column.appendChild(
-          createInput(
-            `${pattern}-${i}`,
-            type,
-            value[i - 1],
-            inputFunction,
-            readOnly
-          )
-        );
-      } else {
-        column.appendChild(
-          createInput(null, type, value[i - 1], inputFunction, readOnly)
-        );
-      }
-    } else {
-      column.appendChild(
-        createInput(`${pattern}-${i}`, type, value, inputFunction, readOnly)
-      );
-    }
+// THEME PANEL ========================
+// #region Theme Panel
+let appliedTheme = "dark";
+let appliedThemeI = null;
+let selectedTheme = "dark";
+let selectedThemeI = null;
+
+let ThemePanel = document.getElementById("theme-panel");
+let bnTheme = document.getElementById("theme-btn");
+bnTheme.addEventListener("click", showThemePanel);
+
+let cancelTheme = document.getElementById("cancel-btn-theme");
+cancelTheme.addEventListener("click", hideThemePanel);
+
+let confirmTheme = document.getElementById("confirm-btn-theme");
+confirmTheme.addEventListener("click", applyTheme);
+
+let bnDark = document.getElementById("dark-btn-theme");
+let darkIcon = document.getElementById("dark-icon");
+appliedThemeI = darkIcon;
+selectedThemeI = darkIcon;
+bnDark.addEventListener("click", () => {
+  selectedThemeI.className = "ph-bold ph-circle";
+  selectedTheme = "dark";
+  selectedThemeI = darkIcon;
+  selectedThemeI.className = "ph-fill ph-radio-button";
+});
+
+let bnLight = document.getElementById("light-btn-theme");
+let lightIcon = document.getElementById("light-icon");
+bnLight.addEventListener("click", () => {
+  selectedThemeI.className = "ph-bold ph-circle";
+  selectedTheme = "light";
+  selectedThemeI = lightIcon;
+  selectedThemeI.className = "ph-fill ph-radio-button";
+});
+
+function applyTheme() {
+  app.classList.remove(appliedTheme);
+  appliedThemeI = selectedThemeI;
+  appliedTheme = selectedTheme;
+  app.classList.add(appliedTheme);
+  hideThemePanel();
+  localStorage.setItem("theme", appliedTheme);
+}
+
+function showThemePanel() {
+  if ((ThemePanel.style.display = "none")) {
+    hideOptionPanel();
+    bnTheme.removeEventListener("click", showThemePanel);
+    ThemePanel.style.display = "flex";
+    ThemePanel.style.animation = "appear 0.3s ease";
+    ThemePanel.addEventListener(
+      "animationend",
+      () => {
+        ThemePanel.style.animation = "none";
+        bnTheme.addEventListener("click", hideThemePanel);
+      },
+      { once: true }
+    );
   }
-
-  return column;
 }
 
-function createPAS(number, content, aDiv = false) {
-  let div = document.createElement("div");
-  div.className = "pas-div";
-
-  let noDiv = document.createElement("div");
-  div.appendChild(noDiv);
-  noDiv.className = "pas-number-div";
-
-  let No = document.createElement("p");
-  noDiv.appendChild(No);
-  No.textContent = `${number}.`;
-
-  if (aDiv) {
-    div.appendChild(content);
-    content.style.width = "80%";
-  } else {
-    let pDiv = document.createElement("div");
-    div.appendChild(pDiv);
-    pDiv.className = "pas-text-div";
-
-    let p = document.createElement("p");
-    pDiv.appendChild(p);
-    p.textContent = content;
+function hideThemePanel() {
+  if ((ThemePanel.style.display = "flex")) {
+    selectedThemeI.className = "ph-bold ph-circle";
+    selectedThemeI = appliedThemeI;
+    selectedThemeI.className = "ph-fill ph-radio-button";
+    bnTheme.removeEventListener("click", hideThemePanel);
+    ThemePanel.style.animation = "disappear 0.3s ease";
+    ThemePanel.addEventListener(
+      "animationend",
+      () => {
+        ThemePanel.style.animation = "none";
+        ThemePanel.style.display = "none";
+        bnTheme.addEventListener("click", showThemePanel);
+      },
+      { once: true }
+    );
   }
-
-  return div;
 }
+
+function setTheme(theme) {
+  let themeMap = { light: lightIcon, dark: darkIcon };
+  selectedThemeI.className = "ph-bold ph-circle";
+  selectedThemeI = themeMap[theme];
+  selectedTheme = theme;
+  selectedThemeI.className = "ph-fill ph-radio-button";
+  applyTheme();
+}
+
+function checkLocalStorage() {
+  let theme = localStorage.getItem("theme");
+  if (theme) {
+    setTheme(theme);
+  }
+}
+
+checkLocalStorage();
+
+// #endregion
 
 function abs(x) {
   return x < 0 ? -x : x;
 }
 
+// #region Navigation
 currentPractical = null;
 function openFile(file, message) {
-  changeTab(practicalTab, practicalIcon);
+  changeTab(practicalTab);
   if (currentPractical) {
     practicalContainer.removeChild(currentPractical);
   }
@@ -170,23 +181,21 @@ function changeTab(dTab, dTabBtn) {
   dTab.scrollIntoView();
 }
 
-innerApp.addEventListener("scroll", checkTabInView);
-
-function checkTabInView() {
+innerApp.addEventListener("scroll", function checkTabInView() {
   currentTabBtn.style.animation = "none";
   currentTabBtn.classList.remove("active");
   if (isElementCentered(homeTab)) {
     currentTabBtn = homeIcon;
+    currentTabBtn.classList.add("active");
+    currentTabBtn.style.animation = "expand 0.45s ease";
   } else if (isElementCentered(practicalTab)) {
     currentTabBtn = practicalIcon;
+    currentTabBtn.classList.add("active");
+    currentTabBtn.style.animation = "expand 0.45s ease";
   }
-  currentTabBtn.classList.add("active");
-  currentTabBtn.style.animation = "expand 0.15s ease-out 1";
-}
-
+});
 tolerance = 1;
 scrollParent = innerApp;
-
 function isElementCentered(element) {
   const currentScrollPosition = scrollParent.scrollLeft;
   const containerWidth = scrollParent.offsetWidth;
@@ -197,3 +206,96 @@ function isElementCentered(element) {
 
   return Math.abs(currentScrollPosition - requiredScrollPosition) <= tolerance;
 }
+
+// #endregion
+
+// HELP PANEL ========================
+// #region Help Panel
+let helpBtn = document.getElementById("help-button");
+helpBtn.addEventListener("click", openHelpPanel);
+
+let practicalTabBackBtn = document.querySelector("#practical-tab .back-btn");
+practicalTabBackBtn.addEventListener("click", goToHome);
+function goToHome() {
+  changeTab(homeTab, bnHome);
+}
+
+let helpPanel = createDiv("practical-tab-panel");
+
+let helpVideoHeader = createTextField("help-video-header", "Watch tutorial");
+helpPanel.appendChild(helpVideoHeader);
+
+let videoContainer = createDiv("video-container");
+helpPanel.appendChild(videoContainer);
+
+let videoFrame = document.createElement("iframe");
+videoFrame.className = "video-player";
+videoFrame.setAttribute("allow", "autoplay");
+videoFrame.setAttribute("allowfullscreen", "true");
+videoContainer.appendChild(videoFrame);
+
+function openHelpPanel() {
+  practicalTab.style.animation = "flash 0.2s ease";
+  practicalTab.addEventListener(
+    "animationend",
+    () => {
+      practicalTab.style.animation = "none";
+      practicalTabBackBtn.removeEventListener("click", goToHome);
+      practicalTabBackBtn.addEventListener("click", closeHelpPanel);
+      practicalTab.replaceChild(helpPanel, practicalContainer);
+      helpBtn.style.display = "none";
+    },
+    { once: true }
+  );
+}
+
+function closeHelpPanel() {
+  practicalTab.style.animation = "flash 0.2s ease";
+  practicalTab.addEventListener(
+    "animationend",
+    () => {
+      practicalTab.style.animation = "none";
+      practicalTabBackBtn.removeEventListener("click", closeHelpPanel);
+      practicalTabBackBtn.addEventListener("click", goToHome);
+      practicalTab.replaceChild(practicalContainer, helpPanel);
+      helpBtn.style.display = "flex";
+    },
+    { once: true }
+  );
+}
+
+function playVideo() {}
+
+// #endregion
+
+//
+function setRippleStyle() {
+  const buttons = document.querySelectorAll(".ripple");
+  buttons.forEach((button) => {
+    button.addEventListener("click", function (event) {
+      let circle = document.createElement("span");
+      circle.classList.add("ripple-span");
+
+      let rect = button.getBoundingClientRect();
+      let diameter = Math.max(rect.width, rect.height);
+      let radius = diameter / 2;
+
+      circle.style.width = circle.style.height = `${diameter}px`;
+
+      circle.style.left = `${event.clientX - rect.left - radius}px`;
+      circle.style.top = `${event.clientY - rect.top - radius}px`;
+
+      let existingRipple = button.querySelector(".ripple-span");
+      if (existingRipple) {
+        existingRipple.remove();
+      }
+
+      button.appendChild(circle);
+
+      setTimeout(() => {
+        circle.remove();
+      }, 600);
+    });
+  });
+}
+//
