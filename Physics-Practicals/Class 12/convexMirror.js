@@ -3,17 +3,15 @@ let convexMirrorDiv = createDiv("practical-file");
 let cvm_diagramDiv = createDiv("practical-section");
 convexMirrorDiv.appendChild(cvm_diagramDiv);
 
-cvm_diagramDiv.appendChild(
-  createTextField("practical-section-header", "DIAGRAM:")
-);
+cvm_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
 let cvm_diagram_light = document.createElement("img");
 cvm_diagram_light.className = "practical-file-diagram light";
-cvm_diagram_light.src = "Physics-Practicals/Class 12/Diagrams/Light/convex mirror.png";
+cvm_diagram_light.src = "Physics-Practicals/Class 12/Diagrams/Light/convex mirror.jpg";
 cvm_diagramDiv.appendChild(cvm_diagram_light);
 let cvm_diagram_dark = document.createElement("img");
 cvm_diagram_dark.className = "practical-file-diagram dark";
-cvm_diagram_dark.src = "Physics-Practicals/Class 12/Diagrams/Dark/convex mirror.png";
+cvm_diagram_dark.src = "Physics-Practicals/Class 12/Diagrams/Dark/convex mirror.jpg";
 cvm_diagramDiv.appendChild(cvm_diagram_dark);
 
 let cvm_objectiveDiv = createDiv("practical-section");

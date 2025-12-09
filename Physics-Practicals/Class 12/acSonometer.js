@@ -3,19 +3,17 @@ let acSonometerDiv = createDiv("practical-file");
 let acs_diagramDiv = createDiv("practical-section");
 acSonometerDiv.appendChild(acs_diagramDiv);
 
-acs_diagramDiv.appendChild(
-  createTextField("practical-section-header", "DIAGRAM:")
-);
+acs_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
 let acs_diagram_light = document.createElement("img");
 acs_diagram_light.className = "practical-file-diagram light";
 acs_diagram_light.src =
-  "Physics-Practicals/Class 12/Diagrams/Light/ac sonometer.png";
+  "Physics-Practicals/Class 12/Diagrams/Light/ac sonometer.jpg";
 acs_diagramDiv.appendChild(acs_diagram_light);
 let acs_diagram_dark = document.createElement("img");
 acs_diagram_dark.className = "practical-file-diagram dark";
 acs_diagram_dark.src =
-  "Physics-Practicals/Class 12/Diagrams/Dark/ac sonometer.png";
+  "Physics-Practicals/Class 12/Diagrams/Dark/ac sonometer.jpg";
 acs_diagramDiv.appendChild(acs_diagram_dark);
 
 let acs_objectiveDiv = createDiv("practical-section");

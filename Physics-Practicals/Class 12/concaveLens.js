@@ -3,17 +3,15 @@ let concaveLensDiv = createDiv("practical-file");
 let ccl_diagramDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_diagramDiv);
 
-ccl_diagramDiv.appendChild(
-  createTextField("practical-section-header", "DIAGRAM:")
-);
+ccl_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
 let ccl_diagram_light = document.createElement("img");
 ccl_diagram_light.className = "practical-file-diagram light";
-ccl_diagram_light.src = "Physics-Practicals/Class 12/Diagrams/Light/concave lens.png";
+ccl_diagram_light.src = "Physics-Practicals/Class 12/Diagrams/Light/concave lens.jpg";
 ccl_diagramDiv.appendChild(ccl_diagram_light);
 let ccl_diagram_dark = document.createElement("img");
 ccl_diagram_dark.className = "practical-file-diagram dark";
-ccl_diagram_dark.src = "Physics-Practicals/Class 12/Diagrams/Dark/concave lens.png";
+ccl_diagram_dark.src = "Physics-Practicals/Class 12/Diagrams/Dark/concave lens.jpg";
 ccl_diagramDiv.appendChild(ccl_diagram_dark);
 
 let ccl_objectiveDiv = createDiv("practical-section");

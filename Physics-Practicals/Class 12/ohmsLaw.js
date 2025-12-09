@@ -3,9 +3,7 @@ let ohmsLawDiv = createDiv("practical-file");
 let ohl_diagramDiv = createDiv("practical-section");
 ohmsLawDiv.appendChild(ohl_diagramDiv);
 
-ohl_diagramDiv.appendChild(
-  createTextField("practical-section-header", "DIAGRAM:")
-);
+ohl_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
 let ohl_diagram_light = document.createElement("img");
 ohl_diagram_light.className = "practical-file-diagram light";
@@ -19,9 +17,7 @@ ohl_diagramDiv.appendChild(ohl_diagram_dark);
 let ohl_objectiveDiv = createDiv("practical-section");
 ohmsLawDiv.appendChild(ohl_objectiveDiv);
 
-ohl_objectiveDiv.appendChild(
-  createTextField("practical-section-header", "OBJECTIVE:")
-);
+ohl_objectiveDiv.appendChild(createTextField("practical-section-header", "OBJECTIVE:"));
 
 ohl_objectiveDiv.appendChild(
   createTextField(

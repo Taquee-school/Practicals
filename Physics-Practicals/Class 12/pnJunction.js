@@ -3,9 +3,7 @@ let pnJunctionDiv = createDiv("practical-file");
 let pnj_diagramDiv = createDiv("practical-section");
 pnJunctionDiv.appendChild(pnj_diagramDiv);
 
-pnj_diagramDiv.appendChild(
-  createTextField("practical-section-header", "DIAGRAM:")
-);
+pnj_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
 let pnj_diagram_light = document.createElement("img");
 pnj_diagram_light.className = "practical-file-diagram light";

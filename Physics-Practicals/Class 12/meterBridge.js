@@ -3,9 +3,7 @@ let meterBridgeDiv = createDiv("practical-file");
 let mbr_diagramDiv = createDiv("practical-section");
 meterBridgeDiv.appendChild(mbr_diagramDiv);
 
-mbr_diagramDiv.appendChild(
-  createTextField("practical-section-header", "DIAGRAM:")
-);
+mbr_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
 let mbr_diagram_light = document.createElement("img");
 mbr_diagram_light.className = "practical-file-diagram light";

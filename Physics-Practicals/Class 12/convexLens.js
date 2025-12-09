@@ -3,9 +3,7 @@ let convexLensDiv = createDiv("practical-file");
 let cvl_diagramDiv = createDiv("practical-section");
 convexLensDiv.appendChild(cvl_diagramDiv);
 
-cvl_diagramDiv.appendChild(
-  createTextField("practical-section-header", "DIAGRAM:")
-);
+cvl_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
 let cvl_diagram_light = document.createElement("img");
 cvl_diagram_light.className = "practical-file-diagram light";

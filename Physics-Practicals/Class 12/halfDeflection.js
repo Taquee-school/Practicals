@@ -3,17 +3,15 @@ let halfDeflectionDiv = createDiv("practical-file");
 let hdf_diagramDiv = createDiv("practical-section");
 halfDeflectionDiv.appendChild(hdf_diagramDiv);
 
-hdf_diagramDiv.appendChild(
-  createTextField("practical-section-header", "DIAGRAM:")
-);
+hdf_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
 let hdf_diagram_light = document.createElement("img");
 hdf_diagram_light.className = "practical-file-diagram light";
-hdf_diagram_light.src = "Physics-Practicals/Class 12/Diagrams/Light/half deflection.png";
+hdf_diagram_light.src = "Physics-Practicals/Class 12/Diagrams/Light/half deflection.jpg";
 hdf_diagramDiv.appendChild(hdf_diagram_light);
 let hdf_diagram_dark = document.createElement("img");
 hdf_diagram_dark.className = "practical-file-diagram dark";
-hdf_diagram_dark.src = "Physics-Practicals/Class 12/Diagrams/Dark/half deflection.png";
+hdf_diagram_dark.src = "Physics-Practicals/Class 12/Diagrams/Dark/half deflection.jpg";
 hdf_diagramDiv.appendChild(hdf_diagram_dark);
 
 let hdf_objectiveDiv = createDiv("practical-section");
