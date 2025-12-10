@@ -11,12 +11,12 @@ let practicalTab = document.getElementById("practical-tab");
 let bnHome = document.getElementById("home-button");
 bnHome.addEventListener("click", () => {
   if (app.classList.contains("vertical")) {
-    changeTab(practicalTab);
+    changeTab(homeTab);
   } else {
-    if ((practicalTab.style.display = "none")) {
-      practicalTab.style.display = "flex";
+    if (homeTab.style.display == "none") {
+      homeTab.style.display = "flex";
     } else {
-      practicalTab.style.display = "none";
+      homeTab.style.display = "none";
     }
   }
 });
@@ -242,7 +242,7 @@ function showOptionPanel() {
 }
 
 function hideOptionPanel() {
-  if ((optionPanel.style.display = "flex")) {
+  if (optionPanel.style.display == "flex") {
     bnOption.removeEventListener("click", hideOptionPanel);
     optionPanel.style.animation = "disappear 0.3s ease";
     optionPanel.addEventListener(
@@ -306,7 +306,7 @@ function applyTheme() {
 }
 
 function showThemePanel() {
-  if ((ThemePanel.style.display = "none")) {
+  if (ThemePanel.style.display == "none") {
     hideOptionPanel();
     bnTheme.removeEventListener("click", showThemePanel);
     ThemePanel.style.display = "flex";
@@ -323,7 +323,7 @@ function showThemePanel() {
 }
 
 function hideThemePanel() {
-  if ((ThemePanel.style.display = "flex")) {
+  if (ThemePanel.style.display == "flex") {
     selectedThemeI.className = "ph-bold ph-circle";
     selectedThemeI = appliedThemeI;
     selectedThemeI.className = "ph-fill ph-radio-button";
@@ -347,7 +347,11 @@ function setTheme(theme) {
   selectedThemeI = themeMap[theme];
   selectedTheme = theme;
   selectedThemeI.className = "ph-fill ph-radio-button";
-  applyTheme();
+  app.classList.remove(appliedTheme);
+  appliedThemeI = selectedThemeI;
+  appliedTheme = selectedTheme;
+  app.classList.add(appliedTheme);
+  localStorage.setItem("theme", appliedTheme);
 }
 
 // NAV STYLE PANEL ========================
@@ -405,7 +409,7 @@ function applyNavBarStyle() {
 }
 
 function showNavBarStylePanel() {
-  if ((NavBarStylePanel.style.display = "none")) {
+  if (NavBarStylePanel.style.display == "none") {
     hideOptionPanel();
     bnNavBarStyle.removeEventListener("click", showNavBarStylePanel);
     NavBarStylePanel.style.display = "flex";
@@ -422,7 +426,7 @@ function showNavBarStylePanel() {
 }
 
 function hideNavBarStylePanel() {
-  if ((NavBarStylePanel.style.display = "flex")) {
+  if (NavBarStylePanel.style.display == "flex") {
     selectedNavBarStyleI.className = "ph-bold ph-circle";
     selectedNavBarStyleI = appliedNavBarStyleI;
     selectedNavBarStyleI.className = "ph-fill ph-radio-button";
@@ -446,7 +450,11 @@ function setNavBarStyle(navigationBar) {
   selectedNavBarStyleI = navigationBarMap[navigationBar];
   selectedNavBarStyle = navigationBar;
   selectedNavBarStyleI.className = "ph-fill ph-radio-button";
-  applyNavBarStyle();
+  NavigationDiv.classList.remove(appliedNavBarStyle);
+  appliedNavBarStyleI = selectedNavBarStyleI;
+  appliedNavBarStyle = selectedNavBarStyle;
+  NavigationDiv.classList.add(appliedNavBarStyle);
+  localStorage.setItem("navigation-bar", appliedNavBarStyle);
 }
 
 function checkLocalStorage() {
