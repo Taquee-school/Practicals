@@ -15,7 +15,7 @@
   <div id="app" class="dark vertical">
     <div id="inner-app">
       <div id="inner-app-tab-container">
-        <div id="home-tab" class="inner-app-tab light">
+        <div id="home-tab" class="inner-app-tab">
           <div class="top-bar">
             <p class="practical-type-header">Physics Practicals</p>
             <button id="options-btn" class="ripple">
@@ -74,12 +74,6 @@
             </div>
           </div>
 
-          <div class="practicals-list-div">
-            <p class="practicals-list-class-header">Class 11</p>
-            <div class="practicals-list list-view" id="class-11"></div>
-            <p class="practicals-list-class-header">Class 12</p>
-            <div class="practicals-list list-view" id="class-12"></div>
-          </div>
         </div>
         <div id="practical-tab" class="inner-app-tab light">
           <div id="practical-tab-header" class="tab-header">
@@ -93,7 +87,9 @@
               <i class="ph-bold ph-question-mark"></i>
             </button>
           </div>
-          <div id="practical-container" class="practical-tab-panel"></div>
+          <div id="practical-tab-content">
+            <div id="practical-container" class="practical-tab-panel"></div>
+          </div>
         </div>
       </div>
       <div id="navigation-div" class="sticky">
@@ -123,11 +119,29 @@
     </div>
   </div>
   <script>
-    function reloadPage() {
-      window.location.reload()
-    }
+    let app = document.getElementById("app");
+
+    let loadingScreen = document.getElementById("loading-screen");
+
+    let innerApp = document.getElementById("inner-app");
+    let innerAppTabContainer = document.getElementById("inner-app-tab-container");
+
+    let homeTab = document.getElementById("home-tab");
+    let practicalTab = document.getElementById("practical-tab");
+
+    let bnHome = document.getElementById("home-button");
+    let homeIcon = document.getElementById("home-icon");
+
+    let bnPractical = document.getElementById("practical-button");
+    let practicalIcon = document.getElementById("practical-icon");
+
+    let practicalContainer = document.getElementById("practical-container");
+    let experimentName = document.getElementById("experiment-name");
+
+    let NavigationDiv = document.getElementById("navigation-div");
+
   </script>
-  <script src="script.js" onerror="reloadPage()"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

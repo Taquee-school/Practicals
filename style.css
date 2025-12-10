@@ -263,10 +263,10 @@ input {
   padding: 16px 35px;
   border-radius: 20px;
 }
-#app.light .navigation-icon-div.active {
+#app.light.vertical .navigation-icon-div.active {
   background: white;
 }
-#app.dark .navigation-icon-div.active {
+#app.dark.vertical .navigation-icon-div.active {
   background: rgb(60, 60, 60);
 }
 
@@ -341,10 +341,6 @@ input {
   flex-grow: 1;
 }
 
-.added-panel-header {
-  font: 500 20px Arial;
-}
-
 .added-panel {
   position: absolute;
   z-index: 2;
@@ -380,6 +376,10 @@ input {
   border: 0.5px solid rgb(200, 200, 200);
   background: rgb(255, 255, 255);
   box-shadow: 0 0 5px rgb(200, 200, 200);
+}
+
+.added-panel-header {
+  font: 500 20px Arial;
 }
 
 .added-panel-btn-div {
@@ -603,8 +603,14 @@ button.ripple {
   margin: 0 0 0 10px;
 }
 
-.practical-tab-panel {
+#practical-tab-content {
   height: 93%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.practical-tab-panel {
+  height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -666,6 +672,37 @@ button.ripple {
 }
 #app.light .practical-file-diagram.dark {
   display: none;
+}
+
+.practical-section-more-button {
+  cursor: pointer;
+  height: 40px;
+  width: fit-content;
+  display: flex;
+  gap: 5px;
+  margin: 0 auto;
+  border-radius: 20px;
+  background: transparent;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+#app.dark .practical-section-more-button {
+  border: 1px solid white;
+}
+#app.light .practical-section-more-button {
+  border: 1px solid black;
+}
+.practical-section-more-button:active {
+  transform: scale(0.95);
+}
+
+.practical-section-more-button p,
+.practical-section-more-button i {
+  margin: 0;
+  font-size: 15px;
+}
+.practical-section-more-button i {
+  font-size: 20px;
 }
 
 .practical-main-formula {

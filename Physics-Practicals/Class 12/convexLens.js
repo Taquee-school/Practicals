@@ -5,14 +5,19 @@ convexLensDiv.appendChild(cvl_diagramDiv);
 
 cvl_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-let cvl_diagram_light = document.createElement("img");
-cvl_diagram_light.className = "practical-file-diagram light";
-cvl_diagram_light.src = "";
-cvl_diagramDiv.appendChild(cvl_diagram_light);
-let cvl_diagram_dark = document.createElement("img");
-cvl_diagram_dark.className = "practical-file-diagram dark";
-cvl_diagram_dark.src = "";
-cvl_diagramDiv.appendChild(cvl_diagram_dark);
+cvl_diagramDiv.appendChild(createImg("practical-file-diagram light", ""));
+cvl_diagramDiv.appendChild(createImg("practical-file-diagram dark", ""));
+
+let cvl_moreDiagramBtn = createButton(null, "practical-section-more-button", createIcon("fill", "images-square"),"More Diagrams", cvl_showDiagrams);
+// cvl_diagramDiv.appendChild(cvl_moreDiagramBtn);
+
+function cvl_showDiagrams() {
+  for (let i=1; i <= 6; i++) {
+    cvl_diagramDiv.appendChild(createImg("practical-file-more-diagram light", `images/Physics/Class 12/Diagrams/Light/diagram${i}.jpg`));
+    cvl_diagramDiv.appendChild(createImg("practical-file-more-diagram dark", `images/Physics/Class 12/Diagrams/Dark/diagram${i}.jpg`));
+  }
+}
+
 
 let cvl_objectiveDiv = createDiv("practical-section");
 convexLensDiv.appendChild(cvl_objectiveDiv);

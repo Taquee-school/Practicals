@@ -1,40 +1,3 @@
-let app = document.getElementById("app");
-
-let loadingScreen = document.getElementById("loading-screen");
-
-let innerApp = document.getElementById("inner-app");
-let innerAppTabContainer = document.getElementById("inner-app-tab-container");
-
-let homeTab = document.getElementById("home-tab");
-let practicalTab = document.getElementById("practical-tab");
-
-let bnHome = document.getElementById("home-button");
-bnHome.addEventListener("click", () => {
-  if (app.classList.contains("vertical")) {
-    changeTab(homeTab);
-  } else {
-    if (homeTab.style.display == "none") {
-      homeTab.style.display = "flex";
-    } else {
-      homeTab.style.display = "none";
-    }
-  }
-});
-let homeIcon = document.getElementById("home-icon");
-
-let bnPractical = document.getElementById("practical-button");
-bnPractical.addEventListener("click", () => changeTab(practicalTab));
-let practicalIcon = document.getElementById("practical-icon");
-
-let practicalContainer = document.getElementById("practical-container");
-let experimentName = document.getElementById("experiment-name");
-
-let class11_list = document.getElementById("class-11");
-let class12_list = document.getElementById("class-12");
-
-let NavigationDiv = document.getElementById("navigation-div");
-
-
 // #region UI helper functions
 function createDiv(className, id = null) {
   let div = document.createElement("div");
@@ -47,134 +10,12 @@ function createDiv(className, id = null) {
   return div;
 }
 
-function createListButton(container, id, buttonText) {
-  let btn = document.createElement("button");
-  container.appendChild(btn);
-  btn.id = id;
-  btn.classList.add("ripple");
-
-  btn.appendChild(createTextField(null, buttonText));
-
-  let ic = document.createElement("i");
-  ic.className = "ph-bold ph-caret-right";
-  btn.appendChild(ic);
-  setRippleStyle();
-  return btn;
-}
-
 function createTextField(className, content) {
   let p = document.createElement("p");
   p.className = className;
   p.textContent = content;
 
   return p;
-}
-
-function createInput(
-  id,
-  type,
-  value = 0,
-  inputFunction = null,
-  readOnly = false
-) {
-  let input = document.createElement("input");
-  if (id) input.id = id;
-  input.type = type;
-  input.value = value;
-  input.oninput = inputFunction;
-  input.readOnly = readOnly;
-  return input;
-}
-
-function createInputDiv(label, inputElement, extraLabel = null) {
-  let div = document.createElement("div");
-  div.className = "practical-section-input-div";
-
-  let p1 = document.createElement("p");
-  div.appendChild(p1);
-  p1.textContent = label;
-  p1.appendChild(inputElement);
-
-  if (extraLabel) {
-    let p2 = document.createElement("span");
-    p2.textContent = extraLabel;
-    p1.appendChild(p2);
-  }
-
-  return div;
-}
-
-function createColumn(
-  header,
-  numberOfRows,
-  idPattern,
-  type,
-  value,
-  inputFunction,
-  readOnly = false
-) {
-  let column = document.createElement("div");
-  column.className = "observation-table-column";
-  let columnHeader = document.createElement("div");
-  columnHeader.className = "observation-table-column-header";
-  column.appendChild(columnHeader);
-  let columnHeaderp = document.createElement("p");
-  columnHeaderp.textContent = header;
-  columnHeader.appendChild(columnHeaderp);
-
-  for (let i = 1; i <= numberOfRows; i++) {
-    if (Array.isArray(value)) {
-      if (idPattern) {
-        column.appendChild(
-          createInput(
-            `${idPattern}-${i}`,
-            type,
-            value[i - 1],
-            inputFunction,
-            readOnly
-          )
-        );
-      } else {
-        column.appendChild(
-          createInput(null, type, value[i - 1], inputFunction, readOnly)
-        );
-      }
-    } else {
-      column.appendChild(
-        createInput(`${idPattern}-${i}`, type, value, inputFunction, readOnly)
-      );
-    }
-  }
-
-  return column;
-}
-
-function createPAS(number, content, contentIsDiv = false) {
-  let div = document.createElement("div");
-  div.className = "pas-div";
-
-  let noDiv = document.createElement("div");
-  div.appendChild(noDiv);
-  noDiv.className = "pas-number-div";
-
-  let No = document.createElement("p");
-  noDiv.appendChild(No);
-  No.textContent = `${number}.`;
-
-  if (contentIsDiv) {
-    div.appendChild(content);
-    content.style.width = "80%";
-  } else {
-    let pDiv = document.createElement("div");
-    div.appendChild(pDiv);
-    pDiv.className = "pas-text-div";
-
-    let p = document.createElement("p");
-    pDiv.appendChild(p);
-    p.textContent = content;
-  }
-
-  return div;
 }
 
 function createButton(
@@ -218,8 +59,35 @@ function createIcon(type = null, name, clickFunction = null, id = null) {
 
   return icon;
 }
-// #endregion
 
+function addScript(path) {
+  let newScipt = document.createElement("script");
+  newScipt.src = path;
+  document.body.appendChild(newScipt);
+  return newScipt;
+}
+
+function addStyle(path) {
+  let newStyle = document.createElement("link");
+  newStyle.href = path;
+  newStyle.rel = "stylesheet";
+  document.head.appendChild(newStyle);
+  return newStyle;
+}
+
+// #endregion
+bnHome.addEventListener("click", () => {
+  if (app.classList.contains("vertical")) {
+    changeTab(homeTab);
+  } else {
+    if (homeTab.style.display == "none") {
+      homeTab.style.display = "flex";
+    } else {
+      homeTab.style.display = "none";
+    }
+  }
+});
+bnPractical.addEventListener("click", () => changeTab(practicalTab));
 
 // OPTIONAL PANEL =====================
 // #region Option Panel
@@ -306,7 +174,7 @@ function applyTheme() {
 }
 
 function showThemePanel() {
-  if (ThemePanel.style.display == "none") {
+  if (ThemePanel.style.display != "flex") {
     hideOptionPanel();
     bnTheme.removeEventListener("click", showThemePanel);
     ThemePanel.style.display = "flex";
@@ -353,6 +221,7 @@ function setTheme(theme) {
   app.classList.add(appliedTheme);
   localStorage.setItem("theme", appliedTheme);
 }
+// #endregion
 
 // NAV STYLE PANEL ========================
 // #region Nav style Panel
@@ -409,7 +278,7 @@ function applyNavBarStyle() {
 }
 
 function showNavBarStylePanel() {
-  if (NavBarStylePanel.style.display == "none") {
+  if (NavBarStylePanel.style.display != "flex") {
     hideOptionPanel();
     bnNavBarStyle.removeEventListener("click", showNavBarStylePanel);
     NavBarStylePanel.style.display = "flex";
@@ -457,19 +326,6 @@ function setNavBarStyle(navigationBar) {
   localStorage.setItem("navigation-bar", appliedNavBarStyle);
 }
 
-function checkLocalStorage() {
-  let theme = localStorage.getItem("theme");
-  if (theme) {
-    setTheme(theme);
-  }
-  let navBarStyle = localStorage.getItem("navigation-bar");
-  if (navBarStyle) {
-    setNavBarStyle(navBarStyle);
-  }
-}
-
-checkLocalStorage();
-
 // #endregion
 
 function abs(x) {
@@ -479,6 +335,13 @@ function abs(x) {
 // #region Navigation
 currentPractical = null;
 function openFile(file, message) {
+  if (currentVideoUrl) {
+    videoFrame.src = currentVideoUrl;
+    helpVideoText.style.display = "none";
+  } else {
+    videoFrame.src = "";
+    helpVideoText.style.display = "flex";
+  }
   changeTab(practicalTab);
   if (currentPractical) {
     practicalContainer.removeChild(currentPractical);
@@ -489,12 +352,15 @@ function openFile(file, message) {
   currentVideoUrl = null;
 }
 
-currentTabBtn = homeIcon;
 function changeTab(dTab, dTabBtn) {
   dTab.scrollIntoView();
 }
-innerApp.addEventListener("scroll", checkTabInView);
 
+const tolerance = 10;
+const scrollParent = innerAppTabContainer;
+let currentTabBtn = homeIcon;
+
+scrollParent.addEventListener("scroll", checkTabInView);
 function checkTabInView() {
   currentTabBtn.style.animation = "none";
   currentTabBtn.classList.remove("active");
@@ -508,9 +374,6 @@ function checkTabInView() {
     currentTabBtn.style.animation = "expand 0.45s ease";
   }
 }
-
-tolerance = 10;
-scrollParent = innerAppTabContainer;
 function isElementCentered(element) {
   const containerRect = scrollParent.getBoundingClientRect();
   const elementRect = element.getBoundingClientRect();
@@ -525,6 +388,8 @@ function isElementCentered(element) {
 
 // HELP PANEL ========================
 // #region Help Panel
+let practicalTabContent = document.getElementById("practical-tab-content");
+
 let currentVideoUrl = null;
 let helpBtn = document.getElementById("help-button");
 helpBtn.addEventListener("click", openHelpPanel);
@@ -532,7 +397,11 @@ helpBtn.addEventListener("click", openHelpPanel);
 let practicalTabBackBtn = document.querySelector("#practical-tab .back-btn");
 practicalTabBackBtn.addEventListener("click", goToHome);
 function goToHome() {
-  changeTab(homeTab, bnHome);
+  if (app.classList.contains("vertical")) {
+    changeTab(homeTab, bnHome);
+  } else {
+    homeTab.style.display = "flex";
+  }
 }
 
 let helpPanel = createDiv("practical-tab-panel");
@@ -552,39 +421,31 @@ videoFrame.setAttribute("allowfullscreen", "true");
 videoContainer.appendChild(videoFrame);
 
 function openHelpPanel() {
-  if (currentVideoUrl) {
-    videoFrame.src = currentVideoUrl;
-    helpVideoText.style.display = "none";
-  } else {
-    videoFrame.src = "";
-    helpVideoText.style.display = "block";
+  if (practicalTabContent.contains(practicalContainer)) {
+    practicalTabContent.style.animation = "flash 0.2s ease";
+    practicalTabContent.addEventListener(
+      "animationend",
+      () => {
+        practicalTabContent.style.animation = "none";
+        practicalTabBackBtn.removeEventListener("click", goToHome);
+        practicalTabBackBtn.addEventListener("click", closeHelpPanel);
+        practicalTabContent.replaceChild(helpPanel, practicalContainer);
+      },
+      { once: true }
+    );
   }
-
-  practicalTab.style.animation = "flash 0.2s ease";
-  practicalTab.addEventListener(
-    "animationend",
-    () => {
-      practicalTab.style.animation = "none";
-      practicalTabBackBtn.removeEventListener("click", goToHome);
-      practicalTabBackBtn.addEventListener("click", closeHelpPanel);
-      practicalTab.replaceChild(helpPanel, practicalContainer);
-      helpBtn.style.display = "none";
-    },
-    { once: true }
-  );
 }
 
 function closeHelpPanel() {
   videoFrame.src = "";
-  practicalTab.style.animation = "flash 0.2s ease";
-  practicalTab.addEventListener(
+  practicalTabContent.style.animation = "flash 0.2s ease";
+  practicalTabContent.addEventListener(
     "animationend",
     () => {
-      practicalTab.style.animation = "none";
+      practicalTabContent.style.animation = "none";
       practicalTabBackBtn.removeEventListener("click", closeHelpPanel);
       practicalTabBackBtn.addEventListener("click", goToHome);
-      practicalTab.replaceChild(practicalContainer, helpPanel);
-      helpBtn.style.display = "flex";
+      practicalTabContent.replaceChild(practicalContainer, helpPanel);
     },
     { once: true }
   );
@@ -594,37 +455,49 @@ function playVideo() { }
 
 // #endregion
 
-//
-function setRippleStyle() {
-  const buttons = document.querySelectorAll(".ripple");
-  buttons.forEach((button) => {
-    button.addEventListener("click", function (event) {
-      let circle = document.createElement("span");
-      circle.classList.add("ripple-span");
+// #region Ripple Effect
+const buttons = document.querySelectorAll(".ripple");
+buttons.forEach((button) => {setRippleStyle(button)});
+function setRippleStyle(button) {
+  button.addEventListener("click", function (event) {
+    let circle = document.createElement("span");
+    circle.classList.add("ripple-span");
 
-      let rect = button.getBoundingClientRect();
-      let diameter = Math.max(rect.width, rect.height);
-      let radius = diameter / 2;
+    let rect = button.getBoundingClientRect();
+    let diameter = Math.max(rect.width, rect.height);
+    let radius = diameter / 2;
 
-      circle.style.width = circle.style.height = `${diameter}px`;
+    circle.style.width = circle.style.height = `${diameter}px`;
 
-      circle.style.left = `${event.clientX - rect.left - radius}px`;
-      circle.style.top = `${event.clientY - rect.top - radius}px`;
+    circle.style.left = `${event.clientX - rect.left - radius}px`;
+    circle.style.top = `${event.clientY - rect.top - radius}px`;
 
-      let existingRipple = button.querySelector(".ripple-span");
-      if (existingRipple) {
-        existingRipple.remove();
-      }
+    let existingRipple = button.querySelector(".ripple-span");
+    if (existingRipple) {
+      existingRipple.remove();
+    }
 
-      button.appendChild(circle);
+    button.appendChild(circle);
 
-      setTimeout(() => {
-        circle.remove();
-      }, 600);
-    });
+    setTimeout(() => {
+      circle.remove();
+    }, 600);
   });
 }
-//
+// #endregion
+
+
+
+function checkLocalStorage() {
+  let theme = localStorage.getItem("theme");
+  if (theme) {
+    setTheme(theme);
+  }
+  let navBarStyle = localStorage.getItem("navigation-bar");
+  if (navBarStyle) {
+    setNavBarStyle(navBarStyle);
+  }
+}
 
 function checkOrientation() {
   if (window.innerHeight >= window.innerWidth) {
@@ -638,15 +511,8 @@ function checkOrientation() {
 window.addEventListener("resize", checkOrientation);
 
 window.addEventListener("DOMContentLoaded", () => {
+  checkLocalStorage();
   checkOrientation();
   checkTabInView();
+  addScript("Physics-Practicals/PhysicsPracticals.js");
 });
-
-function addScript(path) {
-  let newScipt = document.createElement("script");
-  newScipt.src = path;
-  document.body.appendChild(newScipt);
-  return newScipt;
-}
-
-addScript("Physics-Practicals/PhysicsPracticals.js");

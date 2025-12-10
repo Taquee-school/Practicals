@@ -1,3 +1,146 @@
+function createListButton(container, id, buttonText) {
+  let btn = document.createElement("button");
+  container.appendChild(btn);
+  btn.id = id;
+  btn.classList.add("ripple");
+
+  btn.appendChild(createTextField(null, buttonText));
+
+  let ic = document.createElement("i");
+  ic.className = "ph-bold ph-caret-right";
+  btn.appendChild(ic);
+  setRippleStyle(btn);
+  return btn;
+}
+
+function createImg(className, path) {
+  let img = document.createElement("img");
+  img.className = className;
+  img.src = path;
+  return img;
+}
+
+
+function createPAS(number, content, contentIsDiv = false) {
+  let div = document.createElement("div");
+  div.className = "pas-div";
+
+  let noDiv = document.createElement("div");
+  div.appendChild(noDiv);
+  noDiv.className = "pas-number-div";
+
+  let No = document.createElement("p");
+  noDiv.appendChild(No);
+  No.textContent = `${number}.`;
+
+  if (contentIsDiv) {
+    div.appendChild(content);
+    content.style.width = "80%";
+  } else {
+    let pDiv = document.createElement("div");
+    div.appendChild(pDiv);
+    pDiv.className = "pas-text-div";
+
+    let p = document.createElement("p");
+    pDiv.appendChild(p);
+    p.textContent = content;
+  }
+
+  return div;
+}
+
+function createInput(
+  id,
+  type,
+  value = 0,
+  inputFunction = null,
+  readOnly = false
+) {
+  let input = document.createElement("input");
+  if (id) input.id = id;
+  input.type = type;
+  input.value = value;
+  input.oninput = inputFunction;
+  input.readOnly = readOnly;
+  return input;
+}
+
+function createInputDiv(label, inputElement, extraLabel = null) {
+  let div = document.createElement("div");
+  div.className = "practical-section-input-div";
+
+  let p1 = document.createElement("p");
+  div.appendChild(p1);
+  p1.textContent = label;
+  p1.appendChild(inputElement);
+
+  if (extraLabel) {
+    let p2 = document.createElement("span");
+    p2.textContent = extraLabel;
+    p1.appendChild(p2);
+  }
+
+  return div;
+}
+
+function createColumn(
+  header,
+  numberOfRows,
+  idPattern,
+  type,
+  value,
+  inputFunction,
+  readOnly = false
+) {
+  let column = document.createElement("div");
+  column.className = "observation-table-column";
+  let columnHeader = document.createElement("div");
+  columnHeader.className = "observation-table-column-header";
+  column.appendChild(columnHeader);
+  let columnHeaderp = document.createElement("p");
+  columnHeaderp.textContent = header;
+  columnHeader.appendChild(columnHeaderp);
+
+  for (let i = 1; i <= numberOfRows; i++) {
+    if (Array.isArray(value)) {
+      if (idPattern) {
+        column.appendChild(
+          createInput(
+            `${idPattern}-${i}`,
+            type,
+            value[i - 1],
+            inputFunction,
+            readOnly
+          )
+        );
+      } else {
+        column.appendChild(
+          createInput(null, type, value[i - 1], inputFunction, readOnly)
+        );
+      }
+    } else {
+      column.appendChild(
+        createInput(`${idPattern}-${i}`, type, value, inputFunction, readOnly)
+      );
+    }
+  }
+
+  return column;
+}
+
+
+let physicsPracticalsList = createDiv("practicals-list-div");
+homeTab.appendChild(physicsPracticalsList);
+
+physicsPracticalsList.appendChild(createTextField("practicals-list-class-header", "Class 11"));
+let class11_list = createDiv("practicals-list list-view");
+physicsPracticalsList.appendChild(class11_list);
+
+physicsPracticalsList.appendChild(createTextField("practicals-list-class-header", "Class 12"));
+let class12_list = createDiv("practicals-list list-view");
+physicsPracticalsList.appendChild(class12_list);
+
+
 // Class 11th list buttons
 let bn_screwGauge = createListButton(class11_list, "screw-gauge-btn", "Screw Gauge");
 bn_screwGauge.addEventListener("click", () => {
