@@ -457,7 +457,7 @@ function playVideo() { }
 
 // #region Ripple Effect
 const buttons = document.querySelectorAll(".ripple");
-buttons.forEach((button) => {setRippleStyle(button)});
+buttons.forEach((button) => { setRippleStyle(button) });
 function setRippleStyle(button) {
   button.addEventListener("click", function (event) {
     let circle = document.createElement("span");
@@ -515,4 +515,5 @@ window.addEventListener("DOMContentLoaded", () => {
   checkOrientation();
   checkTabInView();
   addScript("Physics-Practicals/PhysicsPracticals.js");
+
 });

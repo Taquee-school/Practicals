@@ -1,3 +1,8 @@
+addStyle("Physics-Practicals/PhysicsPracticals.css");
+addStyle("Physics-Practicals/physicsPracticalFile.css");
+
+
+// #region UI Functions
 function createListButton(container, id, buttonText) {
   let btn = document.createElement("button");
   container.appendChild(btn);
@@ -127,17 +132,27 @@ function createColumn(
 
   return column;
 }
+// #endregion UI Functions
+
+let decimalPlaceInScientificNotation = 2;
+
+function changeToStandard(text) {
+  let num = parseFloat(text);
+  let order = Math.floor(Math.log10(num));
+  let standard = num / Math.pow(10, order);
+  return `${standard.toFixed(decimalPlaceInScientificNotation)}x10^${order}`;
+}
 
 
 let physicsPracticalsList = createDiv("practicals-list-div");
 homeTab.appendChild(physicsPracticalsList);
 
-physicsPracticalsList.appendChild(createTextField("practicals-list-class-header", "Class 11"));
 let class11_list = createDiv("practicals-list list-view");
-physicsPracticalsList.appendChild(class11_list);
+// physicsPracticalsList.appendChild(createTextField("practicals-list-class-header", "Class 11"));
+// physicsPracticalsList.appendChild(class11_list);
 
-physicsPracticalsList.appendChild(createTextField("practicals-list-class-header", "Class 12"));
 let class12_list = createDiv("practicals-list list-view");
+physicsPracticalsList.appendChild(createTextField("practicals-list-class-header", "Class 12"));
 physicsPracticalsList.appendChild(class12_list);
 
 

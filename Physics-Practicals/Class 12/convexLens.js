@@ -1,5 +1,6 @@
 let convexLensDiv = createDiv("practical-file");
 
+// #region Diagram
 let cvl_diagramDiv = createDiv("practical-section");
 convexLensDiv.appendChild(cvl_diagramDiv);
 
@@ -17,8 +18,9 @@ function cvl_showDiagrams() {
     cvl_diagramDiv.appendChild(createImg("practical-file-more-diagram dark", `images/Physics/Class 12/Diagrams/Dark/diagram${i}.jpg`));
   }
 }
+// #endregion Diagram
 
-
+// #region Objective
 let cvl_objectiveDiv = createDiv("practical-section");
 convexLensDiv.appendChild(cvl_objectiveDiv);
 
@@ -32,7 +34,9 @@ cvl_objectiveDiv.appendChild(
     "To find the value of 'v' for different values of 'u' in case of a convex lens and hence, to find the focal length 'f' of the lens by plotting a graph between 'u'& 'v'."
   )
 );
+// #endregion Objective
 
+// #region Apparatus
 let cvl_apparatusDiv = createDiv("practical-section");
 convexLensDiv.appendChild(cvl_apparatusDiv);
 
@@ -46,7 +50,9 @@ cvl_apparatusDiv.appendChild(
     "An optical bench along with three uprights, one lens holder, two needles, convex lens, a knitting needle and a meter scale."
   )
 );
+// #endregion Apparatus
 
+// #region Formula
 let cvl_formulaDiv = createDiv("practical-section");
 convexLensDiv.appendChild(cvl_formulaDiv);
 
@@ -69,6 +75,9 @@ cvl_formulaDiv.appendChild(
   createTextField("practical-section-content", "Where,")
 );
 
+// #endregion Formula
+
+// #region Observation
 let cvl_observationDiv = createDiv("practical-section");
 convexLensDiv.appendChild(cvl_observationDiv);
 
@@ -325,7 +334,9 @@ cvl_distanceTable.appendChild(
     true
   )
 );
+// #endregion Observation
 
+// #region Result
 let cvl_resultDiv = createDiv("practical-section");
 convexLensDiv.appendChild(cvl_resultDiv);
 
@@ -366,7 +377,9 @@ cvl_resultDiv.appendChild(
     true
   )
 );
+// #endregion Result
 
+// #region Precautions
 let cvl_precautionsDiv = createDiv("practical-section");
 convexLensDiv.appendChild(cvl_precautionsDiv);
 
@@ -407,7 +420,9 @@ cvl_precautionsDiv.appendChild(
 
 let cvl_SOEDiv = createDiv("practical-section");
 convexLensDiv.appendChild(cvl_SOEDiv);
+// #endregion Precautions
 
+// #region Sources of Errors
 cvl_SOEDiv.appendChild(
   createTextField("practical-section-header", "SOURCES OF ERRORS:")
 );
@@ -421,8 +436,9 @@ cvl_SOEDiv.appendChild(
     "The principal axis of the lens may not be parallel to the optical bench."
   )
 );
+// #endregion Sources of Errors
 
-// VARIABLES =============================
+// #region Functions
 let cvl_lengthOfNeedle = null;
 let cvl_distanceLensObject = null;
 let cvl_distanceLensImage = null;
@@ -430,7 +446,6 @@ let cvl_distanceLensImage = null;
 let cvl_indexCorrectionU = 0;
 let cvl_indexCorrectionV = 0;
 
-// FUNCTIONS =============================
 function measureEssentials_cvl() {
   let X = parseFloat(cvl_lengthOfNeedleInput.value) || 0;
   let Y = parseFloat(cvl_distanceLensObjectInput.value) || 0;
@@ -480,3 +495,4 @@ function measureFocalLength_cvl() {
   focalLength = sumF / validReadings;
   cvl_focalLengthCalculatedInput.value = focalLength.toFixed(3);
 }
+// #endregion Functions

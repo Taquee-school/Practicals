@@ -1,19 +1,16 @@
 let ohmsLawDiv = createDiv("practical-file");
 
+// #region Diagram
 let ohl_diagramDiv = createDiv("practical-section");
 ohmsLawDiv.appendChild(ohl_diagramDiv);
 
 ohl_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-let ohl_diagram_light = document.createElement("img");
-ohl_diagram_light.className = "practical-file-diagram light";
-ohl_diagram_light.src = "Physics-Practicals/Class 12/Diagrams/Light/ohms law.jpg";
-ohl_diagramDiv.appendChild(ohl_diagram_light);
-let ohl_diagram_dark = document.createElement("img");
-ohl_diagram_dark.className = "practical-file-diagram dark";
-ohl_diagram_dark.src = "Physics-Practicals/Class 12/Diagrams/Dark/ohms law.jpg";
-ohl_diagramDiv.appendChild(ohl_diagram_dark);
+ohl_diagramDiv.appendChild(createImg("practical-file-diagram light", "Physics-Practicals/Class 12/Diagrams/Light/ohms law.jpg"));
+ohl_diagramDiv.appendChild(createImg("practical-file-diagram dark", "Physics-Practicals/Class 12/Diagrams/Dark/ohms law.jpg"));
+// #endregion Diagram
 
+// #region Objective
 let ohl_objectiveDiv = createDiv("practical-section");
 ohmsLawDiv.appendChild(ohl_objectiveDiv);
 
@@ -25,7 +22,9 @@ ohl_objectiveDiv.appendChild(
     "To study the current and voltage relationship (Ohm's Law) using an ammeter and voltmeter."
   )
 );
+// #endregion Objective
 
+// #region Apparatus
 let ohl_apparatusDiv = createDiv("practical-section");
 ohmsLawDiv.appendChild(ohl_apparatusDiv);
 
@@ -39,7 +38,9 @@ ohl_apparatusDiv.appendChild(
     "Resistance coils, a battery eliminator(0-3 V), DC voltmeter(range: 3V), DC ammeter(range: 500mA), a rheostat one plug key, thick connecting wires, sand paper, etc."
   )
 );
+// #endregion Apparatus
 
+// #region Formula
 let ohl_formulaDiv = createDiv("practical-section");
 ohmsLawDiv.appendChild(ohl_formulaDiv);
 
@@ -57,7 +58,9 @@ ohl_formulaDiv.appendChild(
 ohl_formulaDiv.appendChild(
   createTextField("practical-main-formula", "V/I = constant = R")
 );
+// #endregion Formula
 
+// #region Observation
 let ohl_observationDiv = createDiv("practical-section");
 ohmsLawDiv.appendChild(ohl_observationDiv);
 
@@ -169,7 +172,9 @@ ohl_resistanceTable.appendChild(
 ohl_resistanceTable.appendChild(
   createColumn("R = V/I (Ω)", 10, "ohl-res", "number", 0, null, true)
 );
+// #endregion Observation
 
+// #region Result
 let ohl_resultDiv = createDiv("practical-section");
 ohmsLawDiv.appendChild(ohl_resultDiv);
 
@@ -203,7 +208,9 @@ ohl_resultDiv.appendChild(
     true
   )
 );
+// #endregion Result
 
+// #region Precautions
 let ohl_precautionsDiv = createDiv("practical-section");
 ohmsLawDiv.appendChild(ohl_precautionsDiv);
 
@@ -253,7 +260,9 @@ ohl_precautionsDiv.appendChild(
     "Measuring instruments of appropriate ranges should be used and zero error in them if any must be taken into account."
   )
 );
+// #endregion Precautions
 
+// #region Sources of Errors
 let ohmsLaw_soeDiv = createDiv("practical-file");
 ohmsLawDiv.appendChild(ohmsLaw_soeDiv);
 
@@ -271,10 +280,11 @@ ohmsLaw_soeDiv.appendChild(
 ohmsLaw_soeDiv.appendChild(
   createPAS("3", "The wire may not have uniform thickness.")
 );
+// #endregion Sources of Errors
 
-//VARIABLES--------------------------
-let ohl_ammeterLc = 0.01;
-let ohl_voltmeterLc = 0.1;
+// #region Functions
+let ohl_ammeterLc = null;
+let ohl_voltmeterLc = null;
 
 function measureEssentials_ohl() {
   ohl_ammeterLc = parseFloat(ohl_ammeterLcInput.value) || 0;
@@ -304,7 +314,8 @@ function measureResistance_ohl() {
     }
   }
 
-  meanR = sum_r / validReadings;
+  let meanR = sum_r / validReadings;
 
   ohl_resistanceInput.value = meanR.toFixed(2);
 }
+// #endregion Functions

@@ -1,22 +1,18 @@
 let halfDeflectionDiv = createDiv("practical-file");
 
+// #region Diagram
 let hdf_diagramDiv = createDiv("practical-section");
 halfDeflectionDiv.appendChild(hdf_diagramDiv);
 
 hdf_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-let hdf_diagram_light = document.createElement("img");
-hdf_diagram_light.className = "practical-file-diagram light";
-hdf_diagram_light.src = "Physics-Practicals/Class 12/Diagrams/Light/half deflection.jpg";
-hdf_diagramDiv.appendChild(hdf_diagram_light);
-let hdf_diagram_dark = document.createElement("img");
-hdf_diagram_dark.className = "practical-file-diagram dark";
-hdf_diagram_dark.src = "Physics-Practicals/Class 12/Diagrams/Dark/half deflection.jpg";
-hdf_diagramDiv.appendChild(hdf_diagram_dark);
+hdf_diagramDiv.appendChild(createImg("practical-file-diagram light", "Physics-Practicals/Class 12/Diagrams/Light/half deflection.jpg"));
+hdf_diagramDiv.appendChild(createImg("practical-file-diagram dark", "Physics-Practicals/Class 12/Diagrams/Dark/half deflection.jpg"));
+// #endregion Diagram
 
+// #region Objective
 let hdf_objectiveDiv = createDiv("practical-section");
 halfDeflectionDiv.appendChild(hdf_objectiveDiv);
-
 hdf_objectiveDiv.appendChild(
   createTextField("practical-section-header", "OBJECT:")
 );
@@ -27,7 +23,9 @@ hdf_objectiveDiv.appendChild(
     "To study the current and voltage relationship (Ohm's Law) using an ammeter and voltmeter."
   )
 );
+// #endregion Objective
 
+// #region Apparatus
 let hdf_apparatusDiv = createDiv("practical-section");
 halfDeflectionDiv.appendChild(hdf_apparatusDiv);
 
@@ -41,7 +39,9 @@ hdf_apparatusDiv.appendChild(
     "Resistance coils, a battery eliminator(0-3 V), DC voltmeter(range: 3V), DC ammeter(range: 500mA), a rheostat one plug key, thick connecting wires, sand paper, etc."
   )
 );
+// #endregion Apparatus
 
+// #region Formula
 let hdf_formulaDiv = createDiv("practical-section");
 halfDeflectionDiv.appendChild(hdf_formulaDiv);
 
@@ -66,7 +66,9 @@ hdf_formulaDiv.appendChild(
     "R Is the resistance in series with galvanometer and shunt resistance is S."
   )
 );
+// #endregion Formula
 
+// #region Observation
 let hdf_observationDiv = createDiv("practical-section");
 halfDeflectionDiv.appendChild(hdf_observationDiv);
 
@@ -93,7 +95,7 @@ hdf_resistanceTable.appendChild(
   createColumn(
     "Resistance R ()",
     5,
-    "hdf-R",
+    "hdf-table-R",
     "number",
     0,
     measureEssentials_hdf
@@ -103,7 +105,7 @@ hdf_resistanceTable.appendChild(
   createColumn(
     "Deflection in galvanometer div (n)",
     5,
-    "hdf-N",
+    "hdf-table-N",
     "number",
     0,
     measureEssentials_hdf
@@ -113,7 +115,7 @@ hdf_resistanceTable.appendChild(
   createColumn(
     "Half deflection (n/2)",
     5,
-    "hdf-half-N",
+    "hdf-table-half-N",
     "number",
     0,
     measureEssentials_hdf
@@ -123,7 +125,7 @@ hdf_resistanceTable.appendChild(
   createColumn(
     "Required shunt S ()",
     5,
-    "hdf-S",
+    "hdf-table-S",
     "number",
     0,
     measureEssentials_hdf
@@ -133,20 +135,16 @@ hdf_resistanceTable.appendChild(
   createColumn(
     "Galvanometer resistance G = RS/(R-S) ()",
     5,
-    "hdf-G",
+    "hdf-table-G",
     "number",
     0,
     null,
     true
   )
 );
+// #endregion Observation
 
-let hdf_meanDiameterInput = createInput(
-  "hdf-mean-observed-diameter-input",
-  "number",
-  0
-);
-
+// #region Result
 let hdf_resultDiv = createDiv("practical-section");
 halfDeflectionDiv.appendChild(hdf_resultDiv);
 
@@ -170,7 +168,9 @@ hdf_resultDiv.appendChild(
     true
   )
 );
+// #endregion Result
 
+// #region Precautions
 let hdf_precautionsDiv = createDiv("practical-section");
 halfDeflectionDiv.appendChild(hdf_precautionsDiv);
 
@@ -202,7 +202,9 @@ hdf_precautionsDiv.appendChild(
 hdf_precautionsDiv.appendChild(
   createPAS("5", "EMF of the battery eliminator should also be constant.")
 );
+// #endregion Precautions
 
+// #region Sources of Errors
 let hdf_soeDiv = createDiv("practical-section");
 halfDeflectionDiv.appendChild(hdf_soeDiv);
 
@@ -225,5 +227,26 @@ hdf_soeDiv.appendChild(
 hdf_soeDiv.appendChild(
   createPAS("3", "The EMF of the battery may not be constant.")
 );
+// #endregion Sources of Errors
 
-function measureEssentials_hdf() { }
+// #region Functions
+function measureEssentials_hdf() {
+  let sumG = 0;
+  let validReadings = 0;
+  for (let i = 1; i <= 5; i++) {
+    let R = document.getElementById(`hdf-table-R-${i}`).value || 0;
+    let N = document.getElementById(`hdf-table-N-${i}`).value || 0;
+    let S = document.getElementById(`hdf-table-S-${i}`).value || 0;
+    document.getElementById(`hdf-table-half-N-${i}`).value = N / 2;
+    let G;
+    if (R > 0) {
+      G = (R * S) / (R - S);
+      document.getElementById(`hdf-table-G-${i}`).value = G.toFixed(2);
+      sumG += G;
+      validReadings++;
+    }
+  }
+  let meanG = sumG/validReadings;
+  hdf_resistanceInput.value = meanG.toFixed(2);
+}
+// #endregion Functions
