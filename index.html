@@ -9,74 +9,27 @@
   <link rel="icon" href="Icons/favicon.ico">
   <title>Practicals by Noor Taquee</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="settingsTab.css" />
 </head>
 
 <body>
-  <div id="app" class="dark vertical">
+  <div id="app" class="dark default vertical">
     <div id="inner-app">
       <div id="inner-app-tab-container">
         <div id="home-tab" class="inner-app-tab">
-          <div class="top-bar">
-            <p class="practical-type-header">Physics Practicals</p>
-            <button id="options-btn" class="ripple">
-              <i class="ph-bold ph-dots-three-vertical"></i>
-            </button>
-          </div>
-
-          <div class="added-panel" id="option-panel">
-            <button id="theme-btn" class="option-panel-btn ripple">
-              <i class="ph-fill ph-paint-roller"></i>
-              <p>Theme</p>
-            </button>
-            <button id="navigation-bar-btn" class="option-panel-btn ripple">
-              <i class="ph-fill ph-compass"></i>
-              <p>Navigation bar</p>
-            </button>
-          </div>
-
-          <div class="added-panel" id="theme-panel">
-            <p class="added-panel-header">Choose Theme</p>
-            <button id="light-btn-theme" class="option-panel-btn ripple">
-              <i id="light-icon" class="ph-bold ph-circle"></i>
-              <p>Light</p>
-            </button>
-            <button id="dark-btn-theme" class="option-panel-btn ripple">
-              <i id="dark-icon" class="ph-fill ph-radio-button"></i>
-              <p>Dark</p>
-            </button>
-            <div class="added-panel-btn-div">
-              <button id="cancel-btn-theme">
-                <p>cancel</p>
-              </button>
-              <button id="confirm-btn-theme">
-                <p>ok</p>
+          <div id="home-content">
+            <div class="top-bar">
+              <p class="tab-header">Practicals</p>
+            </div>
+            <div class="content">
+              <button id="physics-btn" class="home-tab-btn ripple">
+                <p>Physics practicals</p>
               </button>
             </div>
           </div>
-
-          <div class="added-panel" id="navigation-bar-panel">
-            <p class="added-panel-header">Navigation bar style</p>
-            <button id="floating-btn-navigation-bar" class="option-panel-btn ripple">
-              <i id="floating-icon" class="ph-bold ph-circle"></i>
-              <p>Floating</p>
-            </button>
-            <button id="sticky-btn-navigation-bar" class="option-panel-btn ripple">
-              <i id="sticky-icon" class="ph-fill ph-radio-button"></i>
-              <p>sticky</p>
-            </button>
-            <div class="added-panel-btn-div">
-              <button id="cancel-btn-navigation-bar">
-                <p>cancel</p>
-              </button>
-              <button id="confirm-btn-navigation-bar">
-                <p>ok</p>
-              </button>
-            </div>
-          </div>
-
         </div>
         <div id="practical-tab" class="inner-app-tab light">
-          <div id="practical-tab-header" class="tab-header">
+          <div id="practical-tab-header">
             <div>
               <button class="back-btn ripple">
                 <i class="ph-bold ph-arrow-left"></i>
@@ -89,6 +42,36 @@
           </div>
           <div id="practical-tab-content">
             <div id="practical-container" class="practical-tab-panel"></div>
+          </div>
+        </div>
+        <div id="settings-tab" class="inner-app-tab">
+          <div id="settings-content">
+            <img class="app-icon" src="Icons/android-chrome-192x192.png" alt="Settings">
+            <p class="tab-header">Settings</p>
+            <div class="settings-tab-section">
+              <button id="theme-btn" class="tab-btn ripple">
+                <i class="ph-bold ph-paint-roller"></i>
+                <p>Theme</p>
+              </button>
+              <button id="palette-btn" class="tab-btn ripple">
+                <i class="ph-bold ph-palette"></i>
+                <p>Palette</p>
+              </button>
+              <button id="navigation-bar-btn" class="tab-btn ripple">
+                <i class="ph-bold ph-compass"></i>
+                <p>Navigation bar</p>
+              </button>
+            </div>
+            <div class="settings-tab-section">
+              <!-- <button id="error-btn" class="tab-btn ripple">
+                <i class="ph-bold ph-bug"></i>
+                <p>Error</p>
+              </button> -->
+              <button id="about-btn" class="tab-btn ripple">
+                <i class="ph-bold ph-info"></i>
+                <p>About</p>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -107,15 +90,14 @@
           </div>
           <p>Practical</p>
         </button>
+        <button id="settings-button">
+          <div class="navigation-icon-container">
+            <div class="navigation-icon-div" id="settings-icon"></div>
+            <i class="ph-bold ph-dots-three"></i>
+          </div>
+          <p>More</p>
+        </button>
       </div>
-    </div>
-    <div id="loading-screen">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
     </div>
   </div>
   <script>
@@ -127,13 +109,21 @@
     let innerAppTabContainer = document.getElementById("inner-app-tab-container");
 
     let homeTab = document.getElementById("home-tab");
+    let homeContent = document.getElementById("home-content");
+
     let practicalTab = document.getElementById("practical-tab");
+
+    let settingsTab = document.getElementById("settings-tab");
+    let settingsContent = document.getElementById("settings-content");
 
     let bnHome = document.getElementById("home-button");
     let homeIcon = document.getElementById("home-icon");
 
     let bnPractical = document.getElementById("practical-button");
     let practicalIcon = document.getElementById("practical-icon");
+
+    let bnSettings = document.getElementById("settings-button");
+    let settingsIcon = document.getElementById("settings-icon");
 
     let practicalContainer = document.getElementById("practical-container");
     let experimentName = document.getElementById("experiment-name");
@@ -142,6 +132,7 @@
 
   </script>
   <script src="script.js"></script>
+  <script src="settingsTab.js"></script>
 </body>
 
 </html>
