@@ -116,6 +116,7 @@
   --secondary-bg: rgb(255, 255, 255);
   --primary-text-color: rgb(0, 0, 0);
   --border-color: rgb(0, 0, 0, 0.5);
+  --accent: rgb(150, 150, 150);
 }
 
 #app.dark.default {
@@ -123,6 +124,7 @@
   --secondary-bg: rgb(30, 30, 30);
   --primary-text-color: rgb(255, 255, 255);
   --border-color: rgba(255, 255, 255, 0.6);
+  --accent: rgb(150, 150, 150);
 }
 
 #app.light.lime {
