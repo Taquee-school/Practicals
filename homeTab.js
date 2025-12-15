@@ -33,7 +33,7 @@ loadingTab.appendChild(createTextField("loadin-text", "Loading..."));
 homeTabContent.appendChild(
     createButton("physics-btn", "home-tab-btn", null, "Physics practicals", () => {
         if (!document.getElementById("PhysicsPracticals")) {
-            addScript("Physics-Practicals/PhysicsPracticals.js").id = "PhysicsPracticals";
+            addScript("Physics-Practicals/physicsPracticals.js").id = "PhysicsPracticals";
             physicsTabContent.appendChild(loadingTab);
         }
         homeTab.style.animation = "fade-drop 0.2s ease";
