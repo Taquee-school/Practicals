@@ -1,4 +1,4 @@
-let resonanceTubeDiv = createDiv("practical-file");
+let resonanceTubeDiv = createDiv("practical-file", "physics-practical");
 
 let rst_diagramDiv = createDiv("practical-section");
 resonanceTubeDiv.appendChild(rst_diagramDiv);

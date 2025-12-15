@@ -1,4 +1,4 @@
-let acSonometerDiv = createDiv("practical-file");
+let acSonometerDiv = createDiv("practical-file", "physics-practical");
 
 // #region Diagram
 let acs_diagramDiv = createDiv("practical-section");
@@ -411,7 +411,7 @@ acs_precautionsDiv.appendChild(
 // #endregion Precautions
 
 // #region Sources of Errors
-let acs_soeDiv = createDiv("practical-file");
+let acs_soeDiv = createDiv("practical-section");
 acSonometerDiv.appendChild(acs_soeDiv);
 
 acs_soeDiv.appendChild(

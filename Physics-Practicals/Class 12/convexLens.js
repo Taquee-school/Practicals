@@ -1,4 +1,4 @@
-let convexLensDiv = createDiv("practical-file");
+let convexLensDiv = createDiv("practical-file", "physics-practical");
 
 // #region Diagram
 let cvl_diagramDiv = createDiv("practical-section");

@@ -1,4 +1,4 @@
-let spherometerDiv = createDiv("practical-file");
+let spherometerDiv = createDiv("practical-file", "physics-practical");
 
 let spm_diagramDiv = createDiv("practical-section");
 spherometerDiv.appendChild(spm_diagramDiv);

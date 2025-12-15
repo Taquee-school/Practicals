@@ -1,4 +1,4 @@
-let screwGaugeDiv = createDiv("practical-file");
+let screwGaugeDiv = createDiv("practical-file", "physics-practical");
 
 let scg_diagramDiv = createDiv("practical-section");
 screwGaugeDiv.appendChild(scg_diagramDiv);

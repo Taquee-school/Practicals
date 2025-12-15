@@ -1,4 +1,4 @@
-let pnJunctionDiv = createDiv("practical-file");
+let pnJunctionDiv = createDiv("practical-file", "physics-practical");
 
 // #region Diagram
 let pnj_diagramDiv = createDiv("practical-section");
@@ -222,7 +222,7 @@ let pnj_dynamicResistanceInput = createInput(
   true
 );
 
-let pnj_resultPDiv = createDiv("practical-file");
+let pnj_resultPDiv = createDiv("practical-section");
 pnj_resultPDiv.className = "practical-section-input-div";
 
 let resultP = document.createElement("p");
@@ -279,7 +279,7 @@ pnj_precautionsDiv.appendChild(
 // #endregion Precautions
 
 // #region Sources of Errors
-let pnj_soeDiv = createDiv("practical-file");
+let pnj_soeDiv = createDiv("practical-section");
 pnJunctionDiv.appendChild(pnj_soeDiv);
 
 pnj_soeDiv.appendChild(

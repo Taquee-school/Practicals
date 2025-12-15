@@ -1,4 +1,4 @@
-let meterBridgeDiv = createDiv("practical-file");
+let meterBridgeDiv = createDiv("practical-file", "physics-practical");
 
 // #region Diagram
 let mbr_diagramDiv = createDiv("practical-section");

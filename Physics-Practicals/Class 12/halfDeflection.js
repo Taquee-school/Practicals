@@ -1,4 +1,4 @@
-let halfDeflectionDiv = createDiv("practical-file");
+let halfDeflectionDiv = createDiv("practical-file", "physics-practical");
 
 // #region Diagram
 let hdf_diagramDiv = createDiv("practical-section");

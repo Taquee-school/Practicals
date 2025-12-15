@@ -1,4 +1,4 @@
-let sonometerDiv = createDiv("practical-file");
+let sonometerDiv = createDiv("practical-file", "physics-practical");
 
 let snm_diagramDiv = createDiv("practical-section");
 sonometerDiv.appendChild(snm_diagramDiv);

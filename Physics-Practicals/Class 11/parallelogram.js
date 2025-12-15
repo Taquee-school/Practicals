@@ -1,4 +1,4 @@
-let parallelogramDiv = createDiv("practical-file");
+let parallelogramDiv = createDiv("practical-file", "physics-practical");
 
 let prl_diagramDiv = createDiv("practical-section");
 parallelogramDiv.appendChild(prl_diagramDiv);

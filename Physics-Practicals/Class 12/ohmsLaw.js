@@ -1,4 +1,4 @@
-let ohmsLawDiv = createDiv("practical-file");
+let ohmsLawDiv = createDiv("practical-file", "physics-practical");
 
 // #region Diagram
 let ohl_diagramDiv = createDiv("practical-section");
@@ -263,7 +263,7 @@ ohl_precautionsDiv.appendChild(
 // #endregion Precautions
 
 // #region Sources of Errors
-let ohmsLaw_soeDiv = createDiv("practical-file");
+let ohmsLaw_soeDiv = createDiv("practical-section");
 ohmsLawDiv.appendChild(ohmsLaw_soeDiv);
 
 ohmsLaw_soeDiv.appendChild(

@@ -1,4 +1,4 @@
-let simplePendulumDiv = createDiv("practical-file");
+let simplePendulumDiv = createDiv("practical-file", "physics-practical");
 
 let spl_diagramDiv = createDiv("practical-section");
 simplePendulumDiv.appendChild(spl_diagramDiv);

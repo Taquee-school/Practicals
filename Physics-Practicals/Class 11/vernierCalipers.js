@@ -1,4 +1,4 @@
-let vernierCalipersDiv = createDiv("practical-file");
+let vernierCalipersDiv = createDiv("practical-file", "physics-practical");
 
 let vnc_diagramDiv = createDiv("practical-section");
 vernierCalipersDiv.appendChild(vnc_diagramDiv);

@@ -1,4 +1,4 @@
-let helicalSpringDiv = createDiv("practical-file");
+let helicalSpringDiv = createDiv("practical-file", "physics-practical");
 
 let hls_diagramDiv = createDiv("practical-section");
 helicalSpringDiv.appendChild(hls_diagramDiv);

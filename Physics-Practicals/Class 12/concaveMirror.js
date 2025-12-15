@@ -1,4 +1,4 @@
-let concaveMirrorDiv = createDiv("practical-file");
+let concaveMirrorDiv = createDiv("practical-file", "physics-practical");
 
 // #region Diagram
 let ccm_diagramDiv = createDiv("practical-section");

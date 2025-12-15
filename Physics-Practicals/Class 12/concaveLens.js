@@ -1,4 +1,4 @@
-let concaveLensDiv = createDiv("practical-file");
+let concaveLensDiv = createDiv("practical-file", "physics-practical");
 
 let ccl_diagramDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_diagramDiv);

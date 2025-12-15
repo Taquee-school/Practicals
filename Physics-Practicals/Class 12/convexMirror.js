@@ -1,4 +1,4 @@
-let convexMirrorDiv = createDiv("practical-file");
+let convexMirrorDiv = createDiv("practical-file", "physics-practical");
 
 let cvm_diagramDiv = createDiv("practical-section");
 convexMirrorDiv.appendChild(cvm_diagramDiv);
