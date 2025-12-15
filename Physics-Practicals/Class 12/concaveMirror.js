@@ -1,5 +1,6 @@
 let concaveMirrorDiv = createDiv("practical-file");
 
+// #region Diagram
 let ccm_diagramDiv = createDiv("practical-section");
 concaveMirrorDiv.appendChild(ccm_diagramDiv);
 
@@ -17,8 +18,9 @@ function ccm_showDiagrams() {
     ccm_diagramDiv.appendChild(createImg("practical-file-more-diagram dark", `Physics-Practicals/Class 12/Diagrams/Dark/diagram${i}.jpg`));
   }
 }
+// #endregion Diagram
 
-
+// #region Objective
 let ccm_objectiveDiv = createDiv("practical-section");
 concaveMirrorDiv.appendChild(ccm_objectiveDiv);
 
@@ -32,7 +34,9 @@ ccm_objectiveDiv.appendChild(
     "To find the value of 'v' for different values of 'u' in case of a concave mirror and hence, to find the focal length 'f' of the mirrors by plotting graph between 'u' & 'v'."
   )
 );
+// #endregion Objective
 
+// #region Apparatus
 let ccm_apparatusDiv = createDiv("practical-section");
 concaveMirrorDiv.appendChild(ccm_apparatusDiv);
 
@@ -46,7 +50,9 @@ ccm_apparatusDiv.appendChild(
     "An optical bench along with three uprights, one mirror holder, two needles, concave mirror, a knitting needle and a meter scale."
   )
 );
+// #endregion Apparatus
 
+// #region Formula
 let ccm_formulaDiv = createDiv("practical-section");
 concaveMirrorDiv.appendChild(ccm_formulaDiv);
 
@@ -77,7 +83,9 @@ ccm_formulaDiv.appendChild(
     "In the case of concave mirrors, for real images both 'u' & 'v' are negative as per new Cartesian sign convention. The focal length 'f' is also negative."
   )
 );
+// #endregion Formula
 
+// #region Observation
 let ccm_observationDiv = createDiv("practical-section");
 concaveMirrorDiv.appendChild(ccm_observationDiv);
 
@@ -334,7 +342,9 @@ ccm_distanceTable.appendChild(
     true
   )
 );
+// #endregion Observation
 
+// #region Result
 let ccm_resultDiv = createDiv("practical-section");
 concaveMirrorDiv.appendChild(ccm_resultDiv);
 
@@ -375,7 +385,9 @@ ccm_resultDiv.appendChild(
     true
   )
 );
+// #endregion Result
 
+// #region Precautions
 let ccm_precautionsDiv = createDiv("practical-section");
 concaveMirrorDiv.appendChild(ccm_precautionsDiv);
 
@@ -388,7 +400,9 @@ ccm_precautionsDiv.appendChild(createPAS("2", ""));
 ccm_precautionsDiv.appendChild(createPAS("3", ""));
 ccm_precautionsDiv.appendChild(createPAS("4", ""));
 ccm_precautionsDiv.appendChild(createPAS("5", ""));
+// #endregion Precautions
 
+// #region Sources of Errors
 let ccm_SOEDiv = createDiv("practical-section");
 concaveMirrorDiv.appendChild(ccm_SOEDiv);
 
@@ -401,8 +415,9 @@ ccm_SOEDiv.appendChild(createPAS("2", ""));
 ccm_SOEDiv.appendChild(createPAS("3", ""));
 ccm_SOEDiv.appendChild(createPAS("4", ""));
 ccm_SOEDiv.appendChild(createPAS("5", ""));
+// #endregion Sources of Errors
 
-// VARIABLES =============================
+// #region Functions
 let ccm_lengthOfNeedle = null;
 let ccm_distanceMirrorObject = null;
 let ccm_distanceMirrorImage = null;
@@ -410,7 +425,6 @@ let ccm_distanceMirrorImage = null;
 let ccm_indexCorrectionU = 0;
 let ccm_indexCorrectionV = 0;
 
-// FUNCTIONS =============================
 function measureEssentials_ccm() {
   let X = parseFloat(ccm_lengthOfNeedleInput.value) || 0;
   let Y = parseFloat(ccm_distanceMirrorObjectInput.value) || 0;
@@ -462,3 +476,4 @@ function measureFocalLength_ccm() {
   focalLength = sumF / validReadings;
   ccm_focalLengthCalculatedInput.value = focalLength.toFixed(3);
 }
+// #endregion Functions

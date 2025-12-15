@@ -1,19 +1,15 @@
 let pnJunctionDiv = createDiv("practical-file");
 
+// #region Diagram
 let pnj_diagramDiv = createDiv("practical-section");
 pnJunctionDiv.appendChild(pnj_diagramDiv);
 
 pnj_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
+pnj_diagramDiv.appendChild(createImg("practical-file-diagram light", "Physics-Practicals/Class 12/Diagrams/Light/pn junction.jpg"));
+pnj_diagramDiv.appendChild(createImg("practical-file-diagram dark", "Physics-Practicals/Class 12/Diagrams/Dark/pn junction.jpg"));
+// #endregion Diagram
 
-let pnj_diagram_light = document.createElement("img");
-pnj_diagram_light.className = "practical-file-diagram light";
-pnj_diagram_light.src = "Physics-Practicals/Class 12/Diagrams/Light/pn junction.jpg";
-pnj_diagramDiv.appendChild(pnj_diagram_light);
-let pnj_diagram_dark = document.createElement("img");
-pnj_diagram_dark.className = "practical-file-diagram dark";
-pnj_diagram_dark.src = "Physics-Practicals/Class 12/Diagrams/Dark/pn junction.jpg";
-pnj_diagramDiv.appendChild(pnj_diagram_dark);
-
+// #region Objective
 let pnj_objectiveDiv = createDiv("practical-section");
 pnJunctionDiv.appendChild(pnj_objectiveDiv);
 
@@ -27,7 +23,9 @@ pnj_objectiveDiv.appendChild(
     "To draw the characteristics curve of a forward biased P-N junction diode and hence to determine the static and dynamic resistance of the same."
   )
 );
+// #endregion Objective
 
+// #region Apparatus
 let pnj_apparatusDiv = createDiv("practical-section");
 pnJunctionDiv.appendChild(pnj_apparatusDiv);
 
@@ -41,7 +39,9 @@ pnj_apparatusDiv.appendChild(
     "A P-N junction Diode, a battery eliminator (0-2V), rheostat, a milli-ammeter, a voltmeter, connecting wire etc."
   )
 );
+// #endregion Apparatus
 
+// #region Formula
 let pnj_formulaDiv = createDiv("practical-section");
 pnJunctionDiv.appendChild(pnj_formulaDiv);
 
@@ -73,18 +73,18 @@ pnj_formulaDiv.appendChild(
     "Whereas, the dynamic resistance of the junction is given by:"
   )
 );
-
 pnj_formulaDiv.appendChild(
   createTextField("practical-main-formula", "R(dynamic) = ∆V/∆I")
 );
-
 pnj_formulaDiv.appendChild(
   createTextField(
     "practical-section-content",
     "Where, ∆V and ∆I are the changes in applied voltage and current, calculated by drawing a tangent on the V-I plot (to find its slope)."
   )
 );
+// #endregion Formula
 
+// #region Observation
 let pnj_observationDiv = createDiv("practical-section");
 pnJunctionDiv.appendChild(pnj_observationDiv);
 
@@ -162,7 +162,7 @@ pnj_characteristicsTable.appendChild(
   createColumn(
     "Divisions on voltmeter",
     25,
-    "pnj-v-div",
+    "pnj-table-v-div",
     "number",
     [
       1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
@@ -173,13 +173,13 @@ pnj_characteristicsTable.appendChild(
   )
 );
 pnj_characteristicsTable.appendChild(
-  createColumn("Voltage (V)", 25, "pnj-voltage", "number", 0, null, true)
+  createColumn("Voltage (V)", 25, "pnj-table-voltage", "number", 0, null, true)
 );
 pnj_characteristicsTable.appendChild(
   createColumn(
     "Divisions on ammeter",
     25,
-    "pnj-a-div",
+    "pnj-table-a-div",
     "number",
     0,
     measureResistance_pnj,
@@ -187,9 +187,11 @@ pnj_characteristicsTable.appendChild(
   )
 );
 pnj_characteristicsTable.appendChild(
-  createColumn("Current (I) (mA)", 25, "pnj-current", "number", 0, null, true)
+  createColumn("Current (I) (mA)", 25, "pnj-table-current", "number", 0, null, true)
 );
+// #endregion Observation
 
+// #region Result
 let pnj_resultDiv = createDiv("practical-section");
 pnJunctionDiv.appendChild(pnj_resultDiv);
 
@@ -237,7 +239,9 @@ resultPspan2.textContent = "Ω respectively.";
 resultP.appendChild(resultPspan2);
 
 pnj_resultDiv.appendChild(createPAS("2", pnj_resultPDiv, true));
+// #endregion Result
 
+// #region Precautions
 let pnj_precautionsDiv = createDiv("practical-section");
 pnJunctionDiv.appendChild(pnj_precautionsDiv);
 
@@ -272,7 +276,9 @@ pnj_precautionsDiv.appendChild(
     "Never cross the limits specified by the manufacturer otherwise the diode will get damaged."
   )
 );
+// #endregion Precautions
 
+// #region Sources of Errors
 let pnj_soeDiv = createDiv("practical-file");
 pnJunctionDiv.appendChild(pnj_soeDiv);
 
@@ -287,12 +293,13 @@ pnj_soeDiv.appendChild(
 pnj_soeDiv.appendChild(
   createPAS("3", "Current is fixed through the diode for long duration.")
 );
+// #endregion Sources of Errors
 
-//VARIABLES--------------------------
+
+// #region Functions
 let pnj_ammeterLc = null;
 let pnj_voltmeterLc = null;
 
-// FUNCTIONS--------------------------
 function measureEssentials_pnj() {
   pnj_ammeterLc = parseFloat(pnj_ammeterLcInput.value) || 0;
   pnj_voltmeterLc = parseFloat(pnj_voltmeterLcInput.value) || 0;
@@ -305,13 +312,13 @@ function measureResistance_pnj() {
 
   for (let i = 1; i <= 25; i++) {
     let a_div =
-      parseFloat(document.getElementById(`pnj-a-div-${i}`).value) || 0;
+      parseFloat(document.getElementById(`pnj-table-a-div-${i}`).value) || 0;
     let v_div =
-      parseFloat(document.getElementById(`pnj-v-div-${i}`).value) || 0;
+      parseFloat(document.getElementById(`pnj-table-v-div-${i}`).value) || 0;
     let c = a_div * pnj_ammeterLc;
     let v = v_div * pnj_voltmeterLc;
-    document.getElementById(`pnj-current-${i}`).value = c.toFixed(1);
-    document.getElementById(`pnj-voltage-${i}`).value = v.toFixed(3);
+    document.getElementById(`pnj-table-current-${i}`).value = c.toFixed(1);
+    document.getElementById(`pnj-table-voltage-${i}`).value = v.toFixed(3);
 
     if (v_div > 0) {
       sum_sr += v / c;
@@ -321,3 +328,4 @@ function measureResistance_pnj() {
   meanSR = sum_sr / validReadings;
   pnj_staticResistanceInput.value = meanSR.toFixed(2);
 }
+// #endregion Functions

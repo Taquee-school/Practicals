@@ -76,6 +76,8 @@ function addStyle(path) {
 }
 
 // #endregion
+
+// #region Navigation
 bnHome.addEventListener("click", () => {
   if (app.classList.contains("vertical")) {
     changeTab(homeTab);
@@ -88,251 +90,9 @@ bnHome.addEventListener("click", () => {
   }
 });
 bnPractical.addEventListener("click", () => changeTab(practicalTab));
+bnSettings.addEventListener("click", () => changeTab(settingsTab));
 
-// OPTIONAL PANEL =====================
-// #region Option Panel
-let optionPanel = document.getElementById("option-panel");
-let bnOption = document.getElementById("options-btn");
-bnOption.addEventListener("click", showOptionPanel);
 
-function showOptionPanel() {
-  bnOption.removeEventListener("click", showOptionPanel);
-  optionPanel.style.display = "flex";
-  optionPanel.style.animation = "appear 0.3s ease";
-  optionPanel.addEventListener(
-    "animationend",
-    () => {
-      optionPanel.style.animation = "none";
-      bnOption.addEventListener("click", hideOptionPanel);
-    },
-    { once: true }
-  );
-}
-
-function hideOptionPanel() {
-  if (optionPanel.style.display == "flex") {
-    bnOption.removeEventListener("click", hideOptionPanel);
-    optionPanel.style.animation = "disappear 0.3s ease";
-    optionPanel.addEventListener(
-      "animationend",
-      () => {
-        optionPanel.style.animation = "none";
-        optionPanel.style.display = "none";
-        bnOption.addEventListener("click", showOptionPanel);
-      },
-      { once: true }
-    );
-  }
-}
-
-// #endregion
-
-// THEME PANEL ========================
-// #region Theme Panel
-let appliedTheme = "dark";
-let appliedThemeI = null;
-let selectedTheme = "dark";
-let selectedThemeI = null;
-
-let ThemePanel = document.getElementById("theme-panel");
-let bnTheme = document.getElementById("theme-btn");
-bnTheme.addEventListener("click", showThemePanel);
-
-let cancelTheme = document.getElementById("cancel-btn-theme");
-cancelTheme.addEventListener("click", hideThemePanel);
-
-let confirmTheme = document.getElementById("confirm-btn-theme");
-confirmTheme.addEventListener("click", applyTheme);
-
-let bnDark = document.getElementById("dark-btn-theme");
-let darkIcon = document.getElementById("dark-icon");
-appliedThemeI = darkIcon;
-selectedThemeI = darkIcon;
-bnDark.addEventListener("click", () => {
-  selectedThemeI.className = "ph-bold ph-circle";
-  selectedTheme = "dark";
-  selectedThemeI = darkIcon;
-  selectedThemeI.className = "ph-fill ph-radio-button";
-});
-
-let bnLight = document.getElementById("light-btn-theme");
-let lightIcon = document.getElementById("light-icon");
-bnLight.addEventListener("click", () => {
-  selectedThemeI.className = "ph-bold ph-circle";
-  selectedTheme = "light";
-  selectedThemeI = lightIcon;
-  selectedThemeI.className = "ph-fill ph-radio-button";
-});
-
-function applyTheme() {
-  app.classList.remove(appliedTheme);
-  appliedThemeI = selectedThemeI;
-  appliedTheme = selectedTheme;
-  app.classList.add(appliedTheme);
-  hideThemePanel();
-  localStorage.setItem("theme", appliedTheme);
-}
-
-function showThemePanel() {
-  if (ThemePanel.style.display != "flex") {
-    hideOptionPanel();
-    bnTheme.removeEventListener("click", showThemePanel);
-    ThemePanel.style.display = "flex";
-    ThemePanel.style.animation = "appear 0.3s ease";
-    ThemePanel.addEventListener(
-      "animationend",
-      () => {
-        ThemePanel.style.animation = "none";
-        bnTheme.addEventListener("click", hideThemePanel);
-      },
-      { once: true }
-    );
-  }
-}
-
-function hideThemePanel() {
-  if (ThemePanel.style.display == "flex") {
-    selectedThemeI.className = "ph-bold ph-circle";
-    selectedThemeI = appliedThemeI;
-    selectedThemeI.className = "ph-fill ph-radio-button";
-    bnTheme.removeEventListener("click", hideThemePanel);
-    ThemePanel.style.animation = "disappear 0.3s ease";
-    ThemePanel.addEventListener(
-      "animationend",
-      () => {
-        ThemePanel.style.animation = "none";
-        ThemePanel.style.display = "none";
-        bnTheme.addEventListener("click", showThemePanel);
-      },
-      { once: true }
-    );
-  }
-}
-
-function setTheme(theme) {
-  let themeMap = { light: lightIcon, dark: darkIcon };
-  selectedThemeI.className = "ph-bold ph-circle";
-  selectedThemeI = themeMap[theme];
-  selectedTheme = theme;
-  selectedThemeI.className = "ph-fill ph-radio-button";
-  app.classList.remove(appliedTheme);
-  appliedThemeI = selectedThemeI;
-  appliedTheme = selectedTheme;
-  app.classList.add(appliedTheme);
-  localStorage.setItem("theme", appliedTheme);
-}
-// #endregion
-
-// NAV STYLE PANEL ========================
-// #region Nav style Panel
-let appliedNavBarStyle = "sticky";
-let appliedNavBarStyleI = null;
-let selectedNavBarStyle = "sticky";
-let selectedNavBarStyleI = null;
-
-let NavBarStylePanel = document.getElementById("navigation-bar-panel");
-let bnNavBarStyle = document.getElementById("navigation-bar-btn");
-bnNavBarStyle.addEventListener("click", showNavBarStylePanel);
-
-let cancelNavBarStyle = document.getElementById("cancel-btn-navigation-bar");
-cancelNavBarStyle.addEventListener("click", hideNavBarStylePanel);
-
-let confirmNavBarStyle = document.getElementById("confirm-btn-navigation-bar");
-confirmNavBarStyle.addEventListener("click", applyNavBarStyle);
-
-let bnSticky = document.getElementById("sticky-btn-navigation-bar");
-let stickyIcon = document.getElementById("sticky-icon");
-appliedNavBarStyleI = stickyIcon;
-selectedNavBarStyleI = stickyIcon;
-bnSticky.addEventListener("click", () => {
-  selectedNavBarStyleI.className = "ph-bold ph-circle";
-  selectedNavBarStyle = "sticky";
-  selectedNavBarStyleI = stickyIcon;
-  selectedNavBarStyleI.className = "ph-fill ph-radio-button";
-});
-
-let bnFloating = document.getElementById("floating-btn-navigation-bar");
-let floatingIcon = document.getElementById("floating-icon");
-bnFloating.addEventListener("click", () => {
-  selectedNavBarStyleI.className = "ph-bold ph-circle";
-  selectedNavBarStyle = "floating";
-  selectedNavBarStyleI = floatingIcon;
-  selectedNavBarStyleI.className = "ph-fill ph-radio-button";
-});
-
-function applyNavBarStyle() {
-  NavigationDiv.style.animation = "flash 0.3s ease";
-  NavigationDiv.addEventListener(
-    "animationend",
-    () => {
-      NavigationDiv.style.animation = "none";
-      NavigationDiv.classList.remove(appliedNavBarStyle);
-      appliedNavBarStyleI = selectedNavBarStyleI;
-      appliedNavBarStyle = selectedNavBarStyle;
-      NavigationDiv.classList.add(appliedNavBarStyle);
-      hideNavBarStylePanel();
-      localStorage.setItem("navigation-bar", appliedNavBarStyle);
-    },
-    { once: true }
-  );
-}
-
-function showNavBarStylePanel() {
-  if (NavBarStylePanel.style.display != "flex") {
-    hideOptionPanel();
-    bnNavBarStyle.removeEventListener("click", showNavBarStylePanel);
-    NavBarStylePanel.style.display = "flex";
-    NavBarStylePanel.style.animation = "appear 0.3s ease";
-    NavBarStylePanel.addEventListener(
-      "animationend",
-      () => {
-        NavBarStylePanel.style.animation = "none";
-        bnNavBarStyle.addEventListener("click", hideNavBarStylePanel);
-      },
-      { once: true }
-    );
-  }
-}
-
-function hideNavBarStylePanel() {
-  if (NavBarStylePanel.style.display == "flex") {
-    selectedNavBarStyleI.className = "ph-bold ph-circle";
-    selectedNavBarStyleI = appliedNavBarStyleI;
-    selectedNavBarStyleI.className = "ph-fill ph-radio-button";
-    bnNavBarStyle.removeEventListener("click", hideNavBarStylePanel);
-    NavBarStylePanel.style.animation = "disappear 0.3s ease";
-    NavBarStylePanel.addEventListener(
-      "animationend",
-      () => {
-        NavBarStylePanel.style.animation = "none";
-        NavBarStylePanel.style.display = "none";
-        bnNavBarStyle.addEventListener("click", showNavBarStylePanel);
-      },
-      { once: true }
-    );
-  }
-}
-
-function setNavBarStyle(navigationBar) {
-  let navigationBarMap = { floating: floatingIcon, sticky: stickyIcon };
-  selectedNavBarStyleI.className = "ph-bold ph-circle";
-  selectedNavBarStyleI = navigationBarMap[navigationBar];
-  selectedNavBarStyle = navigationBar;
-  selectedNavBarStyleI.className = "ph-fill ph-radio-button";
-  NavigationDiv.classList.remove(appliedNavBarStyle);
-  appliedNavBarStyleI = selectedNavBarStyleI;
-  appliedNavBarStyle = selectedNavBarStyle;
-  NavigationDiv.classList.add(appliedNavBarStyle);
-  localStorage.setItem("navigation-bar", appliedNavBarStyle);
-}
-
-// #endregion
-
-function abs(x) {
-  return x < 0 ? -x : x;
-}
-
-// #region Navigation
 currentPractical = null;
 function openFile(file, message) {
   if (currentVideoUrl) {
@@ -343,8 +103,11 @@ function openFile(file, message) {
     helpVideoText.style.display = "flex";
   }
   changeTab(practicalTab);
-  if (currentPractical) {
+  try {
     practicalContainer.removeChild(currentPractical);
+  } catch { }
+  if (practicalContainer.contains(loadingTab)) {
+    practicalContainer.removeChild(loadingTab);
   }
   practicalContainer.appendChild(file);
   currentPractical = file;
@@ -356,7 +119,7 @@ function changeTab(dTab, dTabBtn) {
   dTab.scrollIntoView();
 }
 
-const tolerance = 10;
+const tolerance = 1;
 const scrollParent = innerAppTabContainer;
 let currentTabBtn = homeIcon;
 
@@ -372,6 +135,10 @@ function checkTabInView() {
     currentTabBtn = practicalIcon;
     currentTabBtn.classList.add("active");
     currentTabBtn.style.animation = "expand 0.45s ease";
+  } else if (isElementCentered(settingsTab)) {
+    currentTabBtn = settingsIcon;
+    currentTabBtn.classList.add("active");
+    currentTabBtn.style.animation = "expand 0.45s ease";
   }
 }
 function isElementCentered(element) {
@@ -382,6 +149,17 @@ function isElementCentered(element) {
   const elementCenter = elementRect.left + elementRect.width / 2;
 
   return Math.abs(containerCenter - elementCenter) <= tolerance;
+}
+
+// window.addEventListener("popstate", (event) => { handlePopState(event) });
+function handlePopState(event) {
+  if (event.state) {
+    if (event.state.panel == "physicsPracticals") {
+      physicsBtn.click();
+    }
+  } else {
+    homeTab.scrollIntoView();
+  }
 }
 
 // #endregion
@@ -452,12 +230,9 @@ function closeHelpPanel() {
 }
 
 function playVideo() { }
-
 // #endregion
 
 // #region Ripple Effect
-const buttons = document.querySelectorAll(".ripple");
-buttons.forEach((button) => {setRippleStyle(button)});
 function setRippleStyle(button) {
   button.addEventListener("click", function (event) {
     let circle = document.createElement("span");
@@ -483,11 +258,11 @@ function setRippleStyle(button) {
       circle.remove();
     }, 600);
   });
+  return button;
 }
 // #endregion
 
-
-
+// region Initialisation
 function checkLocalStorage() {
   let theme = localStorage.getItem("theme");
   if (theme) {
@@ -497,6 +272,16 @@ function checkLocalStorage() {
   if (navBarStyle) {
     setNavBarStyle(navBarStyle);
   }
+  let palette = localStorage.getItem("palette");
+  if (palette) {
+    setPalette(palette);
+  }
+  
+  // Load accessibility settings
+  let fontScale = localStorage.getItem("font-scale");
+  let headerScale = localStorage.getItem("header-scale");
+  let iconScale = localStorage.getItem("icon-scale");
+  setAccessibilty(fontScale, headerScale, iconScale);
 }
 
 function checkOrientation() {
@@ -504,8 +289,8 @@ function checkOrientation() {
     app.classList.remove("horizontal");
     app.classList.add("vertical");
   } else {
-    app.classList.remove("vertical");
-    app.classList.add("horizontal");
+    // app.classList.remove("vertical");
+    // app.classList.add("horizontal");
   }
 }
 window.addEventListener("resize", checkOrientation);
@@ -514,5 +299,9 @@ window.addEventListener("DOMContentLoaded", () => {
   checkLocalStorage();
   checkOrientation();
   checkTabInView();
-  addScript("Physics-Practicals/PhysicsPracticals.js");
+  const buttons = document.querySelectorAll(".ripple");
+  buttons.forEach((button) => { setRippleStyle(button) });
 });
+// #endregion Initialisation
+
+

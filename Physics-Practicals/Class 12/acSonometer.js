@@ -1,21 +1,16 @@
 let acSonometerDiv = createDiv("practical-file");
 
+// #region Diagram
 let acs_diagramDiv = createDiv("practical-section");
 acSonometerDiv.appendChild(acs_diagramDiv);
 
 acs_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-let acs_diagram_light = document.createElement("img");
-acs_diagram_light.className = "practical-file-diagram light";
-acs_diagram_light.src =
-  "Physics-Practicals/Class 12/Diagrams/Light/ac sonometer.jpg";
-acs_diagramDiv.appendChild(acs_diagram_light);
-let acs_diagram_dark = document.createElement("img");
-acs_diagram_dark.className = "practical-file-diagram dark";
-acs_diagram_dark.src =
-  "Physics-Practicals/Class 12/Diagrams/Dark/ac sonometer.jpg";
-acs_diagramDiv.appendChild(acs_diagram_dark);
+acs_diagramDiv.appendChild(createImg("practical-file-diagram light", "Physics-Practicals/Class 12/Diagrams/Light/ac sonometer.jpg"));
+acs_diagramDiv.appendChild(createImg("practical-file-diagram dark", "Physics-Practicals/Class 12/Diagrams/Dark/ac sonometer.jpg"));
+// #endregion Diagram
 
+// #region Objective
 let acs_objectiveDiv = createDiv("practical-section");
 acSonometerDiv.appendChild(acs_objectiveDiv);
 
@@ -29,7 +24,9 @@ acs_objectiveDiv.appendChild(
     "To find the frequency of an alternating current (ac mains) by sonometer and an electromagnet."
   )
 );
+// #endregion Objective
 
+// #region Apparatus
 let acs_apparatusDiv = createDiv("practical-section");
 acSonometerDiv.appendChild(acs_apparatusDiv);
 
@@ -43,7 +40,9 @@ acs_apparatusDiv.appendChild(
     "A sonometer with soft iron wire stretched over it, an electromagnet, a step-down transformer, slotted half kg weights, a hanger, a screw gauge, etc."
   )
 );
+// #endregion Apparatus
 
+// #region Formula
 let acs_formulaDiv = createDiv("practical-section");
 acSonometerDiv.appendChild(acs_formulaDiv);
 
@@ -84,7 +83,9 @@ acs_formulaBelonging.appendChild(
   createTextField("", "D is the diameter of the sonometer wire.")
 );
 acs_formulaBelonging.appendChild(createTextField("", "¶ is its density."));
+// #endregion Formula
 
+// #region Observation
 let acs_observationDiv = createDiv("practical-section");
 acSonometerDiv.appendChild(acs_observationDiv);
 
@@ -92,8 +93,7 @@ acs_observationDiv.appendChild(
   createTextField("practical-section-header", "OBSERVATION:")
 );
 
-
-//SONOMETER OBSERVATIONS------------
+// #region Sonometer
 acs_observationDiv.appendChild(
   createTextField(
     "observation-table-header",
@@ -175,8 +175,9 @@ acs_sonometerTable.appendChild(
     true
   )
 );
+// #endregion Sonometer
 
-//SCREW GAUGE OBSERVATIONS ---
+// #region Screw Gauge
 acs_observationDiv.appendChild(
   createTextField(
     "practical-section-content",
@@ -352,8 +353,10 @@ acs_observationDiv.appendChild(
     "kg/m"
   )
 );
+// #endregion Screw Gauge
+// #endregion Observation
 
-
+// #region Result
 let acs_resultDiv = createDiv("practical-section");
 acSonometerDiv.appendChild(acs_resultDiv);
 
@@ -380,7 +383,9 @@ acs_resultDiv.appendChild(
     true
   )
 );
+// #endregion Result
 
+// #region Precautions
 let acs_precautionsDiv = createDiv("practical-section");
 acSonometerDiv.appendChild(acs_precautionsDiv);
 
@@ -403,7 +408,9 @@ acs_precautionsDiv.appendChild(
 acs_precautionsDiv.appendChild(
   createPAS("5", "The weight of the hanger should also be counted while calculating the tension on the string.")
 );
+// #endregion Precautions
 
+// #region Sources of Errors
 let acs_soeDiv = createDiv("practical-file");
 acSonometerDiv.appendChild(acs_soeDiv);
 
@@ -417,8 +424,9 @@ acs_soeDiv.appendChild(
 acs_soeDiv.appendChild(
   createPAS("2", "Some friction might be present at the pulley and hence the tension is less than that actually applied.")
 );
+// #endregion sources of errors 
 
-//VARIABLES--------------------------
+// #region Functions
 let acs_sgLeastCount = null;
 let acs_zeroError = null;
 let acs_density = null;
@@ -499,3 +507,4 @@ function measureFrequency_acs() {
   meanV = v_sum / validReadings;
   acs_meanFrequencyInput.value = meanV.toFixed(3);
 }
+// #endregion Functions

@@ -1,19 +1,16 @@
 let meterBridgeDiv = createDiv("practical-file");
 
+// #region Diagram
 let mbr_diagramDiv = createDiv("practical-section");
 meterBridgeDiv.appendChild(mbr_diagramDiv);
 
 mbr_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-let mbr_diagram_light = document.createElement("img");
-mbr_diagram_light.className = "practical-file-diagram light";
-mbr_diagram_light.src = "Physics-Practicals/Class 12/Diagrams/Light/meter bridge.jpg";
-mbr_diagramDiv.appendChild(mbr_diagram_light);
-let mbr_diagram_dark = document.createElement("img");
-mbr_diagram_dark.className = "practical-file-diagram dark";
-mbr_diagram_dark.src = "Physics-Practicals/Class 12/Diagrams/Dark/meter bridge.jpg";
-mbr_diagramDiv.appendChild(mbr_diagram_dark);
+mbr_diagramDiv.appendChild(createImg("practical-file-diagram light", "Physics-Practicals/Class 12/Diagrams/Light/meter bridge.jpg"));
+mbr_diagramDiv.appendChild(createImg("practical-file-diagram dark", "Physics-Practicals/Class 12/Diagrams/Dark/meter bridge.jpg"));
+// #endregion Diagram
 
+// #region Objective
 let mbr_objectiveDiv = createDiv("practical-section");
 meterBridgeDiv.appendChild(mbr_objectiveDiv);
 
@@ -27,7 +24,9 @@ mbr_objectiveDiv.appendChild(
     "To find the resistance of a given wire using a meter bridge and hence determine the specific resistance of its material."
   )
 );
+// #endregion Objective
 
+// #region Apparatus
 let mbr_apparatusDiv = createDiv("practical-section");
 meterBridgeDiv.appendChild(mbr_apparatusDiv);
 
@@ -41,7 +40,9 @@ mbr_apparatusDiv.appendChild(
     "A meter bridge, an unknown resistance in the form of wire, a resistance box, a jockey, a key, a galvanometer, a Lechlanche cell, thick connecting wires, sand paper, screw gauge, etc."
   )
 );
+// #endregion Apparatus
 
+// #region Formula
 let mbr_formulaDiv = createDiv("practical-section");
 meterBridgeDiv.appendChild(mbr_formulaDiv);
 
@@ -114,7 +115,9 @@ mbr_formulaBelonging2.appendChild(
 mbr_formulaBelonging2.appendChild(
   createTextField(null, "D is the diameter of the wire.")
 );
+// #endregion Formula
 
+// #region Observation
 let mbr_observationDiv = createDiv("practical-section");
 meterBridgeDiv.appendChild(mbr_observationDiv);
 
@@ -122,7 +125,7 @@ mbr_observationDiv.appendChild(
   createTextField("practical-section-header", "OBSERVATION:")
 );
 
-//METER BRIDGE OBSERVATIONS------------
+// #region Meter bridge observations
 let mbr_scaleLcInput = createInput(
   "mbr-scale-least-count-input",
   "number",
@@ -138,7 +141,7 @@ mbr_observationDiv.appendChild(
 );
 
 let mbr_wireLengthInput = createInput(
-  "mbr-scale-least-count-input",
+  "mbr-wire-length-input",
   "number",
   0,
   measureEssentials_mbr
@@ -170,7 +173,7 @@ mbr_sonometerTable.appendChild(
   createColumn(
     "Resistance Q ()",
     5,
-    "mbr-Q",
+    "mbr-table-Q",
     "number",
     0,
     measureResistance_mbr
@@ -180,18 +183,17 @@ mbr_sonometerTable.appendChild(
   createColumn(
     "Position of balance point D (cm)",
     5,
-    "mbr-D",
+    "mbr-table-D",
     "number",
-    [4.9, 9.8, 14.7, 19.6, 24.5],
-    null,
-    true
+    0,
+    measureResistance_mbr
   )
 );
 mbr_sonometerTable.appendChild(
   createColumn(
     "Balancing length AD = l (cm)",
     5,
-    "mbr-AD",
+    "mbr-table-AD",
     "number",
     0,
     measureResistance_mbr
@@ -201,16 +203,18 @@ mbr_sonometerTable.appendChild(
   createColumn(
     "Length DC = 100-l (cm)",
     5,
-    "mbr-DC",
+    "mbr-table-DC",
     "number",
     0,
     measureResistance_mbr
   )
 );
 mbr_sonometerTable.appendChild(
-  createColumn("X = Q/100-l ()", 5, "acs-X", "number", 0, null, true)
+  createColumn("X = Q/100-l ()", 5, "mbr-table-X", "number", 0, null, true)
 );
+// #endregion Meter bridge observations
 
+// #region Screw gauge observations
 let mbr_sgLeastCountInput = createInput(
   "mbr-sg-lc-input",
   "number",
@@ -319,7 +323,7 @@ mbr_sgTable.appendChild(
   createColumn(
     "Main scale reading (MSR) (mm)",
     5,
-    "mbr-msr",
+    "mbr-table-msr",
     "number",
     0,
     measureDiameter_mbr,
@@ -330,7 +334,7 @@ mbr_sgTable.appendChild(
   createColumn(
     "Circular scale reading (CSR)",
     5,
-    "mbr-csr",
+    "mbr-table-csr",
     "number",
     0,
     measureDiameter_mbr,
@@ -341,7 +345,7 @@ mbr_sgTable.appendChild(
   createColumn(
     "Observed Diameter (mm)",
     5,
-    "mbr-d-obs",
+    "mbr-table-sg-D",
     "number",
     0,
     null,
@@ -370,7 +374,10 @@ let mbr_correctedDiameterInput = createInput(
 mbr_observationDiv.appendChild(
   createInputDiv("Mean corrected diameter = ", mbr_correctedDiameterInput, "cm")
 );
+// #endregion Screw gauge observations
+// #endregion Observation
 
+// #region Result
 let mbr_masspulInput = createInput(
   "mbr-wire-mass-input",
   "number",
@@ -387,7 +394,7 @@ mbr_resultDiv.appendChild(
 );
 
 let mbr_resistanceInput = createInput(
-  "mbr-mass-per-unit-length-input",
+  "mbr-resistance-input",
   "number",
   0
 );
@@ -404,10 +411,11 @@ mbr_resultDiv.appendChild(
 );
 
 let mbr_specificResistanceInput = createInput(
-  "mbr-mass-per-unit-length-input",
-  "number",
+  "mbr-specific-resistance-input",
+  "text",
   0
 );
+mbr_specificResistanceInput.style.width = "100px";
 mbr_resultDiv.appendChild(
   createPAS(
     "2",
@@ -419,7 +427,9 @@ mbr_resultDiv.appendChild(
     true
   )
 );
+// #endregion Result
 
+// #region Precautions
 let mbr_precautionsDiv = createDiv("practical-section");
 meterBridgeDiv.appendChild(mbr_precautionsDiv);
 
@@ -460,7 +470,9 @@ mbr_precautionsDiv.appendChild(
     "The key of the battery or the cell should be closed first and then the jockey is touched on the wire, when the reading is to be taken."
   )
 );
+// #endregion Precautions
 
+// #region Sources of errors
 let mbr_soeDiv = createDiv("practical-section");
 meterBridgeDiv.appendChild(mbr_soeDiv);
 
@@ -472,9 +484,82 @@ mbr_soeDiv.appendChild(createPAS("1", "The wire of the meter bridge may not be o
 mbr_soeDiv.appendChild(createPAS("2", "The thick copper strips at the two ends of the wire offer some resistance. They are called end resistance and the error due to them is called end error and the corresponding correction is called end correction."));
 mbr_soeDiv.appendChild(createPAS("3", "The wire may get heated due to the passage of current and its resistance might change. Therefore, to minimize this error, the current is passed for a short period of time and the reading is taken quickly."));
 mbr_soeDiv.appendChild(createPAS("4", "The screw gauge may have a backlash error due to loose fittings of its screw."));
+// #endregion Sources of errors
 
-function measureEssentials_mbr() { }
+// #region Functions
+let mbr_wireLength = 0;
+let mbr_meanR = 0;
+let mbr_meanD = 0;
+let mbr_sgLeastCount = 0;
+let mbr_sgCorrection = 0;
 
-function measureDiameter_mbr() { }
+function measureEssentials_mbr() {
+  mbr_wireLength = parseFloat(mbr_wireLengthInput.value) || 0;
+  mbr_sgLeastCount = parseFloat(mbr_sgLeastCountInput.value) || 0;
+  let ze1 = parseFloat(mbr_ze1Input.value) || 0;
+  let ze2 = parseFloat(mbr_ze2Input.value) || 0;
+  let ze3 = parseFloat(mbr_ze3Input.value) || 0;
+  mbr_sgCorrection = -(ze1 + ze2 + ze3) / 3;
+  measureDiameter_mbr();
+}
 
-function measureResistance_mbr() { }
+function measureDiameter_mbr() {
+  let sumD = 0;
+  let validReadings = 0;
+
+  for (let i = 1; i <= 5; i++) {
+    let MSR = parseFloat(document.getElementById(`mbr-table-msr-${i}`).value) || 0;
+    let CSR = parseFloat(document.getElementById(`mbr-table-csr-${i}`).value) || 0;
+    
+    let D = MSR + CSR * mbr_sgLeastCount;
+    document.getElementById(`mbr-table-sg-D-${i}`).value = D;
+    
+    if (D > 0) {
+      sumD += D;
+      validReadings++;
+    }
+  }
+  if (validReadings > 0) {
+    mbr_meanD = sumD / validReadings;
+    mbr_meanDiameterInput.value = mbr_meanD.toFixed(2);
+    mbr_meanD += mbr_sgCorrection;
+    mbr_correctedDiameterInput.value = mbr_meanD.toFixed(2);
+    measureSpecificResistance_mbr();
+  }
+}
+
+function measureResistance_mbr() {
+  let sumR = 0;
+  let validReadings = 0;
+
+  for (let i = 1; i <= 5; i++) {
+    let Q = parseFloat(document.getElementById(`mbr-table-Q-${i}`).value) || 0;
+    let D = parseFloat(document.getElementById(`mbr-table-D-${i}`).value) || 0;
+
+    document.getElementById(`mbr-table-AD-${i}`).value = D;
+
+    let DC = 100 - D;
+    document.getElementById(`mbr-table-DC-${i}`).value = DC;
+
+    let X = (D / DC) * Q;
+    document.getElementById(`mbr-table-X-${i}`).value = X.toFixed(2);
+
+    if (X > 0) {
+      sumR += X;
+      validReadings++;
+    }
+  }
+  mbr_meanR = sumR / validReadings;
+  mbr_resistanceInput.value = mbr_meanR.toFixed(2);
+  measureSpecificResistance_mbr();
+}
+
+function measureSpecificResistance_mbr() {
+  if (mbr_wireLength > 0) {
+    let D = parseFloat(mbr_meanDiameterInput.value)/100;
+    let R = parseFloat(mbr_resistanceInput.value) || 0;
+    let SR = (R * 3.14 * D * D) / (mbr_wireLength * 4);
+    mbr_specificResistanceInput.value = changeToStandard(SR);
+  }
+}
+// #endregion Functions
