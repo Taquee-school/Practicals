@@ -1,0 +1,13 @@
+#chemistry-practical .practical-section-text-div {
+  display: flex;
+  gap: 10px;    
+}
+
+#chemistry-practical .practical-section-text {
+ font: var(--primary-font);
+ font-weight: 600;
+}
+
+#chemistry-practical .practical-section-value {
+ font: var(--primary-font);
+}

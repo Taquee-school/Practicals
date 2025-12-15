@@ -1,6 +1,9 @@
 let basicGroup0Div = createDiv("practical-file", "chemistry-practical");
 
-basicGroup0Div.appendChild(createTextField("practical-file-header", "Reagent: "));
+let reagentDiv = createDiv("practical-section-text-div");
+basicGroup0Div.appendChild(reagentDiv);
+reagentDiv.appendChild(createTextField("practical-section-text", "Reagent: "));
+reagentDiv.appendChild(createTextField("practical-section-value", "NaOH"));
 
 // #region Reagent
 

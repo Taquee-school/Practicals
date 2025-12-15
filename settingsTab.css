@@ -1,4 +1,3 @@
-
 #settings-content {
   position: relative;
   gap: 20px;
@@ -100,6 +99,16 @@
   background-color: var(--accent);
 }
 
+#error-panel-content {
+  box-sizing: border-box;
+  padding: 0 10px;
+  gap: 10px;
+}
+
+.error-panel-text {
+  font: var(--primary-font);
+  margin: 5px 0;
+}
 
 #about-panel-content {
     box-sizing: border-box;

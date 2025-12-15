@@ -459,15 +459,10 @@ errorPanel.appendChild(errorPanelHeader);
 let errorPanelContent = createDiv("content", "error-panel-content");
 errorPanel.appendChild(errorPanelContent);
 
-let errorInput = document.createElement("input");
-errorInput.type = "text";
-errorInput.id = "error-input";
-errorInput.placeholder = "Enter error message";
-errorPanelContent.appendChild(errorInput);
+errorPanelContent.appendChild(createTextField("error-panel-text", "Write your issue in github."));
+errorPanelContent.appendChild(createTextField("error-panel-text", "You need a github account to submit your issue."));
 
-errorPanelContent.appendChild(createButton("error-btn", "error-btn", null, "submit", () => {
-  let error = errorInput.value;
-}));
+errorPanelContent.appendChild(createActionButton("https://github.com/Noor-Taquee/Practicals/issues", "Open Github"));
 
 function openErrorPanel() {
   settingsTab.style.animation = "fade-drop 0.2s ease";
