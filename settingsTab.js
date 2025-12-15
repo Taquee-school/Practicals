@@ -122,13 +122,23 @@ navBarStylePanelContent.appendChild(setRippleStyle(
   })
 ));
 
-
 let floatingIcon = createIcon("bold", "circle");
 navBarStylePanelContent.appendChild(setRippleStyle(
   createButton("floating-btn-navigation-bar", "tab-btn ripple", floatingIcon, "Floating", () => {
     selectedNavBarStyleI.className = "ph-bold ph-circle";
     selectedNavBarStyle = "floating";
     selectedNavBarStyleI = floatingIcon;
+    selectedNavBarStyleI.className = "ph-fill ph-radio-button";
+    applyNavBarStyle();
+  })
+));
+
+let hiddenIcon = createIcon("bold", "circle");
+navBarStylePanelContent.appendChild(setRippleStyle(
+  createButton("hidden-btn-navigation-bar", "tab-btn ripple", hiddenIcon, "Hidden", () => {
+    selectedNavBarStyleI.className = "ph-bold ph-circle";
+    selectedNavBarStyle = "hidden";
+    selectedNavBarStyleI = hiddenIcon;
     selectedNavBarStyleI.className = "ph-fill ph-radio-button";
     applyNavBarStyle();
   })
@@ -318,6 +328,100 @@ function setPalette(palette) {
 
 // #endregion Palette Panel
 
+// #region Accessibilty Panel
+let currentFontScale = 1;
+let currentHeaderScale = 1;
+let currentIconScale = 1;
+
+let bnAccessibilty = document.getElementById("accessibility-btn");
+bnAccessibilty.addEventListener("click", openAccessibiltyPanel);
+
+let AccessibiltyPanel = createDiv("content", "accessibility-panel");
+
+let accessibiltyPanelHeader = createDiv("top-bar", "accessibility-panel-header");
+accessibiltyPanelHeader.appendChild(createButton(null, "back-btn", createIcon("bold", "arrow-left"), null, closeAccessibiltyPanel));
+accessibiltyPanelHeader.appendChild(createTextField("tab-header", "Accessibility"));
+AccessibiltyPanel.appendChild(accessibiltyPanelHeader);
+
+let accessibiltyPanelContent = createDiv("content", "accessibility-panel-content");
+AccessibiltyPanel.appendChild(accessibiltyPanelContent);
+
+let fontScaleSlider = createSlider(accessibiltyPanelContent, "font-scale-slider", "Font Scale", 0.5, 2, 1, 0.05);
+fontScaleSlider.addEventListener("input", () => {
+  currentFontScale = fontScaleSlider.value;
+  app.style.setProperty("--font-scale", currentFontScale);
+  localStorage.setItem("font-scale", currentFontScale);
+})
+
+let headerScaleSlider = createSlider(accessibiltyPanelContent, "header-scale-slider", "Header Scale", 0.5, 2, 1, 0.05);
+headerScaleSlider.addEventListener("input", () => {
+  currentHeaderScale = headerScaleSlider.value;
+  app.style.setProperty("--header-scale", currentHeaderScale);
+  localStorage.setItem("header-scale", currentHeaderScale);
+})
+
+let iconScaleSlider = createSlider(accessibiltyPanelContent, "icon-scale-slider", "Icon Scale", 0.5, 2, 1, 0.05);
+iconScaleSlider.addEventListener("input", () => {
+  currentIconScale = iconScaleSlider.value;
+  app.style.setProperty("--icon-scale", currentIconScale);
+  localStorage.setItem("icon-scale", currentIconScale);
+})
+
+function openAccessibiltyPanel() {
+  settingsTab.style.animation = "fade-drop 0.2s ease";
+  setTimeout(() => {
+    settingsTab.replaceChild(AccessibiltyPanel, settingsContent);
+  }, 100);
+  settingsTab.addEventListener(
+    "animationend",
+    () => {
+      settingsTab.style.animation = "none";
+    },
+    { once: true }
+  );
+}
+
+function closeAccessibiltyPanel() {
+  settingsTab.style.animation = "fade-drop 0.2s ease";
+  setTimeout(() => {
+    settingsTab.replaceChild(settingsContent, AccessibiltyPanel);
+  }, 100);
+  settingsTab.addEventListener(
+    "animationend",
+    () => {
+      settingsTab.style.animation = "none";
+    },
+    { once: true }
+  );
+}
+
+function setAccessibilty(accessibility) {
+}
+
+function createSlider(parentDiv, id, label, min, max, value, step) {
+  let slider = createDiv("slider", id);
+  parentDiv.appendChild(slider);
+  
+  let sliderHeader = createDiv("top-bar", "slider-header");
+  sliderHeader.appendChild(createTextField(null, label));
+  slider.appendChild(sliderHeader);
+  
+  let sliderContent = createDiv("content", "slider-content");
+  slider.appendChild(sliderContent);
+  
+  let sliderInput = document.createElement("input");
+  sliderInput.className = "slider-input";
+  sliderInput.type = "range";
+  sliderInput.min = min;
+  sliderInput.max = max;
+  sliderInput.value = value;
+  sliderInput.step = step;
+  sliderContent.appendChild(sliderInput);
+  
+  return sliderInput;
+}
+// #endregion Accessibilty Panel
+
 // #region Error Panel 
 // let bnError = document.getElementById("error-btn");
 // bnError.addEventListener("click", openErrorPanel);
@@ -378,6 +482,7 @@ bnAbout.addEventListener("click", openAboutPanel);
 
 function openAboutPanel() {
   // history.pushState({ panel: "about" }, "", `${window.location.pathname}/about`);
+
 
   settingsTab.style.animation = "fade-drop 0.2s ease";
   setTimeout(() => {
@@ -455,10 +560,10 @@ function createActionButton(linkUrl, buttonText) {
 
 
 function buildAboutPanelContent() {
-  // 1. Version and Tagline
+  // 1. About app
   let versionInfo = createDiv("version-info");
-  versionInfo.appendChild(createTextField("app-name", "Practical")); // Your App Name
-  versionInfo.appendChild(createTextField("version-tag", "v2.3.1")); // Version Number
+  versionInfo.appendChild(createTextField("app-name", "Practical"));
+  versionInfo.appendChild(createTextField("version-tag", "v2.6.1"));
   aboutPanelContent.appendChild(versionInfo);
 
   // 2. Developer & Community
@@ -485,8 +590,6 @@ function buildAboutPanelContent() {
 
   // Instagram ProfileLink
   socialSection.appendChild(createSocialLink("instagram-logo", "https://www.instagram.com/prince1420__", "Instagram"));
-
-  // Add more social links here using createAboutItem()
 
   aboutPanelContent.appendChild(creatorSection);
   aboutPanelContent.appendChild(socialSection);

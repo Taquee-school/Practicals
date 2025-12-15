@@ -1,28 +1,12 @@
-addStyle("Physics-Practicals/PhysicsPracticals.css").onload = () => {
+addStyle("Physics-Practicals/physicsPracticalFile.css").onload = () => {
   if (physicsTabContent.contains(loadingTab)) {
     physicsTabContent.removeChild(loadingTab);
   }
   load12th_practicals();
 };
-addStyle("Physics-Practicals/physicsPracticalFile.css");
 
 
 // #region UI Functions
-function createListButton(container, id, buttonText) {
-  let btn = document.createElement("button");
-  container.appendChild(btn);
-  btn.id = id;
-  btn.classList.add("ripple");
-
-  btn.appendChild(createTextField(null, buttonText));
-
-  let ic = document.createElement("i");
-  ic.className = "ph-bold ph-caret-right";
-  btn.appendChild(ic);
-  setRippleStyle(btn);
-  return btn;
-}
-
 function createImg(className, path) {
   let img = document.createElement("img");
   img.className = className;
@@ -154,14 +138,6 @@ function changeToStandard(text) {
 }
 
 // #endregion Helper Functions
-
-function showPracticalLoading() {
-  if (practicalContainer.firstChild) {
-    practicalContainer.removeChild(practicalContainer.firstChild);
-  }
-  practicalContainer.appendChild(loadingTab);
-  practicalContainer.scrollIntoView();
-}
 
 let physicsPracticalsList = createDiv("practicals-list-div");
 physicsTabContent.appendChild(physicsPracticalsList);

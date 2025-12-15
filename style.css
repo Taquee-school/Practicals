@@ -83,6 +83,34 @@
   }
 }
 
+#app.vertical {
+  --font-scale: 1;
+  --header-scale: 1;
+  --icon-scale: 1;
+  --primary-font: 500 calc(20px * var(--font-scale)) "Inter", sans-serif;
+  --secondary-font: 500 calc(16px * var(--font-scale)) "Inter", sans-serif;
+  --primary-header-font: 300 calc(30px * var(--header-scale)) "Inter", sans-serif;
+  --secondary-header-font: 300 calc(22px * var(--header-scale)) "Inter", sans-serif;
+  --icon-size: calc(24px * var(--icon-scale));
+  --navigation-icon-size: calc(24px * var(--icon-scale));
+  --loading-icon-size: calc(40px * var(--icon-scale));
+  --loading-font-size: calc(20px * var(--font-scale));
+}
+
+#app.horizontal {
+  --font-scale: 1;
+  --header-scale: 1;
+  --icon-scale: 1;
+  --primary-font: 500 calc(20px * var(--font-scale)) "Inter", sans-serif;
+  --secondary-font: 500 calc(16px * var(--font-scale)) "Inter", sans-serif;
+  --primary-header-font: 300 calc(30px * var(--header-scale)) "Inter", sans-serif;
+  --secondary-header-font: 300 calc(22px * var(--header-scale)) "Inter", sans-serif;
+  --icon-size: calc(24px * var(--icon-scale));
+  --navigation-icon-size: calc(24px * var(--icon-scale));
+  --loading-icon-size: calc(40px * var(--icon-scale));
+  --loading-font-size: calc(20px * var(--font-scale));
+}
+
 #app.light.default {
   --primary-bg: rgb(235, 235, 235);
   --secondary-bg: rgb(255, 255, 255);
@@ -179,7 +207,7 @@ p,
 div,
 input {
   -webkit-tap-highlight-color: transparent;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 #app {
@@ -199,46 +227,6 @@ input {
 #app p,
 #app input {
   color: var(--primary-text-color) !important;
-}
-
-#loading-screen {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  gap: 1vw;
-  display: none;
-  justify-content: center;
-  align-items: center;
-}
-
-.bar {
-  height: 12%;
-  width: 5%;
-  border-radius: 2.5vw;
-  background: black;
-  animation: shrink 1.5s ease-in-out infinite;
-}
-
-.bar:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.bar:nth-child(3) {
-  animation-delay: 0.4s;
-}
-.bar:nth-child(4) {
-  animation-delay: 0.6s;
-}
-.bar:nth-child(5) {
-  animation-delay: 0.8s;
-}
-.bar:nth-child(6) {
-  animation-delay: 1s;
-}
-.bar:nth-child(7) {
-  animation-delay: 0.8s;
 }
 
 #inner-app {
@@ -285,6 +273,9 @@ input {
   align-items: center;
 }
 
+#app #navigation-div.hidden {
+  display: none;
+}
 #app.vertical #navigation-div.sticky {
   height: 10%;
   width: 100%;
@@ -345,12 +336,12 @@ input {
   left: auto;
   flex-shrink: 0;
   margin: auto;
-  font-size: 20px;
+  font-size: var(--icon-size);
 }
 
 #navigation-div p {
   margin: 0;
-  font: 500 14px Arial;
+  font: var(--secondary-font);
   transition: all 0.2s linear;
 }
 
@@ -396,6 +387,8 @@ input {
   scroll-snap-align: center;
   scroll-snap-stop: always;
 }
+#settings-content::-webkit-scrollbar,
+#home-content::-webkit-scrollbar,
 .inner-app-tab::-webkit-scrollbar {
   display: none;
 }
@@ -414,57 +407,12 @@ input {
   flex-grow: 1;
 }
 
-
-.top-bar {
-  flex-shrink: 0;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.content {
-  flex-shrink: 0;
-  flex-grow: 1;
-  width: 100%;
-}
-
-.home-tab-btn {
-  cursor: pointer;
-  width: 95%;
-  box-sizing: border-box;
-  padding: 0 15px;
-  margin: 0 auto;
-  border: none;
-  border-radius: 20px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background: var(--secondary-bg);
-}
-.home-tab-btn i {
-  font-size: 25px;
-}
-.home-tab-btn p {
-  font: 500 20px "Inter", sans-serif;
-}
-
-.loading-tab {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .loading-tab i {
-  font-size: 40px;
-  animation: spin 1.1s linear infinite ;
+  font-size: var(--loading-icon-size);
+  animation: spin 1.1s linear infinite;
 }
 .loading-tab p {
-  font: 500 20px "Inter", sans-serif;
+  font: var(--loading-font-size);
 }
 
 button.ripple {
@@ -477,14 +425,8 @@ button.ripple {
   transform: scale(0);
   animation: ripple-animation 0.6s linear;
   pointer-events: none;
+  background-color: var(--accent);
 }
-#app.light .ripple-span {
-  background: rgba(0, 0, 0, 0.3);
-}
-#app.dark .ripple-span {
-  background: rgba(255, 255, 255, 0.3);
-}
-
 
 #practical-tab-header {
   height: 7%;
@@ -520,11 +462,11 @@ button.ripple {
 }
 
 #practical-tab-header .back-btn i {
-  font-size: 25px;
+  font-size: var(--navigation-icon-size);
 }
 
 #practical-tab-header p {
-  font: 700 20px "Inter";
+  font: var(--secondary-header-font);
   margin: 0 0 0 10px;
 }
 
@@ -562,7 +504,7 @@ button.ripple {
 .help-video-header {
   margin: 10px 0 5px 5px;
   text-align: left;
-  font: 400 40px Arial;
+  font: var(--primary-header-font);
 }
 
 .video-container {
@@ -589,7 +531,7 @@ button.ripple {
   height: 100%;
   width: 100%;
   text-align: center;
-  font-size: 20px;
+  font: var(--secondary-header-font);
 }
 
 .video-player {

@@ -151,6 +151,17 @@ function isElementCentered(element) {
   return Math.abs(containerCenter - elementCenter) <= tolerance;
 }
 
+// window.addEventListener("popstate", (event) => { handlePopState(event) });
+function handlePopState(event) {
+  if (event.state) {
+    if (event.state.panel == "physicsPracticals") {
+      physicsBtn.click();
+    }
+  } else {
+    homeTab.scrollIntoView();
+  }
+}
+
 // #endregion
 
 // HELP PANEL ========================
@@ -251,54 +262,6 @@ function setRippleStyle(button) {
 }
 // #endregion
 
-let loadingTab = createDiv("loading-tab");
-loadingTab.appendChild(createIcon("bold", "circle-notch"));
-loadingTab.appendChild(createTextField("loadin-text", "Loading..."));
-
-
-let physicsTab = createDiv("inner-app-tab", "physics-tab");
-
-let physicsTabHeader = createDiv("top-bar");
-physicsTab.appendChild(physicsTabHeader);
-
-physicsTabHeader.appendChild(createButton(null, "back-btn", createIcon("bold", "arrow-left"), null, goBackPP));
-function goBackPP() {
-  homeTab.style.animation = "fade-drop 0.2s ease";
-  setTimeout(() => {
-    homeTab.replaceChild(homeContent, physicsTab);
-  }, 100);
-  homeTab.addEventListener(
-    "animationend",
-    () => {
-      homeTab.style.animation = "none";
-    },
-    { once: true }
-  );
-}
-
-let physicsTabContent = createDiv("content");
-physicsTab.appendChild(physicsTabContent);
-
-const physicsBtn = document.getElementById("physics-btn");
-physicsBtn.addEventListener("click", () => {
-  if (!document.getElementById("PhysicsPracticals")) {
-    addScript("Physics-Practicals/PhysicsPracticals.js").id = "PhysicsPracticals";
-  }
-  homeTab.style.animation = "fade-drop 0.2s ease";
-  setTimeout(() => {
-    homeTab.replaceChild(physicsTab, homeContent);
-    physicsTabContent.appendChild(loadingTab);
-  }, 100);
-  homeTab.addEventListener(
-    "animationend",
-    () => {
-      homeTab.style.animation = "none";
-    },
-    { once: true }
-  );
-});
-
-
 // region Initialisation
 function checkLocalStorage() {
   let theme = localStorage.getItem("theme");
@@ -312,6 +275,28 @@ function checkLocalStorage() {
   let palette = localStorage.getItem("palette");
   if (palette) {
     setPalette(palette);
+  }
+  
+  // Load accessibility settings
+  let fontScale = localStorage.getItem("font-scale");
+  if (fontScale) {
+    currentFontScale = parseFloat(fontScale);
+    app.style.setProperty("--font-scale", currentFontScale);
+    fontScaleSlider.value = currentFontScale;
+  }
+  
+  let headerScale = localStorage.getItem("header-scale");
+  if (headerScale) {
+    currentHeaderScale = parseFloat(headerScale);
+    app.style.setProperty("--header-scale", currentHeaderScale);
+    headerScaleSlider.value = currentHeaderScale;
+  }
+  
+  let iconScale = localStorage.getItem("icon-scale");
+  if (iconScale) {
+    currentIconScale = parseFloat(iconScale);
+    app.style.setProperty("--icon-scale", currentIconScale);
+    iconScaleSlider.value = currentIconScale;
   }
 }
 

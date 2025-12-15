@@ -9,6 +9,7 @@
   <link rel="icon" href="Icons/favicon.ico">
   <title>Practicals by Noor Taquee</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="homeTab.css" />
   <link rel="stylesheet" href="settingsTab.css" />
 </head>
 
@@ -22,9 +23,6 @@
               <p class="tab-header">Practicals</p>
             </div>
             <div class="content">
-              <button id="physics-btn" class="home-tab-btn ripple">
-                <p>Physics practicals</p>
-              </button>
             </div>
           </div>
         </div>
@@ -60,6 +58,10 @@
               <button id="navigation-bar-btn" class="tab-btn ripple">
                 <i class="ph-bold ph-compass"></i>
                 <p>Navigation bar</p>
+              </button>
+              <button id="accessibility-btn" class="tab-btn ripple">
+                <i class="ph-bold ph-eye"></i>
+                <p>Accessibilty</p>
               </button>
             </div>
             <div class="settings-tab-section">
@@ -110,6 +112,7 @@
 
     let homeTab = document.getElementById("home-tab");
     let homeContent = document.getElementById("home-content");
+    let homeTabContent = document.querySelector("#home-tab .content");
 
     let practicalTab = document.getElementById("practical-tab");
 
@@ -132,6 +135,7 @@
 
   </script>
   <script src="script.js"></script>
+  <script src="homeTab.js"></script>
   <script src="settingsTab.js"></script>
 </body>
 
