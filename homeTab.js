@@ -76,47 +76,47 @@ physicsTab.appendChild(physicsTabContent);
 // #endregion physics Tab
 
 // #region chemistry Tab
-// homeTabContent.appendChild(
-//     createButton("chemistry-btn", "home-tab-btn", null, "Chemistry practicals", () => {
-//         if (!document.getElementById("ChemistryPracticals")) {
-//             addScript("Chemistry-Practicals/chemistryPracticals.js").id = "ChemistryPracticals";
-//             chemistryTabContent.appendChild(loadingTab);
-//         }
-//         homeTab.style.animation = "fade-drop 0.2s ease";
-//         setTimeout(() => {
-//             homeTab.replaceChild(chemistryTab, homeContent);
-//         }, 100);
-//         homeTab.addEventListener(
-//             "animationend",
-//             () => {
-//                 homeTab.style.animation = "none";
-//             },
-//             { once: true }
-//         );
-//     })
-// );
+homeTabContent.appendChild(
+    createButton("chemistry-btn", "home-tab-btn", null, "Chemistry practicals", () => {
+        if (!document.getElementById("ChemistryPracticals")) {
+            addScript("Chemistry-Practicals/chemistryPracticals.js").id = "ChemistryPracticals";
+            chemistryTabContent.appendChild(loadingTab);
+        }
+        homeTab.style.animation = "fade-drop 0.2s ease";
+        setTimeout(() => {
+            homeTab.replaceChild(chemistryTab, homeContent);
+        }, 100);
+        homeTab.addEventListener(
+            "animationend",
+            () => {
+                homeTab.style.animation = "none";
+            },
+            { once: true }
+        );
+    })
+);
 
-// let chemistryTab = createDiv("inner-app-tab", "chemistry-tab");
+let chemistryTab = createDiv("inner-app-tab", "chemistry-tab");
 
-// let chemistryTabHeader = createDiv("top-bar");
-// chemistryTab.appendChild(chemistryTabHeader);
+let chemistryTabHeader = createDiv("top-bar");
+chemistryTab.appendChild(chemistryTabHeader);
 
-// chemistryTabHeader.appendChild(createButton(null, "back-btn", createIcon("bold", "arrow-left"), null, () => {
-//     homeTab.style.animation = "fade-drop 0.2s ease";
-//     setTimeout(() => {
-//         homeTab.replaceChild(homeContent, chemistryTab);
-//     }, 100);
-//     homeTab.addEventListener(
-//         "animationend",
-//         () => {
-//             homeTab.style.animation = "none";
-//         },
-//         { once: true }
-//     );
-// }));
+chemistryTabHeader.appendChild(createButton(null, "back-btn", createIcon("bold", "arrow-left"), null, () => {
+    homeTab.style.animation = "fade-drop 0.2s ease";
+    setTimeout(() => {
+        homeTab.replaceChild(homeContent, chemistryTab);
+    }, 100);
+    homeTab.addEventListener(
+        "animationend",
+        () => {
+            homeTab.style.animation = "none";
+        },
+        { once: true }
+    );
+}));
 
 
-// let chemistryTabContent = createDiv("content");
-// chemistryTab.appendChild(chemistryTabContent);
+let chemistryTabContent = createDiv("content");
+chemistryTab.appendChild(chemistryTabContent);
 
 // #endregion chemistry Tab
