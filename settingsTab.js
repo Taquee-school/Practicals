@@ -395,7 +395,24 @@ function closeAccessibiltyPanel() {
   );
 }
 
-function setAccessibilty(accessibility) {
+function setAccessibilty(fontScale, headerScale, iconScale) {
+    if (fontScale) {
+    currentFontScale = parseFloat(fontScale);
+    app.style.setProperty("--font-scale", currentFontScale);
+    fontScaleSlider.value = currentFontScale;
+  }
+  
+  if (headerScale) {
+    currentHeaderScale = parseFloat(headerScale);
+    app.style.setProperty("--header-scale", currentHeaderScale);
+    headerScaleSlider.value = currentHeaderScale;
+  }
+  
+  if (iconScale) {
+    currentIconScale = parseFloat(iconScale);
+    app.style.setProperty("--icon-scale", currentIconScale);
+    iconScaleSlider.value = currentIconScale;
+  }
 }
 
 function createSlider(parentDiv, id, label, min, max, value, step) {
@@ -417,14 +434,20 @@ function createSlider(parentDiv, id, label, min, max, value, step) {
   sliderInput.value = value;
   sliderInput.step = step;
   sliderContent.appendChild(sliderInput);
+  sliderInput.addEventListener("touchstart", () => {
+    innerAppTabContainer.style.overflow = "hidden";
+  });
+  sliderInput.addEventListener("touchend", () => {
+    innerAppTabContainer.style.overflow = "scroll";
+  });
   
   return sliderInput;
 }
 // #endregion Accessibilty Panel
 
-// #region Error Panel 
-// let bnError = document.getElementById("error-btn");
-// bnError.addEventListener("click", openErrorPanel);
+// #region Error Panel
+let bnError = document.getElementById("error-btn");
+bnError.addEventListener("click", openErrorPanel);
 
 let errorPanel = createDiv("content", "error-panel");
 
@@ -558,12 +581,11 @@ function createActionButton(linkUrl, buttonText) {
   return buttonContainer;
 }
 
-
 function buildAboutPanelContent() {
   // 1. About app
   let versionInfo = createDiv("version-info");
   versionInfo.appendChild(createTextField("app-name", "Practical"));
-  versionInfo.appendChild(createTextField("version-tag", "v2.6.1"));
+  versionInfo.appendChild(createTextField("version-tag", "v2.6.3"));
   aboutPanelContent.appendChild(versionInfo);
 
   // 2. Developer & Community

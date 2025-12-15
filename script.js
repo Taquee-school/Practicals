@@ -279,25 +279,9 @@ function checkLocalStorage() {
   
   // Load accessibility settings
   let fontScale = localStorage.getItem("font-scale");
-  if (fontScale) {
-    currentFontScale = parseFloat(fontScale);
-    app.style.setProperty("--font-scale", currentFontScale);
-    fontScaleSlider.value = currentFontScale;
-  }
-  
   let headerScale = localStorage.getItem("header-scale");
-  if (headerScale) {
-    currentHeaderScale = parseFloat(headerScale);
-    app.style.setProperty("--header-scale", currentHeaderScale);
-    headerScaleSlider.value = currentHeaderScale;
-  }
-  
   let iconScale = localStorage.getItem("icon-scale");
-  if (iconScale) {
-    currentIconScale = parseFloat(iconScale);
-    app.style.setProperty("--icon-scale", currentIconScale);
-    iconScaleSlider.value = currentIconScale;
-  }
+  setAccessibilty(fontScale, headerScale, iconScale);
 }
 
 function checkOrientation() {

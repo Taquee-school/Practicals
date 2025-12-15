@@ -71,6 +71,7 @@
 
 .slider p {
   font: var(--primary-font);
+  margin: 5px 0;
 }
 
 .slider-header {
