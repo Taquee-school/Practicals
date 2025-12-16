@@ -2,9 +2,23 @@ addStyle("Chemistry-Practicals/chemistryPracticalFile.css").onload = () => {
   if (chemistryTabContent.contains(loadingTab)) {
     chemistryTabContent.removeChild(loadingTab);
   }
-  loadBasicRadicals();
   loadAcidicRadicals();
+  loadBasicRadicals();
 }
+
+// #region UI Helper functions
+function createChemistryColumn(type) {
+  let column = createDiv(`observation-table-column ${type}`);
+  
+  let columnHeader = createDiv("observation-table-column-header");
+  columnHeader.appendChild(createTextField("observation-table-column-header-text", type));
+  column.appendChild(columnHeader);
+  
+  return column;
+}
+
+// #endregion
+
 
 let RadicalsList = createDiv("practicals-list-div");
 chemistryTabContent.appendChild(RadicalsList);

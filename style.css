@@ -496,11 +496,8 @@ button.ripple {
 .practical-tab-panel::-webkit-scrollbar-thumb {
   border-radius: 0;
 }
-#app.light .practical-tab-panel::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.3);
-}
-#app.dark .practical-tab-panel::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
+.practical-tab-panel::-webkit-scrollbar-thumb {
+  background: var(--accent);
 }
 
 .practical-file {
