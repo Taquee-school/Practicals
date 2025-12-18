@@ -145,17 +145,11 @@ navBarStylePanelContent.appendChild(setRippleStyle(
 ));
 
 function applyNavBarStyle() {
-  NavigationDiv.style.animation = "flash 0.2s ease";
-  setTimeout(() => {
-    NavigationDiv.classList.remove(appliedNavBarStyle);
-    appliedNavBarStyleI = selectedNavBarStyleI;
-    appliedNavBarStyle = selectedNavBarStyle;
-    NavigationDiv.classList.add(appliedNavBarStyle);
-    localStorage.setItem("navigation-bar", appliedNavBarStyle);
-  }, 100);
-  NavigationDiv.addEventListener("animationend", () => {
-    NavigationDiv.style.animation = "none";
-  }, { once: true });
+  NavigationDiv.classList.remove(appliedNavBarStyle);
+  appliedNavBarStyleI = selectedNavBarStyleI;
+  appliedNavBarStyle = selectedNavBarStyle;
+  NavigationDiv.classList.add(appliedNavBarStyle);
+  localStorage.setItem("navigation-bar", appliedNavBarStyle);
 }
 
 function openNavBarStylePanel() {
@@ -401,13 +395,13 @@ function setAccessibilty(fontScale, headerScale, iconScale) {
     app.style.setProperty("--font-scale", currentFontScale);
     fontScaleSlider.value = currentFontScale;
   }
-  
+
   if (headerScale) {
     currentHeaderScale = parseFloat(headerScale);
     app.style.setProperty("--header-scale", currentHeaderScale);
     headerScaleSlider.value = currentHeaderScale;
   }
-  
+
   if (iconScale) {
     currentIconScale = parseFloat(iconScale);
     app.style.setProperty("--icon-scale", currentIconScale);
@@ -418,14 +412,14 @@ function setAccessibilty(fontScale, headerScale, iconScale) {
 function createSlider(parentDiv, id, label, min, max, value, step) {
   let slider = createDiv("slider", id);
   parentDiv.appendChild(slider);
-  
+
   let sliderHeader = createDiv("top-bar", "slider-header");
   sliderHeader.appendChild(createTextField(null, label));
   slider.appendChild(sliderHeader);
-  
+
   let sliderContent = createDiv("content", "slider-content");
   slider.appendChild(sliderContent);
-  
+
   let sliderInput = document.createElement("input");
   sliderInput.className = "slider-input";
   sliderInput.type = "range";
@@ -440,7 +434,7 @@ function createSlider(parentDiv, id, label, min, max, value, step) {
   sliderInput.addEventListener("touchend", () => {
     innerAppTabContainer.style.overflow = "scroll";
   });
-  
+
   return sliderInput;
 }
 // #endregion Accessibilty Panel
