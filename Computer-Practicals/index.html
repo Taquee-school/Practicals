@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css" />
+  <link rel="icon" href="Icons/favicon.ico">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="Essentials/code-mirror.css">
+  <link rel="stylesheet" href="editor-themes/palenight.css">
+  <link rel="stylesheet" href="editor-themes/monokai.css">
+  <link rel="stylesheet" href="editor-themes/github-dark.css">
+  <title>Editor</title>
+</head>
+
+<body>
+  <div id="app" class="palenight">
+    <div id="message-div" style="display: none;">
+      <p id="message-text">Example message!</p>
+    </div>
+    <div id="inner-app">
+      <div id="editor-tab" class="inner-app-tab">
+        <div id="sidebar">
+          <div id="sidebar-header">
+            <button id="new-file-btn" class="toggle-btn"><i class="ph-bold ph-file-plus"></i></button>
+            <button id="close-sidebar-btn" class="toggle-btn"><i class="ph-bold ph-x"></i></button>
+          </div>
+          <div id="sidebar-content" class="content">
+            <div id="files-list">
+            </div>
+          </div>
+        </div>
+        <div id="editor-wrapper">
+          <div class="top-bar">
+            <button id="sidebar-btn" class="toggle-btn"><i class="ph-bold ph-list"></i></button>
+            <div id="file-title-div">
+              <p id="file-title"><span id="save-indicator" style="display: none;">*</span></p>
+            </div>
+            <button id="save-btn" class="toggle-btn"><i class="ph-fill ph-floppy-disk"></i></button>
+            <button id="run-btn" class="toggle-btn"><i class="ph-fill ph-play"></i></button>
+            <button id="settings-btn" class="toggle-btn"><i class="ph-bold ph-gear-fine"></i></button>
+          </div>
+          <div id="main-area">
+            <div id="code-area">
+              <textarea id="editor"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="helper.js"></script>
+  <script src="Essentials/code-mirror.js"></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+  <script src="Essentials/languages/javascript-support.js"></script>
+  <script src="Essentials/languages/python-support.js"></script>
+  <script src="codeMirror-5 integration.js"></script>
+  <script src="script.js"></script>
+  <script src="fileHandling.js"></script>
+</body>
+
+</html>

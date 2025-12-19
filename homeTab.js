@@ -120,3 +120,11 @@ let chemistryTabContent = createDiv("content");
 chemistryTab.appendChild(chemistryTabContent);
 
 // #endregion chemistry Tab
+
+// #region computer practicals
+
+homeTabContent.appendChild(
+    createButton("computer-btn", "home-tab-btn", null, "Computer practicals", () => {window.location.href = "Computer-Practicals/index.html"})
+)
+
+// #endregion computer practicals
