@@ -14,6 +14,7 @@ function createFileButton(fileId, btnIcon, btnText, clickFunction) {
         showOptionsPanel();
     }));
 
+    filesList.appendChild(btn);
     return btn;
 }
 
@@ -66,7 +67,7 @@ const fileIconNameMap = {
     "txt": { icon: "file-text", type: "text" },
     "text": { icon: "file-text", type: "text" },
     "py": { icon: "file-py", type: "python" },
-    "js": { icon: "file-js", type: "javaScript" },
+    "js": { icon: "file-js", type: "javascript" },
     "html": { icon: "file-html", type: "HTML" },
 }
 
@@ -77,7 +78,7 @@ newFileForm.addEventListener("animationend", () => {
     newFileForm.style.animation = "none";
 })
 
-newFileForm.appendChild(createTextField("file-name", "Enter file name"));
+newFileForm.appendChild(createTextField("added-panel-header", "Enter file name"));
 
 function showNewFilePanel() {
     newFileForm.style.display = "flex";
@@ -152,12 +153,14 @@ addFileBtn.addEventListener("click", showNewFilePanel);
 const filesList = document.getElementById("files-list");
 
 function openFile(fileId) {
+    document.querySelector(`#files-list #${currentFileId}`).classList.remove("active");
     document.getElementById( "file-title" ).textContent = `${ allFiles[fileId].name }.${ allFiles[fileId].extension }`;
     codeMirrorEditor.setValue( allFiles[fileId].content );
     console.log(allFiles[fileId].type);
     codeMirrorEditor.setOption( "mode", allFiles[fileId].type );
     hideSidebar();
     currentFileId = fileId;
+    document.querySelector(`#files-list #${currentFileId}`).classList.add("active");
 }
 
 function createFile(rawFileName) {
@@ -184,17 +187,15 @@ function createFile(rawFileName) {
         extension: fileExtension,
     }
     allFiles[fileId] = file;
-    let fileBtn = createButton("file-btn", "file-btn", createIcon("bold", fileIconNameMap[fileExtension].icon), `${allFiles[fileId].name}.${allFiles[fileId].extension}`, () => { openFile(allFiles[fileId].id) });
-    filesList.appendChild(fileBtn);
+    let fileBtn = createFileButton(fileId, createIcon("bold", fileIconNameMap[allFiles[fileId].extension].icon), `${allFiles[fileId].name}.${allFiles[fileId].extension}`, () => { openFile(fileId) });
     openFile(fileId);
-    showMessage("File created!")
+    showMessage("File created!");
 }
 
 async function loadFiles() {
     console.log(`Creating buttons from ${allFiles}`);
     for (let fileId of Object.keys(allFiles)) {
         let fileBtn = createFileButton(fileId, createIcon("bold", fileIconNameMap[allFiles[fileId].extension].icon), `${allFiles[fileId].name}.${allFiles[fileId].extension}`, () => { openFile(fileId) });
-        filesList.appendChild(fileBtn);
         fileCount++;
     }
 }
@@ -257,6 +258,7 @@ function hideRenamePanel() {
 
 const renameInput = document.createElement("input");
 renameInput.type = "text";
+renameInput.id = "rename-file-input";
 renamePanel.appendChild(renameInput);
 
 const renamePanelBtnDiv = createDiv("added-panel-btn-div");

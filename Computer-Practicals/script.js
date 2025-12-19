@@ -41,12 +41,14 @@ const closeSidebarBtn = document.getElementById("close-sidebar-btn");
 closeSidebarBtn.addEventListener("click", hideSidebar);
 
 function showSidebar() {
+  if (app.classList.contains("horizontal")) return;
   if (window.getComputedStyle(sidebar).display == "none") {
     sidebar.style.display = "flex";
     sidebar.style.animation = "slide-in-left 0.5s ease-in-out";
   }
 }
 function hideSidebar() {
+  if (app.classList.contains("horizontal")) return;
   if (window.getComputedStyle(sidebar).display == "flex") {
     sidebar.style.animation = "slide-out-left 0.5s ease-in-out";
     sidebar.addEventListener("animationend", () => {
@@ -198,6 +200,46 @@ editorSettingsPanelHeader.appendChild(createTextField("tab-header-text", "Editor
 const editorSettingsPanelContent = createDiv("settings-content-editor-section-theme-list");
 editorSettingsPanel.appendChild(editorSettingsPanelContent);
 
+// #region Font family
+const fontFamilyDiv = createDiv("settings-input-div", "line-height-div");
+editorSettingsPanelContent.appendChild(fontFamilyDiv);
+
+const fontFamilyHeader = createDiv("settings-input-header", "line-height-header");
+fontFamilyDiv.appendChild(fontFamilyHeader);
+
+fontFamilyHeader.appendChild(createTextField("tab-header-text", "Editor font"));
+
+const fontFamilyInput = document.createElement("select");
+fontFamilyInput.className = "settings-dropdown";
+fontFamilyInput.id = "editor-font-dropdown";
+let fontOpt1 = document.createElement("option");
+fontOpt1.value = "JetBrains Mono";
+fontOpt1.text = "JetBrains Mono";
+fontFamilyInput.appendChild(fontOpt1);
+let fontOpt2 = document.createElement("option");
+fontOpt2.value = "Google Sans Code";
+fontOpt2.text = "Google Sans Code";
+fontFamilyInput.appendChild(fontOpt2);
+let fontOpt3 = document.createElement("option");
+fontOpt3.value = "Lilex";
+fontOpt3.text = "Lilex";
+fontFamilyInput.appendChild(fontOpt3);
+let fontOpt4 = document.createElement("option");
+fontOpt4.value = "Open Sans";
+fontOpt4.text = "Open Sans";
+fontFamilyInput.appendChild(fontOpt4);
+let fontOpt5 = document.createElement("option");
+fontOpt5.value = "";
+fontOpt5.text = "monospace";
+fontFamilyInput.appendChild(fontOpt5);
+fontFamilyInput.addEventListener("input", () => {
+  mainArea.style.setProperty("--font-family", `${fontFamilyInput.value}, monospace`);
+  refreshEditor();
+});
+fontFamilyDiv.appendChild(fontFamilyInput);
+
+// #endregion Font family
+
 // #region Line height
 const lineHeightDiv = createDiv("settings-input-div", "line-height-div");
 editorSettingsPanelContent.appendChild(lineHeightDiv);
@@ -239,9 +281,10 @@ fontSizeHeader.appendChild(createButton("reset-font-size-btn", "toggle-btn", cre
 const fontSizeInput = document.createElement("input");
 fontSizeInput.className = "settings-slider";
 fontSizeInput.type = "range";
-fontSizeInput.min = "1";
-fontSizeInput.max = "10";
+fontSizeInput.min = "0.5";
+fontSizeInput.max = "3";
 fontSizeInput.value = "1";
+fontSizeInput.step = "0.05";
 fontSizeInput.addEventListener("input", () => {
   mainArea.style.setProperty("--font-scale", fontSizeInput.value);
 });
@@ -290,13 +333,13 @@ const wrapTextHeader = createTextField("settings-toggle-text", "Wrap text");
 wrapTextDiv.appendChild(wrapTextHeader);
 
 const wrapTextToggleElement = createDiv("toggle-element active", "line-numbers-toggle-element");
-wrapTextToggleElement.addEventListener("click", toggleLineNumbers);
+wrapTextToggleElement.addEventListener("click", toggleWrapText);
 wrapTextDiv.appendChild(wrapTextToggleElement);
 
 const wrapTextToggleBall = createDiv("toggle-element-ball");
 wrapTextToggleElement.appendChild(wrapTextToggleBall);
 
-function toggleLineNumbers() {
+function toggleWrapText() {
   if (wrapTextToggleElement.classList.contains("active")) {
     wrapTextToggleElement.classList.remove("active");
     codeMirrorEditor.setOption("lineWrapping", false);
