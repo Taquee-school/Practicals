@@ -26,9 +26,9 @@
 }
 
 .CodeMirror-linenumber {
-    padding: 0 3px 0 5px;
+    padding: 0 5px;
     min-width: 20px;
-    text-align: right;
+    text-align: center;
     color: var(--font-color);
     font: var(--editor-font);
     white-space: nowrap
