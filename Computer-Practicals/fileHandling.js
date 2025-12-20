@@ -25,12 +25,8 @@ let currentFileId = null;
 let allFiles = {};
 
 async function fetchLocalStorage() {
-    console.log("Checking localStorage...");
     let storedFiles = localStorage.getItem("allFiles");
-    console.log(`File: ${storedFiles}`);
-    console.log(`type: ${typeof storedFiles}`);
     if (storedFiles == "null" || storedFiles == null) {
-        console.log("No files found");
         if (Object.keys(allFiles).length == 0) {
             Object.assign(allFiles, {
                 "file-0": {
@@ -44,21 +40,13 @@ async function fetchLocalStorage() {
         }
     } else {
         try {
-            console.log("file found");
             storedFiles = JSON.parse(storedFiles);
-            console.log(`File: ${storedFiles}`);
-            console.log(`type: ${typeof storedFiles}`);
             Object.assign(allFiles, storedFiles);
-            console.log(`data added succesfuly \nfile: ${allFiles}`);
-        } catch (e) {
-            console.log("Invalid data in localStorage");
-            console.log(e);
+        } catch {
             localStorage.setItem("allFiles", null);
         }
     }
-    console.log(allFiles);
     currentFileId = Object.keys(allFiles)[0];
-    console.log(`currentFileId: ${currentFileId}`);
     await loadFiles();
     openFile(currentFileId);
 }
@@ -154,10 +142,16 @@ const filesList = document.getElementById("files-list");
 
 function openFile(fileId) {
     document.querySelector(`#files-list #${currentFileId}`).classList.remove("active");
+    const currentFileMod = allFiles[fileId].type;
+    if (currentFileMod !== "python" && runButton.classList.contains("disabled")) {
+        runButton.classList.add("disabled");
+    }
+    if (currentFileMod == "python") {
+        runButton.classList.remove("disabled");
+    }
     document.getElementById( "file-title" ).textContent = `${ allFiles[fileId].name }.${ allFiles[fileId].extension }`;
     codeMirrorEditor.setValue( allFiles[fileId].content );
-    console.log(allFiles[fileId].type);
-    codeMirrorEditor.setOption( "mode", allFiles[fileId].type );
+    codeMirrorEditor.setOption( "mode", currentFileMod );
     hideSidebar();
     currentFileId = fileId;
     document.querySelector(`#files-list #${currentFileId}`).classList.add("active");
@@ -193,7 +187,6 @@ function createFile(rawFileName) {
 }
 
 async function loadFiles() {
-    console.log(`Creating buttons from ${allFiles}`);
     for (let fileId of Object.keys(allFiles)) {
         let fileBtn = createFileButton(fileId, createIcon("bold", fileIconNameMap[allFiles[fileId].extension].icon), `${allFiles[fileId].name}.${allFiles[fileId].extension}`, () => { openFile(fileId) });
         fileCount++;
@@ -202,8 +195,6 @@ async function loadFiles() {
 
 const saveBtn = document.getElementById("save-btn");
 saveBtn.addEventListener("click", () => {
-    console.log(codeMirrorEditor.getValue());
-    console.log(allFiles)
     allFiles[currentFileId].content = codeMirrorEditor.getValue();
     localStorage.setItem("allFiles", JSON.stringify(allFiles));
     showMessage("All files saved !");

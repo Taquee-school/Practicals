@@ -23,17 +23,14 @@ function refreshEditor() {
 
 // #region Output panel
 const runButton = document.getElementById("run-btn");
-runButton.classList.add("disabled");
+
 runButton.addEventListener("click", () => {
     if (runButton.classList.contains("disabled")) return;
-    runPythonCode();
     innerApp.style.animation = "fade-drop 0.2s ease";
     setTimeout(() => {
         innerApp.replaceChild(outputPanel, editorTab);
+        runPythonCode();
     }, 100);
-    innerApp.addEventListener("animationend", () => {
-        innerApp.style.animation = "none";
-    }, { once: true });
 });
 
 function closeOutputPanel() {
@@ -56,54 +53,65 @@ outputPanelHeader.appendChild(createButton(null, "toggle-btn back-btn", createIc
 const outputPanelContent = createDiv("content");
 outputPanel.appendChild(outputPanelContent);
 
-const outputTextElement = createTextField("output-text", null);
-outputPanelContent.appendChild(outputTextElement);
+const outputTextDiv = createDiv("scroll", "output-text-div");
+outputPanelContent.appendChild(outputTextDiv);
 
 
+// WARNING! (Code below is written by AI(Gemini)) ------
 
 let pyodide = null;
 
 async function initializePyodide() {
     try {
-        // Await the loading so 'pyodide' is the actual instance, not a Promise
         pyodide = await loadPyodide({
             indexURL: "https://cdn.jsdelivr.net/pyodide/v0.25.0/full/",
         });
 
         runButton.classList.remove("disabled");
-        console.log("Pyodide Ready");
-    } catch (e) {
-        console.error("Failed to load Pyodide:", e);
+        showMessage("Pyodide Ready");
+    } catch {
     }
 }
 initializePyodide();
 
-
-// Add this at the top of your script (outside the function)
 const decoder = new TextDecoder();
+
+
+let lastOutText = "";
 
 async function runPythonCode() {
     if (!pyodide) return;
 
-    outputTextElement.textContent = "";
+    outputTextDiv.innerHTML = "";
     const code = codeMirrorEditor.getValue();
+    lastOutText = "";
 
     try {
+        // 2. Setup Input (Stdin)
+        pyodide.setStdin({
+            stdin: () => {
+                // This opens a browser popup to capture the input
+                const result = prompt(lastOutText);
+                // Python expects a newline \n at the end of input
+                return result !== null ? result + "\n" : "\n";
+            }
+        });
+
+        // 3. Setup Output (Stdout)
         pyodide.setStdout({
             write: (buffer) => {
                 const text = decoder.decode(buffer);
-                outputTextElement.textContent += text;
+                outputTextDiv.appendChild(createTextField("output-text", text));
+                lastOutText = text;
                 return buffer.length;
             }
         });
 
+        // 4. Setup Error Handling (Stderr)
         pyodide.setStderr({
             write: (buffer) => {
                 const text = decoder.decode(buffer);
-                const errorSpan = document.createElement("span");
-                errorSpan.className = "output-error-text";
-                errorSpan.textContent = text;
-                outputTextElement.appendChild(errorSpan);
+                outputTextDiv.appendChild(createTextField("output-text error", text));
                 return buffer.length;
             }
         });
@@ -111,6 +119,6 @@ async function runPythonCode() {
         await pyodide.runPythonAsync(code);
 
     } catch (err) {
-        outputTextElement.textContent += `\nSystem Error: ${err.message}`;
+        outputTextDiv.appendChild(createTextField("output-text error system", err.message));
     }
 }

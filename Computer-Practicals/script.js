@@ -1,12 +1,18 @@
 const app = document.getElementById("app");
 
 const messageDiv = document.getElementById("message-div");
-messageDiv.addEventListener("animationend" , () => {
+messageDiv.addEventListener("animationend", () => {
   messageDiv.style.animation = "none";
-},{ once:true });
+});
+
 const messageText = document.getElementById("message-text");
+let messageTimer;
 
 const innerApp = document.getElementById("inner-app");
+innerApp.addEventListener("animationend", () => {
+    innerApp.style.animation = "none";
+});
+
 const editorTab = document.getElementById("editor-tab");
 const mainArea = document.getElementById("main-area");
 const codeEditor = document.getElementById("code-area");
@@ -15,15 +21,19 @@ let Editor = document.getElementById("editor");
 
 // #region message div
 function showMessage(message) {
+  clearTimeout(messageTimer);
+
   messageText.textContent = message;
   messageDiv.style.display = "flex";
   messageDiv.style.animation = "slide-in-top 0.4s ease";
-  setTimeout(() => {
+
+  function hidemessage() {
     messageDiv.style.animation = "slide-out-top 0.3s ease";
     messageDiv.addEventListener("animationend", () => {
       messageDiv.style.display = "none";
-    }, { once:true });
-  }, 1500)
+    }, { once: true });
+  }
+    messageTimer = setTimeout( hidemessage , 1500)
 }
 // #endregion message div
 
@@ -32,7 +42,7 @@ function showMessage(message) {
 const sidebar = document.getElementById("sidebar");
 sidebar.addEventListener("animationend", () => {
   sidebar.style.animation = "none";
-}, { once:true });
+}, { once: true });
 
 const bnSidebar = document.getElementById("sidebar-btn");
 bnSidebar.addEventListener("click", showSidebar);
@@ -233,7 +243,7 @@ fontOpt5.value = "";
 fontOpt5.text = "monospace";
 fontFamilyInput.appendChild(fontOpt5);
 fontFamilyInput.addEventListener("input", () => {
-  mainArea.style.setProperty("--font-family", `${fontFamilyInput.value}, monospace`);
+  mainArea.style.setProperty("--editor-font-family", `${fontFamilyInput.value}, monospace`);
   refreshEditor();
 });
 fontFamilyDiv.appendChild(fontFamilyInput);
@@ -257,7 +267,7 @@ lineHeightInput.min = "1";
 lineHeightInput.max = "2";
 lineHeightInput.value = "1";
 lineHeightInput.addEventListener("input", () => {
-  mainArea.style.setProperty("--line-height", lineHeightInput.value);
+  mainArea.style.setProperty("--editor-line-height", lineHeightInput.value);
   refreshEditor();
 });
 lineHeightDiv.appendChild(lineHeightInput);
@@ -286,7 +296,7 @@ fontSizeInput.max = "3";
 fontSizeInput.value = "1";
 fontSizeInput.step = "0.05";
 fontSizeInput.addEventListener("input", () => {
-  mainArea.style.setProperty("--font-scale", fontSizeInput.value);
+  mainArea.style.setProperty("--editor-font-scale", fontSizeInput.value);
 });
 fontSizeInput.addEventListener("touchend", refreshEditor);
 fontSizeDiv.appendChild(fontSizeInput);

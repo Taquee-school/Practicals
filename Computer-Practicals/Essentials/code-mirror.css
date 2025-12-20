@@ -1,10 +1,9 @@
 .CodeMirror {
     height: 100%;
-    border-radius: 10px;
     color: var(--font-color);
     font: var(--editor-font);
-    background-color: var(--primary-bg);
     direction: ltr;
+    background-color: var(--editor-bg);
 }
 
 .CodeMirror-lines {
@@ -18,11 +17,11 @@
 
 .CodeMirror-gutter-filler,
 .CodeMirror-scrollbar-filler {
-    background-color: var(--secondary-bg)
+    background-color: var(--editor-bg)
 }
 
 .CodeMirror-gutters {
-    background-color: var(--primary-bg);
+    background-color: var(--editor-bg);
     white-space: nowrap
 }
 
@@ -251,7 +250,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 .CodeMirror {
     position: relative;
     overflow: hidden;
-    background: var(--primary-bg)
+    background: var(--editor-bg)
 }
 
 .CodeMirror-scroll {
@@ -262,8 +261,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
     height: 100%;
     outline: 0;
     position: relative;
-    z-index: 0;border-radius: 10px;
-
+    z-index: 0
 }
 
 .CodeMirror-sizer {
@@ -310,8 +308,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
     left: 0;
     top: 0;
     min-height: 100%;
-    z-index: 3;
-    border-radius: 10px;
+    z-index: 3
 }
 
 .CodeMirror-gutter {
@@ -319,8 +316,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
     height: 100%;
     display: inline-block;
     vertical-align: top;
-    margin-bottom: -50px;
-    border-radius: 10px;
+    margin-bottom: -50px
 }
 
 .CodeMirror-gutter-wrapper {
