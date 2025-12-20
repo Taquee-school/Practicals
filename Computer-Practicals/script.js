@@ -25,10 +25,11 @@ function showMessage(message) {
 
   messageText.textContent = message;
   messageDiv.style.display = "flex";
-  messageDiv.style.animation = "slide-in-top 0.4s ease";
+  messageDiv.offsetHeight;
+  messageDiv.style.animation = "slide-in-top 0.4s ease forwards";
 
   function hidemessage() {
-    messageDiv.style.animation = "slide-out-top 0.3s ease";
+    messageDiv.style.animation = "slide-out-top 0.3s ease forwards";
     messageDiv.addEventListener("animationend", () => {
       messageDiv.style.display = "none";
     }, { once: true });
@@ -42,7 +43,7 @@ function showMessage(message) {
 const sidebar = document.getElementById("sidebar");
 sidebar.addEventListener("animationend", () => {
   sidebar.style.animation = "none";
-}, { once: true });
+});
 
 const bnSidebar = document.getElementById("sidebar-btn");
 bnSidebar.addEventListener("click", showSidebar);
@@ -54,13 +55,13 @@ function showSidebar() {
   if (app.classList.contains("horizontal")) return;
   if (window.getComputedStyle(sidebar).display == "none") {
     sidebar.style.display = "flex";
-    sidebar.style.animation = "slide-in-left 0.5s ease-in-out";
+    sidebar.style.animation = "slide-in-left 0.5s ease-in-out forwards";
   }
 }
 function hideSidebar() {
   if (app.classList.contains("horizontal")) return;
   if (window.getComputedStyle(sidebar).display == "flex") {
-    sidebar.style.animation = "slide-out-left 0.5s ease-in-out";
+    sidebar.style.animation = "slide-out-left 0.5s ease-in-out forwards";
     sidebar.addEventListener("animationend", () => {
       sidebar.style.display = "none";
     }, { once: true });
@@ -243,7 +244,7 @@ fontOpt5.value = "";
 fontOpt5.text = "monospace";
 fontFamilyInput.appendChild(fontOpt5);
 fontFamilyInput.addEventListener("input", () => {
-  mainArea.style.setProperty("--editor-font-family", `${fontFamilyInput.value}, monospace`);
+  app.style.setProperty("--editor-font-family", `${fontFamilyInput.value}, monospace`);
   refreshEditor();
 });
 fontFamilyDiv.appendChild(fontFamilyInput);
@@ -267,7 +268,7 @@ lineHeightInput.min = "1";
 lineHeightInput.max = "2";
 lineHeightInput.value = "1";
 lineHeightInput.addEventListener("input", () => {
-  mainArea.style.setProperty("--editor-line-height", lineHeightInput.value);
+  app.style.setProperty("--editor-line-height", lineHeightInput.value);
   refreshEditor();
 });
 lineHeightDiv.appendChild(lineHeightInput);
@@ -296,7 +297,7 @@ fontSizeInput.max = "3";
 fontSizeInput.value = "1";
 fontSizeInput.step = "0.05";
 fontSizeInput.addEventListener("input", () => {
-  mainArea.style.setProperty("--editor-font-scale", fontSizeInput.value);
+  app.style.setProperty("--editor-font-scale", fontSizeInput.value);
 });
 fontSizeInput.addEventListener("touchend", refreshEditor);
 fontSizeDiv.appendChild(fontSizeInput);

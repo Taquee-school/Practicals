@@ -181,14 +181,14 @@ function createFile(rawFileName) {
         extension: fileExtension,
     }
     allFiles[fileId] = file;
-    let fileBtn = createFileButton(fileId, createIcon("bold", fileIconNameMap[allFiles[fileId].extension].icon), `${allFiles[fileId].name}.${allFiles[fileId].extension}`, () => { openFile(fileId) });
+    let fileBtn = createFileButton(fileId, createIcon("fill", fileIconNameMap[allFiles[fileId].extension].icon), `${allFiles[fileId].name}.${allFiles[fileId].extension}`, () => { openFile(fileId) });
     openFile(fileId);
     showMessage("File created!");
 }
 
 async function loadFiles() {
     for (let fileId of Object.keys(allFiles)) {
-        let fileBtn = createFileButton(fileId, createIcon("bold", fileIconNameMap[allFiles[fileId].extension].icon), `${allFiles[fileId].name}.${allFiles[fileId].extension}`, () => { openFile(fileId) });
+        let fileBtn = createFileButton(fileId, createIcon("fill", fileIconNameMap[allFiles[fileId].extension].icon), `${allFiles[fileId].name}.${allFiles[fileId].extension}`, () => { openFile(fileId) });
         fileCount++;
     }
 }
