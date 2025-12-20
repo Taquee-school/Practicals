@@ -412,6 +412,9 @@ body {
   color: var(--font-color);
   margin: 0;
 }
+.output-text.input {
+  color: rgb(255, 255, 255) !important;
+}
 .output-text.error {
   color: rgb(255, 120, 31) !important;
 }
@@ -429,6 +432,7 @@ body {
   padding: 5px;
   overflow-x: hidden;
   overflow-y: scroll;
+  scroll-behavior: smooth;
   display: flex;
   flex-direction: column;
 }

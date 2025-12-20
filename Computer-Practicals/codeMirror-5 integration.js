@@ -57,7 +57,7 @@ const outputTextDiv = createDiv("scroll", "output-text-div");
 outputPanelContent.appendChild(outputTextDiv);
 
 
-// WARNING! (Code below is written by AI(Gemini)) ------
+// WARNING! (Code below is written by AI(Gemini) Don't make any changes here) ------
 
 let pyodide = null;
 
@@ -76,23 +76,24 @@ initializePyodide();
 
 const decoder = new TextDecoder();
 
-
-let lastOutText = "";
+let lastOutElement = createTextField("output-text", null);
 
 async function runPythonCode() {
     if (!pyodide) return;
 
     outputTextDiv.innerHTML = "";
     const code = codeMirrorEditor.getValue();
-    lastOutText = "";
+    lastOutElement = createTextField("output-text", null);
 
     try {
         // 2. Setup Input (Stdin)
         pyodide.setStdin({
             stdin: () => {
-                // This opens a browser popup to capture the input
-                const result = prompt(lastOutText);
-                // Python expects a newline \n at the end of input
+                const result = prompt(lastOutElement.textContent);
+                const inputSpan = document.createElement("span");
+                inputSpan.className = "output-text input";
+                inputSpan.textContent = result;
+                lastOutElement.appendChild(inputSpan);
                 return result !== null ? result + "\n" : "\n";
             }
         });
@@ -101,8 +102,9 @@ async function runPythonCode() {
         pyodide.setStdout({
             write: (buffer) => {
                 const text = decoder.decode(buffer);
-                outputTextDiv.appendChild(createTextField("output-text", text));
-                lastOutText = text;
+                lastOutElement =  createTextField("output-text", text);
+                outputTextDiv.appendChild(lastOutElement);
+                updateTerminalText();
                 return buffer.length;
             }
         });
@@ -111,7 +113,8 @@ async function runPythonCode() {
         pyodide.setStderr({
             write: (buffer) => {
                 const text = decoder.decode(buffer);
-                outputTextDiv.appendChild(createTextField("output-text error", text));
+                outputTextDiv.appendChild(createTextField("output-text", text));
+                updateTerminalText();
                 return buffer.length;
             }
         });
@@ -120,5 +123,12 @@ async function runPythonCode() {
 
     } catch (err) {
         outputTextDiv.appendChild(createTextField("output-text error system", err.message));
+        updateTerminalText()
     }
+}
+
+function updateTerminalText() {
+    window.requestAnimationFrame(() => {
+        outputPanelContent.scrollTop = outputPanelContent.scrollHeight;
+    });
 }
