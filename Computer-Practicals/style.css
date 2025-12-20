@@ -85,10 +85,11 @@
 body {
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  gap: 0;
+  font-family: "Inter", sans-serif;
 }
 
 * {
@@ -108,9 +109,16 @@ body {
 }
 
 #app {
+  position: relative;
   height: 100%;
   width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  gap: 0;
   display: flex;
+  flex-direction: column;
   background: var(--primary-bg);
 }
 

@@ -202,12 +202,7 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-a,
-button,
-i,
-p,
-div,
-input {
+* {
   -webkit-tap-highlight-color: transparent;
   transition: all 0.5s ease;
 }
