@@ -36,10 +36,12 @@
     opacity: 1;
     transform: scale(1);
   }
+
   50% {
     opacity: 0;
     transform: scale(0.95);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -50,6 +52,7 @@
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -59,6 +62,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -68,6 +72,7 @@
   0% {
     transform: translateY(-100%);
   }
+
   100% {
     transform: translateY(0);
   }
@@ -77,6 +82,7 @@
   0% {
     transform: translateY(0);
   }
+
   100% {
     transform: translateY(-150%);
   }
@@ -174,6 +180,7 @@ body {
   flex-direction: column;
   background: var(--secondary-bg);
 }
+
 #app.vertical #sidebar {
   position: absolute;
   z-index: 1;
@@ -181,6 +188,7 @@ body {
   top: 0;
   display: none;
 }
+
 #app.horizontal #sidebar {
   display: flex !important;
 }
@@ -208,6 +216,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 #files-list::-webkit-scrollbar {
   display: none;
 }
@@ -223,6 +232,7 @@ body {
   align-items: center;
   background: transparent;
 }
+
 .file-btn.active,
 .file-btn:active {
   background-color: var(--primary-bg);
@@ -242,6 +252,7 @@ body {
 .file-btn i {
   font-size: var(--toggle-font-size);
 }
+
 .file-btn p {
   font: var(--primary-font);
   margin: 0;
@@ -279,6 +290,7 @@ body {
   font: var(--primary-font);
   color: var(--font-color);
 }
+
 .added-panel input:focus {
   outline: none;
   border: 1px solid var(--font-color);
@@ -295,6 +307,7 @@ body {
   border: none;
   background: transparent;
 }
+
 .added-panel-btn p {
   font: var(--secondary-font);
 }
@@ -330,6 +343,9 @@ body {
   height: 40px;
   width: 40px;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
 }
 
@@ -355,12 +371,13 @@ body {
   flex-direction: column;
   background: var(--secondary-bg);
 }
+
 #app.vertical #editor-wrapper {
   width: 100%;
 }
 
-#run-btn.disabled {
-  color: rgba(255, 0, 0) !important;
+#run-btn.disabled i {
+  opacity: 0.3;
 }
 
 #main-area {
@@ -396,6 +413,7 @@ body {
   width: 100%;
   background: var(--secondary-bg);
 }
+
 #editor:focus {
   outline: none;
 }
@@ -412,12 +430,15 @@ body {
   color: var(--font-color);
   margin: 0;
 }
+
 .output-text.input {
   color: rgb(255, 255, 255) !important;
 }
+
 .output-text.error {
   color: rgb(255, 120, 31) !important;
 }
+
 .output-text.error.system {
   color: rgb(224, 86, 86) !important;
 }
@@ -436,6 +457,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 .content::-webkit-scrollbar {
   display: none;
 }
@@ -454,6 +476,7 @@ body {
 .tab-btn i {
   font-size: var(--toggle-font-size);
 }
+
 .tab-btn p {
   font: var(--primary-font);
   margin: 0;
@@ -521,11 +544,13 @@ body {
   font: var(--primary-font);
   color: var(--font-color);
 }
+
 .settings-dropdown option:checked {
   background: var(--secondary-bg);
 }
 
-.settings-input-div input[type="text"], .settings-input-div input[type="number"] {
+.settings-input-div input[type="text"],
+.settings-input-div input[type="number"] {
   height: 40px;
   width: 100%;
   background: transparent;
@@ -534,10 +559,12 @@ body {
   font: var(--primary-font);
   color: var(--font-color);
 }
+
 .settings-input-div input[type="text"]::placeholder,
- .settings-input-div input[type="number"]::placeholder {
+.settings-input-div input[type="number"]::placeholder {
   font: var(--primary-font);
 }
+
 .settings-input-div input[type="text"]:focus,
 .settings-input-div input[type="number"]:focus {
   outline: none;
@@ -590,6 +617,7 @@ body {
   display: flex;
   align-items: center;
 }
+
 .toggle-element-ball {
   height: 15px;
   width: 15px;
@@ -601,6 +629,7 @@ body {
   justify-content: flex-end;
   background: var(--font-color);
 }
+
 .toggle-element.active .toggle-element-ball {
   height: 27.5px;
   width: 27.5px;

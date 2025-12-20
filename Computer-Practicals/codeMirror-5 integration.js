@@ -25,7 +25,11 @@ function refreshEditor() {
 const runButton = document.getElementById("run-btn");
 
 runButton.addEventListener("click", () => {
-    if (runButton.classList.contains("disabled")) return;
+    if (runButton.classList.contains("disabled")) {
+        showMessage("Initializing Python...");
+        initializePyodide();
+        return;
+    };
     innerApp.style.animation = "fade-drop 0.2s ease";
     setTimeout(() => {
         innerApp.replaceChild(outputPanel, editorTab);
@@ -62,17 +66,16 @@ outputPanelContent.appendChild(outputTextDiv);
 let pyodide = null;
 
 async function initializePyodide() {
+    if (pyodide) return;
     try {
         pyodide = await loadPyodide({
             indexURL: "https://cdn.jsdelivr.net/pyodide/v0.25.0/full/",
         });
 
         runButton.classList.remove("disabled");
-        showMessage("Pyodide Ready");
     } catch {
     }
 }
-initializePyodide();
 
 const decoder = new TextDecoder();
 

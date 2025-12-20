@@ -143,11 +143,11 @@ const filesList = document.getElementById("files-list");
 function openFile(fileId) {
     document.querySelector(`#files-list #${currentFileId}`).classList.remove("active");
     const currentFileMod = allFiles[fileId].type;
-    if (currentFileMod !== "python" && runButton.classList.contains("disabled")) {
-        runButton.classList.add("disabled");
+    if (currentFileMod !== "python") {
+        runButton.style.display = "none";
     }
     if (currentFileMod == "python") {
-        runButton.classList.remove("disabled");
+        runButton.style.display = "flex";
     }
     document.getElementById( "file-title" ).textContent = `${ allFiles[fileId].name }.${ allFiles[fileId].extension }`;
     codeMirrorEditor.setValue( allFiles[fileId].content );

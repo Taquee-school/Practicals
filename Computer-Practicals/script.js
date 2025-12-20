@@ -375,7 +375,6 @@ function checkOrientation() {
 
 window.addEventListener("DOMContentLoaded", () => {
   fetchLocalStorage();
-  initializePyodide();
   checkOrientation();
 })
 
