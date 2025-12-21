@@ -48,16 +48,71 @@ async function fetchLocalStorage() {
     }
     currentFileId = Object.keys(allFiles)[0];
     await loadFiles();
-    openFile(currentFileId);
 }
 
 const fileIconNameMap = {
-    "txt": { icon: "file-text", type: "text" },
-    "text": { icon: "file-text", type: "text" },
-    "py": { icon: "file-py", type: "python" },
-    "js": { icon: "file-js", type: "javascript" },
-    "html": { icon: "file-html", type: "HTML" },
-}
+    // Basic & Text
+    "txt": { icon: "file-txt", type: "text", mode: "null", script: null },
+    "text": { icon: "file-txt", type: "text", mode: "null", script: null },
+    "md": { icon: "file-md", type: "Markdown", mode: "markdown", script: "markdown" },
+    "ini": { icon: "file-ini", type: "ini", mode: "properties", script: "properties" },
+
+    // Web Core
+    "html": { icon: "file-html", type: "HTML", mode: "htmlmixed", script: "htmlmixed" },
+    "css": { icon: "file-css", type: "CSS", mode: "css", script: "css" },
+    "js": { icon: "file-js", type: "javascript", mode: "javascript", script: "javascript" },
+    "jsx": { icon: "file-jsx", type: "jsx", mode: "jsx", script: "jsx" },
+    "json": { icon: "file-code", type: "JSON", mode: "application/json", script: "javascript" },
+    "xml": { icon: "file-xml", type: "XML", mode: "xml", script: "xml" },
+    "svg": { icon: "file-svg", type: "svg", mode: "xml", script: "xml" },
+
+    // Languages using 'clike.js' script
+    "c": { icon: "file-c", type: "C", mode: "text/x-csrc", script: "clike" },
+    "cpp": { icon: "file-cpp", type: "cpp", mode: "text/x-c++src", script: "clike" },
+    "cs": { icon: "file-c-sharp", type: "C#", mode: "text/x-csharp", script: "clike" },
+    "java": { icon: "file-code", type: "java", mode: "text/x-java", script: "clike" },
+    "kt": { icon: "file-code", type: "kotlin", mode: "text/x-kotlin", script: "clike" },
+    "scala": { icon: "file-code", type: "scala", mode: "text/x-scala", script: "clike" },
+    "dart": { icon: "file-code", type: "dart", mode: "dart", script: "dart" }, // Note: Dart has its own script but is c-like
+
+    // High-Level / Scripting
+    "py": { icon: "file-py", type: "python", mode: "python", script: "python" },
+    "rb": { icon: "file-code", type: "rb", mode: "ruby", script: "ruby" },
+    "php": { icon: "file-code", type: "php", mode: "application/x-httpd-php", script: "php" },
+    "go": { icon: "file-code", type: "Go", mode: "go", script: "go" },
+    "rs": { icon: "file-rs", type: "Rust", mode: "rust", script: "rust" },
+    "lua": { icon: "file-code", type: "lua", mode: "lua", script: "lua" },
+    "swift": { icon: "file-code", type: "swift", mode: "swift", script: "swift" },
+    "sh": { icon: "file-code", type: "shell", mode: "shell", script: "shell" },
+    "pl": { icon: "file-code", type: "perl", mode: "perl", script: "perl" },
+    "r": { icon: "file-code", type: "R", mode: "r", script: "r" },
+
+    // Modern Web (TypeScript/Vue)
+    "ts": { icon: "file-ts", type: "typescript", mode: "text/typescript", script: "javascript" },
+    "tsx": { icon: "file-tsx", type: "tsx", mode: "text/typescript-jsx", script: "jsx" },
+    "vue": { icon: "file-vue", type: "vue", mode: "vue", script: "vue" },
+
+    // Data & Config
+    "sql": { icon: "file-sql", type: "SQL", mode: "sql", script: "sql" },
+    "yaml": { icon: "file-code", type: "yaml", mode: "yaml", script: "yaml" },
+    "csv": { icon: "file-csv", type: "CSV", mode: "null", script: null },
+
+    // Static / Media
+    "ppt": { icon: "file-ppt", type: "ppt", mode: "null", script: null },
+    "xls": { icon: "file-xls", type: "xls", mode: "null", script: null },
+    "zip": { icon: "file-zip", type: "zip", mode: "null", script: null },
+    "pdf": { icon: "file-pdf", type: "pdf", mode: "null", script: null },
+    "jpg": { icon: "file-jpg", type: "jpg", mode: "null", script: null },
+    "png": { icon: "file-png", type: "png", mode: "null", script: null }
+};
+
+const modeDependencies = {
+    "htmlmixed": ["xml", "javascript", "css"],
+    "jsx": ["xml", "javascript"],
+    "tsx": ["xml", "javascript", "jsx"],
+    "php": ["xml", "javascript", "css", "htmlmixed", "clike"],
+    "vue": ["xml", "javascript", "css", "htmlmixed"]
+};
 
 // #region new file form
 const newFileForm = createDiv("added-panel", "new-file-form");
@@ -149,11 +204,11 @@ function openFile(fileId) {
     if (currentFileMod == "python") {
         runButton.style.display = "flex";
     }
-    document.getElementById( "file-title" ).textContent = `${ allFiles[fileId].name }.${ allFiles[fileId].extension }`;
-    codeMirrorEditor.setValue( allFiles[fileId].content );
-    codeMirrorEditor.setOption( "mode", currentFileMod );
+    document.getElementById("file-title").textContent = `${allFiles[fileId].name}.${allFiles[fileId].extension}`;
+    codeMirrorEditor.setValue(allFiles[fileId].content);
     hideSidebar();
     currentFileId = fileId;
+    addLanguageSupport(allFiles[fileId].extension);
     document.querySelector(`#files-list #${currentFileId}`).classList.add("active");
 }
 
@@ -216,7 +271,7 @@ function hideOptionsPanel() {
     optionsPanel.style.animation = "disappear 0.3s ease";
     optionsPanel.addEventListener("animationend", () => {
         optionsPanel.style.display = "none";
-    }, { once:true });
+    }, { once: true });
 }
 
 optionsPanel.appendChild(createButton("rename-btn", "tab-btn", createIcon("fill", "pencil"), "rename", showRenamePanel));
@@ -244,7 +299,7 @@ function hideRenamePanel() {
     renamePanel.style.animation = "disappear 0.3s ease";
     renamePanel.addEventListener("animationend", () => {
         renamePanel.style.display = "none";
-    }, { once:true });
+    }, { once: true });
 }
 
 const renameInput = document.createElement("input");
@@ -263,7 +318,7 @@ renamePanelBtnDiv.appendChild(createButton("", "added-panel-btn", null, "cancel"
 renamePanelBtnDiv.appendChild(createButton("", "added-panel-btn", null, "rename", () => {
     const newName = renameInput.value;
     if (!isValidFileName(newName)) return;
-    renameFile( fileInFocus, newName.split(".")[0], newName.split(".")[1] );
+    renameFile(fileInFocus, newName.split(".")[0], newName.split(".")[1]);
 }));
 
 function renameFile(fileId, name, extension) {
@@ -301,7 +356,7 @@ function hideDeletePanel() {
     deletePanel.style.animation = "disappear 0.3s ease";
     deletePanel.addEventListener("animationend", () => {
         deletePanel.style.display = "none";
-    }, { once:true });
+    }, { once: true });
 }
 
 const deletePanelBtnDiv = createDiv("added-panel-btn-div");
@@ -319,5 +374,34 @@ function deleteFile(fileId) {
         currentFileId = Object.keys(allFiles)[0];
         openFile(currentFileId);
     }
+}
+async function addLanguageSupport(extension) {
+    const config = fileIconNameMap[extension];
+    if (!config) return;
+
+    if (!config.script || config.script === "null") {
+        codeMirrorEditor.setOption("mode", "null");
+        return;
+    }
+
+    const deps = modeDependencies[config.script] || [];
+    for (const dep of deps) {
+        await loadMode(dep);
+    }
+    await loadMode(config.script);
+    codeMirrorEditor.setOption("mode", config.mode);
+}
+
+function loadMode(name) {
+    return new Promise((resolve) => {
+        const id = `cm-mode-${name}`;
+        if (document.getElementById(id)) return resolve();
+
+        const s = document.createElement("script");
+        s.id = id;
+        s.src = `https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/${name}/${name}.min.js`;
+        s.onload = resolve;
+        document.body.appendChild(s);
+    });
 }
 // #endregion options panel

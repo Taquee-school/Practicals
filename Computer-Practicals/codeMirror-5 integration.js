@@ -1,19 +1,55 @@
 const editorTextArea = document.getElementById("editor");
 
-const codeMirrorEditor = CodeMirror.fromTextArea(editorTextArea, {
-    lineNumbers: true,
+codeMirrorEditor = CodeMirror.fromTextArea(editorTextArea, {
     mode: "python",
     indentUnit: 4,
     tabSize: 4,
     lineWrapping: true,
 });
 
-const STORAGE_KEY = 'my-code-editor-content';
+const CM_URL = "https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16";
 
-function changeEditorContent(content, type) {
-    codeMirrorEditor.setValue(content);
-    // codeMirrorEditor.setOption("mode", type);
+async function loadCodeMirrorAddons() {
+    const addons = [
+        "addon/dialog/dialog.js",
+        "addon/search/searchcursor.js",
+        "addon/search/search.js",
+        "addon/edit/closebrackets.js",
+        "addon/edit/closetag.js",
+        "addon/edit/matchbrackets.js",
+        "addon/selection/active-line.js",
+        "addon/comment/comment.js",
+        "addon/scroll/annotatescrollbar.js",
+        "addon/search/matchesonscrollbar.js"
+    ]
+
+    for (const path of addons) {
+        await new Promise((resolve) => {
+            const script = document.createElement("script");
+            script.src = `${CM_URL}/${path}`;
+            script.onload = resolve;
+            document.body.appendChild(script);
+        });
+    }
 }
+
+loadCodeMirrorAddons().then(() => {
+    codeMirrorEditor = CodeMirror.fromTextArea(editorTextArea, {
+        lineNumbers: true,
+        autoCloseBrackets: true,
+        autoCloseTags: true,
+        matchBrackets: true,
+        continueComments: true,
+        extraKeys: {
+            "Ctrl-/": "toggleComment",
+            "Cmd-/": "toggleComment",
+            "Ctrl-F": "findPersistent",
+            "Ctrl-H": "replace"
+        }
+    });
+    openFile(currentFileId);
+});
+
 
 function refreshEditor() {
     const code = codeMirrorEditor.getValue();
@@ -38,13 +74,13 @@ runButton.addEventListener("click", () => {
 });
 
 function closeOutputPanel() {
-  innerApp.style.animation = "fade-drop 0.2s ease";
-  setTimeout(() => {
-    innerApp.replaceChild(editorTab, outputPanel);
-  }, 100);
-  innerApp.addEventListener("animationend", () => {
-    innerApp.style.animation = "none";
-  }, { once: true });
+    innerApp.style.animation = "fade-drop 0.2s ease";
+    setTimeout(() => {
+        innerApp.replaceChild(editorTab, outputPanel);
+    }, 100);
+    innerApp.addEventListener("animationend", () => {
+        innerApp.style.animation = "none";
+    }, { once: true });
 }
 
 const outputPanel = createDiv("inner-app-tab", "output-area");
@@ -105,7 +141,7 @@ async function runPythonCode() {
         pyodide.setStdout({
             write: (buffer) => {
                 const text = decoder.decode(buffer);
-                lastOutElement =  createTextField("output-text", text);
+                lastOutElement = createTextField("output-text", text);
                 outputTextDiv.appendChild(lastOutElement);
                 updateTerminalText();
                 return buffer.length;
