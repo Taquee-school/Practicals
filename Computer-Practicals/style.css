@@ -71,10 +71,12 @@
 @keyframes slide-in-top {
   0% {
     transform: translateY(-100%);
+    opacity: 0;
   }
 
   100% {
     transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -187,7 +189,7 @@ body {
 
 #app.vertical #sidebar {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   left: 0;
   top: 0;
   display: none;
@@ -385,6 +387,7 @@ body {
 }
 
 #main-area {
+  position: relative;
   flex-grow: 1;
   width: 100%;
   overflow: hidden;
@@ -403,6 +406,43 @@ body {
   --editor-line-height: 1.5;
   --editor-font: var(--editor-font-weight) var(--editor-font-size)/ var(--editor-line-height) var(--editor-font-family);
   --editor-bg: var(--primary-bg);
+}
+
+#utility-area {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: fit-content;
+  width: 95%;
+  box-sizing: border-box;
+  margin: auto auto 20px;
+  padding: 0;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--secondary-bg);
+}
+
+#app.horizontal #utility-area {
+  display: none;
+}
+
+.utility-btn {
+  height: 50px;
+  width: 50px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.utility-btn i {
+  font-size: var(--toggle-font-size);
 }
 
 #code-area {

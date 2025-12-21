@@ -1,3 +1,4 @@
+// #region Setting CM
 const editorTextArea = document.getElementById("editor");
 
 codeMirrorEditor = CodeMirror.fromTextArea(editorTextArea, {
@@ -47,8 +48,28 @@ loadCodeMirrorAddons().then(() => {
             "Ctrl-H": "replace"
         }
     });
-    openFile(currentFileId);
+    try {
+        openFile(currentFileId);
+    } catch {}
 });
+
+document.getElementById("undo-btn").addEventListener("click", () => {
+    codeMirrorEditor.execCommand("undo");
+});
+
+document.getElementById("redo-btn").addEventListener("click", () => {
+    codeMirrorEditor.execCommand("redo");
+});
+
+document.getElementById("replace-btn").addEventListener("click", () => {
+    codeMirrorEditor.execCommand("replace");
+});
+
+document.getElementById("find-btn").addEventListener("click", () => {
+    codeMirrorEditor.execCommand("findPersistent");
+});
+
+// #endregion Setting CM
 
 
 function refreshEditor() {
