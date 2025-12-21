@@ -81,10 +81,12 @@
 @keyframes slide-out-top {
   0% {
     transform: translateY(0);
+    opacity: 1;
   }
-
+  
   100% {
-    transform: translateY(-150%);
+    transform: translateY(-100%);
+    opacity: 0;
   }
 }
 
@@ -135,16 +137,18 @@ body {
 
 #message-div {
   position: absolute;
-  z-index: 3;
+  z-index: 30;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   height: fit-content;
-  width: 95%;
+  width: fit-content;
+  min-width: 40%;
+  max-width: 95%;
   box-sizing: border-box;
-  margin: 5% auto auto;
-  padding: 10px;
+  margin: 20px auto auto;
+  padding: 10px 20px;
   border-radius: 10px;
   background: var(--secondary-bg);
   box-shadow: 0 0 15px 5px var(--primary-bg);
