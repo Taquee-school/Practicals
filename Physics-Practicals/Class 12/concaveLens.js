@@ -1,5 +1,6 @@
 let concaveLensDiv = createDiv("practical-file", "physics-practical");
 
+// #region Diagram 
 let ccl_diagramDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_diagramDiv);
 
@@ -17,8 +18,9 @@ function ccl_showDiagrams() {
     ccl_diagramDiv.appendChild(createImg("practical-file-more-diagram dark", `Physics-Practicals/Class 12/Diagrams/Dark/diagram${i}.jpg`));
   }
 }
+// #endregion Diagram 
 
-
+// #region Objective 
 let ccl_objectiveDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_objectiveDiv);
 
@@ -32,7 +34,9 @@ ccl_objectiveDiv.appendChild(
     "To find the focal length of a concave lens using a convex lens."
   )
 );
+// #endregion Objective 
 
+// #region Apparatus 
 let ccl_apparatusDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_apparatusDiv);
 
@@ -46,19 +50,14 @@ ccl_apparatusDiv.appendChild(
     "An optical bench with four uprights, two needles, a concave lens, a convex lens of f < f of concave lens, a knitting needle and a meter scale."
   )
 );
+// #endregion Apparatus 
 
+// #region Formula 
 let ccl_formulaDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_formulaDiv);
 
 ccl_formulaDiv.appendChild(
   createTextField("practical-section-header", "FORMULA USED:")
-);
-
-ccl_formulaDiv.appendChild(
-  createTextField(
-    "practical-section-content",
-    "The relation between the object distance 'u' and the image distance 'v' and the focal length of a concave mirror is given by"
-  )
 );
 
 ccl_formulaDiv.appendChild(
@@ -74,10 +73,12 @@ ccl_formulaDiv.appendChild(
 ccl_formulaDiv.appendChild(
   createTextField(
     "practical-section-content",
-    "v: distance between I and L2"
+    "v: distance between I' and L2"
   )
 );
+// #endregion Formula 
 
+// #region Observation 
 let ccl_observationDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_observationDiv);
 
@@ -103,6 +104,11 @@ ccl_observationDiv.appendChild(
   )
 );
 
+ccl_observationDiv.appendChild(createPAS("a)", "For u:"))
+
+ccl_movedDiv1 = createDiv("practical-section-content");
+ccl_observationDiv.appendChild(ccl_movedDiv1);
+
 let ccl_distanceMirrorObjectInput = createInput(
   "ccl-distance-between-mirror-and-object-input",
   "number",
@@ -111,9 +117,9 @@ let ccl_distanceMirrorObjectInput = createInput(
 );
 ccl_observationDiv.appendChild(
   createPAS(
-    "2",
+    "1",
     createInputDiv(
-      "Observed distance between the mirror and the object needle 'O' when the Knitting needle is introduced between them (y): ",
+      "Observed distance between object needle and lens when needle is inserted between them, y: ",
       ccl_distanceMirrorObjectInput,
       "cm."
     ),
@@ -121,36 +127,17 @@ ccl_observationDiv.appendChild(
   )
 );
 
-let ccl_distanceMirrorImageInput = createInput(
-  "ccl-distance-between-mirror-and-image-input",
+let ccl_indexErrorUInput = createInput(
+  "ccl-index-error-input",
   "number",
   0,
   measureEssentials_ccl
 );
 ccl_observationDiv.appendChild(
   createPAS(
-    "3",
+    "2",
     createInputDiv(
-      "Observed distance between the mirror and the iamge needle 'I' when the Knitting needle is introduced between them (z): ",
-      ccl_distanceMirrorImageInput,
-      "cm."
-    ),
-    true
-  )
-);
-
-let ccl_indexErrorUInput = createInput(
-  "ccl-index-error-u-input",
-  "number",
-  0,
-  null,
-  true
-);
-ccl_observationDiv.appendChild(
-  createPAS(
-    "4",
-    createInputDiv(
-      "Index error for 'u' = e1 = (y-x) :",
+      "Index error for u, e_1 = (y - x) : ",
       ccl_indexErrorUInput,
       "cm."
     ),
@@ -167,10 +154,31 @@ let ccl_indexCorrectionUInput = createInput(
 );
 ccl_observationDiv.appendChild(
   createPAS(
+    "3",
+    createInputDiv(
+      "Index correction for u, (-e_1) = (x - y) :",
+      ccl_indexCorrectionUInput,
+      "cm."
+    ),
+    true
+  )
+);
+
+const ccl_movedDiv2 = createDiv("practical-section-content");
+ccl_observationDiv.appendChild(ccl_movedDiv2);
+
+let ccl_distanceMirrorImageInput = createInput(
+  "ccl-distance-between-mirror-and-image-input",
+  "number",
+  0,
+  measureEssentials_ccl
+);
+ccl_movedDiv2.appendChild(
+  createPAS(
     "5",
     createInputDiv(
-      "Index correction for 'u' = (-e1) :",
-      ccl_indexCorrectionUInput,
+      "Observed distance between image needle and lens when needle is inserted between them, z:",
+      ccl_distanceMirrorImageInput,
       "cm."
     ),
     true
@@ -184,7 +192,7 @@ let ccl_indexErrorVInput = createInput(
   null,
   true
 );
-ccl_observationDiv.appendChild(
+ccl_movedDiv2.appendChild(
   createPAS(
     "6",
     createInputDiv(
@@ -203,7 +211,7 @@ let ccl_indexCorrectionVInput = createInput(
   null,
   true
 );
-ccl_observationDiv.appendChild(
+ccl_movedDiv2.appendChild(
   createPAS(
     "7",
     createInputDiv(
@@ -335,6 +343,9 @@ ccl_distanceTable.appendChild(
   )
 );
 
+// #endregion Observation 
+
+// #region Result 
 let ccl_resultDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_resultDiv);
 
@@ -376,6 +387,9 @@ ccl_resultDiv.appendChild(
   )
 );
 
+// #endregion Result 
+
+// #region Precautions 
 let ccl_precautionsDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_precautionsDiv);
 
@@ -389,6 +403,9 @@ ccl_precautionsDiv.appendChild(createPAS("3", ""));
 ccl_precautionsDiv.appendChild(createPAS("4", ""));
 ccl_precautionsDiv.appendChild(createPAS("5", ""));
 
+// #endregion Precautions 
+
+// #region Sources of Errors 
 let ccl_SOEDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_SOEDiv);
 
@@ -402,6 +419,9 @@ ccl_SOEDiv.appendChild(createPAS("3", ""));
 ccl_SOEDiv.appendChild(createPAS("4", ""));
 ccl_SOEDiv.appendChild(createPAS("5", ""));
 
+// #endregion Sources of Errors 
+
+// #region Functions
 // VARIABLES =============================
 let ccl_lengthOfNeedle = null;
 let ccl_distanceMirrorObject = null;
@@ -462,3 +482,4 @@ function measureFocalLength_ccl() {
   focalLength = sumF / validReadings;
   ccl_focalLengthCalculatedInput.value = focalLength.toFixed(3);
 }
+// #endregion Functions
