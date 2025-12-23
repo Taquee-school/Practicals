@@ -198,6 +198,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  padding-bottom: env(safe-area-inset-bottom);
   gap: 0;
   font-family: "Inter", sans-serif;
 }

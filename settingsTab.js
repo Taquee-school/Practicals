@@ -1,3 +1,9 @@
+function updateDeviceTheme() {
+  const themeTag = document.querySelector('meta[name="theme-color"]');
+  const color = getComputedStyle(app).getPropertyValue("--primary-bg").trim();
+  themeTag.setAttribute("content", color);
+}
+
 // #region Theme Panel
 let appliedTheme = "dark";
 let appliedThemeI = null;
@@ -45,6 +51,7 @@ function applyTheme() {
   appliedTheme = selectedTheme;
   app.classList.add(appliedTheme);
   localStorage.setItem("theme", appliedTheme);
+  updateDeviceTheme();
 }
 
 
@@ -82,11 +89,7 @@ function setTheme(theme) {
   selectedThemeI = themeMap[theme];
   selectedTheme = theme;
   selectedThemeI.className = "ph-fill ph-radio-button";
-  app.classList.remove(appliedTheme);
-  appliedThemeI = selectedThemeI;
-  appliedTheme = selectedTheme;
-  app.classList.add(appliedTheme);
-  localStorage.setItem("theme", appliedTheme);
+  applyTheme();
 }
 // #endregion
 
@@ -186,11 +189,7 @@ function setNavBarStyle(navigationBar) {
   selectedNavBarStyleI = navigationBarMap[navigationBar];
   selectedNavBarStyle = navigationBar;
   selectedNavBarStyleI.className = "ph-fill ph-radio-button";
-  NavigationDiv.classList.remove(appliedNavBarStyle);
-  appliedNavBarStyleI = selectedNavBarStyleI;
-  appliedNavBarStyle = selectedNavBarStyle;
-  NavigationDiv.classList.add(appliedNavBarStyle);
-  localStorage.setItem("navigation-bar", appliedNavBarStyle);
+  applyNavBarStyle();
 }
 
 // #endregion Nav style Panel
@@ -305,6 +304,7 @@ function applyPalette() {
   appliedPalette = selectedPalette;
   app.classList.add(appliedPalette);
   localStorage.setItem("palette", appliedPalette);
+  updateDeviceTheme();
 }
 
 function setPalette(palette) {
@@ -313,11 +313,7 @@ function setPalette(palette) {
   selectedPaletteI = paletteMap[palette];
   selectedPalette = palette;
   selectedPaletteI.className = "ph-fill ph-radio-button";
-  app.classList.remove(appliedPalette);
-  appliedPaletteI = selectedPaletteI;
-  appliedPalette = selectedPalette;
-  app.classList.add(appliedPalette);
-  localStorage.setItem("palette", appliedPalette);
+  applyPalette();
 }
 
 // #endregion Palette Panel
