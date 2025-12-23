@@ -3,7 +3,7 @@
     "short_name": "Practicals",
     "theme_color": "rgb(0, 0, 0)",
     "background_color": "rgb(0, 0, 0)",
-    "display": "fullscreen",
+    "display": "standalone",
     "icons": [
         {
             "src": "/android-chrome-512x512.png",
