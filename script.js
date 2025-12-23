@@ -60,17 +60,21 @@ function createIcon(type = null, name, clickFunction = null, id = null) {
   return icon;
 }
 
-function addScript(path) {
+function addScript(path, id) {
+  if (document.getElementById(id)) return;
   let newScipt = document.createElement("script");
+  newScipt.id = id;
   newScipt.src = path;
   document.body.appendChild(newScipt);
   return newScipt;
 }
 
-function addStyle(path) {
+function addStyle(path, id) {
+  if (document.getElementById(id)) return;
   let newStyle = document.createElement("link");
-  newStyle.href = path;
+  newStyle.id = id;
   newStyle.rel = "stylesheet";
+  newStyle.href = path;
   document.head.appendChild(newStyle);
   return newStyle;
 }
@@ -276,7 +280,7 @@ function checkLocalStorage() {
   if (palette) {
     setPalette(palette);
   }
-  
+
   // Load accessibility settings
   let fontScale = localStorage.getItem("font-scale");
   let headerScale = localStorage.getItem("header-scale");

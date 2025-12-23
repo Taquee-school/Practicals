@@ -1,5 +1,159 @@
 let acSonometerDiv = createDiv("practical-file", "physics-practical");
 
+// #region Functions
+let acs_sgLeastCount = null;
+let acs_zeroError = null;
+let acs_density = null;
+let acs_masspul = null;
+let acs_tableRowCount = 0;
+let acs_sgTableRowCount = 0;
+
+//FUNCTIONS--------------------------
+function measureEssentials_acs() {
+  acs_sgLeastCount = parseFloat(acs_sgLeastCountInput.value) || 0;
+
+  let acs_ze1 = parseFloat(acs_ze1Input.value) || 0;
+  let acs_ze2 = parseFloat(acs_ze2Input.value) || 0;
+  let acs_ze3 = parseFloat(acs_ze3Input.value) || 0;
+
+  acs_zeroError = (acs_ze1 + acs_ze2 + acs_ze3) / 3;
+  acs_meanZeroErrorInput.value = acs_zeroError.toFixed(4);
+
+  acs_zeroCorrectionInput.value = -acs_zeroError;
+
+  acs_density = parseFloat(acs_densityInput.value) || 0;
+
+  measureDiameter_acs();
+}
+
+function measureDiameter_acs() {
+  let d_sum = 0;
+
+  for (let i = 1; i <= acs_sgTableRowCount; i++) {
+    let msr = parseFloat(document.getElementById(`acs-table-MSR-${i}`).value) || 0;
+    let csr = parseFloat(document.getElementById(`acs-table-CSR-${i}`).value) || 0;
+
+    let d = (msr + csr * acs_sgLeastCount) / 10;
+
+    document.getElementById(`acs-table-D-${i}`).value = d.toFixed(3);
+
+    d_sum += d;
+  }
+
+  let d_mean = d_sum / acs_sgTableRowCount;
+  acs_meanDiameterInput.value = d_mean.toFixed(3);
+
+  let d_corrected = d_mean - acs_zeroError / 10;
+  acs_correctedDiameterInput.value = d_corrected.toFixed(4);
+
+  acs_masspul = (3.14 * (d_corrected / 100) * (d_corrected / 100) * acs_density) / 4;
+
+  acs_masspulInput.value = acs_masspul.toFixed(10);
+  measureFrequency_acs();
+}
+
+function measureFrequency_acs() {
+  let v_sum = 0;
+  if (!(acs_masspul > 0)) { return };
+
+  for (let i = 1; i <= acs_tableRowCount; i++) {
+    if (document.getElementById(`acs-table-l1-${i}`).classList.contains("invalid")) {
+      document.getElementById(`acs-table-l1-${i}`).classList.remove("invalid");
+      document.getElementById(`acs-table-l2-${i}`).classList.remove("invalid");
+    }
+
+    let V = 0;
+    let M = acs_masspul;
+    let T = parseFloat(document.getElementById(`acs-table-T-${i}`).value) || 0;
+    let l1 = parseFloat(document.getElementById(`acs-table-l1-${i}`).value) || 0;
+    let l2 = parseFloat(document.getElementById(`acs-table-l2-${i}`).value) || 0;
+
+    let L = (l1 + l2) / 2;
+    document.getElementById(`acs-table-l-${i}`).value = L.toFixed(2);
+
+    if (!(L > 0)) {
+      if (!(document.getElementById(`acs-table-l1-${i}`).classList.contains("invalid"))) {
+        document.getElementById(`acs-table-l1-${i}`).classList.add("invalid");
+        document.getElementById(`acs-table-l2-${i}`).classList.add("invalid");
+      }
+      continue;
+    }
+    V = (T / M) ** 0.5 / (4 * (L / 100));
+
+    document.getElementById(`acs-table-V-${i}`).value = V.toFixed(3);
+    v_sum += V;
+  }
+
+  let meanV = v_sum / acs_tableRowCount;
+  acs_meanFrequencyInput.value = meanV.toFixed(3);
+}
+
+function acs_addRowSonometer() {
+  acs_tableRowCount++;
+  setTimeout(()=> {
+    let inp = createInput(`acs-table-S-no-${acs_tableRowCount}`, "number", acs_tableRowCount, null, true);
+    acs_SnoColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 10);
+  setTimeout(()=> {
+    let inp = createInput(`acs-table-M-${acs_tableRowCount}`, "number", 0, measureFrequency_acs);
+    acs_loadColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 50);
+  setTimeout(()=> {
+    let inp = createInput(`acs-table-T-${acs_tableRowCount}`, "number", 0, null, true);
+    acs_tensionColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 100);
+  setTimeout(()=> {
+    let inp = createInput(`acs-table-l1-${acs_tableRowCount}`, "number", 0, measureFrequency_acs);
+    acs_l1Column.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 150);
+  setTimeout(()=> {
+    let inp = createInput(`acs-table-l2-${acs_tableRowCount}`, "number", 0, measureFrequency_acs);
+    acs_l2Column.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 200);
+  setTimeout(()=> {
+    let inp = createInput(`acs-table-l-${acs_tableRowCount}`, "number", 0, null, true);
+    acs_meanLColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 250);
+  setTimeout(()=> {
+    let inp = createInput(`acs-table-V-${acs_tableRowCount}`, "number", 0, null, true)
+    acs_frequencyColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 300);
+}
+
+function acs_addRowScrewGauge() {
+  acs_sgTableRowCount++;
+  setTimeout(()=> {
+    let inp = createInput(`acs-table-S-no-${acs_sgTableRowCount}`, "number", acs_sgTableRowCount, null, true);
+    acs_sgSnoColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 10);
+  setTimeout(()=> {
+    let inp = createInput(`acs-table-MSR-${acs_sgTableRowCount}`, "number", 0, measureDiameter_acs);
+    acs_sgMSRColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 50);
+  setTimeout(()=> {
+    let inp = createInput(`acs-table-CSR-${acs_sgTableRowCount}`, "number", 0, measureDiameter_acs);
+    acs_sgCSRColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 100);
+  setTimeout(()=> {
+    let inp = createInput(`acs-table-D-${acs_sgTableRowCount}`, "number", 0, null, true);
+    acs_sgDiameterColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 150);
+}
+// #endregion Functions
+
+
+
 // #region Diagram
 let acs_diagramDiv = createDiv("practical-section");
 acSonometerDiv.appendChild(acs_diagramDiv);
@@ -106,75 +260,32 @@ acs_observationDiv.appendChild(acs_sonometerTableDiv);
 let acs_sonometerTable = createDiv("observation-table");
 acs_sonometerTableDiv.appendChild(acs_sonometerTable);
 
-acs_sonometerTable.appendChild(
-  createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
-acs_sonometerTable.appendChild(
-  createColumn(
-    "Load (M) (kg)",
-    5,
-    "acs-table-M",
-    "number",
-    [0.5, 1.0, 1.5, 2.0, 2.5],
-    null,
-    true
-  )
-);
-acs_sonometerTable.appendChild(
-  createColumn(
-    "Tension (T=Mg) (N)",
-    5,
-    "acs-table-N",
-    "number",
-    [4.9, 9.8, 14.7, 19.6, 24.5],
-    null,
-    true
-  )
-);
-acs_sonometerTable.appendChild(
-  createColumn(
-    "First Observation l\u2081 (cm)",
-    5,
-    "acs-table-l1",
-    "number",
-    0,
-    measureFrequency_acs,
-    false
-  )
-);
-acs_sonometerTable.appendChild(
-  createColumn(
-    "Second Observation l\u2082 (cm)",
-    5,
-    "acs-table-l2",
-    "number",
-    0,
-    measureFrequency_acs,
-    false
-  )
-);
-acs_sonometerTable.appendChild(
-  createColumn(
-    "Mean (l\u2081 + l\u2082)/2 (cm)",
-    5,
-    "acs-table-l",
-    "number",
-    0,
-    null,
-    true
-  )
-);
-acs_sonometerTable.appendChild(
-  createColumn(
-    "Frequency v = √(T/m)/4l (Hz)",
-    5,
-    "acs-table-v",
-    "number",
-    0,
-    null,
-    true
-  )
-);
+const acs_SnoColumn = createTableColumn("S.no");
+acs_sonometerTable.appendChild(acs_SnoColumn);
+
+const acs_loadColumn = createTableColumn("Load (M) kg");
+acs_sonometerTable.appendChild(acs_loadColumn);
+
+const acs_tensionColumn = createTableColumn("Tension (T=Mg) (N)");
+acs_sonometerTable.appendChild(acs_tensionColumn);
+
+const acs_l1Column = createTableColumn("First Observation l\u2081 (cm)");
+acs_sonometerTable.appendChild(acs_l1Column);
+
+const acs_l2Column = createTableColumn("Second Observation l\u2082 (cm)");
+acs_sonometerTable.appendChild(acs_l2Column);
+
+const acs_meanLColumn = createTableColumn("Mean (l\u2081 + l\u2082)/2 (cm)");
+acs_sonometerTable.appendChild(acs_meanLColumn);
+
+const acs_frequencyColumn = createTableColumn("Frequency v = \u221a(T/m)/4l (Hz)");
+acs_sonometerTable.appendChild(acs_frequencyColumn);
+
+acs_addRowSonometer();
+acs_sonometerTableDiv.appendChild(setRippleStyle(createButton("acs-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", acs_addRowSonometer)));
+
+acs_addRowSonometer();
+acs_sonometerTableDiv.appendChild(setRippleStyle(createButton("acs-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", acs_addRowSonometer)));
 // #endregion Sonometer
 
 // #region Screw Gauge
@@ -280,42 +391,24 @@ acs_observationDiv.appendChild(acs_sgTableDiv);
 let acs_sgTable = createDiv("observation-table");
 acs_sgTableDiv.appendChild(acs_sgTable);
 
-acs_sgTable.appendChild(
-  createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
-acs_sgTable.appendChild(
-  createColumn(
-    "Main scale reading (MSR) (mm)",
-    5,
-    "acs-table-msr",
-    "number",
-    0,
-    measureDiameter_acs,
-    false
-  )
-);
-acs_sgTable.appendChild(
-  createColumn(
-    "Circular scale reading (CSR)",
-    5,
-    "acs-table-csr",
-    "number",
-    0,
-    measureDiameter_acs,
-    false
-  )
-);
-acs_sgTable.appendChild(
-  createColumn(
-    "Observed Diameter (mm)",
-    5,
-    "acs-table-D",
-    "number",
-    0,
-    null,
-    true
-  )
-);
+const acs_sgSnoColumn = createTableColumn("S.no");
+acs_sgTable.appendChild(acs_sgSnoColumn);
+
+const acs_sgMSRColumn = createTableColumn("Main scale reading (MSR) (mm)");
+acs_sgTable.appendChild(acs_sgMSRColumn);
+
+const acs_sgCSRColumn = createTableColumn("Circular scale reading (CSR)");
+acs_sgTable.appendChild(acs_sgCSRColumn);
+
+const acs_sgDiameterColumn = createTableColumn("Diameter (mm)");
+acs_sgTable.appendChild(acs_sgDiameterColumn);
+
+acs_addRowScrewGauge();
+acs_sgTableDiv.appendChild(setRippleStyle(createButton("acs-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", acs_addRowScrewGauge)));
+
+acs_addRowScrewGauge();
+acs_sgTableDiv.appendChild(setRippleStyle(createButton("acs-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", acs_addRowScrewGauge)));
+
 
 let acs_meanDiameterInput = createInput(
   "acs-sg-mean-d-input",
@@ -353,7 +446,9 @@ acs_observationDiv.appendChild(
     "kg/m"
   )
 );
+
 // #endregion Screw Gauge
+
 // #endregion Observation
 
 // #region Result
@@ -424,87 +519,4 @@ acs_soeDiv.appendChild(
 acs_soeDiv.appendChild(
   createPAS("2", "Some friction might be present at the pulley and hence the tension is less than that actually applied.")
 );
-// #endregion sources of errors 
-
-// #region Functions
-let acs_sgLeastCount = null;
-let acs_zeroError = null;
-let acs_density = null;
-let acs_masspul = null;
-
-//FUNCTIONS--------------------------
-function measureEssentials_acs() {
-  acs_sgLeastCount = parseFloat(acs_sgLeastCountInput.value) || 0;
-
-  let acs_ze1 = parseFloat(acs_ze1Input.value) || 0;
-  let acs_ze2 = parseFloat(acs_ze2Input.value) || 0;
-  let acs_ze3 = parseFloat(acs_ze3Input.value) || 0;
-
-  acs_zeroError = (acs_ze1 + acs_ze2 + acs_ze3) / 3;
-  acs_meanZeroErrorInput.value = acs_zeroError.toFixed(4);
-
-  acs_zeroCorrectionInput.value = -acs_zeroError;
-
-  acs_density = parseFloat(acs_densityInput.value) || 0;
-
-  measureDiameter_acs();
-}
-
-function measureDiameter_acs() {
-  let d_sum = 0;
-  let validReadings = 0;
-
-  for (let i = 1; i <= 5; i++) {
-    let msr = parseFloat(document.getElementById(`acs-table-msr-${i}`).value) || 0;
-    let csr = parseFloat(document.getElementById(`acs-table-csr-${i}`).value) || 0;
-
-    let d = (msr + csr * acs_sgLeastCount) / 10;
-
-    document.getElementById(`acs-table-D-${i}`).value = d.toFixed(3);
-
-    if (d > 0) {
-      d_sum += d;
-      validReadings += 1;
-    }
-  }
-
-  let d_mean = d_sum / validReadings;
-  acs_meanDiameterInput.value = d_mean.toFixed(3);
-
-  let d_corrected = d_mean - acs_zeroError / 10;
-  acs_correctedDiameterInput.value = d_corrected.toFixed(4);
-
-  acs_masspul =
-    (3.14 * (d_corrected / 100) * (d_corrected / 100) * acs_density) / 4;
-
-  acs_masspulInput.value = acs_masspul.toFixed(10);
-  measureFrequency_acs();
-}
-
-function measureFrequency_acs() {
-  let v_sum = 0;
-  let validReadings = 0;
-
-  for (let i = 1; i <= 5; i++) {
-    let V = 0;
-    let M = acs_masspul;
-    let T = parseFloat(document.getElementById(`acs-table-N-${i}`).value) || 0;
-    let l1 = parseFloat(document.getElementById(`acs-table-l1-${i}`).value) || 0;
-    let l2 = parseFloat(document.getElementById(`acs-table-l2-${i}`).value) || 0;
-    let L = (l1 + l2) / 2;
-    document.getElementById(`acs-table-l-${i}`).value = L.toFixed(2);
-    if (M > 0 && L > 0) {
-      V = (T / M) ** 0.5 / (4 * (L / 100));
-    }
-    document.getElementById(`acs-table-v-${i}`).value = V.toFixed(3);
-
-    if (V > 0) {
-      v_sum += V;
-      validReadings++;
-    }
-  }
-
-  meanV = v_sum / validReadings;
-  acs_meanFrequencyInput.value = meanV.toFixed(3);
-}
-// #endregion Functions
+// #endregion sources of errors

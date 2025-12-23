@@ -1,3 +1,77 @@
+
+// #region Functions
+let cvm_lengthOfNeedle = null;
+let cvm_indexCorrection = 0;
+let cvm_rowCount = 0;
+
+function measureEssentials_cvm() {
+  let Y = parseFloat(cvm_lengthOfNeedleInput.value) || 0;
+  let X = parseFloat(cvm_distanceMIInput.value) || 0;
+
+  cvm_indexCorrection = Y - X;
+  cvm_indexCorrectionInput.value = cvm_indexCorrection.toFixed(2);
+  
+  measureFocalLength_cvm();
+}
+
+function measureFocalLength_cvm() {
+  let sumMI = 0;
+  
+  for (let i = 1; i <= cvm_rowCount; i++) {
+    let O = parseFloat(document.getElementById(`cvm-table-O-${i}`).value) || 0;
+    let L = parseFloat(document.getElementById(`cvm-table-L-${i}`).value) || 0;
+    let M = parseFloat(document.getElementById(`cvm-table-M-${i}`).value) || 0;
+    let I = parseFloat(document.getElementById(`cvm-table-I-${i}`).value) || 0;
+    let MI = I - M;
+    document.getElementById(`cvm-table-MI-${i}`).value = MI.toFixed(2);
+    
+    sumMI += MI;
+  }
+  
+  let meanMI = sumMI / cvm_rowCount;
+  cvm_meanMIInput.value = meanMI.toFixed(2);
+  let correctedMI = meanMI + cvm_indexCorrection;
+  cvm_correctedMIInput.value = correctedMI.toFixed(2);
+  let F = correctedMI / 2;
+  cvm_focalLengthInput.value = F.toFixed(2);
+  cvm_fFocalLengthInput.value = F.toFixed(2);
+}
+
+function cvm_addRow() {
+    cvm_rowCount++;
+    setTimeout(() => {
+        let inp = createInput(`cvm-s-no-${cvm_rowCount}`, "number", cvm_rowCount, null, true);
+        cvm_sNoColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 10);
+    setTimeout(() => {
+        let inp = createInput(`cvm-table-O-${cvm_rowCount}`, "number", 0, measureFocalLength_cvm);
+        cvm_OColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 50);
+    setTimeout(() => {
+        let inp = createInput(`cvm-table-L-${cvm_rowCount}`, "number", 0, measureFocalLength_cvm);
+        cvm_LColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 100);
+    setTimeout(() => {
+        let inp = createInput(`cvm-table-M-${cvm_rowCount}`, "number", 0, measureFocalLength_cvm);
+        cvm_MColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 150);
+    setTimeout(() => {
+        let inp = createInput(`cvm-table-I-${cvm_rowCount}`, "number", 0, measureFocalLength_cvm);
+        cvm_IColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 200);
+    setTimeout(() => {
+        let inp = createInput(`cvm-table-MI-${cvm_rowCount}`, "number", 0, null, true);
+        cvm_MIColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 250);
+}
+// #endregion Functions
+
 let convexMirrorDiv = createDiv("practical-file", "physics-practical");
 
 let cvm_diagramDiv = createDiv("practical-section");
@@ -145,73 +219,26 @@ cvm_observationDiv.appendChild(cvm_distanceTableDiv);
 let cvm_distanceTable = createDiv("observation-table");
 cvm_distanceTableDiv.appendChild(cvm_distanceTable);
 
-cvm_distanceTable.appendChild(
-  createColumn(
-    "S.no",
-    5,
-    null,
-    "number",
-    [1, 2, 3, 4, 5],
-    null,
-    true
-  )
-);
+const cvm_sNoColumn = createTableColumn("S.no");
+cvm_distanceTable.appendChild(cvm_sNoColumn);
 
-cvm_distanceTable.appendChild(
-  createColumn(
-    "Position of the object needle (O) cm",
-    5,
-    "cvm-table-O",
-    "number",
-    0,
-    measureFocalLength_cvm
-  )
-);
+const cvm_OColumn = createTableColumn("Position of the object needle (O) cm");
+cvm_distanceTable.appendChild(cvm_OColumn);
 
-cvm_distanceTable.appendChild(
-  createColumn(
-    "Position of the lens (L) cm",
-    5,
-    "cvm-table-L",
-    "number",
-    0,
-    measureFocalLength_cvm
-  )
-);
+const cvm_LColumn = createTableColumn("Position of the lens (L) cm");
+cvm_distanceTable.appendChild(cvm_LColumn);
 
-cvm_distanceTable.appendChild(
-  createColumn(
-    "Position of the lens (M) cm",
-    5,
-    "cvm-table-M",
-    "number",
-    0,
-    measureFocalLength_cvm
-  )
-);
+const cvm_MColumn = createTableColumn("Position of the lens (M) cm");
+cvm_distanceTable.appendChild(cvm_MColumn);
 
-cvm_distanceTable.appendChild(
-  createColumn(
-    "Position of the image needle (I) cm",
-    5,
-    "cvm-table-I",
-    "number",
-    0,
-    measureFocalLength_cvm
-  )
-);
+const cvm_IColumn = createTableColumn("Position of the image needle (I) cm");
+cvm_distanceTable.appendChild(cvm_IColumn);
 
-cvm_distanceTable.appendChild(
-  createColumn(
-    "Observed Distance MI' (cm)",
-    5,
-    "cvm-table-MI",
-    "number",
-    0,
-    null,
-    true
-  )
-);
+const cvm_MIColumn = createTableColumn("Observed Distance MI' (cm)");
+cvm_distanceTable.appendChild(cvm_MIColumn);
+
+cvm_addRow();
+cvm_distanceTableDiv.appendChild(setRippleStyle(createButton("cvm-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", cvm_addRow)));
 
 let cvm_meanMIInput = createInput("cvm-mean-MI-input", "number", "0", null, true);
 cvm_observationDiv.appendChild(createInputDiv("Mean MI':", cvm_meanMIInput, "cm."));
@@ -272,45 +299,4 @@ cvm_SOEDiv.appendChild(createPAS("1", "Focal length of the lens may not be small
 cvm_SOEDiv.appendChild(createPAS("2", "The uprights may not be vertical."));
 cvm_SOEDiv.appendChild(createPAS("3", "Parallax removal may not be perfect."));
 
-// VARIABLES =============================
-let cvm_lengthOfNeedle = null;
 
-let cvm_indexCorrection = 0;
-
-// FUNCTIONS =============================
-function measureEssentials_cvm() {
-  let Y = parseFloat(cvm_lengthOfNeedleInput.value) || 0;
-  let X = parseFloat(cvm_distanceMIInput.value) || 0;
-
-  cvm_indexCorrection = Y - X;
-  cvm_indexCorrectionInput.value = cvm_indexCorrection.toFixed(2);
-
-  // measureFocalLength_cvm();
-}
-
-function measureFocalLength_cvm() {
-  let sumMI = 0;
-  let validReadings = 0;
-
-  for (let i = 1; i <= 9; i++) {
-    let O = parseFloat(document.getElementById(`cvm-table-O-${i}`).value) || 0;
-    let L = parseFloat(document.getElementById(`cvm-table-L-${i}`).value) || 0;
-    let M = parseFloat(document.getElementById(`cvm-table-M-${i}`).value) || 0;
-    let I = parseFloat(document.getElementById(`cvm-table-I-${i}`).value) || 0;
-    let MI = I - M;
-    document.getElementById(`cvm-table-MI-${i}`).value = MI.toFixed(2);
-    if (O > 0) {
-      sumMI += MI;
-      validReadings++;
-    }
-  }
-  if (validReadings > 0) {
-    let meanMI = sumMI / validReadings;
-    cvm_meanMIInput.value = meanMI.toFixed(2);
-    let correctedMI = sumMI + cvm_indexCorrection;
-    cvm_correctedMIInput.value = correctedMI.toFixed(2);
-    let F = correctedMI / 2;
-    cvm_focalLengthInput.value = F.toFixed(2);
-    cvm_fFocalLengthInput.value = F.toFixed(2);
-  }
-}

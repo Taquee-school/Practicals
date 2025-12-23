@@ -1,5 +1,91 @@
 let screwGaugeDiv = createDiv("practical-file", "physics-practical");
 
+// #region Functions
+let scg_leastCount = null;
+let scg_zeroError = null;
+let scg_density = null;
+let scg_rowCount = 0;
+
+function measureEssentials_scg() {
+    let scg_dByCsr = parseFloat(scg_dByCsrInput.value) || 0;
+    let scg_revByCsr = parseFloat(scg_revByCsrInput.value) || 0;
+    let scg_pitch = scg_dByCsr / scg_revByCsr;
+    scg_pitchInput.value = scg_pitch.toFixed(4);
+    scg_leastCount = scg_pitch / parseFloat(scg_divOfCsrInput.value) || 1;
+    scg_leastCountInput.value = scg_leastCount.toFixed(3);
+
+    let scg_ze1 = parseFloat(scg_ze1Input.value) || 0;
+    let scg_ze2 = parseFloat(scg_ze2Input.value) || 0;
+    let scg_ze3 = parseFloat(scg_ze3Input.value) || 0;
+
+    scg_zeroError = ((scg_ze1 + scg_ze2 + scg_ze3) / 3).toFixed(4);
+    scg_meanzeInput.value = scg_zeroError;
+
+    scg_zeroCorrectionInput.value = -scg_zeroError;
+
+    scg_density = parseFloat(scg_densityInput.value) || 0;
+
+    measureDiameter_scg();
+}
+
+function measureDiameter_scg() {
+    let d_sum = 0;
+
+    for (let i = 1; i <= scg_rowCount; i++) {
+        document.getElementById(`scg-lc-${i}`).value = scg_leastCount.toFixed(3);
+
+        let msr = parseFloat(document.getElementById(`scg-msr-${i}`).value) || 0;
+        let csr = parseFloat(document.getElementById(`scg-div-${i}`).value) || 0;
+
+        let d = msr + csr * scg_leastCount;
+
+        document.getElementById(`scg-d-obs-${i}`).value = d.toFixed(3);
+
+        d_sum += d;
+    }
+
+    let d_mean = d_sum / scg_rowCount;
+    scg_meanDiameterInput.value = d_mean.toFixed(3);
+
+    let d_corrected = d_mean + (parseFloat(scg_zeroCorrectionInput.value) || 0);
+    scg_correctedDiameterInput.value = d_corrected.toFixed(4);
+
+    massPerUnitLength =
+        (3.14 * (d_corrected / 1000) * (d_corrected / 1000) * scg_density) / 4;
+
+    scg_masspulInput.value = massPerUnitLength.toFixed(10);
+}
+
+function scg_addRow() {
+    scg_rowCount++;
+    setTimeout(() => {
+        let inp = createInput(`scg-s-no-${scg_rowCount}`, "number", scg_rowCount, null, true);
+        scg_sNoColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 10);
+    setTimeout(() => {
+        let inp = createInput(`scg-msr-${scg_rowCount}`, "number", 0, measureDiameter_scg);
+        scg_msrColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 50);
+    setTimeout(() => {
+        let inp = createInput(`scg-div-${scg_rowCount}`, "number", 0, measureDiameter_scg);
+        scg_csrColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 100);
+    setTimeout(() => {
+        let inp = createInput(`scg-lc-${scg_rowCount}`, "number", 0, null, true);
+        scg_lcColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 150);
+    setTimeout(() => {
+        let inp = createInput(`scg-d-obs-${scg_rowCount}`, "number", 0, null, true);
+        scg_diameterColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 200);
+}
+// #endregion Functions
+
 let scg_diagramDiv = createDiv("practical-section");
 screwGaugeDiv.appendChild(scg_diagramDiv);
 
@@ -239,28 +325,23 @@ scg_observationDiv.appendChild(scg_diameterTableDiv);
 let scg_diameterTable = createDiv("observation-table");
 scg_diameterTableDiv.appendChild(scg_diameterTable);
 
-scg_diameterTable.appendChild(
-    createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
-scg_diameterTable.appendChild(
-    createColumn(
-        "Main scale reading",
-        5,
-        "scg-msr",
-        "number",
-        0,
-        measureDiameter_scg
-    )
-);
-scg_diameterTable.appendChild(
-    createColumn("Divisions (n)", 5, "scg-div", "number", 0, measureDiameter_scg)
-);
-scg_diameterTable.appendChild(
-    createColumn("Value (L.C)", 5, "scg-lc", "number", 0, null, true)
-);
-scg_diameterTable.appendChild(
-    createColumn("Observed diameter", 5, "scg-d-obs", "number", 0, null, true)
-);
+const scg_sNoColumn = createTableColumn("S.no");
+scg_diameterTable.appendChild(scg_sNoColumn);
+
+const scg_msrColumn = createTableColumn("Main scale reading");
+scg_diameterTable.appendChild(scg_msrColumn);
+
+const scg_csrColumn = createTableColumn("Divisions (n)");
+scg_diameterTable.appendChild(scg_csrColumn);
+
+const scg_lcColumn = createTableColumn("Value (L.C)");
+scg_diameterTable.appendChild(scg_lcColumn);
+
+const scg_diameterColumn = createTableColumn("Observed diameter");
+scg_diameterTable.appendChild(scg_diameterColumn);
+
+scg_addRow();
+scg_diameterTableDiv.appendChild(setRippleStyle(createButton("scg-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", scg_addRow)));
 
 let scg_meanDiameterInput = createInput(
     "scg-mean-observed-diameter-input",
@@ -345,59 +426,5 @@ scg_precautionsDiv.appendChild(
     )
 );
 
-let scg_leastCount = null;
-let scg_zeroError = null;
-let scg_density = null;
 
-function measureEssentials_scg() {
-    let scg_dByCsr = parseFloat(scg_dByCsrInput.value) || 0;
-    let scg_revByCsr = parseFloat(scg_revByCsrInput.value) || 0;
-    let scg_pitch = scg_dByCsr / scg_revByCsr;
-    scg_pitchInput.value = scg_pitch.toFixed(4);
-    scg_leastCount = scg_pitch / parseFloat(scg_divOfCsrInput.value) || 1;
-    scg_leastCountInput.value = scg_leastCount.toFixed(3);
 
-    let scg_ze1 = parseFloat(scg_ze1Input.value) || 0;
-    let scg_ze2 = parseFloat(scg_ze2Input.value) || 0;
-    let scg_ze3 = parseFloat(scg_ze3Input.value) || 0;
-
-    scg_zeroError = ((scg_ze1 + scg_ze2 + scg_ze3) / 3).toFixed(4);
-    scg_meanzeInput.value = scg_zeroError;
-
-    scg_zeroCorrectionInput.value = -scg_zeroError;
-
-    scg_density = parseFloat(scg_densityInput.value) || 0;
-
-    measureDiameter_scg();
-}
-
-function measureDiameter_scg() {
-    let d_sum = 0;
-    let validReadings = 0;
-
-    for (let i = 1; i <= 5; i++) {
-        document.getElementById(`scg-lc-${i}`).value = scg_leastCount.toFixed(3);
-
-        let msr = parseFloat(document.getElementById(`scg-msr-${i}`).value) || 0;
-        let csr = parseFloat(document.getElementById(`scg-div-${i}`).value) || 0;
-
-        let d = msr + csr * scg_leastCount;
-
-        document.getElementById(`scg-d-obs-${i}`).value = d.toFixed(3);
-
-        if (d > 0) {
-            d_sum += d;
-            validReadings++;
-        }
-    }
-    let d_mean = d_sum / validReadings;
-    scg_meanDiameterInput.value = d_mean.toFixed(3);
-
-    let d_corrected = d_mean + parseFloat(scg_zeroCorrectionInput.value) || 0;
-    scg_correctedDiameterInput.value = d_corrected.toFixed(4);
-
-    massPerUnitLength =
-        (3.14 * (d_corrected / 1000) * (d_corrected / 1000) * scg_density) / 4;
-
-    scg_masspulInput.value = massPerUnitLength.toFixed(10);
-}

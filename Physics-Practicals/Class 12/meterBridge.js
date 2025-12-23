@@ -1,3 +1,136 @@
+// #region Functions
+let mbr_wireLength = 0;
+let mbr_meanR = 0;
+let mbr_meanD = 0;
+let mbr_sgLeastCount = 0;
+let mbr_sgCorrection = 0;
+let mbr_rowCount = 0;
+let mbr_sgRowCount = 0;
+
+function measureEssentials_mbr() {
+  mbr_wireLength = parseFloat(mbr_wireLengthInput.value) || 0;
+  mbr_sgLeastCount = parseFloat(mbr_sgLeastCountInput.value) || 0;
+  let ze1 = parseFloat(mbr_ze1Input.value) || 0;
+  let ze2 = parseFloat(mbr_ze2Input.value) || 0;
+  let ze3 = parseFloat(mbr_ze3Input.value) || 0;
+  mbr_sgCorrection = -(ze1 + ze2 + ze3) / 3;
+  measureDiameter_mbr();
+}
+
+function measureDiameter_mbr() {
+  let sumD = 0;
+
+  for (let i = 1; i <= mbr_sgRowCount; i++) {
+    let MSR = parseFloat(document.getElementById(`mbr-table-msr-${i}`).value) || 0;
+    let CSR = parseFloat(document.getElementById(`mbr-table-csr-${i}`).value) || 0;
+
+    let D = MSR + CSR * mbr_sgLeastCount;
+    document.getElementById(`mbr-table-sg-D-${i}`).value = D;
+
+    sumD += D;
+  }
+
+    mbr_meanD = sumD / mbr_sgRowCount;
+    mbr_meanDiameterInput.value = mbr_meanD.toFixed(2);
+    let correctedMeanD = mbr_meanD + mbr_sgCorrection;
+    mbr_correctedDiameterInput.value = correctedMeanD.toFixed(2);
+    measureSpecificResistance_mbr();
+}
+
+function measureResistance_mbr() {
+  let sumR = 0;
+
+  for (let i = 1; i <= mbr_rowCount; i++) {
+    let Q = parseFloat(document.getElementById(`mbr-table-Q-${i}`).value) || 0;
+    let D = parseFloat(document.getElementById(`mbr-table-D-${i}`).value) || 0;
+
+    document.getElementById(`mbr-table-AD-${i}`).value = D;
+
+    let DC = 100 - D;
+    document.getElementById(`mbr-table-DC-${i}`).value = DC;
+
+    let X = 0;
+    if (DC !== 0) {
+        X = (D / DC) * Q;
+    }
+    document.getElementById(`mbr-table-X-${i}`).value = X.toFixed(2);
+
+    sumR += X;
+  }
+  mbr_meanR = sumR / mbr_rowCount;
+  mbr_resistanceInput.value = mbr_meanR.toFixed(2);
+  measureSpecificResistance_mbr();
+}
+
+function measureSpecificResistance_mbr() {
+  if (mbr_wireLength > 0) {
+    let D = parseFloat(mbr_meanDiameterInput.value)/100;
+    let R = parseFloat(mbr_resistanceInput.value) || 0;
+    let SR = (R * 3.14 * D * D) / (mbr_wireLength * 4);
+    mbr_specificResistanceInput.value = changeToStandard(SR);
+  }
+}
+
+function mbr_addRow() {
+    mbr_rowCount++;
+    setTimeout(() => {
+        let inp = createInput(`mbr-s-no-${mbr_rowCount}`, "number", mbr_rowCount, null, true);
+        mbr_sNoColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 10);
+    setTimeout(() => {
+        let inp = createInput(`mbr-table-Q-${mbr_rowCount}`, "number", 0, measureResistance_mbr);
+        mbr_QColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 50);
+    setTimeout(() => {
+        let inp = createInput(`mbr-table-D-${mbr_rowCount}`, "number", 0, measureResistance_mbr);
+        mbr_DColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 100);
+    setTimeout(() => {
+        let inp = createInput(`mbr-table-AD-${mbr_rowCount}`, "number", 0, null, true);
+        mbr_ADColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 150);
+    setTimeout(() => {
+        let inp = createInput(`mbr-table-DC-${mbr_rowCount}`, "number", 0, null, true);
+        mbr_DCColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 200);
+    setTimeout(() => {
+        let inp = createInput(`mbr-table-X-${mbr_rowCount}`, "number", 0, null, true);
+        mbr_XColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 250);
+}
+
+function mbr_addSGRow() {
+    mbr_sgRowCount++;
+    setTimeout(() => {
+        let inp = createInput(`mbr-table-sg-s-no-${mbr_sgRowCount}`, "number", mbr_sgRowCount, null, true);
+        mbr_sgSNoColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 10);
+    setTimeout(() => {
+        let inp = createInput(`mbr-table-msr-${mbr_sgRowCount}`, "number", 0, measureDiameter_mbr);
+        mbr_sgMSRColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 50);
+    setTimeout(() => {
+        let inp = createInput(`mbr-table-csr-${mbr_sgRowCount}`, "number", 0, measureDiameter_mbr);
+        mbr_sgCSRColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 100);
+    setTimeout(() => {
+        let inp = createInput(`mbr-table-sg-D-${mbr_sgRowCount}`, "number", 0, null, true);
+        mbr_sgDColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 150);
+}
+
+// #endregion Functions
+
 let meterBridgeDiv = createDiv("practical-file", "physics-practical");
 
 // #region Diagram
@@ -166,52 +299,26 @@ mbr_observationDiv.appendChild(mbr_sonometerTableDiv);
 let mbr_sonometerTable = createDiv("observation-table");
 mbr_sonometerTableDiv.appendChild(mbr_sonometerTable);
 
-mbr_sonometerTable.appendChild(
-  createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
-mbr_sonometerTable.appendChild(
-  createColumn(
-    "Resistance Q ()",
-    5,
-    "mbr-table-Q",
-    "number",
-    0,
-    measureResistance_mbr
-  )
-);
-mbr_sonometerTable.appendChild(
-  createColumn(
-    "Position of balance point D (cm)",
-    5,
-    "mbr-table-D",
-    "number",
-    0,
-    measureResistance_mbr
-  )
-);
-mbr_sonometerTable.appendChild(
-  createColumn(
-    "Balancing length AD = l (cm)",
-    5,
-    "mbr-table-AD",
-    "number",
-    0,
-    measureResistance_mbr
-  )
-);
-mbr_sonometerTable.appendChild(
-  createColumn(
-    "Length DC = 100-l (cm)",
-    5,
-    "mbr-table-DC",
-    "number",
-    0,
-    measureResistance_mbr
-  )
-);
-mbr_sonometerTable.appendChild(
-  createColumn("X = Q/100-l ()", 5, "mbr-table-X", "number", 0, null, true)
-);
+const mbr_sNoColumn = createTableColumn("S.no");
+mbr_sonometerTable.appendChild(mbr_sNoColumn);
+
+const mbr_QColumn = createTableColumn("Resistance Q ()");
+mbr_sonometerTable.appendChild(mbr_QColumn);
+
+const mbr_DColumn = createTableColumn("Position of balance point D (cm)");
+mbr_sonometerTable.appendChild(mbr_DColumn);
+
+const mbr_ADColumn = createTableColumn("Balancing length AD = l (cm)");
+mbr_sonometerTable.appendChild(mbr_ADColumn);
+
+const mbr_DCColumn = createTableColumn("Length DC = 100-l (cm)");
+mbr_sonometerTable.appendChild(mbr_DCColumn);
+
+const mbr_XColumn = createTableColumn("X = Q/100-l ()");
+mbr_sonometerTable.appendChild(mbr_XColumn);
+
+mbr_addRow();
+mbr_sonometerTableDiv.appendChild(setRippleStyle(createButton("mbr-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", mbr_addRow)));
 // #endregion Meter bridge observations
 
 // #region Screw gauge observations
@@ -316,42 +423,20 @@ mbr_observationDiv.appendChild(mbr_sgTableDiv);
 let mbr_sgTable = createDiv("observation-table");
 mbr_sgTableDiv.appendChild(mbr_sgTable);
 
-mbr_sgTable.appendChild(
-  createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
-mbr_sgTable.appendChild(
-  createColumn(
-    "Main scale reading (MSR) (mm)",
-    5,
-    "mbr-table-msr",
-    "number",
-    0,
-    measureDiameter_mbr,
-    false
-  )
-);
-mbr_sgTable.appendChild(
-  createColumn(
-    "Circular scale reading (CSR)",
-    5,
-    "mbr-table-csr",
-    "number",
-    0,
-    measureDiameter_mbr,
-    false
-  )
-);
-mbr_sgTable.appendChild(
-  createColumn(
-    "Observed Diameter (mm)",
-    5,
-    "mbr-table-sg-D",
-    "number",
-    0,
-    null,
-    true
-  )
-);
+const mbr_sgSNoColumn = createTableColumn("S.no");
+mbr_sgTable.appendChild(mbr_sgSNoColumn);
+
+const mbr_sgMSRColumn = createTableColumn("Main scale reading (MSR) (mm)");
+mbr_sgTable.appendChild(mbr_sgMSRColumn);
+
+const mbr_sgCSRColumn = createTableColumn("Circular scale reading (CSR)");
+mbr_sgTable.appendChild(mbr_sgCSRColumn);
+
+const mbr_sgDColumn = createTableColumn("Observed Diameter (mm)");
+mbr_sgTable.appendChild(mbr_sgDColumn);
+
+mbr_addSGRow();
+mbr_sgTableDiv.appendChild(setRippleStyle(createButton("mbr-sg-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", mbr_addSGRow)));
 
 let mbr_meanDiameterInput = createInput(
   "mbr-sg-mean-d-input",
@@ -486,80 +571,3 @@ mbr_soeDiv.appendChild(createPAS("3", "The wire may get heated due to the passag
 mbr_soeDiv.appendChild(createPAS("4", "The screw gauge may have a backlash error due to loose fittings of its screw."));
 // #endregion Sources of errors
 
-// #region Functions
-let mbr_wireLength = 0;
-let mbr_meanR = 0;
-let mbr_meanD = 0;
-let mbr_sgLeastCount = 0;
-let mbr_sgCorrection = 0;
-
-function measureEssentials_mbr() {
-  mbr_wireLength = parseFloat(mbr_wireLengthInput.value) || 0;
-  mbr_sgLeastCount = parseFloat(mbr_sgLeastCountInput.value) || 0;
-  let ze1 = parseFloat(mbr_ze1Input.value) || 0;
-  let ze2 = parseFloat(mbr_ze2Input.value) || 0;
-  let ze3 = parseFloat(mbr_ze3Input.value) || 0;
-  mbr_sgCorrection = -(ze1 + ze2 + ze3) / 3;
-  measureDiameter_mbr();
-}
-
-function measureDiameter_mbr() {
-  let sumD = 0;
-  let validReadings = 0;
-
-  for (let i = 1; i <= 5; i++) {
-    let MSR = parseFloat(document.getElementById(`mbr-table-msr-${i}`).value) || 0;
-    let CSR = parseFloat(document.getElementById(`mbr-table-csr-${i}`).value) || 0;
-    
-    let D = MSR + CSR * mbr_sgLeastCount;
-    document.getElementById(`mbr-table-sg-D-${i}`).value = D;
-    
-    if (D > 0) {
-      sumD += D;
-      validReadings++;
-    }
-  }
-  if (validReadings > 0) {
-    mbr_meanD = sumD / validReadings;
-    mbr_meanDiameterInput.value = mbr_meanD.toFixed(2);
-    mbr_meanD += mbr_sgCorrection;
-    mbr_correctedDiameterInput.value = mbr_meanD.toFixed(2);
-    measureSpecificResistance_mbr();
-  }
-}
-
-function measureResistance_mbr() {
-  let sumR = 0;
-  let validReadings = 0;
-
-  for (let i = 1; i <= 5; i++) {
-    let Q = parseFloat(document.getElementById(`mbr-table-Q-${i}`).value) || 0;
-    let D = parseFloat(document.getElementById(`mbr-table-D-${i}`).value) || 0;
-
-    document.getElementById(`mbr-table-AD-${i}`).value = D;
-
-    let DC = 100 - D;
-    document.getElementById(`mbr-table-DC-${i}`).value = DC;
-
-    let X = (D / DC) * Q;
-    document.getElementById(`mbr-table-X-${i}`).value = X.toFixed(2);
-
-    if (X > 0) {
-      sumR += X;
-      validReadings++;
-    }
-  }
-  mbr_meanR = sumR / validReadings;
-  mbr_resistanceInput.value = mbr_meanR.toFixed(2);
-  measureSpecificResistance_mbr();
-}
-
-function measureSpecificResistance_mbr() {
-  if (mbr_wireLength > 0) {
-    let D = parseFloat(mbr_meanDiameterInput.value)/100;
-    let R = parseFloat(mbr_resistanceInput.value) || 0;
-    let SR = (R * 3.14 * D * D) / (mbr_wireLength * 4);
-    mbr_specificResistanceInput.value = changeToStandard(SR);
-  }
-}
-// #endregion Functions

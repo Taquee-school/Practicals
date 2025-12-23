@@ -1,5 +1,98 @@
 let ohmsLawDiv = createDiv("practical-file", "physics-practical");
 
+
+// #region Functions
+let ohl_ammeterLc = null;
+let ohl_voltmeterLc = null;
+let ohl_rowCount = 0;
+
+function measureEssentials_ohl() {
+  ohl_ammeterLc = parseFloat(ohl_ammeterLcInput.value) || 0;
+  ohl_voltmeterLc = parseFloat(ohl_voltmeterLcInput.value) || 0;
+  measureResistance_ohl();
+}
+
+function measureResistance_ohl() {
+  let sum_r = 0;
+
+  for (let i = 1; i <= ohl_rowCount; i++) {
+    // Remove invalid check if it was added.
+    if (document.getElementById(`ohl-a-div-${i}`).classList.contains("invalid")) {
+      document.getElementById(`ohl-a-div-${i}`).classList.remove("invalid");
+    }
+    if (document.getElementById(`ohl-v-div-${i}`).classList.contains("invalid")) {
+      document.getElementById(`ohl-v-div-${i}`).classList.remove("invalid");
+    }
+
+    let a_div = parseFloat(document.getElementById(`ohl-a-div-${i}`).value) || 0;
+    let v_div = parseFloat(document.getElementById(`ohl-v-div-${i}`).value) || 0;
+
+    let c = (a_div * ohl_ammeterLc) / 1000;
+    let v = v_div * ohl_voltmeterLc;
+    document.getElementById(`ohl-current-${i}`).value = c.toFixed(4);
+    document.getElementById(`ohl-voltage-${i}`).value = v.toFixed(4);
+
+    if (!(c > 0)) {
+      // Addind invalid check because there sould be current to find resistance.
+      if (!(document.getElementById(`ohl-a-div-${i}`).classList.contains("invalid"))) {
+        document.getElementById(`ohl-a-div-${i}`).classList.add("invalid");
+      }
+      continue;
+    }
+    if (!(v > 0)) {
+      // Addind invalid check because there sould be voltage to find resistance.
+      if (!(document.getElementById(`ohl-v-div-${i}`).classList.contains("invalid"))) {
+        document.getElementById(`ohl-v-div-${i}`).classList.add("invalid");
+      }
+      continue;
+    }
+
+    let r = v / c;
+    document.getElementById(`ohl-res-${i}`).value = r.toFixed(2);
+
+    sum_r += r;
+  }
+
+  let meanR = sum_r / ohl_rowCount;
+  ohl_resistanceInput.value = meanR.toFixed(2);
+}
+
+function ohl_addRow() {
+  ohl_rowCount++;
+  setTimeout(() => {
+    let inp = createInput(`ohl-s-no-${ohl_rowCount}`, "number", ohl_rowCount, measureResistance_ohl);
+    ohl_sNoColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 10);
+  setTimeout(() => {
+    let inp = createInput(`ohl-a-div-${ohl_rowCount}`, "number", 0, measureResistance_ohl);
+    ohl_aDivColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 50);
+  setTimeout(() => {
+    let inp = createInput(`ohl-current-${ohl_rowCount}`, "number", 0, null, true);
+    ohl_currentColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 100);
+  setTimeout(() => {
+    let inp = createInput(`ohl-v-div-${ohl_rowCount}`, "number", 0, measureResistance_ohl);
+    ohl_vDivColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 150);
+  setTimeout(() => {
+    let inp = createInput(`ohl-voltage-${ohl_rowCount}`, "number", 0, null, true);
+    ohl_voltageColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 200);
+  setTimeout(() => {
+    let inp = createInput(`ohl-res-${ohl_rowCount}`, "number", 0, null, true);
+    ohl_resistanceColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 250);
+}
+// #endregion Functions
+
+
 // #region Diagram
 let ohl_diagramDiv = createDiv("practical-section");
 ohmsLawDiv.appendChild(ohl_diagramDiv);
@@ -130,48 +223,27 @@ ohl_observationDiv.appendChild(ohl_resistanceTableDiv);
 let ohl_resistanceTable = createDiv("observation-table");
 ohl_resistanceTableDiv.appendChild(ohl_resistanceTable);
 
-ohl_resistanceTable.appendChild(
-  createColumn(
-    "S.no",
-    10,
-    null,
-    "number",
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    null,
-    true
-  )
-);
-ohl_resistanceTable.appendChild(
-  createColumn(
-    "Divisions on ammeter",
-    10,
-    "ohl-a-div",
-    "number",
-    0,
-    measureResistance_ohl,
-    false
-  )
-);
-ohl_resistanceTable.appendChild(
-  createColumn("Current (I) (A)", 10, "ohl-current", "number", 0, null, true)
-);
-ohl_resistanceTable.appendChild(
-  createColumn(
-    "Divisions on voltmeter",
-    10,
-    "ohl-v-div",
-    "number",
-    [4, 8, 12, 16, 20, 24, 28, 32, 36, 40],
-    null,
-    true
-  )
-);
-ohl_resistanceTable.appendChild(
-  createColumn("Voltage (V) (V)", 10, "ohl-voltage", "number", 0, null, true)
-);
-ohl_resistanceTable.appendChild(
-  createColumn("R = V/I (Ω)", 10, "ohl-res", "number", 0, null, true)
-);
+const ohl_sNoColumn = createTableColumn("S.no");
+ohl_resistanceTable.appendChild(ohl_sNoColumn);
+
+const ohl_aDivColumn = createTableColumn("Divisions on ammeter");
+ohl_resistanceTable.appendChild(ohl_aDivColumn);
+
+const ohl_currentColumn = createTableColumn("Current (I) (A)");
+ohl_resistanceTable.appendChild(ohl_currentColumn);
+
+const ohl_vDivColumn = createTableColumn("Divisions on voltmeter");
+ohl_resistanceTable.appendChild(ohl_vDivColumn);
+
+const ohl_voltageColumn = createTableColumn("Voltage (V) (V)");
+ohl_resistanceTable.appendChild(ohl_voltageColumn);
+
+const ohl_resistanceColumn = createTableColumn("R = V/I (Ω)");
+ohl_resistanceTable.appendChild(ohl_resistanceColumn);
+
+ohl_addRow();
+ohl_resistanceTableDiv.appendChild(setRippleStyle(createButton("ohl-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", ohl_addRow)));
+ohl_resistanceTableDiv.appendChild(setRippleStyle(createButton("ohl-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", ohl_addRow)));
 // #endregion Observation
 
 // #region Result
@@ -281,41 +353,3 @@ ohmsLaw_soeDiv.appendChild(
   createPAS("3", "The wire may not have uniform thickness.")
 );
 // #endregion Sources of Errors
-
-// #region Functions
-let ohl_ammeterLc = null;
-let ohl_voltmeterLc = null;
-
-function measureEssentials_ohl() {
-  ohl_ammeterLc = parseFloat(ohl_ammeterLcInput.value) || 0;
-  ohl_voltmeterLc = parseFloat(ohl_voltmeterLcInput.value) || 0;
-  measureResistance_ohl();
-}
-
-function measureResistance_ohl() {
-  let sum_r = 0;
-  let validReadings = 0;
-
-  for (let i = 1; i <= 10; i++) {
-    let a_div =
-      parseFloat(document.getElementById(`ohl-a-div-${i}`).value) || 0;
-    let v_div =
-      parseFloat(document.getElementById(`ohl-v-div-${i}`).value) || 0;
-    let c = (a_div * ohl_ammeterLc) / 1000;
-    let v = v_div * ohl_voltmeterLc;
-    document.getElementById(`ohl-current-${i}`).value = c.toFixed(4);
-    document.getElementById(`ohl-voltage-${i}`).value = v.toFixed(4);
-    let r = v / c;
-    document.getElementById(`ohl-res-${i}`).value = r.toFixed(2);
-
-    if (a_div > 0) {
-      sum_r += r;
-      validReadings++;
-    }
-  }
-
-  let meanR = sum_r / validReadings;
-
-  ohl_resistanceInput.value = meanR.toFixed(2);
-}
-// #endregion Functions

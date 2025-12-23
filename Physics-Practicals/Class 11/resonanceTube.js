@@ -1,3 +1,14 @@
+// #region Functions
+let rst_rowCount = 0;
+
+function measureEssentials_rst() {
+}
+
+function rst_addRow() {
+    rst_rowCount++;
+}
+// #endregion Functions
+
 let resonanceTubeDiv = createDiv("practical-file", "physics-practical");
 
 let rst_diagramDiv = createDiv("practical-section");
@@ -181,9 +192,10 @@ rst_observationDiv.appendChild(rst_diameterTableDiv);
 let rst_diameterTable = createDiv("observation-table");
 rst_diameterTableDiv.appendChild(rst_diameterTable);
 
-rst_diameterTable.appendChild(
-  createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
+const rst_sNoColumn = createTableColumn("S.no");
+rst_diameterTable.appendChild(rst_sNoColumn);
+
+rst_addRow();
 
 let rst_meanDiameterInput = createInput(
   "rst-mean-observed-diameter-input",
@@ -239,5 +251,3 @@ rst_precautionsDiv.appendChild(createPAS("2", ""));
 rst_precautionsDiv.appendChild(createPAS("3", ""));
 rst_precautionsDiv.appendChild(createPAS("4", ""));
 rst_precautionsDiv.appendChild(createPAS("5", ""));
-
-function measureEssentials_rst() { }

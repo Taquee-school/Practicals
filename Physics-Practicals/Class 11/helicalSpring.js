@@ -1,3 +1,14 @@
+// #region Functions
+let hls_rowCount = 0;
+
+function measureEssentials_hls() {
+}
+
+function hls_addRow() {
+    hls_rowCount++;
+}
+// #endregion Functions
+
 let helicalSpringDiv = createDiv("practical-file", "physics-practical");
 
 let hls_diagramDiv = createDiv("practical-section");
@@ -181,9 +192,11 @@ hls_observationDiv.appendChild(hls_diameterTableDiv);
 let hls_diameterTable = createDiv("observation-table");
 hls_diameterTableDiv.appendChild(hls_diameterTable);
 
-hls_diameterTable.appendChild(
-  createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
+const hls_sNoColumn = createTableColumn("S.no");
+hls_diameterTable.appendChild(hls_sNoColumn);
+
+hls_addRow();
+
 
 let hls_meanDiameterInput = createInput(
   "hls-mean-observed-diameter-input",
@@ -240,4 +253,4 @@ hls_precautionsDiv.appendChild(createPAS("3", ""));
 hls_precautionsDiv.appendChild(createPAS("4", ""));
 hls_precautionsDiv.appendChild(createPAS("5", ""));
 
-function measureEssentials_hls() { }
+

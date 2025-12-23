@@ -1,3 +1,14 @@
+// #region Functions
+let prl_rowCount = 0;
+
+function measureEssentials_prl() {
+}
+
+function prl_addRow() {
+    prl_rowCount++;
+}
+// #endregion Functions
+
 let parallelogramDiv = createDiv("practical-file", "physics-practical");
 
 let prl_diagramDiv = createDiv("practical-section");
@@ -181,9 +192,10 @@ prl_observationDiv.appendChild(prl_diameterTableDiv);
 let prl_diameterTable = createDiv("observation-table");
 prl_diameterTableDiv.appendChild(prl_diameterTable);
 
-prl_diameterTable.appendChild(
-  createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
+const prl_sNoColumn = createTableColumn("S.no");
+prl_diameterTable.appendChild(prl_sNoColumn);
+
+prl_addRow();
 
 let prl_meanDiameterInput = createInput(
   "prl-mean-observed-diameter-input",
@@ -240,4 +252,4 @@ prl_precautionsDiv.appendChild(createPAS("3", ""));
 prl_precautionsDiv.appendChild(createPAS("4", ""));
 prl_precautionsDiv.appendChild(createPAS("5", ""));
 
-function measureEssentials_prl() { }
+

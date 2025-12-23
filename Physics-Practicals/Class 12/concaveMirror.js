@@ -1,5 +1,110 @@
 let concaveMirrorDiv = createDiv("practical-file", "physics-practical");
 
+// #region Functions
+let ccm_lengthOfNeedle = null;
+let ccm_distanceMirrorObject = null;
+let ccm_distanceMirrorImage = null;
+
+let ccm_indexCorrectionU = 0;
+let ccm_indexCorrectionV = 0;
+let ccm_rowCount = 0;
+
+function measureEssentials_ccm() {
+  let X = parseFloat(ccm_lengthOfNeedleInput.value) || 0;
+  let Y = parseFloat(ccm_distanceMirrorObjectInput.value) || 0;
+  let Z = parseFloat(ccm_distanceMirrorImageInput.value) || 0;
+
+  let ccm_indexErrorU = Y - X;
+  ccm_indexCorrectionU = -ccm_indexErrorU;
+  ccm_indexErrorUInput.value = ccm_indexErrorU.toFixed(2);
+  ccm_indexCorrectionUInput.value = ccm_indexCorrectionU.toFixed(2);
+
+  let ccm_indexErrorV = Z - X;
+  ccm_indexCorrectionV = -ccm_indexErrorV;
+  ccm_indexErrorVInput.value = ccm_indexErrorV.toFixed(2);
+  ccm_indexCorrectionVInput.value = ccm_indexCorrectionV.toFixed(2);
+  
+  measureFocalLength_ccm();
+}
+
+function measureFocalLength_ccm() {
+  let sumF = 0;
+
+  for (let i = 1; i <= ccm_rowCount; i++) {
+    let P = parseFloat(document.getElementById(`ccm-table-P-${i}`).value) || 0;
+    let O = parseFloat(document.getElementById(`ccm-table-O-${i}`).value) || 0;
+    let I = parseFloat(document.getElementById(`ccm-table-I-${i}`).value) || 0;
+
+    let u_obs = Math.abs(P - O);
+    let u_cor = u_obs + ccm_indexCorrectionU;
+    document.getElementById(`ccm-table-U-obs-${i}`).value = u_obs.toFixed(2);
+    document.getElementById(`ccm-table-U-cor-${i}`).value = u_cor.toFixed(2);
+
+    let v_obs = Math.abs(P - I);
+    let v_cor = v_obs + ccm_indexCorrectionV;
+    document.getElementById(`ccm-table-I-obs-${i}`).value = v_obs.toFixed(2);
+    document.getElementById(`ccm-table-I-cor-${i}`).value = v_cor.toFixed(2);
+
+    let f = (u_cor * v_cor) / (u_cor + v_cor);
+    document.getElementById(`ccm-table-F-${i}`).value = f.toFixed(3);
+
+    sumF += f;
+  }
+
+  focalLength = sumF / ccm_rowCount;
+  ccm_focalLengthCalculatedInput.value = focalLength.toFixed(3);
+}
+
+function ccm_addRow() {
+    ccm_rowCount++;
+    setTimeout(() => {
+        let inp = createInput(`ccm-s-no-${ccm_rowCount}`, "number", ccm_rowCount, null, true);
+        ccm_sNoColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 10);
+    setTimeout(() => {
+        let inp = createInput(`ccm-table-P-${ccm_rowCount}`, "number", 0, measureFocalLength_ccm);
+        ccm_PColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 50);
+    setTimeout(() => {
+        let inp = createInput(`ccm-table-O-${ccm_rowCount}`, "number", 0, measureFocalLength_ccm);
+        ccm_OColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 100);
+    setTimeout(() => {
+        let inp = createInput(`ccm-table-I-${ccm_rowCount}`, "number", 0, measureFocalLength_ccm);
+        ccm_IColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 150);
+    setTimeout(() => {
+        let inp = createInput(`ccm-table-U-obs-${ccm_rowCount}`, "number", 0, null, true);
+        ccm_UObsColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 200);
+    setTimeout(() => {
+        let inp = createInput(`ccm-table-U-cor-${ccm_rowCount}`, "number", 0, null, true);
+        ccm_UCorColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 250);
+    setTimeout(() => {
+        let inp = createInput(`ccm-table-I-obs-${ccm_rowCount}`, "number", 0, null, true);
+        ccm_IObsColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 300);
+    setTimeout(() => {
+        let inp = createInput(`ccm-table-I-cor-${ccm_rowCount}`, "number", 0, null, true);
+        ccm_ICorColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 350);
+    setTimeout(() => {
+        let inp = createInput(`ccm-table-F-${ccm_rowCount}`, "number", 0, null, true);
+        ccm_FColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 400);
+}
+// #endregion Functions
+
 // #region Diagram
 let ccm_diagramDiv = createDiv("practical-section");
 concaveMirrorDiv.appendChild(ccm_diagramDiv);
@@ -235,113 +340,35 @@ ccm_observationDiv.appendChild(ccm_distanceTableDiv);
 let ccm_distanceTable = createDiv("observation-table");
 ccm_distanceTableDiv.appendChild(ccm_distanceTable);
 
-ccm_distanceTable.appendChild(
-  createColumn(
-    "S.no",
-    10,
-    null,
-    "number",
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    null,
-    true
-  )
-);
+const ccm_sNoColumn = createTableColumn("S.no");
+ccm_distanceTable.appendChild(ccm_sNoColumn);
 
-ccm_distanceTable.appendChild(
-  createColumn(
-    "The mirror (P) cm",
-    10,
-    "ccm-table-P",
-    "number",
-    0,
-    measureFocalLength_ccm,
-    false
-  )
-);
+const ccm_PColumn = createTableColumn("The mirror (P) cm");
+ccm_distanceTable.appendChild(ccm_PColumn);
 
-ccm_distanceTable.appendChild(
-  createColumn(
-    "Object Needle (O) cm",
-    10,
-    "ccm-table-O",
-    "number",
-    0,
-    measureFocalLength_ccm,
-    false
-  )
-);
+const ccm_OColumn = createTableColumn("Object Needle (O) cm");
+ccm_distanceTable.appendChild(ccm_OColumn);
 
-ccm_distanceTable.appendChild(
-  createColumn(
-    "Image Needle (I) cm",
-    10,
-    "ccm-table-I",
-    "number",
-    0,
-    measureFocalLength_ccm,
-    false
-  )
-);
+const ccm_IColumn = createTableColumn("Image Needle (I) cm");
+ccm_distanceTable.appendChild(ccm_IColumn);
 
-ccm_distanceTable.appendChild(
-  createColumn(
-    "Object Distance Observed (cm)",
-    10,
-    "ccm-table-U-obs",
-    "number",
-    0,
-    null,
-    true
-  )
-);
+const ccm_UObsColumn = createTableColumn("Object Distance Observed (cm)");
+ccm_distanceTable.appendChild(ccm_UObsColumn);
 
-ccm_distanceTable.appendChild(
-  createColumn(
-    "Object Distance Corrected (cm)",
-    10,
-    "ccm-table-U-cor",
-    "number",
-    0,
-    null,
-    true
-  )
-);
+const ccm_UCorColumn = createTableColumn("Object Distance Corrected (cm)");
+ccm_distanceTable.appendChild(ccm_UCorColumn);
 
-ccm_distanceTable.appendChild(
-  createColumn(
-    "Image Distance Observed (cm)",
-    10,
-    "ccm-table-I-obs",
-    "number",
-    0,
-    null,
-    true
-  )
-);
+const ccm_IObsColumn = createTableColumn("Image Distance Observed (cm)");
+ccm_distanceTable.appendChild(ccm_IObsColumn);
 
-ccm_distanceTable.appendChild(
-  createColumn(
-    "Image Distance Corrected (cm)",
-    10,
-    "ccm-table-I-cor",
-    "number",
-    0,
-    null,
-    true
-  )
-);
+const ccm_ICorColumn = createTableColumn("Image Distance Corrected (cm)");
+ccm_distanceTable.appendChild(ccm_ICorColumn);
 
-ccm_distanceTable.appendChild(
-  createColumn(
-    "f = uv/(u+v) (cm)",
-    10,
-    "ccm-table-F",
-    "number",
-    0,
-    null,
-    true
-  )
-);
+const ccm_FColumn = createTableColumn("f = uv/(u+v) (cm)");
+ccm_distanceTable.appendChild(ccm_FColumn);
+
+ccm_addRow();
+ccm_distanceTableDiv.appendChild(setRippleStyle(createButton("ccm-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", ccm_addRow)));
 // #endregion Observation
 
 // #region Result
@@ -417,63 +444,4 @@ ccm_SOEDiv.appendChild(createPAS("4", ""));
 ccm_SOEDiv.appendChild(createPAS("5", ""));
 // #endregion Sources of Errors
 
-// #region Functions
-let ccm_lengthOfNeedle = null;
-let ccm_distanceMirrorObject = null;
-let ccm_distanceMirrorImage = null;
 
-let ccm_indexCorrectionU = 0;
-let ccm_indexCorrectionV = 0;
-
-function measureEssentials_ccm() {
-  let X = parseFloat(ccm_lengthOfNeedleInput.value) || 0;
-  let Y = parseFloat(ccm_distanceMirrorObjectInput.value) || 0;
-  let Z = parseFloat(ccm_distanceMirrorImageInput.value) || 0;
-
-  let ccm_indexErrorU = Y - X;
-  ccm_indexCorrectionU = -ccm_indexErrorU;
-  ccm_indexErrorUInput.value = ccm_indexErrorU.toFixed(2);
-  ccm_indexCorrectionUInput.value = ccm_indexCorrectionU.toFixed(2);
-
-  let ccm_indexErrorV = Z - X;
-  ccm_indexCorrectionV = -ccm_indexErrorV;
-  ccm_indexErrorVInput.value = ccm_indexErrorV.toFixed(2);
-  ccm_indexCorrectionVInput.value = ccm_indexCorrectionV.toFixed(2);
-}
-
-function measureFocalLength_ccm() {
-  let sumF = 0;
-  let validReadings = 0;
-
-  for (let i = 1; i <= 9; i++) {
-    let P = parseFloat(document.getElementById(`ccm-table-P-${i}`).value) || 0;
-    let O = parseFloat(document.getElementById(`ccm-table-O-${i}`).value) || 0;
-    let I = parseFloat(document.getElementById(`ccm-table-I-${i}`).value) || 0;
-
-    let u_obs = abs(P - O);
-    let u_cor = u_obs + ccm_indexCorrectionU;
-    document.getElementById(`ccm-table-U-obs-${i}`).value = u_obs.toFixed(2);
-    document.getElementById(`ccm-table-U-cor-${i}`).value = u_cor.toFixed(2);
-
-    let v_obs = abs(P - I);
-    let v_cor = v_obs + ccm_indexCorrectionV;
-    document.getElementById(`ccm-table-I-obs-${i}`).value = v_obs.toFixed(2);
-    document.getElementById(`ccm-table-I-cor-${i}`).value = v_cor.toFixed(2);
-
-    let f = (u_cor * v_cor) / (u_cor + v_cor);
-    document.getElementById(`ccm-table-F-${i}`).value = f.toFixed(3);
-
-    if (
-      f >
-      (ccm_indexCorrectionU * ccm_indexCorrectionV) /
-      (ccm_indexCorrectionU + ccm_indexCorrectionV)
-    ) {
-      sumF += f;
-      validReadings++;
-    }
-  }
-
-  focalLength = sumF / validReadings;
-  ccm_focalLengthCalculatedInput.value = focalLength.toFixed(3);
-}
-// #endregion Functions

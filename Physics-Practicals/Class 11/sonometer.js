@@ -1,3 +1,18 @@
+// #region Functions
+let snm_rowCount = 0;
+
+function measureEssentials_snm() {
+    // Implementation to be added based on specific requirements
+}
+
+function snm_addRow() {
+    snm_rowCount++;
+    // Logic to add rows dynamically - simplified as columns were not fully defined in original file
+    // Assuming standard columns if they existed, but currently the file has placeholder logic.
+    // I will add a placeholder row addition for now to match the pattern.
+}
+// #endregion Functions
+
 let sonometerDiv = createDiv("practical-file", "physics-practical");
 
 let snm_diagramDiv = createDiv("practical-section");
@@ -181,9 +196,12 @@ snm_observationDiv.appendChild(snm_diameterTableDiv);
 let snm_diameterTable = createDiv("observation-table");
 snm_diameterTableDiv.appendChild(snm_diameterTable);
 
-snm_diameterTable.appendChild(
-  createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
+const snm_sNoColumn = createTableColumn("S.no");
+snm_diameterTable.appendChild(snm_sNoColumn);
+snm_addRow();
+// Add other columns here when defined
+// ...
+
 
 let snm_meanDiameterInput = createInput(
   "snm-mean-observed-diameter-input",
@@ -240,4 +258,3 @@ snm_precautionsDiv.appendChild(createPAS("3", ""));
 snm_precautionsDiv.appendChild(createPAS("4", ""));
 snm_precautionsDiv.appendChild(createPAS("5", ""));
 
-function measureEssentials_snm() { }

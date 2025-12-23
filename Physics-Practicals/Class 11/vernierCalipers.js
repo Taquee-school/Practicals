@@ -1,5 +1,236 @@
 let vernierCalipersDiv = createDiv("practical-file", "physics-practical");
 
+
+// #region Volume Calculation
+function calculateVolume_vnc() {
+    let de = parseFloat(vnc_correctedExternalDiameterInput.value) || 0;
+    let di = parseFloat(vnc_correctedInternalDiameterInput.value) || 0;
+    let he = parseFloat(vnc_correctedExternalHeightInput.value) || 0;
+    let hi = parseFloat(vnc_correctedInternalHeightInput.value) || 0;
+
+    let volume = (Math.PI * (de * de * he - di * di * hi)) / 4;
+    vnc_masspulInput.value = volume.toFixed(4);
+}
+// #endregion
+
+// #region Measurement Functions
+let vnc_leastCount = 0;
+let vnc_zeroError = 0;
+
+function measureEssentials_vnc() {
+    let mainScaleDiv = parseFloat(vnc_mainScaleDivInput.value) || 0;
+    let vernierScaleDiv = parseFloat(vnc_vernierScaleDivInput.value) || 0;
+
+    vnc_leastCount = vernierScaleDiv > 0 ? mainScaleDiv / vernierScaleDiv : 0;
+    vnc_leastCountInput.value = vnc_leastCount.toFixed(3);
+
+    let ze1 = parseFloat(vnc_ze1Input.value) || 0;
+    let ze2 = parseFloat(vnc_ze2Input.value) || 0;
+    let ze3 = parseFloat(vnc_ze3Input.value) || 0;
+
+    vnc_zeroError = (ze1 + ze2 + ze3) / 3;
+    vnc_meanZeroErrorInput.value = vnc_zeroError.toFixed(4);
+    vnc_zeroCorrectionInput.value = (-vnc_zeroError).toFixed(4);
+
+    measureExternalDiameter_vnc();
+    measureInternalDiameter_vnc();
+    measureExternalHeight_vnc();
+    measureInternalHeight_vnc();
+}
+
+// External Diameter
+let vnc_ex_d_rowCount = 0;
+function measureExternalDiameter_vnc() {
+    let sum = 0;
+    for (let i = 1; i <= vnc_ex_d_rowCount; i++) {
+        let msr = parseFloat(document.getElementById(`vnc-ex-d-msr-${i}`).value) || 0;
+        let div = parseFloat(document.getElementById(`vnc-ex-d-div-${i}`).value) || 0;
+        let vsr = div * vnc_leastCount;
+        document.getElementById(`vnc-ex-d-vsr-${i}`).value = vsr.toFixed(3);
+        let obs = msr + vsr;
+        document.getElementById(`vnc-ex-d-obs-${i}`).value = obs.toFixed(3);
+        sum += obs;
+    }
+    let mean = sum / vnc_ex_d_rowCount;
+    vnc_meanExternalDiameterInput.value = mean.toFixed(3);
+    let corrected = mean + (parseFloat(vnc_zeroCorrectionInput.value) || 0);
+    vnc_correctedExternalDiameterInput.value = corrected.toFixed(3);
+    calculateVolume_vnc();
+}
+function vnc_addExDRow() {
+    vnc_ex_d_rowCount++;
+    setTimeout(() => {
+        let inp = createInput(`vnc-ex-d-sno-${vnc_ex_d_rowCount}`, "number", vnc_ex_d_rowCount, null, true);
+        vnc_ex_d_sNoColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 10);
+    setTimeout(() => {
+        let inp = createInput(`vnc-ex-d-msr-${vnc_ex_d_rowCount}`, "number", 0, measureExternalDiameter_vnc);
+        vnc_ex_d_msrColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 50);
+    setTimeout(() => {
+        let inp = createInput(`vnc-ex-d-div-${vnc_ex_d_rowCount}`, "number", 0, measureExternalDiameter_vnc);
+        vnc_ex_d_divColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 100);
+    setTimeout(() => {
+        let inp = createInput(`vnc-ex-d-vsr-${vnc_ex_d_rowCount}`, "number", 0, null, true);
+        vnc_ex_d_vsrColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 150);
+    setTimeout(() => {
+        let inp = createInput(`vnc-ex-d-obs-${vnc_ex_d_rowCount}`, "number", 0, null, true);
+        vnc_ex_d_obsColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 200);
+}
+
+// Internal Diameter
+let vnc_in_d_rowCount = 0;
+function measureInternalDiameter_vnc() {
+    let sum = 0;
+    for (let i = 1; i <= vnc_in_d_rowCount; i++) {
+        let msr = parseFloat(document.getElementById(`vnc-in-d-msr-${i}`).value) || 0;
+        let div = parseFloat(document.getElementById(`vnc-in-d-div-${i}`).value) || 0;
+        let vsr = div * vnc_leastCount;
+        document.getElementById(`vnc-in-d-vsr-${i}`).value = vsr.toFixed(3);
+        let obs = msr + vsr;
+        document.getElementById(`vnc-in-d-obs-${i}`).value = obs.toFixed(3);
+        sum += obs;
+    }
+    let mean = sum / vnc_in_d_rowCount;
+    vnc_meanInternalDiameterInput.value = mean.toFixed(3);
+    let corrected = mean + (parseFloat(vnc_zeroCorrectionInput.value) || 0);
+    vnc_correctedInternalDiameterInput.value = corrected.toFixed(3);
+    calculateVolume_vnc();
+}
+function vnc_addInDRow() {
+    vnc_in_d_rowCount++;
+    setTimeout(() => {
+        let inp = createInput(`vnc-in-d-sno-${vnc_in_d_rowCount}`, "number", vnc_in_d_rowCount, null, true);
+        vnc_in_d_sNoColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 10);
+    setTimeout(() => {
+        let inp = createInput(`vnc-in-d-msr-${vnc_in_d_rowCount}`, "number", 0, measureInternalDiameter_vnc);
+        vnc_in_d_msrColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 50);
+    setTimeout(() => {
+        let inp = createInput(`vnc-in-d-div-${vnc_in_d_rowCount}`, "number", 0, measureInternalDiameter_vnc);
+        vnc_in_d_divColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 100);
+    setTimeout(() => {
+        let inp = createInput(`vnc-in-d-vsr-${vnc_in_d_rowCount}`, "number", 0, null, true);
+        vnc_in_d_vsrColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 150);
+    setTimeout(() => {
+        let inp = createInput(`vnc-in-d-obs-${vnc_in_d_rowCount}`, "number", 0, null, true);
+        vnc_in_d_obsColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 200);
+}
+
+// External Height
+let vnc_ex_h_rowCount = 0;
+function measureExternalHeight_vnc() {
+    let sum = 0;
+    for (let i = 1; i <= vnc_ex_h_rowCount; i++) {
+        let msr = parseFloat(document.getElementById(`vnc-ex-h-msr-${i}`).value) || 0;
+        let div = parseFloat(document.getElementById(`vnc-ex-h-div-${i}`).value) || 0;
+        let vsr = div * vnc_leastCount;
+        document.getElementById(`vnc-ex-h-vsr-${i}`).value = vsr.toFixed(3);
+        let obs = msr + vsr;
+        document.getElementById(`vnc-ex-h-obs-${i}`).value = obs.toFixed(3);
+        sum += obs;
+    }
+    let mean = sum / vnc_ex_h_rowCount;
+    vnc_meanExternalHeightInput.value = mean.toFixed(3);
+    let corrected = mean + (parseFloat(vnc_zeroCorrectionInput.value) || 0);
+    vnc_correctedExternalHeightInput.value = corrected.toFixed(3);
+    calculateVolume_vnc();
+}
+function vnc_addExHRow() {
+    vnc_ex_h_rowCount++;
+    setTimeout(() => {
+        let inp = createInput(`vnc-ex-h-sno-${vnc_ex_h_rowCount}`, "number", vnc_ex_h_rowCount, null, true);
+        vnc_ex_h_sNoColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 10);
+    setTimeout(() => {
+        let inp = createInput(`vnc-ex-h-msr-${vnc_ex_h_rowCount}`, "number", 0, measureExternalHeight_vnc);
+        vnc_ex_h_msrColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 50);
+    setTimeout(() => {
+        let inp = createInput(`vnc-ex-h-div-${vnc_ex_h_rowCount}`, "number", 0, measureExternalHeight_vnc);
+        vnc_ex_h_divColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 100);
+    setTimeout(() => {
+        let inp = createInput(`vnc-ex-h-vsr-${vnc_ex_h_rowCount}`, "number", 0, null, true);
+        vnc_ex_h_vsrColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 150);
+    setTimeout(() => {
+        let inp = createInput(`vnc-ex-h-obs-${vnc_ex_h_rowCount}`, "number", 0, null, true);
+        vnc_ex_h_obsColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 200);
+}
+
+// Internal Height
+let vnc_in_h_rowCount = 0;
+function measureInternalHeight_vnc() {
+    let sum = 0;
+    for (let i = 1; i <= vnc_in_h_rowCount; i++) {
+        let msr = parseFloat(document.getElementById(`vnc-in-h-msr-${i}`).value) || 0;
+        let div = parseFloat(document.getElementById(`vnc-in-h-div-${i}`).value) || 0;
+        let vsr = div * vnc_leastCount;
+        document.getElementById(`vnc-in-h-vsr-${i}`).value = vsr.toFixed(3);
+        let obs = msr + vsr;
+        document.getElementById(`vnc-in-h-obs-${i}`).value = obs.toFixed(3);
+        sum += obs;
+    }
+    let mean = sum / vnc_in_h_rowCount;
+    vnc_meanInternalHeightInput.value = mean.toFixed(3);
+    let corrected = mean + (parseFloat(vnc_zeroCorrectionInput.value) || 0);
+    vnc_correctedInternalHeightInput.value = corrected.toFixed(3);
+    calculateVolume_vnc();
+}
+function vnc_addInHRow() {
+    vnc_in_h_rowCount++;
+    setTimeout(() => {
+        let inp = createInput(`vnc-in-h-sno-${vnc_in_h_rowCount}`, "number", vnc_in_h_rowCount, null, true);
+        vnc_in_h_sNoColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 10);
+    setTimeout(() => {
+        let inp = createInput(`vnc-in-h-msr-${vnc_in_h_rowCount}`, "number", 0, measureInternalHeight_vnc);
+        vnc_in_h_msrColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 50);
+    setTimeout(() => {
+        let inp = createInput(`vnc-in-h-div-${vnc_in_h_rowCount}`, "number", 0, measureInternalHeight_vnc);
+        vnc_in_h_divColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 100);
+    setTimeout(() => {
+        let inp = createInput(`vnc-in-h-vsr-${vnc_in_h_rowCount}`, "number", 0, null, true);
+        vnc_in_h_vsrColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 150);
+    setTimeout(() => {
+        let inp = createInput(`vnc-in-h-obs-${vnc_in_h_rowCount}`, "number", 0, null, true);
+        vnc_in_h_obsColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 200);
+}
+// #endregion Measurement Functions
+
 let vnc_diagramDiv = createDiv("practical-section");
 vernierCalipersDiv.appendChild(vnc_diagramDiv);
 
@@ -213,51 +444,23 @@ vnc_observationDiv.appendChild(vnc_externalDiameterTableDiv);
 let vnc_externalDiameterTable = createDiv("observation-table");
 vnc_externalDiameterTableDiv.appendChild(vnc_externalDiameterTable);
 
-vnc_externalDiameterTable.appendChild(
-    createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
-vnc_externalDiameterTable.appendChild(
-    createColumn(
-        "Main scale reading",
-        5,
-        "vnc-ex-d-msr",
-        "number",
-        0,
-        measureExternalDiameter_vnc
-    )
-);
-vnc_externalDiameterTable.appendChild(
-    createColumn(
-        "Vernier scale divisions",
-        5,
-        "vnc-ex-d-div",
-        "number",
-        0,
-        measureExternalDiameter_vnc
-    )
-);
-vnc_externalDiameterTable.appendChild(
-    createColumn(
-        "Vernier scale reading",
-        5,
-        "vnc-ex-d-vsr",
-        "number",
-        0,
-        null,
-        true
-    )
-);
-vnc_externalDiameterTable.appendChild(
-    createColumn(
-        "Vernier scale reading",
-        5,
-        "vnc-ex-d-obs",
-        "number",
-        0,
-        null,
-        true
-    )
-);
+const vnc_ex_d_sNoColumn = createTableColumn("S.no");
+vnc_externalDiameterTable.appendChild(vnc_ex_d_sNoColumn);
+
+const vnc_ex_d_msrColumn = createTableColumn("Main scale reading");
+vnc_externalDiameterTable.appendChild(vnc_ex_d_msrColumn);
+
+const vnc_ex_d_divColumn = createTableColumn("Vernier scale divisions");
+vnc_externalDiameterTable.appendChild(vnc_ex_d_divColumn);
+
+const vnc_ex_d_vsrColumn = createTableColumn("Vernier scale reading");
+vnc_externalDiameterTable.appendChild(vnc_ex_d_vsrColumn);
+
+const vnc_ex_d_obsColumn = createTableColumn("Total reading");
+vnc_externalDiameterTable.appendChild(vnc_ex_d_obsColumn);
+
+vnc_addExDRow();
+vnc_externalDiameterTableDiv.appendChild(setRippleStyle(createButton("vnc-ex-d-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", vnc_addExDRow)));
 
 let vnc_meanExternalDiameterInput = createInput(
     "vnc-mean-observed-diameter-input",
@@ -266,7 +469,7 @@ let vnc_meanExternalDiameterInput = createInput(
 );
 vnc_observationDiv.appendChild(
     createInputDiv(
-        "Mean observed internal height: ",
+        "Mean observed external diameter: ",
         vnc_meanExternalDiameterInput,
         "cm"
     )
@@ -279,7 +482,7 @@ let vnc_correctedExternalDiameterInput = createInput(
 );
 vnc_observationDiv.appendChild(
     createInputDiv(
-        "corrected internal height: ",
+        "Corrected external diameter: ",
         vnc_correctedExternalDiameterInput,
         "cm"
     )
@@ -297,51 +500,23 @@ vnc_observationDiv.appendChild(vnc_internalDiameterTableDiv);
 let vnc_internalDiameterTable = createDiv("observation-table");
 vnc_internalDiameterTableDiv.appendChild(vnc_internalDiameterTable);
 
-vnc_internalDiameterTable.appendChild(
-    createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
-vnc_internalDiameterTable.appendChild(
-    createColumn(
-        "Main scale reading",
-        5,
-        "vnc-in-d-msr",
-        "number",
-        0,
-        measureInternalDiameter_vnc
-    )
-);
-vnc_internalDiameterTable.appendChild(
-    createColumn(
-        "Vernier scale divisions",
-        5,
-        "vnc-in-d-div",
-        "number",
-        0,
-        measureInternalDiameter_vnc
-    )
-);
-vnc_internalDiameterTable.appendChild(
-    createColumn(
-        "Vernier scale reading",
-        5,
-        "vnc-in-d-vsr",
-        "number",
-        0,
-        null,
-        true
-    )
-);
-vnc_internalDiameterTable.appendChild(
-    createColumn(
-        "Vernier scale reading",
-        5,
-        "vnc-in-d-obs",
-        "number",
-        0,
-        null,
-        true
-    )
-);
+const vnc_in_d_sNoColumn = createTableColumn("S.no");
+vnc_internalDiameterTable.appendChild(vnc_in_d_sNoColumn);
+
+const vnc_in_d_msrColumn = createTableColumn("Main scale reading");
+vnc_internalDiameterTable.appendChild(vnc_in_d_msrColumn);
+
+const vnc_in_d_divColumn = createTableColumn("Vernier scale divisions");
+vnc_internalDiameterTable.appendChild(vnc_in_d_divColumn);
+
+const vnc_in_d_vsrColumn = createTableColumn("Vernier scale reading");
+vnc_internalDiameterTable.appendChild(vnc_in_d_vsrColumn);
+
+const vnc_in_d_obsColumn = createTableColumn("Total reading");
+vnc_internalDiameterTable.appendChild(vnc_in_d_obsColumn);
+
+vnc_addInDRow();
+vnc_internalDiameterTableDiv.appendChild(setRippleStyle(createButton("vnc-in-d-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", vnc_addInDRow)));
 
 let vnc_meanInternalDiameterInput = createInput(
     "vnc-mean-observed-internal-diameter-input",
@@ -350,7 +525,7 @@ let vnc_meanInternalDiameterInput = createInput(
 );
 vnc_observationDiv.appendChild(
     createInputDiv(
-        "Mean observed internal height: ",
+        "Mean observed internal diameter: ",
         vnc_meanInternalDiameterInput,
         "cm"
     )
@@ -363,7 +538,7 @@ let vnc_correctedInternalDiameterInput = createInput(
 );
 vnc_observationDiv.appendChild(
     createInputDiv(
-        "corrected internal height: ",
+        "Corrected internal diameter: ",
         vnc_correctedInternalDiameterInput,
         "cm"
     )
@@ -381,51 +556,23 @@ vnc_observationDiv.appendChild(vnc_externalHeightTableDiv);
 let vnc_externalHeightTable = createDiv("observation-table");
 vnc_externalHeightTableDiv.appendChild(vnc_externalHeightTable);
 
-vnc_externalHeightTable.appendChild(
-    createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
-vnc_externalHeightTable.appendChild(
-    createColumn(
-        "Main scale reading",
-        5,
-        "vnc-ex-h-msr",
-        "number",
-        0,
-        measureExternalHeight_vnc
-    )
-);
-vnc_externalHeightTable.appendChild(
-    createColumn(
-        "Vernier scale divisions",
-        5,
-        "vnc-ex-h-div",
-        "number",
-        0,
-        measureExternalHeight_vnc
-    )
-);
-vnc_externalHeightTable.appendChild(
-    createColumn(
-        "Vernier scale reading",
-        5,
-        "vnc-ex-h-vsr",
-        "number",
-        0,
-        null,
-        true
-    )
-);
-vnc_externalHeightTable.appendChild(
-    createColumn(
-        "Vernier scale reading",
-        5,
-        "vnc-ex-h-obs",
-        "number",
-        0,
-        null,
-        true
-    )
-);
+const vnc_ex_h_sNoColumn = createTableColumn("S.no");
+vnc_externalHeightTable.appendChild(vnc_ex_h_sNoColumn);
+
+const vnc_ex_h_msrColumn = createTableColumn("Main scale reading");
+vnc_externalHeightTable.appendChild(vnc_ex_h_msrColumn);
+
+const vnc_ex_h_divColumn = createTableColumn("Vernier scale divisions");
+vnc_externalHeightTable.appendChild(vnc_ex_h_divColumn);
+
+const vnc_ex_h_vsrColumn = createTableColumn("Vernier scale reading");
+vnc_externalHeightTable.appendChild(vnc_ex_h_vsrColumn);
+
+const vnc_ex_h_obsColumn = createTableColumn("Total reading");
+vnc_externalHeightTable.appendChild(vnc_ex_h_obsColumn);
+
+vnc_addExHRow();
+vnc_externalHeightTableDiv.appendChild(setRippleStyle(createButton("vnc-ex-h-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", vnc_addExHRow)));
 
 let vnc_meanExternalHeightInput = createInput(
     "vnc-mean-observed-external-height-input",
@@ -447,7 +594,7 @@ let vnc_correctedExternalHeightInput = createInput(
 );
 vnc_observationDiv.appendChild(
     createInputDiv(
-        "corrected external height: ",
+        "Corrected external height: ",
         vnc_correctedExternalHeightInput,
         "cm"
     )
@@ -465,51 +612,23 @@ vnc_observationDiv.appendChild(vnc_internalHeightTableDiv);
 let vnc_internalHeightTable = createDiv("observation-table");
 vnc_internalHeightTableDiv.appendChild(vnc_internalHeightTable);
 
-vnc_internalHeightTable.appendChild(
-    createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
-vnc_internalHeightTable.appendChild(
-    createColumn(
-        "Main scale reading",
-        5,
-        "vnc-in-h-msr",
-        "number",
-        0,
-        measureInternalHeight_vnc
-    )
-);
-vnc_internalHeightTable.appendChild(
-    createColumn(
-        "Vernier scale divisions",
-        5,
-        "vnc-in-h-div",
-        "number",
-        0,
-        measureInternalHeight_vnc
-    )
-);
-vnc_internalHeightTable.appendChild(
-    createColumn(
-        "Vernier scale reading",
-        5,
-        "vnc-in-h-vsr",
-        "number",
-        0,
-        null,
-        true
-    )
-);
-vnc_internalHeightTable.appendChild(
-    createColumn(
-        "Vernier scale reading",
-        5,
-        "vnc-in-h-obs",
-        "number",
-        0,
-        null,
-        true
-    )
-);
+const vnc_in_h_sNoColumn = createTableColumn("S.no");
+vnc_internalHeightTable.appendChild(vnc_in_h_sNoColumn);
+
+const vnc_in_h_msrColumn = createTableColumn("Main scale reading");
+vnc_internalHeightTable.appendChild(vnc_in_h_msrColumn);
+
+const vnc_in_h_divColumn = createTableColumn("Vernier scale divisions");
+vnc_internalHeightTable.appendChild(vnc_in_h_divColumn);
+
+const vnc_in_h_vsrColumn = createTableColumn("Vernier scale reading");
+vnc_internalHeightTable.appendChild(vnc_in_h_vsrColumn);
+
+const vnc_in_h_obsColumn = createTableColumn("Total reading");
+vnc_internalHeightTable.appendChild(vnc_in_h_obsColumn);
+
+vnc_addInHRow();
+vnc_internalHeightTableDiv.appendChild(setRippleStyle(createButton("vnc-in-h-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", vnc_addInHRow)));
 
 let vnc_meanInternalHeightInput = createInput(
     "vnc-mean-observed-internal-height-input",
@@ -595,28 +714,3 @@ vnc_precautionsDiv.appendChild(
         "The jaws may not be exactly at right angle to the main scale."
     )
 );
-
-function measureEssentials_vnc() {
-    measureExternalDiameter_vnc();
-    measureInternalDiameter_vnc();
-    measureExternalHeight_vnc();
-    measureInternalHeight_vnc();
-}
-
-function measureExternalDiameter_vnc() {
-    measureVolume_vnc();
-}
-
-function measureInternalDiameter_vnc() {
-    measureVolume_vnc();
-}
-
-function measureExternalHeight_vnc() {
-    measureVolume_vnc();
-}
-
-function measureInternalHeight_vnc() {
-    measureVolume_vnc();
-}
-
-function measureVolume_vnc() { }

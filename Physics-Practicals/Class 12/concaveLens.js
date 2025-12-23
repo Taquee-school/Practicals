@@ -1,6 +1,122 @@
+// #region Functions
+// VARIABLES =============================
+let ccl_lengthOfNeedle = null;
+let ccl_distanceMirrorObject = null;
+let ccl_distanceMirrorImage = null;
+
+let ccl_indexCorrectionU = 0;
+let ccl_indexCorrectionV = 0;
+
+let ccl_rowCount = 0;
+
+// FUNCTIONS =============================
+function measureEssentials_ccl() {
+  let X = parseFloat(ccl_lengthOfNeedleInput.value) || 0;
+  let Y = parseFloat(ccl_distanceMirrorObjectInput.value) || 0;
+  let Z = parseFloat(ccl_distanceMirrorImageInput.value) || 0;
+
+  let ccl_indexErrorU = Y - X;
+  ccl_indexCorrectionU = -ccl_indexErrorU;
+  ccl_indexErrorUInput.value = ccl_indexErrorU.toFixed(2);
+  ccl_indexCorrectionUInput.value = ccl_indexCorrectionU.toFixed(2);
+
+  let ccl_indexErrorV = Z - X;
+  ccl_indexCorrectionV = -ccl_indexErrorV;
+  ccl_indexErrorVInput.value = ccl_indexErrorV.toFixed(2);
+  ccl_indexCorrectionVInput.value = ccl_indexCorrectionV.toFixed(2);
+  
+  measureFocalLength_ccl();
+}
+
+function measureFocalLength_ccl() {
+  let sumF = 0;
+
+
+  for (let i = 1; i <= ccl_rowCount; i++) {
+    let P = parseFloat(document.getElementById(`ccl-table-P-${i}`).value) || 0;
+    let O = parseFloat(document.getElementById(`ccl-table-O-${i}`).value) || 0;
+    let I = parseFloat(document.getElementById(`ccl-table-I-${i}`).value) || 0;
+
+    let u_obs = Math.abs(P - O);
+    let u_cor = u_obs + ccl_indexCorrectionU;
+    document.getElementById(`ccl-table-obj-obs-${i}`).value = u_obs.toFixed(2);
+    document.getElementById(`ccl-table-obj-cor-${i}`).value = u_cor.toFixed(2);
+
+    let v_obs = Math.abs(P - I);
+    let v_cor = v_obs + ccl_indexCorrectionV;
+    document.getElementById(`ccl-table-img-obs-${i}`).value = v_obs.toFixed(2);
+    document.getElementById(`ccl-table-img-cor-${i}`).value = v_cor.toFixed(2);
+
+    let f = (u_cor * v_cor) / (u_cor + v_cor);
+    document.getElementById(`ccl-table-focal-length-${i}`).value = f.toFixed(3);
+
+    if (
+      f >
+      (ccl_indexCorrectionU * ccl_indexCorrectionV) /
+      (ccl_indexCorrectionU + ccl_indexCorrectionV)
+    ) {
+      sumF += f;
+
+    }
+  }
+
+  focalLength = sumF / ccl_rowCount;
+  ccl_focalLengthCalculatedInput.value = focalLength.toFixed(3);
+}
+
+function ccl_addRow() {
+    ccl_rowCount++;
+    setTimeout(() => {
+        let inp = createInput(`ccl-s-no-${ccl_rowCount}`, "number", ccl_rowCount, null, true);
+        ccl_sNoColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 10);
+    setTimeout(() => {
+        let inp = createInput(`ccl-table-P-${ccl_rowCount}`, "number", 75, measureFocalLength_ccl);
+        ccl_PColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 50);
+    setTimeout(() => {
+        let inp = createInput(`ccl-table-O-${ccl_rowCount}`, "number", 0, measureFocalLength_ccl);
+        ccl_OColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 100);
+    setTimeout(() => {
+        let inp = createInput(`ccl-table-I-${ccl_rowCount}`, "number", 0, measureFocalLength_ccl);
+        ccl_IColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 150);
+    setTimeout(() => {
+        let inp = createInput(`ccl-table-obj-obs-${ccl_rowCount}`, "number", 0, null, true);
+        ccl_UObsColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 200);
+    setTimeout(() => {
+        let inp = createInput(`ccl-table-obj-cor-${ccl_rowCount}`, "number", 0, null, true);
+        ccl_UCorColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 250);
+    setTimeout(() => {
+        let inp = createInput(`ccl-table-img-obs-${ccl_rowCount}`, "number", 0, null, true);
+        ccl_IObsColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 300);
+    setTimeout(() => {
+        let inp = createInput(`ccl-table-img-cor-${ccl_rowCount}`, "number", 0, null, true);
+        ccl_ICorColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 350);
+    setTimeout(() => {
+        let inp = createInput(`ccl-table-focal-length-${ccl_rowCount}`, "number", 0, null, true);
+        ccl_FColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 400);
+}
+// #endregion Functions
+
 let concaveLensDiv = createDiv("practical-file", "physics-practical");
 
-// #region Diagram 
+// #region Diagram
 let ccl_diagramDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_diagramDiv);
 
@@ -18,9 +134,9 @@ function ccl_showDiagrams() {
     ccl_diagramDiv.appendChild(createImg("practical-file-more-diagram dark", `Physics-Practicals/Class 12/Diagrams/Dark/diagram${i}.jpg`));
   }
 }
-// #endregion Diagram 
+// #endregion Diagram
 
-// #region Objective 
+// #region Objective
 let ccl_objectiveDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_objectiveDiv);
 
@@ -34,9 +150,9 @@ ccl_objectiveDiv.appendChild(
     "To find the focal length of a concave lens using a convex lens."
   )
 );
-// #endregion Objective 
+// #endregion Objective
 
-// #region Apparatus 
+// #region Apparatus
 let ccl_apparatusDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_apparatusDiv);
 
@@ -50,9 +166,9 @@ ccl_apparatusDiv.appendChild(
     "An optical bench with four uprights, two needles, a concave lens, a convex lens of f < f of concave lens, a knitting needle and a meter scale."
   )
 );
-// #endregion Apparatus 
+// #endregion Apparatus
 
-// #region Formula 
+// #region Formula
 let ccl_formulaDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_formulaDiv);
 
@@ -76,9 +192,9 @@ ccl_formulaDiv.appendChild(
     "v: distance between I' and L2"
   )
 );
-// #endregion Formula 
+// #endregion Formula
 
-// #region Observation 
+// #region Observation
 let ccl_observationDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_observationDiv);
 
@@ -128,7 +244,7 @@ ccl_observationDiv.appendChild(
 );
 
 let ccl_indexErrorUInput = createInput(
-  "ccl-index-error-input",
+  "ccl-index-error-u-input",
   "number",
   0,
   measureEssentials_ccl
@@ -137,7 +253,7 @@ ccl_observationDiv.appendChild(
   createPAS(
     "2",
     createInputDiv(
-      "Index error for u, e_1 = (y - x) : ",
+      "Index error for u, e1 = (y - x) : ",
       ccl_indexErrorUInput,
       "cm."
     ),
@@ -156,13 +272,15 @@ ccl_observationDiv.appendChild(
   createPAS(
     "3",
     createInputDiv(
-      "Index correction for u, (-e_1) = (x - y) :",
+      "Index correction for u, -(e1) = (x - y) :",
       ccl_indexCorrectionUInput,
       "cm."
     ),
     true
   )
 );
+
+ccl_observationDiv.appendChild(createPAS("b)", "For v:"));
 
 const ccl_movedDiv2 = createDiv("practical-section-content");
 ccl_observationDiv.appendChild(ccl_movedDiv2);
@@ -196,7 +314,7 @@ ccl_movedDiv2.appendChild(
   createPAS(
     "6",
     createInputDiv(
-      "Index error for 'v' = e2 = (z-x) :",
+      "Index error for v = e2 = (z-x) :",
       ccl_indexErrorVInput,
       "cm."
     ),
@@ -215,7 +333,7 @@ ccl_movedDiv2.appendChild(
   createPAS(
     "7",
     createInputDiv(
-      "Index correction for 'v' = (-e2) :",
+      "Index correction for v = -(e2) :",
       ccl_indexCorrectionVInput,
       "cm."
     ),
@@ -235,117 +353,39 @@ ccl_observationDiv.appendChild(ccl_distanceTableDiv);
 let ccl_distanceTable = createDiv("observation-table");
 ccl_distanceTableDiv.appendChild(ccl_distanceTable);
 
-ccl_distanceTable.appendChild(
-  createColumn(
-    "S.no",
-    10,
-    null,
-    "number",
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    null,
-    true
-  )
-);
+const ccl_sNoColumn = createTableColumn("S.no");
+ccl_distanceTable.appendChild(ccl_sNoColumn);
 
-ccl_distanceTable.appendChild(
-  createColumn(
-    "The mirror (P) cm",
-    10,
-    "ccl-table-P",
-    "number",
-    0,
-    measureFocalLength_ccl,
-    false
-  )
-);
+const ccl_PColumn = createTableColumn("The mirror (P) cm");
+ccl_distanceTable.appendChild(ccl_PColumn);
 
-ccl_distanceTable.appendChild(
-  createColumn(
-    "Object Needle (O) cm",
-    10,
-    "ccl-table-O",
-    "number",
-    0,
-    measureFocalLength_ccl,
-    false
-  )
-);
+const ccl_OColumn = createTableColumn("Object Needle (O) cm");
+ccl_distanceTable.appendChild(ccl_OColumn);
 
-ccl_distanceTable.appendChild(
-  createColumn(
-    "Image Needle (I) cm",
-    10,
-    "ccl-table-I",
-    "number",
-    0,
-    measureFocalLength_ccl,
-    false
-  )
-);
+const ccl_IColumn = createTableColumn("Image Needle (I) cm");
+ccl_distanceTable.appendChild(ccl_IColumn);
 
-ccl_distanceTable.appendChild(
-  createColumn(
-    "Object Distance Observed (cm)",
-    10,
-    "ccl-table-obj-obs",
-    "number",
-    0,
-    null,
-    true
-  )
-);
+const ccl_UObsColumn = createTableColumn("Object Distance Observed (cm)");
+ccl_distanceTable.appendChild(ccl_UObsColumn);
 
-ccl_distanceTable.appendChild(
-  createColumn(
-    "Object Distance Corrected (cm)",
-    10,
-    "ccl-table-obj-cor",
-    "number",
-    0,
-    null,
-    true
-  )
-);
+const ccl_UCorColumn = createTableColumn("Object Distance Corrected (cm)");
+ccl_distanceTable.appendChild(ccl_UCorColumn);
 
-ccl_distanceTable.appendChild(
-  createColumn(
-    "Image Distance Observed (cm)",
-    10,
-    "ccl-table-img-obs",
-    "number",
-    0,
-    null,
-    true
-  )
-);
+const ccl_IObsColumn = createTableColumn("Image Distance Observed (cm)");
+ccl_distanceTable.appendChild(ccl_IObsColumn);
 
-ccl_distanceTable.appendChild(
-  createColumn(
-    "Image Distance Corrected (cm)",
-    10,
-    "ccl-table-img-cor",
-    "number",
-    0,
-    null,
-    true
-  )
-);
+const ccl_ICorColumn = createTableColumn("Image Distance Corrected (cm)");
+ccl_distanceTable.appendChild(ccl_ICorColumn);
 
-ccl_distanceTable.appendChild(
-  createColumn(
-    "f = uv/(u+v) (cm)",
-    10,
-    "ccl-table-focal-length",
-    "number",
-    0,
-    null,
-    true
-  )
-);
+const ccl_FColumn = createTableColumn("f = uv/(u+v) (cm)");
+ccl_distanceTable.appendChild(ccl_FColumn);
 
-// #endregion Observation 
+ccl_addRow();
+ccl_distanceTableDiv.appendChild(setRippleStyle(createButton("ccl-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", ccl_addRow)));
 
-// #region Result 
+// #endregion Observation
+
+// #region Result
 let ccl_resultDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_resultDiv);
 
@@ -387,9 +427,9 @@ ccl_resultDiv.appendChild(
   )
 );
 
-// #endregion Result 
+// #endregion Result
 
-// #region Precautions 
+// #region Precautions
 let ccl_precautionsDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_precautionsDiv);
 
@@ -403,9 +443,9 @@ ccl_precautionsDiv.appendChild(createPAS("3", ""));
 ccl_precautionsDiv.appendChild(createPAS("4", ""));
 ccl_precautionsDiv.appendChild(createPAS("5", ""));
 
-// #endregion Precautions 
+// #endregion Precautions
 
-// #region Sources of Errors 
+// #region Sources of Errors
 let ccl_SOEDiv = createDiv("practical-section");
 concaveLensDiv.appendChild(ccl_SOEDiv);
 
@@ -419,67 +459,6 @@ ccl_SOEDiv.appendChild(createPAS("3", ""));
 ccl_SOEDiv.appendChild(createPAS("4", ""));
 ccl_SOEDiv.appendChild(createPAS("5", ""));
 
-// #endregion Sources of Errors 
+// #endregion Sources of Errors
 
-// #region Functions
-// VARIABLES =============================
-let ccl_lengthOfNeedle = null;
-let ccl_distanceMirrorObject = null;
-let ccl_distanceMirrorImage = null;
 
-let ccl_indexCorrectionU = 0;
-let ccl_indexCorrectionV = 0;
-
-// FUNCTIONS =============================
-function measureEssentials_ccl() {
-  let X = parseFloat(ccl_lengthOfNeedleInput.value) || 0;
-  let Y = parseFloat(ccl_distanceMirrorObjectInput.value) || 0;
-  let Z = parseFloat(ccl_distanceMirrorImageInput.value) || 0;
-
-  let ccl_indexErrorU = Y - X;
-  ccl_indexCorrectionU = -ccl_indexErrorU;
-  ccl_indexErrorUInput.value = ccl_indexErrorU.toFixed(2);
-  ccl_indexCorrectionUInput.value = ccl_indexCorrectionU.toFixed(2);
-
-  let ccl_indexErrorV = Z - X;
-  ccl_indexCorrectionV = -ccl_indexErrorV;
-  ccl_indexErrorVInput.value = ccl_indexErrorV.toFixed(2);
-  ccl_indexCorrectionVInput.value = ccl_indexCorrectionV.toFixed(2);
-}
-
-function measureFocalLength_ccl() {
-  let sumF = 0;
-  let validReadings = 0;
-
-  for (let i = 1; i <= 9; i++) {
-    let P = parseFloat(document.getElementById(`ccl-table-P-${i}`).value) || 0;
-    let O = parseFloat(document.getElementById(`ccl-table-O-${i}`).value) || 0;
-    let I = parseFloat(document.getElementById(`ccl-table-I-${i}`).value) || 0;
-
-    let u_obs = abs(P - O);
-    let u_cor = u_obs + ccl_indexCorrectionU;
-    document.getElementById(`ccl-table-obj-obs-${i}`).value = u_obs.toFixed(2);
-    document.getElementById(`ccl-table-obj-cor-${i}`).value = u_cor.toFixed(2);
-
-    let v_obs = abs(P - I);
-    let v_cor = v_obs + ccl_indexCorrectionV;
-    document.getElementById(`ccl-table-img-obs-${i}`).value = v_obs.toFixed(2);
-    document.getElementById(`ccl-table-img-cor-${i}`).value = v_cor.toFixed(2);
-
-    let f = (u_cor * v_cor) / (u_cor + v_cor);
-    document.getElementById(`ccl-table-focal-length-${i}`).value = f.toFixed(3);
-
-    if (
-      f >
-      (ccl_indexCorrectionU * ccl_indexCorrectionV) /
-      (ccl_indexCorrectionU + ccl_indexCorrectionV)
-    ) {
-      sumF += f;
-      validReadings++;
-    }
-  }
-
-  focalLength = sumF / validReadings;
-  ccl_focalLengthCalculatedInput.value = focalLength.toFixed(3);
-}
-// #endregion Functions

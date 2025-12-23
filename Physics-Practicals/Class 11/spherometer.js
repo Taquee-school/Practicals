@@ -1,3 +1,18 @@
+// #region Functions
+let spm_rowCount = 0;
+
+function measureEssentials_spm() {
+    // Implementation to be added based on specific requirements
+}
+
+function spm_addRow() {
+    spm_rowCount++;
+    // Logic to add rows dynamically - simplified as columns were not fully defined in original file
+    // Assuming standard columns if they existed, but currently the file has placeholder logic.
+    // I will add a placeholder row addition for now to match the pattern.
+}
+// #endregion Functions
+
 let spherometerDiv = createDiv("practical-file", "physics-practical");
 
 let spm_diagramDiv = createDiv("practical-section");
@@ -181,9 +196,12 @@ spm_observationDiv.appendChild(spm_diameterTableDiv);
 let spm_diameterTable = createDiv("observation-table");
 spm_diameterTableDiv.appendChild(spm_diameterTable);
 
-spm_diameterTable.appendChild(
-  createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
+const spm_sNoColumn = createTableColumn("S.no");
+spm_diameterTable.appendChild(spm_sNoColumn);
+spm_addRow();
+// Add other columns here when defined
+// ...
+
 
 let spm_meanDiameterInput = createInput(
   "spm-mean-observed-diameter-input",
@@ -240,4 +258,4 @@ spm_precautionsDiv.appendChild(createPAS("3", ""));
 spm_precautionsDiv.appendChild(createPAS("4", ""));
 spm_precautionsDiv.appendChild(createPAS("5", ""));
 
-function measureEssentials_spm() { }
+

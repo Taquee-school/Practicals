@@ -1,3 +1,61 @@
+// #region Functions
+let hdf_rowCount = 0;
+
+function measureResistance_hdf() {
+  let sumG = 0;
+
+  for (let i = 1; i <= hdf_rowCount; i++) {
+    let R = parseFloat(document.getElementById(`hdf-table-R-${i}`).value) || 0;
+    let N = parseFloat(document.getElementById(`hdf-table-N-${i}`).value) || 0;
+    let S = parseFloat(document.getElementById(`hdf-table-S-${i}`).value) || 0;
+    document.getElementById(`hdf-table-half-N-${i}`).value = N / 2;
+    let G;
+    if (R > 0 && R !== S) {
+      G = (R * S) / (R - S);
+      document.getElementById(`hdf-table-G-${i}`).value = G.toFixed(2);
+      sumG += G;
+
+    }
+  }
+  let meanG = sumG/hdf_rowCount;
+  hdf_resistanceInput.value = meanG.toFixed(2);
+}
+
+function hdf_addRow() {
+    hdf_rowCount++;
+    setTimeout(() => {
+        let inp = createInput(`hdf-s-no-${hdf_rowCount}`, "number", hdf_rowCount, null, true);
+        hdf_sNoColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 10);
+    setTimeout(() => {
+        let inp = createInput(`hdf-table-R-${hdf_rowCount}`, "number", 0, measureResistance_hdf);
+        hdf_RColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 50);
+    setTimeout(() => {
+        let inp = createInput(`hdf-table-N-${hdf_rowCount}`, "number", 0, measureResistance_hdf);
+        hdf_NColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 100);
+    setTimeout(() => {
+        let inp = createInput(`hdf-table-half-N-${hdf_rowCount}`, "number", 0, null, true);
+        hdf_halfNColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 150);
+    setTimeout(() => {
+        let inp = createInput(`hdf-table-S-${hdf_rowCount}`, "number", 0, measureResistance_hdf);
+        hdf_SColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 200);
+    setTimeout(() => {
+        let inp = createInput(`hdf-table-G-${hdf_rowCount}`, "number", 0, null, true);
+        hdf_GColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 250);
+}
+// #endregion Functions
+
 let halfDeflectionDiv = createDiv("practical-file", "physics-practical");
 
 // #region Diagram
@@ -88,60 +146,26 @@ hdf_observationDiv.appendChild(hdf_resistanceTableDiv);
 let hdf_resistanceTable = createDiv("observation-table");
 hdf_resistanceTableDiv.appendChild(hdf_resistanceTable);
 
-hdf_resistanceTable.appendChild(
-  createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
-hdf_resistanceTable.appendChild(
-  createColumn(
-    "Resistance R ()",
-    5,
-    "hdf-table-R",
-    "number",
-    0,
-    measureEssentials_hdf
-  )
-);
-hdf_resistanceTable.appendChild(
-  createColumn(
-    "Deflection in galvanometer div (n)",
-    5,
-    "hdf-table-N",
-    "number",
-    0,
-    measureEssentials_hdf
-  )
-);
-hdf_resistanceTable.appendChild(
-  createColumn(
-    "Half deflection (n/2)",
-    5,
-    "hdf-table-half-N",
-    "number",
-    0,
-    measureEssentials_hdf
-  )
-);
-hdf_resistanceTable.appendChild(
-  createColumn(
-    "Required shunt S ()",
-    5,
-    "hdf-table-S",
-    "number",
-    0,
-    measureEssentials_hdf
-  )
-);
-hdf_resistanceTable.appendChild(
-  createColumn(
-    "Galvanometer resistance G = RS/(R-S) ()",
-    5,
-    "hdf-table-G",
-    "number",
-    0,
-    null,
-    true
-  )
-);
+const hdf_sNoColumn = createTableColumn("S.no");
+hdf_resistanceTable.appendChild(hdf_sNoColumn);
+
+const hdf_RColumn = createTableColumn("Resistance R ()");
+hdf_resistanceTable.appendChild(hdf_RColumn);
+
+const hdf_NColumn = createTableColumn("Deflection in galvanometer div (n)");
+hdf_resistanceTable.appendChild(hdf_NColumn);
+
+const hdf_halfNColumn = createTableColumn("Half deflection (n/2)");
+hdf_resistanceTable.appendChild(hdf_halfNColumn);
+
+const hdf_SColumn = createTableColumn("Required shunt S ()");
+hdf_resistanceTable.appendChild(hdf_SColumn);
+
+const hdf_GColumn = createTableColumn("Galvanometer resistance G = RS/(R-S) ()");
+hdf_resistanceTable.appendChild(hdf_GColumn);
+
+hdf_addRow();
+hdf_resistanceTableDiv.appendChild(setRippleStyle(createButton("hdf-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", hdf_addRow)));
 // #endregion Observation
 
 // #region Result
@@ -230,23 +254,3 @@ hdf_soeDiv.appendChild(
 // #endregion Sources of Errors
 
 // #region Functions
-function measureEssentials_hdf() {
-  let sumG = 0;
-  let validReadings = 0;
-  for (let i = 1; i <= 5; i++) {
-    let R = document.getElementById(`hdf-table-R-${i}`).value || 0;
-    let N = document.getElementById(`hdf-table-N-${i}`).value || 0;
-    let S = document.getElementById(`hdf-table-S-${i}`).value || 0;
-    document.getElementById(`hdf-table-half-N-${i}`).value = N / 2;
-    let G;
-    if (R > 0) {
-      G = (R * S) / (R - S);
-      document.getElementById(`hdf-table-G-${i}`).value = G.toFixed(2);
-      sumG += G;
-      validReadings++;
-    }
-  }
-  let meanG = sumG/validReadings;
-  hdf_resistanceInput.value = meanG.toFixed(2);
-}
-// #endregion Functions

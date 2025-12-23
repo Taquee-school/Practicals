@@ -1,3 +1,14 @@
+// #region Functions
+let spl_rowCount = 0;
+
+function measureEssentials_spl() {
+}
+
+function spl_addRow() {
+    spl_rowCount++;
+}
+// #endregion Functions
+
 let simplePendulumDiv = createDiv("practical-file", "physics-practical");
 
 let spl_diagramDiv = createDiv("practical-section");
@@ -181,9 +192,10 @@ spl_observationDiv.appendChild(spl_diameterTableDiv);
 let spl_diameterTable = createDiv("observation-table");
 spl_diameterTableDiv.appendChild(spl_diameterTable);
 
-spl_diameterTable.appendChild(
-  createColumn("S.no", 5, null, "number", [1, 2, 3, 4, 5], null, true)
-);
+const spl_sNoColumn = createTableColumn("S.no");
+spl_diameterTable.appendChild(spl_sNoColumn);
+
+spl_addRow();
 
 let spl_meanDiameterInput = createInput(
   "spl-mean-observed-diameter-input",
@@ -239,5 +251,3 @@ spl_precautionsDiv.appendChild(createPAS("2", ""));
 spl_precautionsDiv.appendChild(createPAS("3", ""));
 spl_precautionsDiv.appendChild(createPAS("4", ""));
 spl_precautionsDiv.appendChild(createPAS("5", ""));
-
-function measureEssentials_spl() { }

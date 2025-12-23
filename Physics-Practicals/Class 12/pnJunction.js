@@ -1,3 +1,67 @@
+// #region Functions
+let pnj_ammeterLc = null;
+let pnj_voltmeterLc = null;
+let pnj_rowCount = 0;
+
+function measureEssentials_pnj() {
+  pnj_ammeterLc = parseFloat(pnj_ammeterLcInput.value) || 0;
+  pnj_voltmeterLc = parseFloat(pnj_voltmeterLcInput.value) || 0;
+  measureResistance_pnj();
+}
+
+function measureResistance_pnj() {
+  let sum_sr = 0;
+
+  for (let i = 1; i <= pnj_rowCount; i++) {
+    let a_div =
+      parseFloat(document.getElementById(`pnj-table-a-div-${i}`).value) || 0;
+    let v_div =
+      parseFloat(document.getElementById(`pnj-table-v-div-${i}`).value) || 0;
+
+      let c = a_div * pnj_ammeterLc;
+    let v = v_div * pnj_voltmeterLc;
+    document.getElementById(`pnj-table-current-${i}`).value = c.toFixed(1);
+    document.getElementById(`pnj-table-voltage-${i}`).value = v.toFixed(3);
+
+    if (v_div > 0 && c > 0) {
+      sum_sr += v / c;
+    }
+  }
+
+  let meanSR = sum_sr / pnj_rowCount;
+  pnj_staticResistanceInput.value = meanSR.toFixed(2);
+}
+
+function pnj_addRow() {
+    pnj_rowCount++;
+    setTimeout(() => {
+        let inp = createInput(`pnj-s-no-${pnj_rowCount}`, "number", pnj_rowCount, null, true);
+        pnj_sNoColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 10);
+    setTimeout(() => {
+        let inp = createInput(`pnj-table-v-div-${pnj_rowCount}`, "number", 0, measureResistance_pnj);
+        pnj_vDivColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 50);
+    setTimeout(() => {
+        let inp = createInput(`pnj-table-voltage-${pnj_rowCount}`, "number", 0, null, true);
+        pnj_voltageColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 100);
+    setTimeout(() => {
+        let inp = createInput(`pnj-table-a-div-${pnj_rowCount}`, "number", 0, measureResistance_pnj);
+        pnj_aDivColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 150);
+    setTimeout(() => {
+        let inp = createInput(`pnj-table-current-${pnj_rowCount}`, "number", 0, null, true);
+        pnj_currentColumn.appendChild(inp);
+        inp.style.animation = "appear 0.5s ease";
+    }, 200);
+}
+// #endregion Functions
+
 let pnJunctionDiv = createDiv("practical-file", "physics-practical");
 
 // #region Diagram
@@ -144,51 +208,24 @@ pnj_observationDiv.appendChild(pnj_characteristicsTableDiv);
 let pnj_characteristicsTable = createDiv("observation-table");
 pnj_characteristicsTableDiv.appendChild(pnj_characteristicsTable);
 
-pnj_characteristicsTable.appendChild(
-  createColumn(
-    "S.no",
-    25,
-    null,
-    "number",
-    [
-      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-      22, 23, 24, 25,
-    ],
-    null,
-    true
-  )
-);
-pnj_characteristicsTable.appendChild(
-  createColumn(
-    "Divisions on voltmeter",
-    25,
-    "pnj-table-v-div",
-    "number",
-    [
-      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-      22, 23, 24, 25,
-    ],
-    null,
-    true
-  )
-);
-pnj_characteristicsTable.appendChild(
-  createColumn("Voltage (V)", 25, "pnj-table-voltage", "number", 0, null, true)
-);
-pnj_characteristicsTable.appendChild(
-  createColumn(
-    "Divisions on ammeter",
-    25,
-    "pnj-table-a-div",
-    "number",
-    0,
-    measureResistance_pnj,
-    false
-  )
-);
-pnj_characteristicsTable.appendChild(
-  createColumn("Current (I) (mA)", 25, "pnj-table-current", "number", 0, null, true)
-);
+const pnj_sNoColumn = createTableColumn("S.no");
+pnj_characteristicsTable.appendChild(pnj_sNoColumn);
+
+const pnj_vDivColumn = createTableColumn("Divisions on voltmeter");
+pnj_characteristicsTable.appendChild(pnj_vDivColumn);
+
+const pnj_voltageColumn = createTableColumn("Voltage (V)");
+pnj_characteristicsTable.appendChild(pnj_voltageColumn);
+
+const pnj_aDivColumn = createTableColumn("Divisions on ammeter");
+pnj_characteristicsTable.appendChild(pnj_aDivColumn);
+
+const pnj_currentColumn = createTableColumn("Current (I) (mA)");
+pnj_characteristicsTable.appendChild(pnj_currentColumn);
+
+pnj_addRow();
+
+pnj_characteristicsTableDiv.appendChild(setRippleStyle(createButton("pnj-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", pnj_addRow)));
 // #endregion Observation
 
 // #region Result
@@ -296,36 +333,4 @@ pnj_soeDiv.appendChild(
 // #endregion Sources of Errors
 
 
-// #region Functions
-let pnj_ammeterLc = null;
-let pnj_voltmeterLc = null;
 
-function measureEssentials_pnj() {
-  pnj_ammeterLc = parseFloat(pnj_ammeterLcInput.value) || 0;
-  pnj_voltmeterLc = parseFloat(pnj_voltmeterLcInput.value) || 0;
-  measureResistance_pnj();
-}
-
-function measureResistance_pnj() {
-  let sum_sr = 0;
-  let validReadings = 0;
-
-  for (let i = 1; i <= 25; i++) {
-    let a_div =
-      parseFloat(document.getElementById(`pnj-table-a-div-${i}`).value) || 0;
-    let v_div =
-      parseFloat(document.getElementById(`pnj-table-v-div-${i}`).value) || 0;
-    let c = a_div * pnj_ammeterLc;
-    let v = v_div * pnj_voltmeterLc;
-    document.getElementById(`pnj-table-current-${i}`).value = c.toFixed(1);
-    document.getElementById(`pnj-table-voltage-${i}`).value = v.toFixed(3);
-
-    if (v_div > 0) {
-      sum_sr += v / c;
-      validReadings++;
-    }
-  }
-  meanSR = sum_sr / validReadings;
-  pnj_staticResistanceInput.value = meanSR.toFixed(2);
-}
-// #endregion Functions
