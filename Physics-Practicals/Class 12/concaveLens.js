@@ -1,5 +1,6 @@
+let concaveLensDiv = createDiv("practical-file", "physics-practical");
+
 // #region Functions
-// VARIABLES =============================
 let ccl_lengthOfNeedle = null;
 let ccl_distanceMirrorObject = null;
 let ccl_distanceMirrorImage = null;
@@ -9,7 +10,6 @@ let ccl_indexCorrectionV = 0;
 
 let ccl_rowCount = 0;
 
-// FUNCTIONS =============================
 function measureEssentials_ccl() {
   let X = parseFloat(ccl_lengthOfNeedleInput.value) || 0;
   let Y = parseFloat(ccl_distanceMirrorObjectInput.value) || 0;
@@ -24,7 +24,7 @@ function measureEssentials_ccl() {
   ccl_indexCorrectionV = -ccl_indexErrorV;
   ccl_indexErrorVInput.value = ccl_indexErrorV.toFixed(2);
   ccl_indexCorrectionVInput.value = ccl_indexCorrectionV.toFixed(2);
-  
+
   measureFocalLength_ccl();
 }
 
@@ -113,8 +113,6 @@ function ccl_addRow() {
     }, 400);
 }
 // #endregion Functions
-
-let concaveLensDiv = createDiv("practical-file", "physics-practical");
 
 // #region Diagram
 let ccl_diagramDiv = createDiv("practical-section");

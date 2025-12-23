@@ -1,3 +1,5 @@
+let meterBridgeDiv = createDiv("practical-file", "physics-practical");
+
 // #region Functions
 let mbr_wireLength = 0;
 let mbr_meanR = 0;
@@ -130,8 +132,6 @@ function mbr_addSGRow() {
 }
 
 // #endregion Functions
-
-let meterBridgeDiv = createDiv("practical-file", "physics-practical");
 
 // #region Diagram
 let mbr_diagramDiv = createDiv("practical-section");

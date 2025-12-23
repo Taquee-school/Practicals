@@ -152,8 +152,6 @@ function acs_addRowScrewGauge() {
 }
 // #endregion Functions
 
-
-
 // #region Diagram
 let acs_diagramDiv = createDiv("practical-section");
 acSonometerDiv.appendChild(acs_diagramDiv);
@@ -283,9 +281,6 @@ acs_sonometerTable.appendChild(acs_frequencyColumn);
 
 acs_addRowSonometer();
 acs_sonometerTableDiv.appendChild(setRippleStyle(createButton("acs-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", acs_addRowSonometer)));
-
-acs_addRowSonometer();
-acs_sonometerTableDiv.appendChild(setRippleStyle(createButton("acs-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", acs_addRowSonometer)));
 // #endregion Sonometer
 
 // #region Screw Gauge
@@ -405,10 +400,6 @@ acs_sgTable.appendChild(acs_sgDiameterColumn);
 
 acs_addRowScrewGauge();
 acs_sgTableDiv.appendChild(setRippleStyle(createButton("acs-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", acs_addRowScrewGauge)));
-
-acs_addRowScrewGauge();
-acs_sgTableDiv.appendChild(setRippleStyle(createButton("acs-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", acs_addRowScrewGauge)));
-
 
 let acs_meanDiameterInput = createInput(
   "acs-sg-mean-d-input",

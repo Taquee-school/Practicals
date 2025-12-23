@@ -1,3 +1,5 @@
+let pnJunctionDiv = createDiv("practical-file", "physics-practical");
+
 // #region Functions
 let pnj_ammeterLc = null;
 let pnj_voltmeterLc = null;
@@ -61,8 +63,6 @@ function pnj_addRow() {
     }, 200);
 }
 // #endregion Functions
-
-let pnJunctionDiv = createDiv("practical-file", "physics-practical");
 
 // #region Diagram
 let pnj_diagramDiv = createDiv("practical-section");

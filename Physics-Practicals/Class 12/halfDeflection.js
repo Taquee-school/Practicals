@@ -1,3 +1,5 @@
+let halfDeflectionDiv = createDiv("practical-file", "physics-practical");
+
 // #region Functions
 let hdf_rowCount = 0;
 
@@ -55,8 +57,6 @@ function hdf_addRow() {
     }, 250);
 }
 // #endregion Functions
-
-let halfDeflectionDiv = createDiv("practical-file", "physics-practical");
 
 // #region Diagram
 let hdf_diagramDiv = createDiv("practical-section");

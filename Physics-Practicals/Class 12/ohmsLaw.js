@@ -1,6 +1,5 @@
 let ohmsLawDiv = createDiv("practical-file", "physics-practical");
 
-
 // #region Functions
 let ohl_ammeterLc = null;
 let ohl_voltmeterLc = null;
@@ -91,7 +90,6 @@ function ohl_addRow() {
   }, 250);
 }
 // #endregion Functions
-
 
 // #region Diagram
 let ohl_diagramDiv = createDiv("practical-section");
@@ -242,7 +240,6 @@ const ohl_resistanceColumn = createTableColumn("R = V/I (Ω)");
 ohl_resistanceTable.appendChild(ohl_resistanceColumn);
 
 ohl_addRow();
-ohl_resistanceTableDiv.appendChild(setRippleStyle(createButton("ohl-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", ohl_addRow)));
 ohl_resistanceTableDiv.appendChild(setRippleStyle(createButton("ohl-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", ohl_addRow)));
 // #endregion Observation
 

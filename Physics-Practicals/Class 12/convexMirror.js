@@ -1,3 +1,4 @@
+let convexMirrorDiv = createDiv("practical-file", "physics-practical");
 
 // #region Functions
 let cvm_lengthOfNeedle = null;
@@ -10,13 +11,13 @@ function measureEssentials_cvm() {
 
   cvm_indexCorrection = Y - X;
   cvm_indexCorrectionInput.value = cvm_indexCorrection.toFixed(2);
-  
+
   measureFocalLength_cvm();
 }
 
 function measureFocalLength_cvm() {
   let sumMI = 0;
-  
+
   for (let i = 1; i <= cvm_rowCount; i++) {
     let O = parseFloat(document.getElementById(`cvm-table-O-${i}`).value) || 0;
     let L = parseFloat(document.getElementById(`cvm-table-L-${i}`).value) || 0;
@@ -24,10 +25,10 @@ function measureFocalLength_cvm() {
     let I = parseFloat(document.getElementById(`cvm-table-I-${i}`).value) || 0;
     let MI = I - M;
     document.getElementById(`cvm-table-MI-${i}`).value = MI.toFixed(2);
-    
+
     sumMI += MI;
   }
-  
+
   let meanMI = sumMI / cvm_rowCount;
   cvm_meanMIInput.value = meanMI.toFixed(2);
   let correctedMI = meanMI + cvm_indexCorrection;
@@ -72,8 +73,7 @@ function cvm_addRow() {
 }
 // #endregion Functions
 
-let convexMirrorDiv = createDiv("practical-file", "physics-practical");
-
+// #region Diaram
 let cvm_diagramDiv = createDiv("practical-section");
 convexMirrorDiv.appendChild(cvm_diagramDiv);
 
@@ -91,7 +91,9 @@ function cvm_showDiagrams() {
     cvm_diagramDiv.appendChild(createImg("practical-file-more-diagram dark", `Physics-Practicals/Class 12/Diagrams/Dark/diagram${i}.jpg`));
   }
 }
+// #endregion Diagram
 
+// #region Objective
 let cvm_objectiveDiv = createDiv("practical-section");
 convexMirrorDiv.appendChild(cvm_objectiveDiv);
 
@@ -105,7 +107,9 @@ cvm_objectiveDiv.appendChild(
     "To find the focal length of convex mirror using convex lens."
   )
 );
+// #endregion Objective
 
+// #region Apparatus
 let cvm_apparatusDiv = createDiv("practical-section");
 convexMirrorDiv.appendChild(cvm_apparatusDiv);
 
@@ -119,7 +123,9 @@ cvm_apparatusDiv.appendChild(
     "An optical bench along with four uprights, convex mirror, a convex lens, a knitting needle and a half meter scale."
   )
 );
+// #endregion Apparatus
 
+// #region Formula
 let cvm_formulaDiv = createDiv("practical-section");
 convexMirrorDiv.appendChild(cvm_formulaDiv);
 
@@ -144,7 +150,9 @@ cvm_formulaDiv.appendChild(
     "Where, MI is the radius of curvature of the given convex mirror."
   )
 );
+// #endregion Formula
 
+// #region Observation
 let cvm_observationDiv = createDiv("practical-section");
 convexMirrorDiv.appendChild(cvm_observationDiv);
 
@@ -248,8 +256,9 @@ cvm_observationDiv.appendChild(createInputDiv("Mean MI':", cvm_correctedMIInput,
 
 let cvm_focalLengthInput = createInput("cvm-focal-length-input", "number", "0", null, true);
 cvm_observationDiv.appendChild(createInputDiv("Mean MI':", cvm_focalLengthInput, "cm."));
+// #endregion Observation
 
-
+// #region Result
 let cvm_resultDiv = createDiv("practical-section");
 convexMirrorDiv.appendChild(cvm_resultDiv);
 
@@ -275,7 +284,9 @@ cvm_resultDiv.appendChild(
     true
   )
 );
+// #endregion Result
 
+// #region Precautions
 let cvm_precautionsDiv = createDiv("practical-section");
 convexMirrorDiv.appendChild(cvm_precautionsDiv);
 
@@ -287,7 +298,9 @@ cvm_precautionsDiv.appendChild(createPAS("1", "The line joining the pole of the 
 cvm_precautionsDiv.appendChild(createPAS("2", ""));
 cvm_precautionsDiv.appendChild(createPAS("3", ""));
 cvm_precautionsDiv.appendChild(createPAS("4", ""));
+// #endregion Precautions
 
+// #region Sources of errors
 let cvm_SOEDiv = createDiv("practical-section");
 convexMirrorDiv.appendChild(cvm_SOEDiv);
 
@@ -298,5 +311,4 @@ cvm_SOEDiv.appendChild(
 cvm_SOEDiv.appendChild(createPAS("1", "Focal length of the lens may not be small."));
 cvm_SOEDiv.appendChild(createPAS("2", "The uprights may not be vertical."));
 cvm_SOEDiv.appendChild(createPAS("3", "Parallax removal may not be perfect."));
-
-
+// #endregion Sources of errors

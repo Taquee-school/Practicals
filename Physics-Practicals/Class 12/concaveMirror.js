@@ -23,7 +23,7 @@ function measureEssentials_ccm() {
   ccm_indexCorrectionV = -ccm_indexErrorV;
   ccm_indexErrorVInput.value = ccm_indexErrorV.toFixed(2);
   ccm_indexCorrectionVInput.value = ccm_indexCorrectionV.toFixed(2);
-  
+
   measureFocalLength_ccm();
 }
 
@@ -443,5 +443,3 @@ ccm_SOEDiv.appendChild(createPAS("3", ""));
 ccm_SOEDiv.appendChild(createPAS("4", ""));
 ccm_SOEDiv.appendChild(createPAS("5", ""));
 // #endregion Sources of Errors
-
-
