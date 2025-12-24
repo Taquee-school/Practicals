@@ -14,6 +14,7 @@ innerApp.addEventListener("animationend", () => {
 });
 
 const editorTab = document.getElementById("editor-tab");
+const editorWrapper = document.getElementById("editor-wrapper");
 const mainArea = document.getElementById("main-area");
 const codeEditor = document.getElementById("code-area");
 
@@ -73,6 +74,76 @@ const sidebarContent = document.getElementById("sidebar-content");
 // region file panel
 
 // #endregion Sidebar
+
+
+// #region Output Panel
+const runButton = document.getElementById("run-btn");
+
+runButton.addEventListener("click", () => {
+    if (runButton.classList.contains("disabled")) {
+        showMessage("Initializing Python...");
+        initializePyodide();
+        return;
+    };
+    showOutputPanel();
+    if (allFiles[currentFileId].type = "python") {
+      runPythonCode();
+    }
+});
+
+function showOutputPanel() {
+    outputPanel.style.animation = "slide-in-bottom 0.3s ease";
+    outputPanel.style.display = "flex";
+    outputPanel.addEventListener("animationend", () => {
+        outputPanel.style.animation = "none";
+    }, { once: true });
+}
+
+function hideOutputPanel() {
+    outputPanel.style.animation = "slide-out-bottom 0.3s ease";
+    outputPanel.addEventListener("animationend", () => {
+        outputPanel.style.animation = "none";
+        outputPanel.style.display = "none";
+    }, { once: true });
+}
+
+function maximizeOutputPanel() {
+  outputPanel.style.height = "100%";
+  outputPanelSizeBtn.removeEventListener("click", maximizeOutputPanel);
+  outputPanelSizeBtn.addEventListener("click", minimizeOutputPanel);
+  outputPanelSizeIcon.className = "ph-bold ph-corners-in";
+}
+
+function minimizeOutputPanel() {
+  outputPanel.style.height = "40%";
+  outputPanelSizeBtn.removeEventListener("click", minimizeOutputPanel);
+  outputPanelSizeBtn.addEventListener("click", maximizeOutputPanel);
+  outputPanelSizeIcon.className = "ph-bold ph-corners-out";
+}
+
+function deleteTerminal() {
+  outputPanelContent.innerHTML = "";
+  hideOutputPanel();
+}
+
+const outputPanel = createDiv("output-area", "output-area");
+editorWrapper.appendChild(outputPanel);
+
+const outputPanelHeader = createDiv("top-bar", null);
+outputPanel.appendChild(outputPanelHeader);
+
+outputPanelHeader.appendChild(createButton("delete-terminal", "toggle-btn", createIcon("bold", "trash"), null, deleteTerminal));
+
+const outputPanelSizeIcon = createIcon("bold", "corners-out");
+const outputPanelSizeBtn = createButton(null, "toggle-btn", outputPanelSizeIcon, null, maximizeOutputPanel)
+outputPanelHeader.appendChild(outputPanelSizeBtn);
+
+outputPanelHeader.appendChild(createButton(null, "toggle-btn", createIcon("bold", "x"), null, hideOutputPanel));
+
+const outputPanelContent = createDiv("content");
+outputPanel.appendChild(outputPanelContent);
+
+// #endregion Output Panel
 
 
 // #region settings

@@ -50,7 +50,7 @@ loadCodeMirrorAddons().then(() => {
     });
     try {
         openFile(currentFileId);
-    } catch {}
+    } catch { }
 });
 
 document.getElementById("undo-btn").addEventListener("click", () => {
@@ -77,46 +77,7 @@ function refreshEditor() {
     codeMirrorEditor.setValue(code);
 }
 
-
 // #region Output panel
-const runButton = document.getElementById("run-btn");
-
-runButton.addEventListener("click", () => {
-    if (runButton.classList.contains("disabled")) {
-        showMessage("Initializing Python...");
-        initializePyodide();
-        return;
-    };
-    innerApp.style.animation = "fade-drop 0.2s ease";
-    setTimeout(() => {
-        innerApp.replaceChild(outputPanel, editorTab);
-        runPythonCode();
-    }, 100);
-});
-
-function closeOutputPanel() {
-    innerApp.style.animation = "fade-drop 0.2s ease";
-    setTimeout(() => {
-        innerApp.replaceChild(editorTab, outputPanel);
-    }, 100);
-    innerApp.addEventListener("animationend", () => {
-        innerApp.style.animation = "none";
-    }, { once: true });
-}
-
-const outputPanel = createDiv("inner-app-tab", "output-area");
-
-const outputPanelHeader = createDiv("top-bar", "settings-top-bar");
-outputPanel.appendChild(outputPanelHeader);
-
-outputPanelHeader.appendChild(createButton(null, "toggle-btn back-btn", createIcon("bold", "arrow-left"), null, closeOutputPanel));
-
-const outputPanelContent = createDiv("content");
-outputPanel.appendChild(outputPanelContent);
-
-const outputTextDiv = createDiv("scroll", "output-text-div");
-outputPanelContent.appendChild(outputTextDiv);
-
 
 // WARNING! (Code below is written by AI(Gemini) Don't make any changes here) ------
 
@@ -130,8 +91,7 @@ async function initializePyodide() {
         });
 
         runButton.classList.remove("disabled");
-    } catch {
-    }
+    } catch { }
 }
 
 const decoder = new TextDecoder();
@@ -141,7 +101,8 @@ let lastOutElement = createTextField("output-text", null);
 async function runPythonCode() {
     if (!pyodide) return;
 
-    outputTextDiv.innerHTML = "";
+    const outputTextDiv = createDiv("output-text-div", null);
+    outputPanelContent.appendChild(outputTextDiv);
     const code = codeMirrorEditor.getValue();
     lastOutElement = createTextField("output-text", null);
 
