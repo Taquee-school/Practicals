@@ -296,7 +296,9 @@ function checkOrientation() {
     // app.classList.remove("vertical");
     // app.classList.add("horizontal");
   }
-  app.style.height = `${window.innerHeight}px`;
+  requestAnimationFrame(() => {
+    appWrapper.style.height = `${window.innerHeight}px`;
+  });
 }
 window.addEventListener("resize", checkOrientation);
 window.addEventListener("load", checkOrientation);
