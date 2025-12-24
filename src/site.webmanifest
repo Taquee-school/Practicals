@@ -3,6 +3,7 @@
   "short_name": "Practicals",
   "description": "Access your practical lessons and guides anywhere.",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "minimal-ui"],
   "theme_color": "#000000",
   "background_color": "#000000",
   "icons": [
