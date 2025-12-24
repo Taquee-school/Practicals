@@ -198,7 +198,6 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  padding-bottom: env(safe-area-inset-bottom);
   gap: 0;
   font-family: "Inter", sans-serif;
 }
@@ -215,7 +214,7 @@ body {
   overflow: hidden;
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
   gap: 0;
   display: flex;
   flex-direction: column;
