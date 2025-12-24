@@ -202,8 +202,8 @@ html, body {
 }
 
 #inner-app {
-  height: 100%;
-  width: 100%;
+  flex-grow: 1;
+  min-height: 0;
   overflow: hidden;
   box-sizing: border-box;
   padding: 0;
