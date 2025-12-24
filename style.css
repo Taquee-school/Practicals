@@ -216,7 +216,7 @@ html, body {
   overflow: hidden;
   box-sizing: border-box;
   margin: 0;
-  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
+  padding: env(safe-area-inset-top) 0 0 0;
   gap: 0;
   display: flex;
   flex-direction: column;
