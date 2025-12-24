@@ -216,7 +216,7 @@ html, body {
   overflow: hidden;
   box-sizing: border-box;
   margin: 0;
-  padding: env(safe-area-inset-top) 0 0 0;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
   gap: 0;
   display: flex;
   flex-direction: column;
@@ -260,7 +260,7 @@ html, body {
   left: 0;
   min-height: 80px;
   margin: 0 auto;
-  padding: 10px 0 env(safe-area-inset-bottom) 0;
+  padding: 10px 0 0 0;
   justify-content: space-evenly;
   align-items: flex-start;
 }
@@ -281,6 +281,7 @@ html, body {
 #app.vertical #navigation-div.sticky {
   height: 10%;
   width: 100%;
+  padding-bottom: env(safe-area-inset-bottom);
   border: none;
 }
 #app.vertical #navigation-div.floating {
