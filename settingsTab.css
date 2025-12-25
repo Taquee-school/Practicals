@@ -5,9 +5,14 @@
 }
 
 .app-icon {
+  flex-shrink: 0;
   height: 100px;
   width: 100px;
-  border-radius: 50%;
+  background-color: var(--primary-text-color);
+  -webkit-mask: url("src/logo.svg") no-repeat center;
+  mask: url("src/logo.svg") no-repeat center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
 }
 
 #settings-tab .tab-header {
