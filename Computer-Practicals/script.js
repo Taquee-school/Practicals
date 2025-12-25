@@ -10,7 +10,7 @@ let messageTimer;
 
 const innerApp = document.getElementById("inner-app");
 innerApp.addEventListener("animationend", () => {
-    innerApp.style.animation = "none";
+  innerApp.style.animation = "none";
 });
 
 const editorTab = document.getElementById("editor-tab");
@@ -35,7 +35,7 @@ function showMessage(message) {
       messageDiv.style.display = "none";
     }, { once: true });
   }
-    messageTimer = setTimeout( hidemessage , 1500)
+  messageTimer = setTimeout(hidemessage, 1500)
 }
 // #endregion message div
 
@@ -80,31 +80,33 @@ const sidebarContent = document.getElementById("sidebar-content");
 const runButton = document.getElementById("run-btn");
 
 runButton.addEventListener("click", () => {
-    if (runButton.classList.contains("disabled")) {
-        showMessage("Initializing Python...");
-        initializePyodide();
-        return;
-    };
-    showOutputPanel();
-    if (allFiles[currentFileId].type = "python") {
-      runPythonCode();
-    }
+  if (runButton.classList.contains("disabled")) {
+    showMessage("Initializing Python...");
+    initializePyodide();
+    return;
+  };
+  showOutputPanel();
+  if (allFiles[currentFileId].type = "python") {
+    runPythonCode();
+  }
 });
 
 function showOutputPanel() {
-    outputPanel.style.animation = "slide-in-bottom 0.3s ease";
-    outputPanel.style.display = "flex";
-    outputPanel.addEventListener("animationend", () => {
-        outputPanel.style.animation = "none";
-    }, { once: true });
+  if (outputPanel.style.display == "flex") return;
+  outputPanel.style.animation = "slide-in-bottom 0.3s ease";
+  outputPanel.style.display = "flex";
+  outputPanel.addEventListener("animationend", () => {
+    outputPanel.style.animation = "none";
+  }, { once: true });
 }
 
 function hideOutputPanel() {
-    outputPanel.style.animation = "slide-out-bottom 0.3s ease";
-    outputPanel.addEventListener("animationend", () => {
-        outputPanel.style.animation = "none";
-        outputPanel.style.display = "none";
-    }, { once: true });
+  if (outputPanel.style.display == "none") return;
+  outputPanel.style.animation = "slide-out-bottom 0.3s ease";
+  outputPanel.addEventListener("animationend", () => {
+    outputPanel.style.animation = "none";
+    outputPanel.style.display = "none";
+  }, { once: true });
 }
 
 function maximizeOutputPanel() {
@@ -127,6 +129,7 @@ function deleteTerminal() {
 }
 
 const outputPanel = createDiv("output-area", "output-area");
+outputPanel.style.display = "none";
 editorWrapper.appendChild(outputPanel);
 
 const outputPanelHeader = createDiv("top-bar", null);
