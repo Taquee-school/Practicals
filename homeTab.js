@@ -124,7 +124,7 @@ chemistryTab.appendChild(chemistryTabContent);
 // #region computer practicals
 
 homeTabContent.appendChild(
-    createButton("computer-btn", "home-tab-btn", null, "Computer practicals", () => {window.location.href = "Computer-Practicals/index.html"})
+    createButton("computer-btn", "home-tab-btn", null, "Computer practicals", () => {window.location.href = "https://noor-taquee.github.io/GluCode/"})
 )
 
 // #endregion computer practicals
