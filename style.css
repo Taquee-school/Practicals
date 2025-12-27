@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lilita+One&family=Momo+Trust+Display&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
+
+/* #region Animations */
 @keyframes fade-drop {
   0% {
     opacity: 1;
@@ -82,8 +84,25 @@
     transform: rotate(360deg);
   }
 }
+/* #endregion Animations */
 
-#app.vertical {
+/* #region Variables */
+.vertical {
+  --font-scale: 1;
+  --header-scale: 1;
+  --icon-scale: 1;
+  --primary-font: 500 calc(20px * var(--font-scale)) "Inter", sans-serif;
+  --secondary-font: 500 calc(16px * var(--font-scale)) "Inter", sans-serif;
+  --primary-header-font: 300 calc(30px * var(--header-scale)) "Inter", sans-serif;
+  --secondary-header-font: 300 calc(22px * var(--header-scale)) "Inter", sans-serif;
+  --icon-size: calc(24px * var(--icon-scale));
+  --toggle-icon-size: calc(25px * var(--icon-scale));
+  --navigation-icon-size: calc(24px * var(--icon-scale));
+  --loading-icon-size: calc(40px * var(--icon-scale));
+  --loading-font-size: calc(20px * var(--font-scale));
+}
+
+.horizontal {
   --font-scale: 1;
   --header-scale: 1;
   --icon-scale: 1;
@@ -97,21 +116,7 @@
   --loading-font-size: calc(20px * var(--font-scale));
 }
 
-#app.horizontal {
-  --font-scale: 1;
-  --header-scale: 1;
-  --icon-scale: 1;
-  --primary-font: 500 calc(20px * var(--font-scale)) "Inter", sans-serif;
-  --secondary-font: 500 calc(16px * var(--font-scale)) "Inter", sans-serif;
-  --primary-header-font: 300 calc(30px * var(--header-scale)) "Inter", sans-serif;
-  --secondary-header-font: 300 calc(22px * var(--header-scale)) "Inter", sans-serif;
-  --icon-size: calc(24px * var(--icon-scale));
-  --navigation-icon-size: calc(24px * var(--icon-scale));
-  --loading-icon-size: calc(40px * var(--icon-scale));
-  --loading-font-size: calc(20px * var(--font-scale));
-}
-
-#app.light.default {
+.light.default {
   --primary-bg: rgb(235, 235, 235);
   --secondary-bg: rgb(255, 255, 255);
   --primary-text-color: rgb(0, 0, 0);
@@ -119,7 +124,7 @@
   --accent: rgb(150, 150, 150);
 }
 
-#app.dark.default {
+.dark.default {
   --primary-bg: rgb(0, 0, 0);
   --secondary-bg: rgb(30, 30, 30);
   --primary-text-color: rgb(255, 255, 255);
@@ -127,7 +132,7 @@
   --accent: rgb(150, 150, 150);
 }
 
-#app.light.lime {
+.light.lime {
   --primary-bg: rgb(245, 255, 230);
   --secondary-bg: rgb(230, 250, 180);
   --primary-text-color: rgb(30, 40, 20);
@@ -135,7 +140,7 @@
   --accent: rgb(150, 200, 70);
 }
 
-#app.dark.lime {
+.dark.lime {
   --primary-bg: rgb(18, 24, 14);
   --secondary-bg: rgb(28, 36, 22);
   --primary-text-color: rgb(220, 235, 210);
@@ -143,7 +148,7 @@
   --accent: rgb(170, 220, 90);
 }
 
-#app.light.pink {
+.light.pink {
   --primary-bg: rgb(255, 245, 250);
   --secondary-bg: rgb(245, 225, 240);
   --primary-text-color: rgb(40, 20, 35);
@@ -151,7 +156,7 @@
   --accent: rgb(200, 130, 180);
 }
 
-#app.dark.pink {
+.dark.pink {
   --primary-bg: rgb(22, 16, 20);
   --secondary-bg: rgb(34, 24, 30);
   --primary-text-color: rgb(235, 215, 225);
@@ -159,7 +164,7 @@
   --accent: rgb(220, 150, 200);
 }
 
-#app.light.blue {
+.light.blue {
   --primary-bg: rgb(240, 248, 255);
   --secondary-bg: rgb(225, 240, 250);
   --primary-text-color: rgb(20, 30, 40);
@@ -167,7 +172,7 @@
   --accent: rgb(110, 170, 220);
 }
 
-#app.dark.blue {
+.dark.blue {
   --primary-bg: rgb(14, 18, 24);
   --secondary-bg: rgb(24, 30, 38);
   --primary-text-color: rgb(215, 225, 235);
@@ -175,7 +180,7 @@
   --accent: rgb(140, 200, 250);
 }
 
-#app.light.purple {
+.light.purple {
   --primary-bg: rgb(248, 245, 255);
   --secondary-bg: rgb(232, 225, 250);
   --primary-text-color: rgb(35, 30, 45);
@@ -183,15 +188,16 @@
   --accent: rgb(150, 130, 200);
 }
 
-#app.dark.purple {
+.dark.purple {
   --primary-bg: rgb(16, 14, 22);
   --secondary-bg: rgb(26, 24, 36);
   --primary-text-color: rgb(225, 220, 235);
   --border-color: rgb(160, 140, 210);
   --accent: rgb(180, 160, 230);
 }
+/* #endregion Variables */
 
-
+/* #region body */
 html, body {
   height: 100%;
   width: 100%;
@@ -206,9 +212,10 @@ html, body {
 
 * {
   -webkit-tap-highlight-color: transparent;
-  transition: all 0.5s ease;
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
+/* #region app-wrapper */
 #app-wrapper {
   position: relative;
   height: 100dvh;
@@ -220,14 +227,15 @@ html, body {
   gap: 0;
   display: flex;
   flex-direction: column;
-  background: var(--primary-bg);
+  background: transparent;
 }
 #app i,
 #app p,
 #app input {
-  color: var(--primary-text-color) !important;
+  color: var(--primary-text-color);
 }
 
+/* #region inner-app */
 #inner-app {
   flex-grow: 1;
   min-height: 0;
@@ -243,110 +251,7 @@ html, body {
   flex-direction: row-reverse;
 }
 
-#navigation-div {
-  flex-shrink: 0;
-  box-sizing: border-box;
-  margin: 0;
-  display: flex;
-  background: var(--secondary-bg);
-}
-
-#app.vertical #navigation-div {
-  position: absolute;
-  z-index: 1;
-  top: auto;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  min-height: 80px;
-  margin: 0 auto;
-  padding: 10px 0 0 0;
-  justify-content: space-evenly;
-  align-items: flex-start;
-}
-
-#app.horizontal #navigation-div {
-  height: 100%;
-  width: 100px;
-  padding: 20px 0;
-  gap: 20px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-#app #navigation-div.hidden {
-  display: none;
-}
-#app.vertical #navigation-div.sticky {
-  height: 10%;
-  width: 100%;
-  padding-bottom: env(safe-area-inset-bottom);
-  border: none;
-}
-#app.vertical #navigation-div.floating {
-  bottom: env(safe-area-inset-bottom);
-  height: 80px;
-  width: 95%;
-  border-radius: 40px;
-}
-
-#app.vertical #navigation-div.sticky {
-  border-top: 0.5px solid var(--border-color);
-}
-
-#app.vertical #navigation-div.floating {
-  border: 0.5px solid var(--border-color);
-}
-
-#navigation-div button {
-  cursor: pointer;
-  gap: 2px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.navigation-icon-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.navigation-icon-div {
-  padding: 16px 35px;
-  border-radius: 20px;
-}
-.navigation-icon-div.active {
-  background: var(--primary-bg);
-}
-
-#navigation-div button i {
-  position: absolute;
-  z-index: 1;
-  top: auto;
-  right: auto;
-  bottom: auto;
-  left: auto;
-  flex-shrink: 0;
-  margin: auto;
-  font-size: var(--icon-size);
-}
-
-#navigation-div p {
-  margin: 0;
-  font: var(--secondary-font);
-  transition: all 0.2s linear;
-}
-
+/* #region inner-app-tab-container */
 #inner-app-tab-container {
   flex-grow: 1;
   height: 100%;
@@ -421,6 +326,7 @@ button.ripple {
   position: relative;
   overflow: hidden;
 }
+
 .ripple-span {
   position: absolute;
   border-radius: 50%;
@@ -430,6 +336,28 @@ button.ripple {
   background-color: var(--accent);
 }
 
+.toggle {
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+.toggle i {
+  font-size: var(--toggle-icon-size);
+}
+
+.back-btn {
+  padding: 10px;
+}
+
+
+/* #region Practical tab */
 #practical-tab-header {
   height: 7%;
   width: 100%;
@@ -449,22 +377,6 @@ button.ripple {
   height: 100%;
   display: flex;
   align-items: center;
-}
-
-#practical-tab-header .back-btn {
-  cursor: pointer;
-  height: 50px;
-  width: 50px;
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-}
-
-#practical-tab-header .back-btn i {
-  font-size: var(--navigation-icon-size);
 }
 
 #practical-tab-header p {
@@ -549,3 +461,132 @@ button.ripple {
   border: none;
   background: transparent;
 }
+/* #endregion Practical tab */
+
+/* #endregion inner-app-tab-container */
+
+/* #region Navigation div */
+#navigation-div {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  margin: 0;
+  display: flex;
+  background: var(--secondary-bg);
+}
+
+#app.vertical #navigation-div {
+  position: absolute;
+  z-index: 1;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 80px;
+  margin: 0 auto;
+  padding: 10px 0 0 0;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+#app.horizontal #navigation-div {
+  height: 100%;
+  width: 100px;
+  padding: 20px 0;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#app #navigation-div.hidden {
+  display: none;
+}
+
+#app.vertical #navigation-div.sticky {
+  height: 10%;
+  width: 100%;
+  padding-bottom: env(safe-area-inset-bottom);
+  border: none;
+  border-top: 0.5px solid var(--border-color);
+}
+#app.vertical #navigation-div.floating {
+  bottom: env(safe-area-inset-bottom);
+  height: 80px;
+  width: 95%;
+  border: 1px solid var(--border-color);
+  border-radius: 40px;
+}
+
+.ios.dark #navigation-div.floating {
+  bottom: 0 !important;
+  margin-bottom: 2.5vw !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(20px);
+}
+
+.ios.light #navigation-div.floating {
+  bottom: 0 !important;
+  margin-bottom: 2.5vw !important;
+  border-color: rgba(0, 0, 0, 0.3) !important;
+  background: rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(20px);
+}
+
+#navigation-div button {
+  cursor: pointer;
+  gap: 2px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.navigation-icon-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.navigation-icon-div {
+  padding: 16px 35px;
+  border-radius: 20px;
+}
+.navigation-icon-div.active {
+  background: var(--primary-bg);
+}
+
+.ios.dark .navigation-icon-div.active {
+  background: rgba(255, 255, 255, 0.1);
+}
+.ios.light .navigation-icon-div.active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+#navigation-div button i {
+  position: absolute;
+  z-index: 1;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  flex-shrink: 0;
+  margin: auto;
+  font-size: var(--icon-size);
+}
+
+#navigation-div p {
+  margin: 0;
+  font: var(--secondary-font);
+  transition: all 0.2s linear;
+}
+/* #endregion Navigation div */
+
+/* #endregion inner-app */

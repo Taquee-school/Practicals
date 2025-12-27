@@ -54,19 +54,6 @@
   margin: 15px auto 5px 10px;
 }
 
-.top-bar button {
-  cursor: pointer;
-  height: 50px;
-  width: 0px;
-  border: none;
-  border-radius: 50%;
-  background: transparent;
-}
-
-.top-bar button i {
-  font-size: var(--icon-size);
-}
-
 .slider {
   width: 95%;
   box-sizing: border-box;
@@ -107,6 +94,7 @@
   border-radius: 50%;
   margin: 0;
   background-color: var(--accent);
+  box-shadow: 0 0 10px gray;
 }
 
 #error-panel-content {

@@ -305,9 +305,6 @@ function checkLocalStorage() {
   let theme = localStorage.getItem("theme");
   if (theme) { setTheme(theme) }
 
-  let navBarStyle = localStorage.getItem("navigation-bar");
-  if (navBarStyle) { setNavBarStyle(navBarStyle) }
-
   let palette = localStorage.getItem("palette");
   if (palette) { setPalette(palette) }
 
@@ -334,6 +331,11 @@ window.addEventListener("DOMContentLoaded", () => {
   checkLocalStorage();
   checkOrientation();
   checkTabInView();
+  if (document.body.classList.contains("ios")) {
+    setNavBarStyle("floating");
+  } else {
+    setNavBarStyle("sticky");
+  }
   const buttons = document.querySelectorAll(".ripple");
   buttons.forEach((button) => { setRippleStyle(button) });
 });

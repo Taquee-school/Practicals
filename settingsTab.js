@@ -16,7 +16,7 @@ bnTheme.addEventListener("click", openThemePanel);
 let ThemePanel = createDiv("content", "theme-panel");
 
 let themePanelHeader = createDiv("top-bar", "theme-panel-header");
-themePanelHeader.appendChild(createButton(null, "back-btn", createIcon("bold", "arrow-left"), null, closeThemePanel));
+themePanelHeader.appendChild(setRippleStyle(createButton(null, "toggle back-btn ripple", createIcon("bold", "arrow-left"), null, closeThemePanel)));
 themePanelHeader.appendChild(createTextField("tab-header", "Theme"));
 ThemePanel.appendChild(themePanelHeader);
 
@@ -105,7 +105,7 @@ bnNavBarStyle.addEventListener("click", openNavBarStylePanel);
 let NavBarStylePanel = createDiv("content", "navigation-bar-panel");
 
 let navBarStylePanelHeader = createDiv("top-bar", "navigation-bar-panel-header");
-navBarStylePanelHeader.appendChild(createButton(null, "back-btn", createIcon("bold", "arrow-left"), null, closeNavBarStylePanel));
+navBarStylePanelHeader.appendChild(setRippleStyle(createButton(null, "toggle back-btn ripple", createIcon("bold", "arrow-left"), null, closeNavBarStylePanel)));
 navBarStylePanelHeader.appendChild(createTextField("tab-header", "Navigation Bar Style"));
 NavBarStylePanel.appendChild(navBarStylePanelHeader);
 
@@ -234,7 +234,7 @@ function closePalettePanel() {
 let PalettePanel = createDiv("content", "palette-panel");
 
 let palettePanelHeader = createDiv("top-bar", "palette-panel-header");
-palettePanelHeader.appendChild(createButton(null, "back-btn", createIcon("bold", "arrow-left"), null, closePalettePanel));
+palettePanelHeader.appendChild(setRippleStyle(createButton(null, "toggle back-btn ripple", createIcon("bold", "arrow-left"), null, closePalettePanel)));
 palettePanelHeader.appendChild(createTextField("tab-header", "Palette"));
 PalettePanel.appendChild(palettePanelHeader);
 
@@ -329,7 +329,7 @@ bnAccessibilty.addEventListener("click", openAccessibiltyPanel);
 let AccessibiltyPanel = createDiv("content", "accessibility-panel");
 
 let accessibiltyPanelHeader = createDiv("top-bar", "accessibility-panel-header");
-accessibiltyPanelHeader.appendChild(createButton(null, "back-btn", createIcon("bold", "arrow-left"), null, closeAccessibiltyPanel));
+accessibiltyPanelHeader.appendChild(setRippleStyle(createButton(null, "toggle back-btn ripple", createIcon("bold", "arrow-left"), null, closeAccessibiltyPanel)));
 accessibiltyPanelHeader.appendChild(createTextField("tab-header", "Accessibility"));
 AccessibiltyPanel.appendChild(accessibiltyPanelHeader);
 
@@ -442,7 +442,7 @@ bnError.addEventListener("click", openErrorPanel);
 let errorPanel = createDiv("content", "error-panel");
 
 let errorPanelHeader = createDiv("top-bar", "error-panel-header");
-errorPanelHeader.appendChild(createButton(null, "back-btn", createIcon("bold", "arrow-left"), null, closeErrorPanel));
+errorPanelHeader.appendChild(setRippleStyle(createButton(null, "toggle back-btn ripple", createIcon("bold", "arrow-left"), null, closeErrorPanel)));
 errorPanelHeader.appendChild(createTextField("tab-header", "Error"));
 errorPanel.appendChild(errorPanelHeader);
 
@@ -522,7 +522,7 @@ function closeAboutPanel() {
 let aboutPanel = createDiv("content", "about-panel");
 
 let aboutPanelHeader = createDiv("top-bar", "about-panel-header");
-aboutPanelHeader.appendChild(createButton(null, "back-btn", createIcon("bold", "arrow-left"), null, closeAboutPanel));
+aboutPanelHeader.appendChild(setRippleStyle(createButton(null, "toggle back-btn ripple", createIcon("bold", "arrow-left"), null, closeAboutPanel)));
 aboutPanelHeader.appendChild(createTextField("tab-header", "About"));
 aboutPanel.appendChild(aboutPanelHeader);
 

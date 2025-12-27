@@ -12,17 +12,19 @@
     gtag('config', 'G-1CB3X8WY35');
   </script>
   <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
+  <script>
+    (function (w, d, s, l, i) {
       w[l] = w[l] || []; w[l].push({
         'gtm.start':
           new Date().getTime(), event: 'gtm.js'
       }); var f = d.getElementsByTagName(s)[0],
         j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
           'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-KJZGNNTL');</script>
+    })(window, document, 'script', 'dataLayer', 'GTM-KJZGNNTL');
+  </script>
   <!-- End Google Tag Manager -->
-  <meta charset="UTF-8" />
   <meta name="google-site-verification" content="sCuHQ2Lt1OuPoKxz0M01KXE0nZlSZvXyjHgl6tro-54" />
+  <meta charset="UTF-8" />
   <meta name="description" content="Practicals for class 11 and 12">
   <meta name="keywords" content="Practicals, class 11, class 12">
   <meta name="author" content="Noor Taquee">
@@ -60,12 +62,12 @@
         <div id="practical-tab" class="inner-app-tab light">
           <div id="practical-tab-header">
             <div>
-              <button class="back-btn ripple">
+              <button class="toggle back-btn ripple">
                 <i class="ph-bold ph-arrow-left"></i>
               </button>
               <p id="experiment-name"></p>
             </div>
-            <button id="help-button" class="back-btn ripple">
+            <button id="help-button" class="toggle ripple">
               <i class="ph-bold ph-question-mark"></i>
             </button>
           </div>
@@ -133,6 +135,23 @@
       </div>
     </div>
   </div>
+  <script>
+    function tagPlatform() {
+      const ua = navigator.userAgent;
+      const isAndroid = /Android/i.test(ua);
+      const isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+      if (isAndroid) {
+        document.body.classList.add('android');
+      } else if (isIOS) {
+        document.body.classList.add('ios');
+      } else {
+        document.body.classList.add('pc');
+      }
+    }
+
+    tagPlatform();
+  </script>
   <script src="script.js"></script>
   <script src="homeTab.js"></script>
   <script src="settingsTab.js"></script>
