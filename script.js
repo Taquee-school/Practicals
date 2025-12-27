@@ -81,6 +81,40 @@ function addStyle(path, id) {
 
 // #endregion
 
+// #region elements
+const app = document.getElementById("app");
+const appWrapper = document.getElementById("app-wrapper");
+
+const loadingScreen = document.getElementById("loading-screen");
+
+const innerApp = document.getElementById("inner-app");
+const innerAppTabContainer = document.getElementById("inner-app-tab-container");
+
+const homeTab = document.getElementById("home-tab");
+const homeContent = document.getElementById("home-content");
+const homeTabContent = document.querySelector("#home-tab .content");
+
+const practicalTab = document.getElementById("practical-tab");
+
+const settingsTab = document.getElementById("settings-tab");
+const settingsContent = document.getElementById("settings-content");
+
+const bnHome = document.getElementById("home-button");
+const homeIcon = document.getElementById("home-icon");
+
+const bnPractical = document.getElementById("practical-button");
+const practicalIcon = document.getElementById("practical-icon");
+
+const bnSettings = document.getElementById("settings-button");
+const settingsIcon = document.getElementById("settings-icon");
+
+const practicalContainer = document.getElementById("practical-container");
+const experimentName = document.getElementById("experiment-name");
+
+const NavigationDiv = document.getElementById("navigation-div");
+
+// #endregion elements
+
 // #region Navigation
 bnHome.addEventListener("click", () => {
   if (app.classList.contains("vertical")) {
@@ -269,19 +303,14 @@ function setRippleStyle(button) {
 // region Initialisation
 function checkLocalStorage() {
   let theme = localStorage.getItem("theme");
-  if (theme) {
-    setTheme(theme);
-  }
-  let navBarStyle = localStorage.getItem("navigation-bar");
-  if (navBarStyle) {
-    setNavBarStyle(navBarStyle);
-  }
-  let palette = localStorage.getItem("palette");
-  if (palette) {
-    setPalette(palette);
-  }
+  if (theme) { setTheme(theme) }
 
-  // Load accessibility settings
+  let navBarStyle = localStorage.getItem("navigation-bar");
+  if (navBarStyle) { setNavBarStyle(navBarStyle) }
+
+  let palette = localStorage.getItem("palette");
+  if (palette) { setPalette(palette) }
+
   let fontScale = localStorage.getItem("font-scale");
   let headerScale = localStorage.getItem("header-scale");
   let iconScale = localStorage.getItem("icon-scale");
