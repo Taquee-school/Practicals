@@ -1,15 +1,13 @@
 const CACHE_NAME = 'practicals';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/homeTab.css',
-  '/settingsTab.css',
-  '/script.js',
-  '/homeTab.js',
-  '/settingsTab.js',
-  '/src/android-chrome-192x192.png',
-  '/src/android-chrome-512x512.png'
+  'index.html',
+  'style.css',
+  'homeTab.css',
+  'settingsTab.css',
+  'script.js',
+  'homeTab.js',
+  'settingsTab.js',
+  'src/logo.svg'
 ];
 
 // Install the service worker and cache assets
