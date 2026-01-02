@@ -570,7 +570,7 @@ function buildAboutPanelContent() {
   // 1. About app
   let versionInfo = createDiv("version-info");
   versionInfo.appendChild(createTextField("app-name", "Practical"));
-  versionInfo.appendChild(createTextField("version-tag", "v2.6.3"));
+  versionInfo.appendChild(createTextField("version-tag", "v2.7.9"));
   aboutPanelContent.appendChild(versionInfo);
 
   // 2. Developer & Community
