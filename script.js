@@ -193,7 +193,11 @@ function isElementCentered(element) {
 // Prevent from accidentally quitting
 window.addEventListener("popstate", (event) => {
   window.onbeforeunload = () => {
-    return "Are you sure you want to leave?"
+    const exitCon = window.confirm("Are you sure you want to exit?");
+    if (!exitCon) {
+      event.preventDefault();
+      history.pushState(null, document.title, window.location.href);
+    }
   }
 });
 
