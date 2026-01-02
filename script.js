@@ -127,8 +127,8 @@ bnHome.addEventListener("click", () => {
     }
   }
 });
-bnPractical.addEventListener("click", () => changeTab(practicalTab));
-bnSettings.addEventListener("click", () => changeTab(settingsTab));
+bnPractical.addEventListener("click", () => { changeTab(practicalTab) });
+bnSettings.addEventListener("click", () => { changeTab(settingsTab) });
 
 
 currentPractical = null;
@@ -153,7 +153,7 @@ function openFile(file, message) {
   currentVideoUrl = null;
 }
 
-function changeTab(dTab, dTabBtn) {
+function changeTab(dTab) {
   dTab.scrollIntoView();
 }
 
@@ -179,6 +179,7 @@ function checkTabInView() {
     currentTabBtn.style.animation = "expand 0.45s ease";
   }
 }
+
 function isElementCentered(element) {
   const containerRect = scrollParent.getBoundingClientRect();
   const elementRect = element.getBoundingClientRect();
@@ -189,16 +190,12 @@ function isElementCentered(element) {
   return Math.abs(containerCenter - elementCenter) <= tolerance;
 }
 
-// window.addEventListener("popstate", (event) => { handlePopState(event) });
-function handlePopState(event) {
-  if (event.state) {
-    if (event.state.panel == "physicsPracticals") {
-      physicsBtn.click();
-    }
-  } else {
-    homeTab.scrollIntoView();
+// Prevent from accidentally quitting
+window.addEventListener("popstate", (event) => {
+  window.onbeforeunload = () => {
+    return "Are you sure you want to leave?"
   }
-}
+});
 
 // #endregion
 
@@ -214,7 +211,7 @@ let practicalTabBackBtn = document.querySelector("#practical-tab .back-btn");
 practicalTabBackBtn.addEventListener("click", goToHome);
 function goToHome() {
   if (app.classList.contains("vertical")) {
-    changeTab(homeTab, bnHome);
+    changeTab(homeTab);
   } else {
     homeTab.style.display = "flex";
   }
@@ -300,7 +297,7 @@ function setRippleStyle(button) {
 }
 // #endregion
 
-// region Initialisation
+// #region Initialisation
 function checkLocalStorage() {
   let theme = localStorage.getItem("theme");
   if (theme) { setTheme(theme) }
@@ -340,5 +337,3 @@ window.addEventListener("DOMContentLoaded", () => {
   buttons.forEach((button) => { setRippleStyle(button) });
 });
 // #endregion Initialisation
-
-
