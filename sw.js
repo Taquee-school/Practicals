@@ -1,13 +1,13 @@
 const CACHE_NAME = 'practicals';
 const ASSETS = [
+  'public/logo.svg',
   'index.html',
-  'style.css',
-  'homeTab.css',
-  'settingsTab.css',
-  'script.js',
-  'homeTab.js',
-  'settingsTab.js',
-  'src/logo.svg'
+  'src/style.css',
+  'src/script.js',
+  'src/home/homeTab.css',
+  'src/home/homeTab.js',
+  'src/settings/settingsTab.css',
+  'src/settings/settingsTab.js'
 ];
 
 // Install the service worker and cache assets

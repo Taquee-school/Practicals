@@ -117,83 +117,93 @@
 }
 
 .light.default {
-  --primary-bg: rgb(235, 235, 235);
-  --secondary-bg: rgb(255, 255, 255);
-  --primary-text-color: rgb(0, 0, 0);
-  --border-color: rgb(0, 0, 0, 0.5);
-  --accent: rgb(150, 150, 150);
+  --primary-bg: #ebebeb;
+  --secondary-bg: #ffffff;
+  --blur-bg: #ffffff90;
+  --primary-text-color: #000000;
+  --border-color: #00000080;
+  --accent: #969696;
 }
 
 .dark.default {
-  --primary-bg: rgb(0, 0, 0);
-  --secondary-bg: rgb(30, 30, 30);
-  --primary-text-color: rgb(255, 255, 255);
-  --border-color: rgba(255, 255, 255, 0.6);
-  --accent: rgb(150, 150, 150);
+  --primary-bg: #000000;
+  --secondary-bg: #1e1e1e;
+  --blur-bg: #1e1e1e90;
+  --primary-text-color: #ffffff;
+  --border-color: #ffffff99;
+  --accent: #969696;
 }
 
 .light.lime {
-  --primary-bg: rgb(245, 255, 230);
-  --secondary-bg: rgb(230, 250, 180);
-  --primary-text-color: rgb(30, 40, 20);
-  --border-color: rgb(120, 150, 60);
-  --accent: rgb(150, 200, 70);
+  --primary-bg: #f5ffe6;
+  --secondary-bg: #e6fab4;
+  --blur-bg: #e6fab490;
+  --primary-text-color: #1e2814;
+  --border-color: #78963c;
+  --accent: #96c846;
 }
 
 .dark.lime {
-  --primary-bg: rgb(18, 24, 14);
-  --secondary-bg: rgb(28, 36, 22);
+  --primary-bg: #12180e;
+  --secondary-bg: #1c2416;
+  --blur-bg: #1c241690;
   --primary-text-color: rgb(220, 235, 210);
-  --border-color: rgb(150, 200, 70);
-  --accent: rgb(170, 220, 90);
+  --border-color: #96c846;
+  --accent: #aadc5a;
 }
 
 .light.pink {
-  --primary-bg: rgb(255, 245, 250);
-  --secondary-bg: rgb(245, 225, 240);
-  --primary-text-color: rgb(40, 20, 35);
-  --border-color: rgb(180, 120, 160);
-  --accent: rgb(200, 130, 180);
+  --primary-bg: #fff5fa;
+  --secondary-bg: #f5e1f0;
+  --blur-bg: #f5e1f090;
+  --primary-text-color: #281423;
+  --border-color: #b478a0;
+  --accent: #c882b4;
 }
 
 .dark.pink {
-  --primary-bg: rgb(22, 16, 20);
-  --secondary-bg: rgb(34, 24, 30);
-  --primary-text-color: rgb(235, 215, 225);
-  --border-color: rgb(200, 130, 180);
-  --accent: rgb(220, 150, 200);
+  --primary-bg: #161014;
+  --secondary-bg: #22181e;
+  --blur-bg: #22181e90;
+  --primary-text-color: #ebd7e1;
+  --border-color: #c882b4;
+  --accent: #dc96c8;
 }
 
 .light.blue {
-  --primary-bg: rgb(240, 248, 255);
-  --secondary-bg: rgb(225, 240, 250);
-  --primary-text-color: rgb(20, 30, 40);
-  --border-color: rgb(100, 140, 180);
-  --accent: rgb(110, 170, 220);
+  --primary-bg: #f0f8ff;
+  --secondary-bg: #e1f0fa;
+  --blur-bg: #e1f0fa90;
+  --primary-text-color: #141e28;
+  --border-color: #648cb4;
+  --accent: #6eaadc;
 }
 
 .dark.blue {
-  --primary-bg: rgb(14, 18, 24);
-  --secondary-bg: rgb(24, 30, 38);
-  --primary-text-color: rgb(215, 225, 235);
-  --border-color: rgb(130, 180, 230);
-  --accent: rgb(140, 200, 250);
+  --primary-bg: #0e1218;
+  --secondary-bg: #181e26;
+  --blur-bg: #181e2690;
+  --primary-text-color: #d7e1eb;
+  --border-color: #82b4e6;
+  --accent: #8cc8fa;
 }
 
 .light.purple {
-  --primary-bg: rgb(248, 245, 255);
-  --secondary-bg: rgb(232, 225, 250);
-  --primary-text-color: rgb(35, 30, 45);
-  --border-color: rgb(130, 110, 170);
-  --accent: rgb(150, 130, 200);
+  --primary-bg: #f8f5ff;
+  --secondary-bg: #e8e1fa;
+  --blur-bg: #e8e1fa90;
+  --primary-text-color: #231e2d;
+  --border-color: #826eaa;
+  --accent: #9682c8;
 }
 
 .dark.purple {
-  --primary-bg: rgb(16, 14, 22);
-  --secondary-bg: rgb(26, 24, 36);
-  --primary-text-color: rgb(225, 220, 235);
-  --border-color: rgb(160, 140, 210);
-  --accent: rgb(180, 160, 230);
+  --primary-bg: #100e16;
+  --secondary-bg: #1a1824;
+  --blur-bg: #1a182490;
+  --primary-text-color: #e1dceb;
+  --border-color: #a08cd2;
+  --accent: #b4a0e6;
 }
 /* #endregion Variables */
 
@@ -517,19 +527,11 @@ button.ripple {
   border-radius: 40px;
 }
 
-.ios.dark #navigation-div.floating {
+.ios #navigation-div.floating {
   bottom: 0 !important;
   margin-bottom: 2.5vw !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
-  background: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(20px);
-}
-
-.ios.light #navigation-div.floating {
-  bottom: 0 !important;
-  margin-bottom: 2.5vw !important;
-  border-color: rgba(0, 0, 0, 0.3) !important;
-  background: rgba(0, 0, 0, 0.1) !important;
+  border-color:var(--secondary-bg) !important;
+  background: var(--blur-bg) !important;
   backdrop-filter: blur(20px);
 }
 

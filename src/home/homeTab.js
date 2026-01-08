@@ -34,7 +34,7 @@ loadingTab.appendChild(createTextField("loadin-text", "Loading..."));
 function openPhysicsPanel() {
     // Adding script if not already added
     if (!document.getElementById("PhysicsPracticals")) {
-        addScript("Physics-Practicals/physicsPracticals.js").id = "PhysicsPracticals";
+        addScript("src/Physics-Practicals/physicsPracticals.js").id = "PhysicsPracticals";
         physicsTabContent.appendChild(loadingTab);
     }
     
@@ -82,7 +82,7 @@ physicsTab.appendChild(physicsTabContent);
 function openChemistryPanel() {
     // add script if not already added
     if (!document.getElementById("ChemistryPracticals")) {
-        addScript("Chemistry-Practicals/chemistryPracticals.js").id = "ChemistryPracticals";
+        addScript("src/Chemistry-Practicals/chemistryPracticals.js").id = "ChemistryPracticals";
         chemistryTabContent.appendChild(loadingTab);
     }
 

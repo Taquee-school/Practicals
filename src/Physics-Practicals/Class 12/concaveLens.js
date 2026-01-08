@@ -120,8 +120,8 @@ concaveLensDiv.appendChild(ccl_diagramDiv);
 
 ccl_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-ccl_diagramDiv.appendChild(createImg("practical-file-diagram light", "Physics-Practicals/Class 12/Diagrams/Light/concave lens.jpg"));
-ccl_diagramDiv.appendChild(createImg("practical-file-diagram dark", "Physics-Practicals/Class 12/Diagrams/Dark/concave lens.jpg"));
+ccl_diagramDiv.appendChild(createImg("practical-file-diagram light", physicsFilePath + "class 12/assets/diagrams/Light/concave lens.jpg"));
+ccl_diagramDiv.appendChild(createImg("practical-file-diagram dark", physicsFilePath + "class 12/assets/diagrams/Dark/concave lens.jpg"));
 
 let ccl_moreDiagramBtn = createButton(null, "practical-section-more-button", createIcon("fill", "images-square"),"More Diagrams", ccl_showDiagrams);
 // ccl_diagramDiv.appendChild(ccl_moreDiagramBtn);

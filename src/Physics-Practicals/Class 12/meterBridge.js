@@ -139,8 +139,8 @@ meterBridgeDiv.appendChild(mbr_diagramDiv);
 
 mbr_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-mbr_diagramDiv.appendChild(createImg("practical-file-diagram light", "Physics-Practicals/Class 12/Diagrams/Light/meter bridge.jpg"));
-mbr_diagramDiv.appendChild(createImg("practical-file-diagram dark", "Physics-Practicals/Class 12/Diagrams/Dark/meter bridge.jpg"));
+mbr_diagramDiv.appendChild(createImg("practical-file-diagram light", physicsFilePath + "class 12/assets/diagrams/Light/meter bridge.jpg"));
+mbr_diagramDiv.appendChild(createImg("practical-file-diagram dark", physicsFilePath + "class 12/assets/diagrams/Dark/meter bridge.jpg"));
 // #endregion Diagram
 
 // #region Objective

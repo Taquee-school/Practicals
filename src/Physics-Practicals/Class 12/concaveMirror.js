@@ -111,8 +111,8 @@ concaveMirrorDiv.appendChild(ccm_diagramDiv);
 
 ccm_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-ccm_diagramDiv.appendChild(createImg("practical-file-diagram light", "Physics-Practicals/Class 12/Diagrams/Light/concave mirror.jpg"));
-ccm_diagramDiv.appendChild(createImg("practical-file-diagram dark", "Physics-Practicals/Class 12/Diagrams/Dark/concave mirror.jpg"));
+ccm_diagramDiv.appendChild(createImg("practical-file-diagram light", physicsFilePath + "class 12/assets/diagrams/Light/concave mirror.jpg"));
+ccm_diagramDiv.appendChild(createImg("practical-file-diagram dark", physicsFilePath + "class 12/assets/diagrams/Dark/concave mirror.jpg"));
 
 let ccm_moreDiagramBtn = createButton(null, "practical-section-more-button", createIcon("fill", "images-square"),"More Diagrams", ccm_showDiagrams);
 // ccm_diagramDiv.appendChild(ccm_moreDiagramBtn);

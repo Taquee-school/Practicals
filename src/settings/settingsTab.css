@@ -9,8 +9,8 @@
   height: 100px;
   width: 100px;
   background-color: var(--primary-text-color);
-  -webkit-mask: url("src/logo.svg") no-repeat center;
-  mask: url("src/logo.svg") no-repeat center;
+  -webkit-mask: url("../../public/logo.svg") no-repeat center;
+  mask: url("../../public/logo.svg") no-repeat center;
   -webkit-mask-size: contain;
   mask-size: contain;
 }

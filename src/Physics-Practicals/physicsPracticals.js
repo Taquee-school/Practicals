@@ -1,4 +1,6 @@
-addStyle("Physics-Practicals/physicsPracticalFile.css", "physics-practical-style").onload = () => {
+const physicsFilePath = "src/Physics-Practicals/";
+
+addStyle(physicsFilePath + "physicsPracticalFile.css", "physics-practical-style").onload = () => {
   if (physicsTabContent.contains(loadingTab)) {
     physicsTabContent.removeChild(loadingTab);
   }
@@ -164,7 +166,7 @@ function load11th_practicals() {
       openFile(screwGaugeDiv, "Screw Gauge");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 11/screwGauge.js", "screw-gauge-script").onload = () => {
+      addScript(physicsFilePath + "Class 11/screwGauge.js", "screw-gauge-script").onload = () => {
         openFile(screwGaugeDiv, "Screw Gauge");
       };
     }
@@ -178,7 +180,7 @@ function load11th_practicals() {
       openFile(vernierCalipersDiv, "Vernier Calipers");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 11/vernierCalipers.js", "vernier-calipers-script").onload = () => {
+      addScript(physicsFilePath + "Class 11/vernierCalipers.js", "vernier-calipers-script").onload = () => {
         openFile(vernierCalipersDiv, "Vernier Calipers");
       };
     }
@@ -193,7 +195,7 @@ function load11th_practicals() {
       helpVideoText.style.display = "none";
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 11/sonometer.js", "sonometer-script").onload = () => {
+      addScript(physicsFilePath + "Class 11/sonometer.js", "sonometer-script").onload = () => {
         openFile(sonometerDiv, "Sonometer");
       };
     }
@@ -208,7 +210,7 @@ function load11th_practicals() {
       openFile(parallelogramDiv, "Parallelogram");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 11/parallelogram.js", "parallelogram-script").onload = () => {
+      addScript(physicsFilePath + "Class 11/parallelogram.js", "parallelogram-script").onload = () => {
         openFile(parallelogramDiv, "Parallelogram");
       };
     }
@@ -223,7 +225,7 @@ function load11th_practicals() {
       openFile(simplePendulumDiv, "Simple Pendulum");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 11/simplePendulum.js", "simple-pendulum-script").onload = () => {
+      addScript(physicsFilePath + "Class 11/simplePendulum.js", "simple-pendulum-script").onload = () => {
         openFile(simplePendulumDiv, "Simple Pendulum");
       };
     }
@@ -238,7 +240,7 @@ function load11th_practicals() {
       openFile(spherometerDiv, "Spherometer");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 11/spherometer.js", "spherometer-script").onload = () => {
+      addScript(physicsFilePath + "Class 11/spherometer.js", "spherometer-script").onload = () => {
         openFile(spherometerDiv, "Spherometer");
       };
     }
@@ -253,7 +255,7 @@ function load11th_practicals() {
       openFile(helicalSpringDiv, "Helical Spring");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 11/helicalSpring.js", "helical-spring-script").onload = () => {
+      addScript(physicsFilePath + "Class 11/helicalSpring.js", "helical-spring-script").onload = () => {
         openFile(helicalSpringDiv, "Helical Spring");
       };
     }
@@ -267,7 +269,7 @@ function load11th_practicals() {
       openFile(resonanceTubeDiv, "Resonance Tube");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 11/resonanceTube.js", "resonance-tube-script").onload = () => {
+      addScript(physicsFilePath + "Class 11/resonanceTube.js", "resonance-tube-script").onload = () => {
         openFile(resonanceTubeDiv, "Resonance Tube");
       };
     }
@@ -288,7 +290,7 @@ function load12th_practicals() {
       openFile(ohmsLawDiv, "Ohm's Law");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 12/ohmsLaw.js", "ohms-law-script").onload = () => {
+      addScript(physicsFilePath + "Class 12/ohmsLaw.js", "ohms-law-script").onload = () => {
         openFile(ohmsLawDiv, "Ohm's Law");
       };
     }
@@ -302,7 +304,7 @@ function load12th_practicals() {
       openFile(pnJunctionDiv, "PN Junction");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 12/pnJunction.js", "pn-junction-script").onload = () => {
+      addScript(physicsFilePath + "Class 12/pnJunction.js", "pn-junction-script").onload = () => {
         openFile(pnJunctionDiv, "PN Junction");
       };
     }
@@ -316,7 +318,7 @@ function load12th_practicals() {
       openFile(meterBridgeDiv, "Meter Bridge");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 12/meterBridge.js", "meter-bridge-script").onload = () => {
+      addScript(physicsFilePath + "Class 12/meterBridge.js", "meter-bridge-script").onload = () => {
         openFile(meterBridgeDiv, "Meter Bridge");
       };
     }
@@ -330,7 +332,7 @@ function load12th_practicals() {
       openFile(halfDeflectionDiv, "Half Deflection");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 12/halfDeflection.js", "half-deflection-script").onload = () => {
+      addScript(physicsFilePath + "Class 12/halfDeflection.js", "half-deflection-script").onload = () => {
         openFile(halfDeflectionDiv, "Half Deflection");
       };
     }
@@ -344,7 +346,7 @@ function load12th_practicals() {
       openFile(acSonometerDiv, "AC Sonometer");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 12/acSonometer.js", "ac-sonometer-script").onload = () => {
+      addScript(physicsFilePath + "Class 12/acSonometer.js", "ac-sonometer-script").onload = () => {
         openFile(acSonometerDiv, "AC Sonometer");
       };
     }
@@ -358,7 +360,7 @@ function load12th_practicals() {
       openFile(convexLensDiv, "Convex Lens");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 12/convexLens.js", "convex-lens-script").onload = () => {
+      addScript(physicsFilePath + "Class 12/convexLens.js", "convex-lens-script").onload = () => {
         openFile(convexLensDiv, "Convex Lens");
       };
     }
@@ -372,7 +374,7 @@ function load12th_practicals() {
       openFile(concaveMirrorDiv, "Concave Mirror");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 12/concaveMirror.js", "concave-mirror-script").onload = () => {
+      addScript(physicsFilePath + "Class 12/concaveMirror.js", "concave-mirror-script").onload = () => {
         openFile(concaveMirrorDiv, "Concave Mirror");
       };
     }
@@ -386,7 +388,7 @@ function load12th_practicals() {
       openFile(convexMirrorDiv, "Convex Mirror");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 12/convexMirror.js", "convex-mirror-script").onload = () => {
+      addScript(physicsFilePath + "Class 12/convexMirror.js", "convex-mirror-script").onload = () => {
         openFile(convexMirrorDiv, "Convex Mirror");
       };
     }
@@ -400,7 +402,7 @@ function load12th_practicals() {
       openFile(concaveLensDiv, "Concave Lens");
     } catch {
       showPracticalLoading();
-      addScript("Physics-Practicals/Class 12/concaveLens.js", "concave-lens-script").onload = () => {
+      addScript(physicsFilePath + "Class 12/concaveLens.js", "concave-lens-script").onload = () => {
         openFile(concaveLensDiv, "Concave Lens");
       };
     }

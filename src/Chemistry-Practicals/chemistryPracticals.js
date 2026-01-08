@@ -1,4 +1,6 @@
-addStyle("Chemistry-Practicals/chemistryPracticalFile.css", "chemistry-practicals-style").onload = () => {
+const chemistryFilePath = "src/Chemistry-Practicals/";
+
+addStyle(chemistryFilePath + "chemistryPracticalFile.css", "chemistry-practicals-style").onload = () => {
   if (chemistryTabContent.contains(loadingTab)) {
     chemistryTabContent.removeChild(loadingTab);
   }
@@ -34,7 +36,7 @@ function loadBasicRadicals() {
       openFile(basicGroup0Div, "Group-0");
     } catch {
       showPracticalLoading();
-      addScript("Chemistry-Practicals/basic-radicals/group-0.js", "basic-group-0-script").onload = () => {
+      addScript(chemistryFilePath + "basic-radicals/group-0.js", "basic-group-0-script").onload = () => {
         openFile(basicGroup0Div, "Group-0");
       };
     }
@@ -48,7 +50,7 @@ function loadBasicRadicals() {
       openFile(basicGroup1Div, "Group-I");
     } catch {
       showPracticalLoading();
-      addScript("Chemistry-Practicals/basic-radicals/group-1.js", "basic-group-1-script").onload = () => {
+      addScript(chemistryFilePath + "basic-radicals/group-1.js", "basic-group-1-script").onload = () => {
         openFile(basicGroup1Div, "Group-I");
       };
     }
@@ -62,7 +64,7 @@ function loadBasicRadicals() {
       openFile(basicGroup2Div, "Group-II");
     } catch {
       showPracticalLoading();
-      addScript("Chemistry-Practicals/basic-radicals/group-2.js", "basic-group-2-script").onload = () => {
+      addScript(chemistryFilePath + "basic-radicals/group-2.js", "basic-group-2-script").onload = () => {
         openFile(basicGroup2Div, "Group-II");
       };
     }
@@ -76,7 +78,7 @@ function loadBasicRadicals() {
       openFile(basicGroup3Div, "Group-III");
     } catch {
       showPracticalLoading();
-      addScript("Chemistry-Practicals/basic-radicals/group-3.js", "basic-group-3-script").onload = () => {
+      addScript(chemistryFilePath + "basic-radicals/group-3.js", "basic-group-3-script").onload = () => {
         openFile(basicGroup3Div, "Group-III");
       };
     }
@@ -90,7 +92,7 @@ function loadBasicRadicals() {
       openFile(basicGroup4Div, "Group-IV");
     } catch {
       showPracticalLoading();
-      addScript("Chemistry-Practicals/basic-radicals/group-4.js", "basic-group-4-script").onload = () => {
+      addScript(chemistryFilePath + "basic-radicals/group-4.js", "basic-group-4-script").onload = () => {
         openFile(basicGroup4Div, "Group-IV");
       };
     }
@@ -104,7 +106,7 @@ function loadBasicRadicals() {
       openFile(basicGroup5Div, "Group-V");
     } catch {
       showPracticalLoading();
-      addScript("Chemistry-Practicals/basic-radicals/group-5.js", "basic-group-5-script").onload = () => {
+      addScript(chemistryFilePath + "basic-radicals/group-5.js", "basic-group-5-script").onload = () => {
         openFile(basicGroup5Div, "Group-V");
       };
     }
@@ -118,7 +120,7 @@ function loadBasicRadicals() {
       openFile(basicGroup6Div, "Group-VI");
     } catch {
       showPracticalLoading();
-      addScript("Chemistry-Practicals/basic-radicals/group-6.js", "basic-group-6-script").onload = () => {
+      addScript(chemistryFilePath + "basic-radicals/group-6.js", "basic-group-6-script").onload = () => {
         openFile(basicGroup6Div, "Group-VI");
       };
     }
@@ -138,7 +140,7 @@ function loadAcidicRadicals() {
       openFile(acidicGroup1Div, "Group-I");
     } catch {
       showPracticalLoading();
-      addScript("Chemistry-Practicals/acidic-radicals/group-1.js", "acidic-group-1-script").onload = () => {
+      addScript(chemistryFilePath + "acidic-radicals/group-1.js", "acidic-group-1-script").onload = () => {
         openFile(acidicGroup1Div, "Group-I");
       };
     }
@@ -152,7 +154,7 @@ function loadAcidicRadicals() {
       openFile(acidicGroup2Div, "Group-II");
     } catch {
       showPracticalLoading();
-      addScript("Chemistry-Practicals/acidic-radicals/group-2.js", "acidic-group-2-script").onload = () => {
+      addScript(chemistryFilePath + "acidic-radicals/group-2.js", "acidic-group-2-script").onload = () => {
         openFile(acidicGroup2Div, "Group-II");
       };
     }
@@ -166,7 +168,7 @@ function loadAcidicRadicals() {
       openFile(acidicGroup3Div, "Group-III");
     } catch {
       showPracticalLoading();
-      addScript("Chemistry-Practicals/acidic-radicals/group-3.js", "acidic-group-3-script").onload = () => {
+      addScript(chemistryFilePath + "acidic-radicals/group-3.js", "acidic-group-3-script").onload = () => {
         openFile(acidicGroup3Div, "Group-III");
       };
     }
