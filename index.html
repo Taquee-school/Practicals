@@ -43,7 +43,8 @@
   <link rel="stylesheet" href="src/settings/settingsTab.css" />
 </head>
 
-<body id="app" class="dark default vertical">
+<body id="app" data-orientation="vertical" data-os="android" data-theme="light" data-palette="default"
+  class="dark default vertical">
   <!-- Google Tag Manager (noscript) -->
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJZGNNTL" height="0" width="0"
@@ -63,10 +64,9 @@
           </div>
         </div>
         <div id="practical-tab" class="inner-app-tab light">
-          <div id="practical-tab-header">
+          <div id="practical-tab-header" class="top-bar">
             <div>
               <button class="toggle back-btn ripple">
-                <i class="ph-bold ph-arrow-left"></i>
               </button>
               <p id="experiment-name"></p>
             </div>
@@ -74,7 +74,7 @@
               <i class="ph-bold ph-question-mark"></i>
             </button>
           </div>
-          <div id="practical-tab-content">
+          <div id="practical-tab-content" class="content">
             <div id="practical-container" class="practical-tab-panel"></div>
           </div>
         </div>
@@ -139,17 +139,22 @@
     </div>
   </div>
   <script>
+    let globalBackIcon;
+
     function tagPlatform() {
       const ua = navigator.userAgent;
       const isAndroid = /Android/i.test(ua);
       const isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
       if (isAndroid) {
-        document.body.classList.add('android');
+        document.body.dataset.os = 'android';
+        globalBackIcon = "arrow-left";
       } else if (isIOS) {
-        document.body.classList.add('ios');
+        document.body.dataset.os = 'ios';
+        globalBackIcon = "caret-left";
       } else {
-        document.body.classList.add('pc');
+        document.body.dataset.os = 'pc';
+        globalBackIcon = "arrow-left";
       }
     }
 

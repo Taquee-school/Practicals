@@ -69,7 +69,7 @@ let physicsTab = createDiv("inner-app-tab", "physics-tab");
 let physicsTabHeader = createDiv("top-bar");
 physicsTab.appendChild(physicsTabHeader);
 
-physicsTabHeader.appendChild(setRippleStyle(createButton(null, "toggle back-btn ripple", createIcon("bold", "arrow-left"), null, closePhysicsPanel)));
+physicsTabHeader.appendChild(setRippleStyle(createButton(null, "toggle back-btn ripple", createIcon("bold", globalBackIcon), null, closePhysicsPanel)));
 
 
 let physicsTabContent = createDiv("content");
@@ -120,7 +120,7 @@ let chemistryTab = createDiv("inner-app-tab", "chemistry-tab");
 let chemistryTabHeader = createDiv("top-bar");
 chemistryTab.appendChild(chemistryTabHeader);
 
-chemistryTabHeader.appendChild(setRippleStyle(createButton(null, "toggle back-btn ripple", createIcon("bold", "arrow-left"), null, closeChemistryPanel)));
+chemistryTabHeader.appendChild(setRippleStyle(createButton(null, "toggle back-btn ripple", createIcon("bold", globalBackIcon), null, closeChemistryPanel)));
 
 
 let chemistryTabContent = createDiv("content");

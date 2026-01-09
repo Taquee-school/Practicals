@@ -87,7 +87,7 @@
 /* #endregion Animations */
 
 /* #region Variables */
-.vertical {
+[data-orientation="vertical"] {
   --font-scale: 1;
   --header-scale: 1;
   --icon-scale: 1;
@@ -102,7 +102,7 @@
   --loading-font-size: calc(20px * var(--font-scale));
 }
 
-.horizontal {
+[data-orientation="horizontal"] {
   --font-scale: 1;
   --header-scale: 1;
   --icon-scale: 1;
@@ -116,7 +116,7 @@
   --loading-font-size: calc(20px * var(--font-scale));
 }
 
-.light.default {
+[data-theme="light"][data-palette="default"] {
   --primary-bg: #ebebeb;
   --secondary-bg: #ffffff;
   --blur-bg: #ffffff90;
@@ -125,7 +125,7 @@
   --accent: #969696;
 }
 
-.dark.default {
+[data-theme="dark"][data-palette="default"] {
   --primary-bg: #000000;
   --secondary-bg: #1e1e1e;
   --blur-bg: #1e1e1e90;
@@ -134,7 +134,7 @@
   --accent: #969696;
 }
 
-.light.lime {
+[data-theme="light"][data-palette="lime"] {
   --primary-bg: #f5ffe6;
   --secondary-bg: #e6fab4;
   --blur-bg: #e6fab490;
@@ -143,7 +143,7 @@
   --accent: #96c846;
 }
 
-.dark.lime {
+[data-theme="dark"][data-palette="lime"] {
   --primary-bg: #12180e;
   --secondary-bg: #1c2416;
   --blur-bg: #1c241690;
@@ -152,7 +152,7 @@
   --accent: #aadc5a;
 }
 
-.light.pink {
+[data-theme="light"][data-palette="pink"] {
   --primary-bg: #fff5fa;
   --secondary-bg: #f5e1f0;
   --blur-bg: #f5e1f090;
@@ -161,7 +161,7 @@
   --accent: #c882b4;
 }
 
-.dark.pink {
+[data-theme="dark"][data-palette="pink"] {
   --primary-bg: #161014;
   --secondary-bg: #22181e;
   --blur-bg: #22181e90;
@@ -170,7 +170,7 @@
   --accent: #dc96c8;
 }
 
-.light.blue {
+[data-theme="light"][data-palette="blue"] {
   --primary-bg: #f0f8ff;
   --secondary-bg: #e1f0fa;
   --blur-bg: #e1f0fa90;
@@ -179,7 +179,7 @@
   --accent: #6eaadc;
 }
 
-.dark.blue {
+[data-theme="dark"][data-palette="blue"] {
   --primary-bg: #0e1218;
   --secondary-bg: #181e26;
   --blur-bg: #181e2690;
@@ -188,7 +188,7 @@
   --accent: #8cc8fa;
 }
 
-.light.purple {
+[data-theme="light"][data-palette="purple"] {
   --primary-bg: #f8f5ff;
   --secondary-bg: #e8e1fa;
   --blur-bg: #e8e1fa90;
@@ -197,7 +197,7 @@
   --accent: #9682c8;
 }
 
-.dark.purple {
+[data-theme="dark"][data-palette="purple"] {
   --primary-bg: #100e16;
   --secondary-bg: #1a1824;
   --blur-bg: #1a182490;
@@ -222,7 +222,7 @@ html, body {
 
 * {
   -webkit-tap-highlight-color: transparent;
-  transition: background 0.5s ease, color 0.5s ease;
+  transition: background 500ms ease, color 500ms ease;
 }
 
 /* #region app-wrapper */
@@ -254,10 +254,10 @@ html, body {
   padding: 0;
   display: flex;
 }
-#app.vertical #inner-app {
+[data-orientation="vertical"] #inner-app {
   flex-direction: column;
 }
-#app.horizontal #inner-app {
+[data-orientation="horizontal"] #inner-app {
   flex-direction: row-reverse;
 }
 
@@ -271,13 +271,13 @@ html, body {
   gap: 0;
   display: flex;
 }
-#app.vertical #inner-app-tab-container {
+[data-orientation="vertical"] #inner-app-tab-container {
   overflow-x: scroll;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
 }
-#app.horizontal #inner-app-tab-container {
+[data-orientation="horizontal"] #inner-app-tab-container {
   overflow: hidden;
 }
 #inner-app-tab-container::-webkit-scrollbar {
@@ -298,7 +298,7 @@ html, body {
   flex-direction: column;
   align-items: center;
 }
-#app.vertical .inner-app-tab {
+[data-orientation="vertical"] .inner-app-tab {
   flex-shrink: 0;
   width: 100%;
   scroll-snap-align: center;
@@ -315,12 +315,12 @@ html, body {
   height: 100%;
   width: 100%;
 }
-#app.horizontal #home-tab {
+[data-orientation="horizontal"] #home-tab {
   flex-shrink: 0;
   width: 30%;
   display: flex;
 }
-#app.horizontal #practical-tab {
+[data-orientation="horizontal"] #practical-tab {
   flex-grow: 1;
 }
 
@@ -332,54 +332,15 @@ html, body {
   font: var(--loading-font-size);
 }
 
-button.ripple {
-  position: relative;
-  overflow: hidden;
-}
-
-.ripple-span {
-  position: absolute;
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple-animation 0.6s linear;
-  pointer-events: none;
-  background-color: var(--accent);
-}
-
-.toggle {
-  cursor: pointer;
-  height: 50px;
-  width: 50px;
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-}
-
-.toggle i {
-  font-size: var(--toggle-icon-size);
-}
-
-.back-btn {
-  padding: 10px;
-}
-
-
 /* #region Practical tab */
 #practical-tab-header {
   height: 7%;
-  width: 100%;
-  display: flex;
   justify-content: space-between;
-  align-items: center;
-  background: var(--primary-bg);
 }
-#app.vertical #practical-tab-header {
+[data-orientation="vertical"]:not([data-os="ios"]) #practical-tab-header {
   border-bottom: 0.5px solid var(--border-color);
 }
-#app.horizontal #practical-tab-header {
+[data-orientation="horizontal"] #practical-tab-header {
   background: transparent;
 }
 
@@ -394,12 +355,6 @@ button.ripple {
   margin: 0 0 0 10px;
 }
 
-#practical-tab-content {
-  height: 93%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
 .practical-tab-panel {
   height: 100%;
   width: 100%;
@@ -408,7 +363,7 @@ button.ripple {
   overflow-x: hidden;
   overflow-y: scroll;
 }
-#app.horizontal .practical-tab-panel {
+[data-orientation="horizontal"] .practical-tab-panel {
   border-top-left-radius: 20px;
 }
 .practical-tab-panel::-webkit-scrollbar {
@@ -482,9 +437,10 @@ button.ripple {
   margin: 0;
   display: flex;
   background: var(--secondary-bg);
+  transition: width 500ms ease;
 }
 
-#app.vertical #navigation-div {
+[data-orientation="vertical"] #navigation-div {
   position: absolute;
   z-index: 1;
   top: auto;
@@ -498,7 +454,7 @@ button.ripple {
   align-items: flex-start;
 }
 
-#app.horizontal #navigation-div {
+[data-orientation="horizontal"] #navigation-div {
   height: 100%;
   width: 100px;
   padding: 20px 0;
@@ -512,14 +468,14 @@ button.ripple {
   display: none;
 }
 
-#app.vertical #navigation-div.sticky {
+[data-orientation="vertical"] #navigation-div.sticky {
   height: 10%;
   width: 100%;
   padding-bottom: env(safe-area-inset-bottom);
   border: none;
   border-top: 0.5px solid var(--border-color);
 }
-#app.vertical #navigation-div.floating {
+[data-orientation="vertical"] #navigation-div.floating {
   bottom: env(safe-area-inset-bottom);
   height: 80px;
   width: 95%;
@@ -527,7 +483,7 @@ button.ripple {
   border-radius: 40px;
 }
 
-.ios #navigation-div.floating {
+[data-os="ios"] #navigation-div.floating {
   bottom: 0 !important;
   margin-bottom: 2.5vw !important;
   border-color:var(--secondary-bg) !important;
@@ -546,7 +502,7 @@ button.ripple {
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 300ms ease;
 }
 
 .navigation-icon-container {
@@ -565,10 +521,10 @@ button.ripple {
   background: var(--primary-bg);
 }
 
-.ios.dark .navigation-icon-div.active {
+[data-os="ios"][data-theme="dark"] .navigation-icon-div.active {
   background: rgba(255, 255, 255, 0.1);
 }
-.ios.light .navigation-icon-div.active {
+[data-os="ios"][data-theme="light"] .navigation-icon-div.active {
   background: rgba(0, 0, 0, 0.1);
 }
 
@@ -587,8 +543,84 @@ button.ripple {
 #navigation-div p {
   margin: 0;
   font: var(--secondary-font);
-  transition: all 0.2s linear;
+  transition: all 200ms linear;
 }
 /* #endregion Navigation div */
 
 /* #endregion inner-app */
+
+/* #region global styles */
+
+button.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-span {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-animation 400ms linear;
+  pointer-events: none;
+  background-color: var(--accent);
+}
+
+.top-bar {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  bottom: auto;
+  height: fit-content;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.top-bar.column {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+[data-os="ios"] .top-bar {
+  background: linear-gradient(180deg, var(--primary-bg) 30%, #00000000);
+}
+[data-os="android"] .top-bar {
+  background: var(--primary-bg);
+}
+
+.toggle {
+  cursor: pointer;
+  height: 45px;
+  width: 45px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+.toggle i {
+  font-size: var(--toggle-icon-size);
+}
+
+[data-os="ios"] .toggle {
+  background: var(--blur-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.content {
+  flex-shrink: 0;
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.content::-webkit-scrollbar {
+  display: none;
+}
+/* #endregion global styles */

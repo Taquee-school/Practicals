@@ -211,7 +211,7 @@ let currentVideoUrl = null;
 let helpBtn = document.getElementById("help-button");
 helpBtn.addEventListener("click", openHelpPanel);
 
-let practicalTabBackBtn = document.querySelector("#practical-tab .back-btn");
+const practicalTabBackBtn = document.querySelector("#practical-tab .back-btn");
 practicalTabBackBtn.addEventListener("click", goToHome);
 function goToHome() {
   if (app.classList.contains("vertical")) {
@@ -316,13 +316,7 @@ function checkLocalStorage() {
 }
 
 function checkOrientation() {
-  if (window.innerHeight >= window.innerWidth) {
-    app.classList.remove("horizontal");
-    app.classList.add("vertical");
-  } else {
-    // app.classList.remove("vertical");
-    // app.classList.add("horizontal");
-  }
+  app.dataset.orientation = window.innerHeight >= window.innerWidth ? "vertical" : "horizontal";
 }
 
 window.addEventListener("resize", checkOrientation);
@@ -332,12 +326,14 @@ window.addEventListener("DOMContentLoaded", () => {
   checkLocalStorage();
   checkOrientation();
   checkTabInView();
-  if (document.body.classList.contains("ios")) {
+  if (app.dataset.os == "ios") {
     setNavBarStyle("floating");
   } else {
     setNavBarStyle("sticky");
   }
-  const buttons = document.querySelectorAll(".ripple");
-  buttons.forEach((button) => { setRippleStyle(button) });
+  document.querySelectorAll(".back-btn").forEach(button => {
+    button.appendChild(createIcon("bold", globalBackIcon));
+  });
+  document.querySelectorAll(".ripple").forEach((button) => { setRippleStyle(button) });
 });
 // #endregion Initialisation
