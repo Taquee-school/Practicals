@@ -111,8 +111,8 @@ convexLensDiv.appendChild(cvl_diagramDiv);
 
 cvl_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-cvl_diagramDiv.appendChild(createImg("practical-file-diagram light", ""));
-cvl_diagramDiv.appendChild(createImg("practical-file-diagram dark", ""));
+cvl_diagramDiv.appendChild(createImg("practical-file-diagram", "light", ""));
+cvl_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", ""));
 
 let cvl_moreDiagramBtn = createButton(null, "practical-section-more-button", createIcon("fill", "images-square"),"More Diagrams", cvl_showDiagrams);
 // cvl_diagramDiv.appendChild(cvl_moreDiagramBtn);
@@ -360,7 +360,7 @@ const cvl_FColumn = createTableColumn("f = uv/(u+v) (cm)");
 cvl_distanceTable.appendChild(cvl_FColumn);
 
 cvl_addRow();
-cvl_distanceTableDiv.appendChild(setRippleStyle(createButton("cvl-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", cvl_addRow)));
+cvl_distanceTableDiv.appendChild(toggleEffect(createButton("cvl-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", cvl_addRow)));
 // #endregion Observation
 
 // #region Result

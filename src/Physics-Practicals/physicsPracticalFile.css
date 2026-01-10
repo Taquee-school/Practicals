@@ -15,16 +15,58 @@
   font: var(--primary-font);
 }
 
+#physics-practical .img-wrapper {
+  height: fit-content;
+  width: fit-content;
+  margin: 10px auto;
+  padding: -5px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+#physics-practical .img-wrapper.loading-img {
+  height: 50vmin;
+  width: 90vmin;
+  background: linear-gradient(135deg, var(--secondary-bg), var(--secondary-bg), var(--accent), var(--secondary-bg), var(--secondary-bg));
+  background-size: 400% 400%;
+  animation: background-gradient 1.0s ease infinite;
+}
+
+#physics-practical .img-wrapper:not(.error-img) .img-error-text {
+  display: none;
+}
+
+#physics-practical .img-wrapper.error-img .img-error-text {
+  font: var(--primary-font);
+}
+
+[data-theme="dark"] #physics-practical .img-wrapper.light {
+  display: none;
+}
+
+[data-theme="light"] #physics-practical .img-wrapper.dark {
+  display: none;
+}
+
+
+#physics-practical .img-wrapper.loading-img img,
+#physics-practical .img-wrapper.error-img img {
+  display: none;
+}
+
 #physics-practical .practical-file-diagram {
   height: fit-content;
-  width: 100%;
-  margin: 10px auto;
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent
 }
-#app.dark #physics-practical .practical-file-diagram.light {
-  display: none;
+[data-orientation="horizontal"] #physics-practical .practical-file-diagram {
+  height: 50dvh;
 }
-#app.light #physics-practical .practical-file-diagram.dark {
-  display: none;
+[data-orientation="vertical"] #physics-practical .practical-file-diagram {
+  width: 95dvw;
 }
 
 #physics-practical .practical-section-more-button {
@@ -40,6 +82,7 @@
   align-items: center;
   transition: all 0.2s ease;
 }
+
 #physics-practical .practical-section-more-button:active {
   transform: scale(0.95);
 }
@@ -49,6 +92,7 @@
   margin: 0;
   font-size: 15px;
 }
+
 #physics-practical .practical-section-more-button i {
   font-size: 20px;
 }
@@ -90,6 +134,7 @@
   font: var(--primary-font);
   text-align: center;
 }
+
 #physics-practical .practical-section-input-div input:focus {
   outline: none;
 }
@@ -106,6 +151,7 @@
   overflow-x: scroll;
   margin: 20px 0 0 0;
 }
+
 #physics-practical .observation-table-div::-webkit-scrollbar {
   display: none;
 }
@@ -135,13 +181,16 @@
   align-items: center;
   background: var(--border-color);
 }
-#physics-practical .add-row-btn p  {
+
+#physics-practical .add-row-btn p {
   margin: 0;
   color: var(--primary-bg);
 }
-#physics-practical .add-row-btn i  {
+
+#physics-practical .add-row-btn i {
   color: var(--primary-bg);
 }
+
 #physics-practical .add-row-btn .ripple-span {
   background: var(--secondary-bg);
 }
@@ -190,6 +239,7 @@
   text-align: center;
   background: transparent;
 }
+
 #physics-practical .observation-table input.invalid {
   border-color: rgb(255, 85, 85);
 }

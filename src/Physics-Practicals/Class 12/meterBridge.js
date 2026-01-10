@@ -139,8 +139,8 @@ meterBridgeDiv.appendChild(mbr_diagramDiv);
 
 mbr_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-mbr_diagramDiv.appendChild(createImg("practical-file-diagram light", physicsFilePath + "class 12/assets/diagrams/Light/meter bridge.jpg"));
-mbr_diagramDiv.appendChild(createImg("practical-file-diagram dark", physicsFilePath + "class 12/assets/diagrams/Dark/meter bridge.jpg"));
+mbr_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath + "class 12/assets/diagrams/Light/meter bridge.jpg"));
+mbr_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath + "class 12/assets/diagrams/Dark/meter bridge.jpg"));
 // #endregion Diagram
 
 // #region Objective
@@ -318,7 +318,7 @@ const mbr_XColumn = createTableColumn("X = Q/100-l ()");
 mbr_sonometerTable.appendChild(mbr_XColumn);
 
 mbr_addRow();
-mbr_sonometerTableDiv.appendChild(setRippleStyle(createButton("mbr-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", mbr_addRow)));
+mbr_sonometerTableDiv.appendChild(toggleEffect(createButton("mbr-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", mbr_addRow)));
 // #endregion Meter bridge observations
 
 // #region Screw gauge observations
@@ -436,7 +436,7 @@ const mbr_sgDColumn = createTableColumn("Observed Diameter (mm)");
 mbr_sgTable.appendChild(mbr_sgDColumn);
 
 mbr_addSGRow();
-mbr_sgTableDiv.appendChild(setRippleStyle(createButton("mbr-sg-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", mbr_addSGRow)));
+mbr_sgTableDiv.appendChild(toggleEffect(createButton("mbr-sg-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", mbr_addSGRow)));
 
 let mbr_meanDiameterInput = createInput(
   "mbr-sg-mean-d-input",

@@ -159,24 +159,21 @@ function changeTab(dTab) {
 
 const tolerance = 1;
 const scrollParent = innerAppTabContainer;
-let currentTabBtn = homeIcon;
+let currentTabBtn = bnHome;
 
 scrollParent.addEventListener("scroll", checkTabInView);
 function checkTabInView() {
   currentTabBtn.style.animation = "none";
   currentTabBtn.classList.remove("active");
   if (isElementCentered(homeTab)) {
-    currentTabBtn = homeIcon;
+    currentTabBtn = bnHome;
     currentTabBtn.classList.add("active");
-    currentTabBtn.style.animation = "expand 0.45s ease";
   } else if (isElementCentered(practicalTab)) {
-    currentTabBtn = practicalIcon;
+    currentTabBtn = bnPractical;
     currentTabBtn.classList.add("active");
-    currentTabBtn.style.animation = "expand 0.45s ease";
   } else if (isElementCentered(settingsTab)) {
-    currentTabBtn = settingsIcon;
+    currentTabBtn = bnSettings;
     currentTabBtn.classList.add("active");
-    currentTabBtn.style.animation = "expand 0.45s ease";
   }
 }
 
@@ -271,7 +268,7 @@ function closeHelpPanel() {
 function playVideo() { }
 // #endregion
 
-// #region Ripple Effect
+// #region Toggle Effect
 function setRippleStyle(button) {
   button.addEventListener("click", function (event) {
     let circle = document.createElement("span");
@@ -299,9 +296,112 @@ function setRippleStyle(button) {
   });
   return button;
 }
+
+function setGlowStyle(element) {
+  element.addEventListener("click", function (event) {
+    const circle = document.createElement("span");
+    circle.classList.add("glow-span");
+
+    let rect = button.getBoundingClientRect();
+    let diameter = Math.max(rect.width, rect.height);
+    let radius = diameter / 2;
+
+    circle.style.width = circle.style.height = `${diameter}px`;
+
+    circle.style.left = `${event.clientX - rect.left - radius}px`;
+    circle.style.top = `${event.clientY - rect.top - radius}px`;
+
+    let existingRipple = button.querySelector(".ripple-span");
+    if (existingRipple) {
+      existingRipple.remove();
+    }
+
+    button.appendChild(circle);
+
+    setTimeout(() => {
+      circle.remove();
+    }, 600);
+  });
+  return button;
+}
+
+const strecthFactor = 0.3;
+const maxStretch = 1.2;
+
+/**
+ * 
+ * @param {HTMLElement} element 
+ * @returns 
+ */
+function setStretchStyle(element) {
+  if (!element.classList.contains("toggle")) return element;
+
+  /** @type {Array<number>} */ let fingerStart = [];
+
+  function handleMove(event) {
+    event.preventDefault();
+
+    const finger = event.touches[0];
+    let x = finger.clientX;
+    let y = finger.clientY;
+
+    let dX = x - fingerStart[0];
+    let dY = y - fingerStart[1];
+
+    const changeX = Math.abs(dX);
+    const changeY = Math.abs(dY);
+
+    element.style.transform = `
+    scale(${Math.min(1 + changeX / 150 * strecthFactor, maxStretch)}, ${Math.min(1 + changeY / 150 * strecthFactor, maxStretch)})
+    translate(${dX * 0.01}px, ${dY * 0.01}px)`
+
+    return;
+    const circle = element.querySelector(".glow-span");
+    if (circle) {
+      if (dY < -20) {
+        dY = -20;
+      } else if (dY > (element.clientHeight + 20)) {
+        dY = (element.clientHeight + 20);
+      }
+      if (dX < -20) {
+        dX = -20;
+      } else if (dX > (element.clientWidth + 20)) {
+        dX = (element.clientWidth + 20);
+      }
+      circle.style.top = `${dY}px`;
+      circle.style.left = `${dX}px`;
+    }
+  }
+
+  element.addEventListener("touchstart", (touch) => {
+    const event = touch.touches[0];
+    element.style.transition = "transform 0s";
+    fingerStart = [event.clientX, event.clientY];
+
+    // const circle = document.createElement("span");
+    // circle.classList.add("glow-span");
+    // element.appendChild(circle);
+
+    element.addEventListener("touchmove", handleMove);
+  });
+
+  element.addEventListener("touchend", () => {
+    element.removeEventListener("touchmove", handleMove);
+    // element.querySelectorAll(".glow-span").forEach(span => {
+    //   span.remove();
+    // });
+    element.style.transition = "transform 0.45s ease";
+    element.style.transform = "scale(1) translate(0)";
+  });
+
+  return element;
+}
 // #endregion
 
 // #region Initialisation
+
+const toggleEffect = app.dataset.os == "ios" ? (element) => { return setStretchStyle(element); } : (element) => { return setRippleStyle(element); };
+
 function checkLocalStorage() {
   let theme = localStorage.getItem("theme");
   if (theme) { setTheme(theme) }
@@ -326,14 +426,15 @@ window.addEventListener("DOMContentLoaded", () => {
   checkLocalStorage();
   checkOrientation();
   checkTabInView();
-  if (app.dataset.os == "ios") {
-    setNavBarStyle("floating");
-  } else {
-    setNavBarStyle("sticky");
-  }
+
+  setNavBarStyle(app.dataset.os == "ios" ? "floating" : "sticky");
+
   document.querySelectorAll(".back-btn").forEach(button => {
     button.appendChild(createIcon("bold", globalBackIcon));
   });
-  document.querySelectorAll(".ripple").forEach((button) => { setRippleStyle(button) });
+  
+  document.querySelectorAll(".toggle-effect").forEach(element => { toggleEffect(element) });
 });
+
+document.addEventListener('contextmenu', e => e.preventDefault());
 // #endregion Initialisation

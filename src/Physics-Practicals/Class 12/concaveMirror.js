@@ -111,8 +111,8 @@ concaveMirrorDiv.appendChild(ccm_diagramDiv);
 
 ccm_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-ccm_diagramDiv.appendChild(createImg("practical-file-diagram light", physicsFilePath + "class 12/assets/diagrams/Light/concave mirror.jpg"));
-ccm_diagramDiv.appendChild(createImg("practical-file-diagram dark", physicsFilePath + "class 12/assets/diagrams/Dark/concave mirror.jpg"));
+ccm_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath + "class 12/assets/diagrams/Light/concave mirror.jpg"));
+ccm_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath + "class 12/assets/diagrams/Dark/concave mirror.jpg"));
 
 let ccm_moreDiagramBtn = createButton(null, "practical-section-more-button", createIcon("fill", "images-square"),"More Diagrams", ccm_showDiagrams);
 // ccm_diagramDiv.appendChild(ccm_moreDiagramBtn);
@@ -368,7 +368,7 @@ const ccm_FColumn = createTableColumn("f = uv/(u+v) (cm)");
 ccm_distanceTable.appendChild(ccm_FColumn);
 
 ccm_addRow();
-ccm_distanceTableDiv.appendChild(setRippleStyle(createButton("ccm-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", ccm_addRow)));
+ccm_distanceTableDiv.appendChild(toggleEffect(createButton("ccm-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", ccm_addRow)));
 // #endregion Observation
 
 // #region Result

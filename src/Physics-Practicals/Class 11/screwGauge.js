@@ -94,11 +94,11 @@ scg_diagramDiv.appendChild(
 );
 
 let scg_diagram_light = document.createElement("img");
-scg_diagram_light.className = "practical-file-diagram light";
+scg_diagram_light.className = "practical-file-diagram", "light";
 scg_diagram_light.src = physicsFilePath + "class 11/assets/diagrams/Light/screw gauge.jpg";
 scg_diagramDiv.appendChild(scg_diagram_light);
 let scg_diagram_dark = document.createElement("img");
-scg_diagram_dark.className = "practical-file-diagram dark";
+scg_diagram_dark.className = "practical-file-diagram", "dark";
 scg_diagram_dark.src = physicsFilePath + "class 11/assets/diagrams/Dark/screw gauge.jpg";
 scg_diagramDiv.appendChild(scg_diagram_dark);
 
@@ -341,7 +341,7 @@ const scg_diameterColumn = createTableColumn("Observed diameter");
 scg_diameterTable.appendChild(scg_diameterColumn);
 
 scg_addRow();
-scg_diameterTableDiv.appendChild(setRippleStyle(createButton("scg-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", scg_addRow)));
+scg_diameterTableDiv.appendChild(toggleEffect(createButton("scg-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", scg_addRow)));
 
 let scg_meanDiameterInput = createInput(
     "scg-mean-observed-diameter-input",

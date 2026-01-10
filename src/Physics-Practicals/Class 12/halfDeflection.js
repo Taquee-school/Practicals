@@ -64,8 +64,8 @@ halfDeflectionDiv.appendChild(hdf_diagramDiv);
 
 hdf_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-hdf_diagramDiv.appendChild(createImg("practical-file-diagram light", physicsFilePath + "class 12/assets/diagrams/Light/half deflection.jpg"));
-hdf_diagramDiv.appendChild(createImg("practical-file-diagram dark", physicsFilePath + "class 12/assets/diagrams/Dark/half deflection.jpg"));
+hdf_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath + "class 12/assets/diagrams/Light/half deflection.jpg"));
+hdf_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath + "class 12/assets/diagrams/Dark/half deflection.jpg"));
 // #endregion Diagram
 
 // #region Objective
@@ -165,7 +165,7 @@ const hdf_GColumn = createTableColumn("Galvanometer resistance G = RS/(R-S) ()")
 hdf_resistanceTable.appendChild(hdf_GColumn);
 
 hdf_addRow();
-hdf_resistanceTableDiv.appendChild(setRippleStyle(createButton("hdf-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", hdf_addRow)));
+hdf_resistanceTableDiv.appendChild(toggleEffect(createButton("hdf-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", hdf_addRow)));
 // #endregion Observation
 
 // #region Result

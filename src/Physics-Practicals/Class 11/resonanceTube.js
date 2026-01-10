@@ -19,11 +19,11 @@ rst_diagramDiv.appendChild(
 );
 
 let rst_diagram_light = document.createElement("img");
-rst_diagram_light.className = "practical-file-diagram light";
+rst_diagram_light.className = "practical-file-diagram", "light";
 rst_diagram_light.src = physicsFilePath + "class 11/assets/diagrams/Light/resonance tube.jpg";
 rst_diagramDiv.appendChild(rst_diagram_light);
 let rst_diagram_dark = document.createElement("img");
-rst_diagram_dark.className = "practical-file-diagram dark";
+rst_diagram_dark.className = "practical-file-diagram", "dark";
 rst_diagram_dark.src = physicsFilePath + "class 11/assets/diagrams/Dark/resonance tube.jpg";
 rst_diagramDiv.appendChild(rst_diagram_dark);
 

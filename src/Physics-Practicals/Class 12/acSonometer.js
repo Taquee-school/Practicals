@@ -158,8 +158,8 @@ acSonometerDiv.appendChild(acs_diagramDiv);
 
 acs_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-acs_diagramDiv.appendChild(createImg("practical-file-diagram light", physicsFilePath + "class 12/assets/diagrams/Light/ac sonometer.jpg"));
-acs_diagramDiv.appendChild(createImg("practical-file-diagram dark", physicsFilePath + "class 12/assets/diagrams/Dark/ac sonometer.jpg"));
+acs_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath + "class 12/assets/diagrams/Light/ac sonometer.jpg"));
+acs_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath + "class 12/assets/diagrams/Dark/ac sonometer.jpg"));
 // #endregion Diagram
 
 // #region Objective
@@ -280,7 +280,7 @@ const acs_frequencyColumn = createTableColumn("Frequency v = \u221a(T/m)/4l (Hz)
 acs_sonometerTable.appendChild(acs_frequencyColumn);
 
 acs_addRowSonometer();
-acs_sonometerTableDiv.appendChild(setRippleStyle(createButton("acs-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", acs_addRowSonometer)));
+acs_sonometerTableDiv.appendChild(toggleEffect(createButton("acs-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", acs_addRowSonometer)));
 // #endregion Sonometer
 
 // #region Screw Gauge
@@ -399,7 +399,7 @@ const acs_sgDiameterColumn = createTableColumn("Diameter (mm)");
 acs_sgTable.appendChild(acs_sgDiameterColumn);
 
 acs_addRowScrewGauge();
-acs_sgTableDiv.appendChild(setRippleStyle(createButton("acs-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", acs_addRowScrewGauge)));
+acs_sgTableDiv.appendChild(toggleEffect(createButton("acs-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", acs_addRowScrewGauge)));
 
 let acs_meanDiameterInput = createInput(
   "acs-sg-mean-d-input",

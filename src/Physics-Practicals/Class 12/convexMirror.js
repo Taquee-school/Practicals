@@ -79,8 +79,8 @@ convexMirrorDiv.appendChild(cvm_diagramDiv);
 
 cvm_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-cvm_diagramDiv.appendChild(createImg("practical-file-diagram light", physicsFilePath + "class 12/assets/diagrams/Light/convex mirror.jpg"));
-cvm_diagramDiv.appendChild(createImg("practical-file-diagram dark", physicsFilePath + "class 12/assets/diagrams/Dark/convex mirror.jpg"));
+cvm_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath + "class 12/assets/diagrams/Light/convex mirror.jpg"));
+cvm_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath + "class 12/assets/diagrams/Dark/convex mirror.jpg"));
 
 let cvm_moreDiagramBtn = createButton(null, "practical-section-more-button", createIcon("fill", "images-square"),"More Diagrams", cvm_showDiagrams);
 // cvm_diagramDiv.appendChild(cvm_moreDiagramBtn);
@@ -246,7 +246,7 @@ const cvm_MIColumn = createTableColumn("Observed Distance MI' (cm)");
 cvm_distanceTable.appendChild(cvm_MIColumn);
 
 cvm_addRow();
-cvm_distanceTableDiv.appendChild(setRippleStyle(createButton("cvm-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", cvm_addRow)));
+cvm_distanceTableDiv.appendChild(toggleEffect(createButton("cvm-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", cvm_addRow)));
 
 let cvm_meanMIInput = createInput("cvm-mean-MI-input", "number", "0", null, true);
 cvm_observationDiv.appendChild(createInputDiv("Mean MI':", cvm_meanMIInput, "cm."));

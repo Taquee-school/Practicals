@@ -97,8 +97,8 @@ ohmsLawDiv.appendChild(ohl_diagramDiv);
 
 ohl_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-ohl_diagramDiv.appendChild(createImg("practical-file-diagram light", physicsFilePath + "class 12/assets/diagrams/Light/ohms law.jpg"));
-ohl_diagramDiv.appendChild(createImg("practical-file-diagram dark", physicsFilePath + "class 12/assets/diagrams/Dark/ohms law.jpg"));
+ohl_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath + "class 12/assets/diagrams/Light/ohms law.jpg"));
+ohl_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath + "class 12/assets/diagrams/Dark/ohms law.jpg"));
 // #endregion Diagram
 
 // #region Objective
@@ -240,7 +240,7 @@ const ohl_resistanceColumn = createTableColumn("R = V/I (Ω)");
 ohl_resistanceTable.appendChild(ohl_resistanceColumn);
 
 ohl_addRow();
-ohl_resistanceTableDiv.appendChild(setRippleStyle(createButton("ohl-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", ohl_addRow)));
+ohl_resistanceTableDiv.appendChild(toggleEffect(createButton("ohl-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", ohl_addRow)));
 // #endregion Observation
 
 // #region Result

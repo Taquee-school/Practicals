@@ -3,14 +3,14 @@ function createListButton(container, id, buttonText) {
     let btn = document.createElement("button");
     container.appendChild(btn);
     btn.id = id;
-    btn.classList.add("ripple");
+    btn.classList.add("toggle-effect");
 
     btn.appendChild(createTextField(null, buttonText));
 
     let ic = document.createElement("i");
     ic.className = "ph-bold ph-caret-right";
     btn.appendChild(ic);
-    setRippleStyle(btn);
+    toggleEffect(btn);
     return btn;
 }
 
@@ -38,38 +38,20 @@ function openPhysicsPanel() {
         physicsTabContent.appendChild(loadingTab);
     }
     
-    homeTab.style.animation = "fade-drop 0.2s ease";
-    setTimeout(() => {
-        homeTab.replaceChild(physicsTab, homeContent);
-    }, 100);
-    homeTab.addEventListener("animationend", () => {
-        homeTab.style.animation = "none";
-    },
-    { once: true }
-    );
+    openPanel(homeTab, homeContent, physicsTab);
 }
 
-function closePhysicsPanel() {
-    homeTab.style.animation = "fade-drop 0.2s ease";
-    setTimeout(() => {
-        homeTab.replaceChild(homeContent, physicsTab);
-    }, 100);
-    homeTab.addEventListener("animationend", () => {
-        homeTab.style.animation = "none";
-    },
-    { once: true }
-    );
-}
+function closePhysicsPanel() { closePanel(homeTab, physicsTab, homeContent); }
 
 
-homeTabContent.appendChild(setRippleStyle(createButton("physics-btn", "home-tab-btn ripple", null, "Physics practicals", openPhysicsPanel)));
+homeTabContent.appendChild(toggleEffect(createButton("physics-btn", "home-tab-btn toggle-effect", null, "Physics practicals", openPhysicsPanel)));
 
 let physicsTab = createDiv("inner-app-tab", "physics-tab");
 
 let physicsTabHeader = createDiv("top-bar");
 physicsTab.appendChild(physicsTabHeader);
 
-physicsTabHeader.appendChild(setRippleStyle(createButton(null, "toggle back-btn ripple", createIcon("bold", globalBackIcon), null, closePhysicsPanel)));
+physicsTabHeader.appendChild(toggleEffect(createButton(null, "toggle back-btn toggle-effect", createIcon("bold", globalBackIcon), null, closePhysicsPanel)));
 
 
 let physicsTabContent = createDiv("content");
@@ -86,41 +68,19 @@ function openChemistryPanel() {
         chemistryTabContent.appendChild(loadingTab);
     }
 
-    homeTab.style.animation = "fade-drop 0.2s ease";
-    setTimeout(() => {
-        homeTab.replaceChild(chemistryTab, homeContent);
-    }, 100);
-    homeTab.addEventListener(
-        "animationend",
-        () => {
-            homeTab.style.animation = "none";
-        },
-        { once: true }
-    );
+    openPanel(homeTab, homeContent, chemistryTab);
 }
 
-function closeChemistryPanel() {
-    homeTab.style.animation = "fade-drop 0.2s ease";
-    setTimeout(() => {
-        homeTab.replaceChild(homeContent, chemistryTab);
-    }, 100);
-    homeTab.addEventListener(
-        "animationend",
-        () => {
-            homeTab.style.animation = "none";
-        },
-        { once: true }
-    );
-}
+function closeChemistryPanel() { closePanel(homeTab, chemistryTab, homeContent); }
 
-homeTabContent.appendChild(setRippleStyle(createButton("chemistry-btn", "home-tab-btn ripple", null, "Chemistry practicals", openChemistryPanel)));
+homeTabContent.appendChild(toggleEffect(createButton("chemistry-btn", "home-tab-btn toggle-effect", null, "Chemistry practicals", openChemistryPanel)));
 
 let chemistryTab = createDiv("inner-app-tab", "chemistry-tab");
 
 let chemistryTabHeader = createDiv("top-bar");
 chemistryTab.appendChild(chemistryTabHeader);
 
-chemistryTabHeader.appendChild(setRippleStyle(createButton(null, "toggle back-btn ripple", createIcon("bold", globalBackIcon), null, closeChemistryPanel)));
+chemistryTabHeader.appendChild(toggleEffect(createButton(null, "toggle back-btn toggle-effect", createIcon("bold", globalBackIcon), null, closeChemistryPanel)));
 
 
 let chemistryTabContent = createDiv("content");
@@ -130,8 +90,8 @@ chemistryTab.appendChild(chemistryTabContent);
 
 // #region computer practicals
 
-homeTabContent.appendChild(setRippleStyle(
-    createButton("computer-btn", "home-tab-btn ripple", null, "Computer practicals", () => { window.location.href = "https://noor-taquee.github.io/GluCode/" })
+homeTabContent.appendChild(toggleEffect(
+    createButton("computer-btn", "home-tab-btn toggle-effect", null, "Computer practicals", () => { window.location.href = "https://noor-taquee.github.io/GluCode/" })
 ));
 
 // #endregion computer practicals

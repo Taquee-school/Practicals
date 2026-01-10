@@ -239,11 +239,11 @@ vnc_diagramDiv.appendChild(
 );
 
 let vnc_diagram_light = document.createElement("img");
-vnc_diagram_light.className = "practical-file-diagram light";
+vnc_diagram_light.className = "practical-file-diagram", "light";
 vnc_diagram_light.src = physicsFilePath + "class 11/assets/diagrams/Light/vernier calipers.jpg";
 vnc_diagramDiv.appendChild(vnc_diagram_light);
 let vnc_diagram_dark = document.createElement("img");
-vnc_diagram_dark.className = "practical-file-diagram dark";
+vnc_diagram_dark.className = "practical-file-diagram", "dark";
 vnc_diagram_dark.src = physicsFilePath + "class 11/assets/diagrams/Dark/vernier calipers.jpg";
 vnc_diagramDiv.appendChild(vnc_diagram_dark);
 
@@ -460,7 +460,7 @@ const vnc_ex_d_obsColumn = createTableColumn("Total reading");
 vnc_externalDiameterTable.appendChild(vnc_ex_d_obsColumn);
 
 vnc_addExDRow();
-vnc_externalDiameterTableDiv.appendChild(setRippleStyle(createButton("vnc-ex-d-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", vnc_addExDRow)));
+vnc_externalDiameterTableDiv.appendChild(toggleEffect(createButton("vnc-ex-d-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", vnc_addExDRow)));
 
 let vnc_meanExternalDiameterInput = createInput(
     "vnc-mean-observed-diameter-input",
@@ -516,7 +516,7 @@ const vnc_in_d_obsColumn = createTableColumn("Total reading");
 vnc_internalDiameterTable.appendChild(vnc_in_d_obsColumn);
 
 vnc_addInDRow();
-vnc_internalDiameterTableDiv.appendChild(setRippleStyle(createButton("vnc-in-d-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", vnc_addInDRow)));
+vnc_internalDiameterTableDiv.appendChild(toggleEffect(createButton("vnc-in-d-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", vnc_addInDRow)));
 
 let vnc_meanInternalDiameterInput = createInput(
     "vnc-mean-observed-internal-diameter-input",
@@ -572,7 +572,7 @@ const vnc_ex_h_obsColumn = createTableColumn("Total reading");
 vnc_externalHeightTable.appendChild(vnc_ex_h_obsColumn);
 
 vnc_addExHRow();
-vnc_externalHeightTableDiv.appendChild(setRippleStyle(createButton("vnc-ex-h-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", vnc_addExHRow)));
+vnc_externalHeightTableDiv.appendChild(toggleEffect(createButton("vnc-ex-h-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", vnc_addExHRow)));
 
 let vnc_meanExternalHeightInput = createInput(
     "vnc-mean-observed-external-height-input",
@@ -628,7 +628,7 @@ const vnc_in_h_obsColumn = createTableColumn("Total reading");
 vnc_internalHeightTable.appendChild(vnc_in_h_obsColumn);
 
 vnc_addInHRow();
-vnc_internalHeightTableDiv.appendChild(setRippleStyle(createButton("vnc-in-h-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", vnc_addInHRow)));
+vnc_internalHeightTableDiv.appendChild(toggleEffect(createButton("vnc-in-h-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", vnc_addInHRow)));
 
 let vnc_meanInternalHeightInput = createInput(
     "vnc-mean-observed-internal-height-input",

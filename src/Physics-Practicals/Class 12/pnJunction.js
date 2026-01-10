@@ -69,8 +69,8 @@ let pnj_diagramDiv = createDiv("practical-section");
 pnJunctionDiv.appendChild(pnj_diagramDiv);
 
 pnj_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
-pnj_diagramDiv.appendChild(createImg("practical-file-diagram light", physicsFilePath + "class 12/assets/diagrams/Light/pn junction.jpg"));
-pnj_diagramDiv.appendChild(createImg("practical-file-diagram dark", physicsFilePath + "class 12/assets/diagrams/Dark/pn junction.jpg"));
+pnj_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath + "class 12/assets/diagrams/Light/pn junction.jpg"));
+pnj_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath + "class 12/assets/diagrams/Dark/pn junction.jpg"));
 // #endregion Diagram
 
 // #region Objective
@@ -225,7 +225,7 @@ pnj_characteristicsTable.appendChild(pnj_currentColumn);
 
 pnj_addRow();
 
-pnj_characteristicsTableDiv.appendChild(setRippleStyle(createButton("pnj-add-row-btn", "add-row-btn ripple", createIcon("bold", "plus"), "Add Row", pnj_addRow)));
+pnj_characteristicsTableDiv.appendChild(toggleEffect(createButton("pnj-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", pnj_addRow)));
 // #endregion Observation
 
 // #region Result

@@ -30,9 +30,7 @@
   <meta name="author" content="Noor Taquee">
   <meta name="viewport" content="width=device-width,initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="var(--primary-bg)" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css" />
   <link rel="icon" href="public/logo.svg">
@@ -53,62 +51,64 @@
   <!-- End Google Tag Manager (noscript) -->
   <div id="app-wrapper">
     <div id="inner-app">
-      <div id="inner-app-tab-container">
-        <div id="home-tab" class="inner-app-tab">
-          <div id="home-content">
-            <div class="top-bar">
-              <p class="tab-header">Practicals</p>
-            </div>
-            <div class="content">
+      <div id="tab-container-wrapper">
+        <div id="inner-app-tab-container">
+          <div id="home-tab" class="inner-app-tab">
+            <div id="home-content" class="content-fill">
+              <div class="top-bar">
+                <p class="tab-header">Practicals</p>
+              </div>
+              <div class="content">
+              </div>
             </div>
           </div>
-        </div>
-        <div id="practical-tab" class="inner-app-tab light">
-          <div id="practical-tab-header" class="top-bar">
-            <div>
-              <button class="toggle back-btn ripple">
-              </button>
-              <p id="experiment-name"></p>
-            </div>
-            <button id="help-button" class="toggle ripple">
-              <i class="ph-bold ph-question-mark"></i>
-            </button>
-          </div>
-          <div id="practical-tab-content" class="content">
-            <div id="practical-container" class="practical-tab-panel"></div>
-          </div>
-        </div>
-        <div id="settings-tab" class="inner-app-tab">
-          <div id="settings-content">
-            <div class="app-icon"></div>
-            <p class="tab-header">Settings</p>
-            <div class="settings-tab-section">
-              <button id="theme-btn" class="tab-btn ripple">
-                <i class="ph-bold ph-paint-roller"></i>
-                <p>Theme</p>
-              </button>
-              <button id="palette-btn" class="tab-btn ripple">
-                <i class="ph-bold ph-palette"></i>
-                <p>Palette</p>
-              </button>
-              <button id="navigation-bar-btn" class="tab-btn ripple">
-                <i class="ph-bold ph-compass"></i>
-                <p>Navigation bar</p>
-              </button>
-              <button id="accessibility-btn" class="tab-btn ripple">
-                <i class="ph-bold ph-eye"></i>
-                <p>Accessibilty</p>
+          <div id="practical-tab" class="inner-app-tab">
+            <div id="practical-tab-header" class="top-bar">
+              <div>
+                <button class="toggle back-btn toggle-effect">
+                </button>
+                <p id="experiment-name"></p>
+              </div>
+              <button id="help-button" class="toggle toggle-effect">
+                <i class="ph-bold ph-question-mark"></i>
               </button>
             </div>
-            <div class="settings-tab-section">
-              <button id="error-btn" class="tab-btn ripple">
-                <i class="ph-bold ph-bug"></i>
-                <p>Report Error</p>
-              </button>
-              <button id="about-btn" class="tab-btn ripple">
-                <i class="ph-bold ph-info"></i>
-                <p>About</p>
-              </button>
+            <div id="practical-tab-content" class="content">
+              <div id="practical-container" class="practical-tab-panel"></div>
+            </div>
+          </div>
+          <div id="settings-tab" class="inner-app-tab">
+            <div id="settings-content" class="content-fill">
+              <div class="app-icon"></div>
+              <p class="tab-header">Settings</p>
+              <div class="settings-tab-section button-container list-view">
+                <button id="theme-btn" class="tab-btn toggle-effect">
+                  <i class="ph-bold ph-paint-roller"></i>
+                  <p>Theme</p>
+                </button>
+                <button id="palette-btn" class="tab-btn toggle-effect">
+                  <i class="ph-bold ph-palette"></i>
+                  <p>Palette</p>
+                </button>
+                <button id="navigation-bar-btn" class="tab-btn toggle-effect">
+                  <i class="ph-bold ph-compass"></i>
+                  <p>Navigation bar</p>
+                </button>
+                <button id="accessibility-btn" class="tab-btn toggle-effect">
+                  <i class="ph-bold ph-eye"></i>
+                  <p>Accessibilty</p>
+                </button>
+              </div>
+              <div class="settings-tab-section button-container list-view">
+                <button id="error-btn" class="tab-btn toggle-effect">
+                  <i class="ph-bold ph-bug"></i>
+                  <p>Report Error</p>
+                </button>
+                <button id="about-btn" class="tab-btn toggle-effect">
+                  <i class="ph-bold ph-info"></i>
+                  <p>About</p>
+                </button>
+              </div>
             </div>
           </div>
         </div>

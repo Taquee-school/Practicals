@@ -5,15 +5,22 @@ addStyle(physicsFilePath + "physicsPracticalFile.css", "physics-practical-style"
     physicsTabContent.removeChild(loadingTab);
   }
   load12th_practicals();
-};
+},{once: true};
 
 
 // #region UI Functions
-function createImg(className, path) {
+function createImg(className, mode, path) {
+  const imgWrapper = createDiv(`img-wrapper ${mode} loading-img`);
+
+  imgWrapper.appendChild(createTextField("img-error-text", "Error loading image"));
+
   let img = document.createElement("img");
   img.className = className;
   img.src = path;
-  return img;
+  img.onload = () => { imgWrapper.classList.remove("loading-img"); }
+  img.onerror = () => { imgWrapper.classList.replace("loading-img", "error-img"); }
+  imgWrapper.appendChild(img);
+  return imgWrapper;
 }
 
 

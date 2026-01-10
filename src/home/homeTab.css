@@ -1,12 +1,3 @@
-[data-orientation="vertical"] {
-  --button-height: 60px;
-  --button-height-grid-view: 200px;
-}
-[data-orientation="horizontal"] {
-  --button-height: 10vh;
-  --button-height-grid-view: 35vh;
-}
-
 .home-tab-btn {
   cursor: pointer;
   width: 95%;
@@ -64,8 +55,8 @@
   align-items: center;
 }
 .practicals-list.list-view {
-  border-radius: 15px;
-  gap: 2px;
+  border-radius: calc(var(--button-height)/2);
+  gap: 5px;
 }
 .practicals-list.grid-view {
   border-radius: 15px;
@@ -78,12 +69,17 @@
   width: 100%;
   padding: 0 15px;
   border: none;
+  border-radius: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font: var(--primary-font);
   background: var(--secondary-bg);
-  transition: all 0.2s ease;
+  transition: border-radius 0.2s ease;
+}
+
+.practicals-list.list-view button:active {
+  border-radius: calc(var(--button-height)/2);
 }
 
 .practicals-list.grid-view button {
