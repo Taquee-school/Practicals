@@ -158,8 +158,8 @@ acSonometerDiv.appendChild(acs_diagramDiv);
 
 acs_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-acs_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath + "class 12/assets/Diagrams/Light/ac sonometer.jpg"));
-acs_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath + "class 12/assets/Diagrams/Dark/ac sonometer.jpg"));
+acs_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath + "class-12/assets/diarams/light/ac sonometer.jpg"));
+acs_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath + "class-12/assets/diarams/dark/ac sonometer.jpg"));
 // #endregion Diagram
 
 // #region Objective

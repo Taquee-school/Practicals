@@ -120,16 +120,16 @@ concaveLensDiv.appendChild(ccl_diagramDiv);
 
 ccl_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-ccl_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath + "class 12/assets/Diagrams/Light/concave lens.jpg"));
-ccl_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath + "class 12/assets/Diagrams/Dark/concave lens.jpg"));
+ccl_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath + "class-12/assets/diarams/light/concave lens.jpg"));
+ccl_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath + "class-12/assets/diarams/dark/concave lens.jpg"));
 
 let ccl_moreDiagramBtn = createButton(null, "practical-section-more-button", createIcon("fill", "images-square"),"More Diagrams", ccl_showDiagrams);
 // ccl_diagramDiv.appendChild(ccl_moreDiagramBtn);
 
 function ccl_showDiagrams() {
   for (let i=1; i <= 6; i++) {
-    ccl_diagramDiv.appendChild(createImg("practical-file-more-diagram light", `Physics-Practicals/Class 12/Diagrams/Light/diagram${i}.jpg`));
-    ccl_diagramDiv.appendChild(createImg("practical-file-more-diagram dark", `Physics-Practicals/Class 12/Diagrams/Dark/diagram${i}.jpg`));
+    ccl_diagramDiv.appendChild(createImg("practical-file-more-diagram light", `Physics-Practicals/Class 12/diarams/light/diagram${i}.jpg`));
+    ccl_diagramDiv.appendChild(createImg("practical-file-more-diagram dark", `Physics-Practicals/Class 12/diarams/dark/diagram${i}.jpg`));
   }
 }
 // #endregion Diagram

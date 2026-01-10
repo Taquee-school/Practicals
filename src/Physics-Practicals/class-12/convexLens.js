@@ -119,8 +119,8 @@ let cvl_moreDiagramBtn = createButton(null, "practical-section-more-button", cre
 
 function cvl_showDiagrams() {
   for (let i=1; i <= 6; i++) {
-    cvl_diagramDiv.appendChild(createImg("practical-file-more-diagram light", `images/Physics/Class 12/Diagrams/Light/diagram${i}.jpg`));
-    cvl_diagramDiv.appendChild(createImg("practical-file-more-diagram dark", `images/Physics/Class 12/Diagrams/Dark/diagram${i}.jpg`));
+    cvl_diagramDiv.appendChild(createImg("practical-file-more-diagram light", `images/Physics/Class 12/diarams/light/diagram${i}.jpg`));
+    cvl_diagramDiv.appendChild(createImg("practical-file-more-diagram dark", `images/Physics/Class 12/diarams/dark/diagram${i}.jpg`));
   }
 }
 // #endregion Diagram
