@@ -69,8 +69,8 @@ let pnj_diagramDiv = createDiv("practical-section");
 pnJunctionDiv.appendChild(pnj_diagramDiv);
 
 pnj_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
-pnj_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath + "class 12/assets/diagrams/Light/pn junction.jpg"));
-pnj_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath + "class 12/assets/diagrams/Dark/pn junction.jpg"));
+pnj_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath + "class 12/assets/Diagrams/Light/pn junction.jpg"));
+pnj_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath + "class 12/assets/Diagrams/Dark/pn junction.jpg"));
 // #endregion Diagram
 
 // #region Objective
