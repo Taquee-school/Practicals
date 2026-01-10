@@ -240,11 +240,11 @@ vnc_diagramDiv.appendChild(
 
 let vnc_diagram_light = document.createElement("img");
 vnc_diagram_light.className = "practical-file-diagram", "light";
-vnc_diagram_light.src = physicsFilePath + "class-11/assets/diarams/light/vernier calipers.jpg";
+vnc_diagram_light.src = physicsFilePath + "class-11/assets/diagrams/light/vernier calipers.jpg";
 vnc_diagramDiv.appendChild(vnc_diagram_light);
 let vnc_diagram_dark = document.createElement("img");
 vnc_diagram_dark.className = "practical-file-diagram", "dark";
-vnc_diagram_dark.src = physicsFilePath + "class-11/assets/diarams/dark/vernier calipers.jpg";
+vnc_diagram_dark.src = physicsFilePath + "class-11/assets/diagrams/dark/vernier calipers.jpg";
 vnc_diagramDiv.appendChild(vnc_diagram_dark);
 
 let vnc_objectiveDiv = createDiv("practical-section");

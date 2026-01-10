@@ -20,11 +20,11 @@ spl_diagramDiv.appendChild(
 
 let spl_diagram_light = document.createElement("img");
 spl_diagram_light.className = "practical-file-diagram", "light";
-spl_diagram_light.src = physicsFilePath + "class-11/assets/diarams/light/simple pendulum.jpg";
+spl_diagram_light.src = physicsFilePath + "class-11/assets/diagrams/light/simple pendulum.jpg";
 spl_diagramDiv.appendChild(spl_diagram_light);
 let spl_diagram_dark = document.createElement("img");
 spl_diagram_dark.className = "practical-file-diagram", "dark";
-spl_diagram_dark.src = physicsFilePath + "class-11/assets/diarams/dark/simple pendulum.jpg";
+spl_diagram_dark.src = physicsFilePath + "class-11/assets/diagrams/dark/simple pendulum.jpg";
 spl_diagramDiv.appendChild(spl_diagram_dark);
 
 let spl_objectiveDiv = createDiv("practical-section");

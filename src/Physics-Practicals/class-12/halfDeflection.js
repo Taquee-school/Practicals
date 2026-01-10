@@ -64,8 +64,8 @@ halfDeflectionDiv.appendChild(hdf_diagramDiv);
 
 hdf_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-hdf_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath + "class-12/assets/diarams/light/half deflection.jpg"));
-hdf_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath + "class-12/assets/diarams/dark/half deflection.jpg"));
+hdf_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath + "class-12/assets/diagrams/light/half deflection.jpg"));
+hdf_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath + "class-12/assets/diagrams/dark/half deflection.jpg"));
 // #endregion Diagram
 
 // #region Objective
