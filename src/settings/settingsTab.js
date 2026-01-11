@@ -16,14 +16,16 @@ function openPanel(parent, oldPanel, newPanel, animatingElement = null) {
   oldPanel.style.animation = "drop 200ms ease-out";
   oldPanel.addEventListener("animationend", () => {
     oldPanel.style.animation = "none";
+    
     parent.removeChild(oldPanel);
-
-    parent.appendChild(newPanel);
-    newPanel.style.animation = "fade-in 300ms ease";
-    newPanel.addEventListener("animationend", () => {
-      newPanel.style.animation = "none";
-    });
   }, { once: true });
+  
+  parent.appendChild(newPanel);
+
+  newPanel.style.animation = "fade-in 300ms ease";
+  newPanel.addEventListener("animationend", () => {
+    newPanel.style.animation = "none";
+  });
 }
 
 /**
@@ -38,9 +40,10 @@ function closePanel(parent, oldPanel, newPanel, animatingElement = null) {
   oldPanel.style.animation = "fade-out 300ms ease-out";
   oldPanel.addEventListener("animationend", () => {
     oldPanel.style.animation = "none";
+    
     parent.removeChild(oldPanel);
   }, { once: true });
-
+  
   parent.appendChild(newPanel);
   newPanel.style.animation = "rise 200ms ease";
   newPanel.addEventListener("animationend", () => {

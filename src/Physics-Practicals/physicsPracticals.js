@@ -162,7 +162,7 @@ let physicsPracticalsList = createDiv("practicals-list-div");
 physicsTabContent.appendChild(physicsPracticalsList);
 
 function load11th_practicals() {
-  let class11_list = createDiv("practicals-list list-view");
+  let class11_list = createDiv("button-container practicals-list list-view");
   physicsPracticalsList.appendChild(createTextField("practicals-list-class-header", "Class 11"));
   physicsPracticalsList.appendChild(class11_list);
 
@@ -286,7 +286,7 @@ function load11th_practicals() {
 }
 
 function load12th_practicals() {
-  let class12_list = createDiv("practicals-list list-view");
+  let class12_list = createDiv("button-container practicals-list list-view");
   physicsPracticalsList.appendChild(createTextField("practicals-list-class-header", "Class 12"));
   physicsPracticalsList.appendChild(class12_list);
 

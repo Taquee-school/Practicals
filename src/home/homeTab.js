@@ -1,9 +1,7 @@
 // #region Helper functions
 function createListButton(container, id, buttonText) {
-    let btn = document.createElement("button");
+    let btn = createButton( id, "toggle-effect tab-btn");
     container.appendChild(btn);
-    btn.id = id;
-    btn.classList.add("toggle-effect");
 
     btn.appendChild(createTextField(null, buttonText));
 
@@ -46,7 +44,7 @@ function closePhysicsPanel() { closePanel(homeTab, physicsTab, homeContent); }
 
 homeTabContent.appendChild(toggleEffect(createButton("physics-btn", "home-tab-btn toggle-effect", null, "Physics practicals", openPhysicsPanel)));
 
-let physicsTab = createDiv("inner-app-tab", "physics-tab");
+let physicsTab = createDiv("inner-app-tab content added", "physics-tab");
 
 let physicsTabHeader = createDiv("top-bar");
 physicsTab.appendChild(physicsTabHeader);
@@ -75,7 +73,7 @@ function closeChemistryPanel() { closePanel(homeTab, chemistryTab, homeContent);
 
 homeTabContent.appendChild(toggleEffect(createButton("chemistry-btn", "home-tab-btn toggle-effect", null, "Chemistry practicals", openChemistryPanel)));
 
-let chemistryTab = createDiv("inner-app-tab", "chemistry-tab");
+let chemistryTab = createDiv("inner-app-tab content added", "chemistry-tab");
 
 let chemistryTabHeader = createDiv("top-bar");
 chemistryTab.appendChild(chemistryTabHeader);

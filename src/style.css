@@ -391,7 +391,6 @@ input, textarea {
 
 /* #region Practical tab */
 #practical-tab-header {
-  height: 7%;
   justify-content: space-between;
 }
 [data-orientation="vertical"]:not([data-os="ios"]) #practical-tab-header {
@@ -751,6 +750,7 @@ input, textarea {
   justify-content: flex-start;
   align-items: center;
   background: var(--secondary-bg);
+  transition: transform 300ms ease;
 }
 .tab-btn:active {
   border-radius: calc(var(--button-height)/2);
