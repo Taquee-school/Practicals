@@ -26,7 +26,7 @@ let RadicalsList = createDiv("practicals-list-div");
 chemistryTabContent.appendChild(RadicalsList);
 
 function loadBasicRadicals() {
-  let basicRadicalsList = createDiv("practicals-list list-view");
+  let basicRadicalsList = createDiv("button-container practicals-list list-view");
   RadicalsList.appendChild(createTextField("practicals-list-class-header", "Basic radicals"));
   RadicalsList.appendChild(basicRadicalsList);
 
@@ -130,7 +130,7 @@ function loadBasicRadicals() {
 }
 
 function loadAcidicRadicals() {
-  let acidicRadicalsList = createDiv("practicals-list list-view");
+  let acidicRadicalsList = createDiv("button-container practicals-list list-view");
   RadicalsList.appendChild(createTextField("practicals-list-class-header", "Acidic radicals"));
   RadicalsList.appendChild(acidicRadicalsList);
 
