@@ -1,0 +1,115 @@
+{
+  "experiment": [
+    {
+      "header": "Objective",
+      "content":[
+        {
+          "element":"p",
+          "properties": {
+            "text": ""
+          }
+        }
+      ]
+    },
+    {
+      "header": "Apparatus Used",
+      "content":[
+        {
+          "element":"p",
+          "properties": {
+            "text": ""
+          }
+        }
+      ]
+    },
+    {
+      "header": "Formula Used",
+      "content":[
+        {
+          "element":"p",
+          "properties": {
+            "text": ""
+          }
+        }
+      ]
+    },
+    {
+      "header": "Observation",
+      "content":[
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": ""
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": ""
+              }
+            },
+            {
+              "element": "span",
+              "properties": {
+                "text": ""
+              }
+            }
+          ]
+        },
+        {
+          "element": "table",
+          "header": "",
+          "columns":[
+            {
+              "header":"S.no",
+              "id": "",
+              "readOnly": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "header": "Result",
+      "content":[
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": ""
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": ""
+              }
+            },
+            {
+              "element": "span",
+              "properties": {
+                "text": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "header": "Precautions & sources of error",
+      "content":[
+        {
+          "element":"p",
+          "properties": {
+            "text": ""
+          }
+        }
+      ]
+    }
+  ]
+}

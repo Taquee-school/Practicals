@@ -7,142 +7,31 @@
   <meta name="description" content="Practicals for class 11 and 12">
   <meta name="keywords" content="Practicals, class 11, class 12">
   <meta name="author" content="Noor Taquee">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
   <meta name="theme-color" content="var(--primary-bg)" />
   <meta name="mobile-web-app-capable" content="yes">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css" />
   <link rel="icon" href="public/logo.svg">
   <link rel="manifest" href="public/site.webmanifest">
   <title>Practicals: class 11 and 12</title>
-  <link rel="stylesheet" href="src/style.css" />
-  <link rel="stylesheet" href="src/home/homeTab.css" />
-  <link rel="stylesheet" href="src/settings/settingsTab.css" />
+  <link rel="stylesheet" href="src/index.css" />
+  <link rel="stylesheet" href="src/pages/home-panel/homeTab.css" />
+  <link rel="stylesheet" href="src/pages/settings-panel/settingsTab.css" />
+  <link rel="stylesheet" href="src/pages/home-panel/inner-panels/chemistry-panel/chemistryPracticalFile.css" />
+  <link rel="stylesheet" href="src/pages/home-panel/inner-panels/physics-panel/physicsPracticalFile.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css" />
 </head>
 
-<body id="app" data-orientation="vertical" data-os="android" data-theme="light" data-palette="default"
-  class="dark default vertical">
-  <div id="app-wrapper">
-    <div id="inner-app">
-      <div id="tab-container-wrapper">
-        <div id="inner-app-tab-container">
-          <div id="home-tab" class="inner-app-tab">
-            <div id="home-content" class="content-fill">
-              <div class="top-bar">
-                <p class="tab-header">Practicals</p>
-              </div>
-              <div class="content">
-              </div>
-            </div>
-          </div>
-          <div id="practical-tab" class="inner-app-tab">
-            <div id="practical-tab-header" class="top-bar">
-              <div>
-                <button class="toggle back-btn toggle-effect">
-                </button>
-                <p id="experiment-name"></p>
-              </div>
-              <button id="help-button" class="toggle toggle-effect">
-                <i class="ph-bold ph-question-mark"></i>
-              </button>
-            </div>
-            <div id="practical-tab-content" class="content">
-              <div id="practical-container" class="practical-tab-panel"></div>
-            </div>
-          </div>
-          <div id="settings-tab" class="inner-app-tab">
-            <div id="settings-content" class="content-fill">
-              <div class="app-icon"></div>
-              <p class="tab-header">Settings</p>
-              <div class="settings-tab-section button-container list-view">
-                <button id="theme-btn" class="tab-btn toggle-effect">
-                  <i class="ph-bold ph-paint-roller"></i>
-                  <p>Theme</p>
-                </button>
-                <button id="palette-btn" class="tab-btn toggle-effect">
-                  <i class="ph-bold ph-palette"></i>
-                  <p>Palette</p>
-                </button>
-                <button id="navigation-bar-btn" class="tab-btn toggle-effect">
-                  <i class="ph-bold ph-compass"></i>
-                  <p>Navigation bar</p>
-                </button>
-                <button id="accessibility-btn" class="tab-btn toggle-effect">
-                  <i class="ph-bold ph-eye"></i>
-                  <p>Accessibilty</p>
-                </button>
-              </div>
-              <div class="settings-tab-section button-container list-view">
-                <button id="error-btn" class="tab-btn toggle-effect">
-                  <i class="ph-bold ph-bug"></i>
-                  <p>Report Error</p>
-                </button>
-                <button id="about-btn" class="tab-btn toggle-effect">
-                  <i class="ph-bold ph-info"></i>
-                  <p>About</p>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="navigation-div" class="sticky">
-        <button id="home-button" class="active">
-          <div class="navigation-icon-container">
-            <div class="navigation-icon-div active" id="home-icon"></div>
-            <i class="ph-bold ph-list-bullets"></i>
-          </div>
-          <p>Home</p>
-        </button>
-        <button id="practical-button">
-          <div class="navigation-icon-container">
-            <div class="navigation-icon-div" id="practical-icon"></div>
-            <i class="ph-fill ph-file-text"></i>
-          </div>
-          <p>Practical</p>
-        </button>
-        <button id="settings-button">
-          <div class="navigation-icon-container">
-            <div class="navigation-icon-div" id="settings-icon"></div>
-            <i class="ph-bold ph-dots-three"></i>
-          </div>
-          <p>More</p>
-        </button>
-      </div>
-    </div>
-  </div>
-  <script>
-    let globalBackIcon;
-
-    function tagPlatform() {
-      const ua = navigator.userAgent;
-      const isAndroid = /Android/i.test(ua);
-      const isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-
-      if (isAndroid) {
-        document.body.dataset.os = 'android';
-        globalBackIcon = "arrow-left";
-      } else if (isIOS) {
-        document.body.dataset.os = 'ios';
-        globalBackIcon = "caret-left";
-      } else {
-        document.body.dataset.os = 'pc';
-        globalBackIcon = "arrow-left";
-      }
-    }
-
-    tagPlatform();
-  </script>
-  <script src="src/script.js"></script>
-  <script src="src/home/homeTab.js"></script>
-  <script src="src/settings/settingsTab.js"></script>
-  <script>
+<body>
+  <div id="app"></div>
+  <script type="module" src="./dist/main.js"></script>
+  <!-- <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
+        navigator.serviceWorker.register('./dist/sw.js')
       });
     }
-  </script>
+  </script> -->
 </body>
 
 </html>

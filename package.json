@@ -1,0 +1,26 @@
+{
+  "name": "practicals",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Noor-Taquee/Practicals.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Noor-Taquee/Practicals/issues"
+  },
+  "homepage": "https://github.com/Noor-Taquee/Practicals#readme"
+}

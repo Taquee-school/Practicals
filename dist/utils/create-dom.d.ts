@@ -1,0 +1,2 @@
+export declare function createElement<K extends keyof HTMLElementTagNameMap>(name: K, props?: Partial<HTMLElementTagNameMap[K]>, nodes?: Node[]): HTMLElementTagNameMap[K];
+//# sourceMappingURL=create-dom.d.ts.map

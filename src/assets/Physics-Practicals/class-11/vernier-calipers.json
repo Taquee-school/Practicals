@@ -1,0 +1,35 @@
+{
+  "experiment": [
+    {
+      "header": "Objective",
+      "content":[
+        {
+          "element":"p",
+          "properties": {
+            "text": ""
+          }
+        }
+      ]
+    },
+    {
+      "header": "Apparatus Used",
+      "content":[]
+    },
+    {
+      "header": "Formula Used",
+      "content":[]
+    },
+    {
+      "header": "Observation",
+      "content":[]
+    },
+    {
+      "header": "Result",
+      "content":[]
+    },
+    {
+      "header": "Precautions & sources of error",
+      "content":[]
+    }
+  ]
+}
