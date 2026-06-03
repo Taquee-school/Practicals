@@ -1,3 +1,5 @@
+import "./index.css";
+
 import "./router.js";
 
 import { homePanel } from "./pages/home-panel/page.js";

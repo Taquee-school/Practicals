@@ -1,3 +1,5 @@
+import "./settingsTab.css";
+
 import { createElement } from "../../utils/create-dom.js";
 
 export const settingsPanel = createElement("div", {

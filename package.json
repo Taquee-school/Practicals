@@ -8,12 +8,14 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "dev": "tsc -w",
-    "build": "tsc",
+    "dev": "vite",
+    "preview": "vite preview",
+    "build": "vite build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.9.3",
+    "vite": "^8.0.16"
   },
   "repository": {
     "type": "git",

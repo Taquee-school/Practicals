@@ -1,3 +1,5 @@
+import "./chemistryPracticalFile.css";
+
 import { createElement } from "../../../../utils/create-dom.js";
 
 export const chemistryPanel = createElement("div", {

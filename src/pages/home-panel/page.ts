@@ -1,3 +1,5 @@
+import "./homeTab.css";
+
 import { createElement } from "../../utils/create-dom.js";
 
 export const homePanel = createElement("div", {

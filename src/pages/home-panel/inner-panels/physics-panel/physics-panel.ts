@@ -1,3 +1,5 @@
+import "./physicsPracticalFile.css";
+
 import { createElement } from "../../../../utils/create-dom.js";
 
 export const physicsPanel = createElement("div", {
