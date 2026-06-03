@@ -169,6 +169,13 @@
   --button-height-grid-view: 35vh;
 }
 
+[data-theme="light"] {
+  --absolute-bg: #ffffff;
+}
+[data-theme="dark"] {
+  --absolute-bg: #000000;
+}
+
 [data-theme="light"][data-palette="default"] {
   --primary-bg: #dddddd;
   --secondary-bg: #ffffff;
@@ -422,7 +429,6 @@ p, i, input {
   align-items: center;
 
   background-color: var(--secondary-bg);
-  box-shadow: 0 0 10px gray;
 }
 
 [data-orientation="horizontal"] #navigation-bar {
@@ -461,7 +467,7 @@ p, i, input {
 
   background-color: var(--accent);
   opacity: 0.3;
-  box-shadow: 0 0 5px black inset;
+  box-shadow: 0 0 5px var(--absolute-bg) inset;
 
   transition: left 300ms ease-out;
 }

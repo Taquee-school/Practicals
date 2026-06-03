@@ -11,6 +11,7 @@ export function createInput(id: any, type: any, value?: number, inputFunction?: 
 export function createInputDiv(label: any, inputElement: any, extraLabel?: null): HTMLDivElement;
 export function createTableColumn(header: any): HTMLDivElement;
 export function createColumn(header: any, numberOfRows: any, idPattern: any, type: any, value: any, inputFunction: any, readOnly?: boolean): HTMLDivElement;
+export function createChemistryColumn(type: any): HTMLDivElement;
 export const physicsFilePath_class11: string;
 export const physicsFilePath_class12: "./src/assets/Physics-Practicals/";
 //# sourceMappingURL=practical.d.ts.map

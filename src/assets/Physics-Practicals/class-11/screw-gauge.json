@@ -1,0 +1,409 @@
+{
+  "experiment": [
+    {
+      "header": "Objective",
+      "content": [
+        {
+          "element": "p",
+          "properties": {
+            "text": "To determine the mass per unit length of a given wire, by measuring its diameter, using a screw gauge."
+          }
+        }
+      ]
+    },
+    {
+      "header": "Apparatus Used",
+      "content": [
+        {
+          "element": "p",
+          "properties": {
+            "text": "A screw gauge, a thin wire."
+          }
+        }
+      ]
+    },
+    {
+      "header": "Formula Used",
+      "content": [
+        {
+          "element": "p",
+          "properties": {
+            "text": ""
+          }
+        },
+        {
+          "element": "p",
+          "properties": {
+            "text": "Where,"
+          }
+        },
+        {
+          "element": "p",
+          "properties": {
+            "text": "m = mass per unit length of the wire."
+          }
+        },
+        {
+          "element": "p",
+          "properties": {
+            "text": "d = diameter of the wire."
+          }
+        },
+        {
+          "element": "p",
+          "properties": {
+            "text": "¶ = Density of the material of the wire."
+          }
+        }
+      ]
+    },
+    {
+      "header": "Observation",
+      "content": [
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": "Distance moved by the circular scale along the main scale(x):"
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": "scg-distance-by-csr-input"
+              }
+            },
+            {
+              "element": "span",
+              "properties": {
+                "text": "mm."
+              }
+            }
+          ]
+        },
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": "Number of Total revolutions made by the circular scale along main scale (y):"
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": "scg-revolution-by-csr-input"
+              }
+            }
+          ]
+        },
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": "Pitch (x/y):",
+                "readOnly": true
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": "scg-pitch-input"
+              }
+            }
+          ]
+        },
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": "Total number of divisions of circular scale (n):"
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": "scg-division-of-circular-scale-input"
+              }
+            }
+          ]
+        },
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": "Least Count of the screw Gauge (L.C) = (Pitch/n):"
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": "scg-least-count-input",
+                "readOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": "Zero Error:"
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": "scg-zero-error-1-input"
+              }
+            }
+          ]
+        },
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": "Zero Error:"
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": "scg-zero-error-2-input"
+              }
+            }
+          ]
+        },
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": "Zero Error:"
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": "scg-zero-error-3-input"
+              }
+            }
+          ]
+        },
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": "Mean zero error:"
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": "scg-mean-zero-error-input",
+                "readOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": "Zero correction:"
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": "scg-zero-correction-input",
+                "readOnly": true
+              }
+            }
+          ]
+        },
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": "Density of the material:"
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": "scg-density-input"
+              }
+            }
+          ]
+        },
+        {
+          "element": "table",
+          "header": "Table for the measurement of diameter of wire",
+          "columns": [
+            {
+              "header": "S.no",
+              "id": "scg-s-no",
+              "readOnly": true
+            },
+            {
+              "header": "Main scale reading",
+              "id": "scg-msr"
+            },
+            {
+              "header": "Divisions (n)",
+              "id": "scg-div"
+            },
+            {
+              "header": "Value (L.C.)",
+              "id": "scg-lc"
+            },
+            {
+              "header": "Observed diameter",
+              "id": "scg-d-obs",
+              "readOnly": true
+            }
+          ]
+        },
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": "Mean observed diameter:"
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": "scg-mean-observed-diameter-input",
+                "readOnly": true
+              }
+            },
+            {
+              "element": "span",
+              "properties": {
+                "text": "mm."
+              }
+            }
+          ]
+        },
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": "Corrected diameter:"
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": "scg-corrected-diameter-input",
+                "readOnly": true
+              }
+            },
+            {
+              "element": "span",
+              "properties": {
+                "text": "mm."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "header": "Result",
+      "content": [
+        {
+          "element": "p",
+          "children": [
+            {
+              "element": "span",
+              "properties": {
+                "text": "The mass per unit length of the wire is found to be:"
+              }
+            },
+            {
+              "element": "input",
+              "properties": {
+                "id": "scg-mass-per-unit-length-input",
+                "readOnly": true
+              }
+            },
+            {
+              "element": "span",
+              "properties": {
+                "text": "kg/m."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "header": "Precautions and Sources of errors",
+      "content": [
+        {
+          "element": "p",
+          "properties": {
+            "text": "We should check the working of the screw gauge to ensure the free movement of the screw"
+          }
+        },
+        {
+          "element": "p",
+          "properties": {
+            "text": "We should check the functioning of the ratchet."
+          }
+        },
+        {
+          "element": "p",
+          "properties": {
+            "text": "The screw gauge should always be rotated in the same direction to avoid backlash errors."
+          }
+        },
+        {
+          "element": "p",
+          "properties": {
+            "text": "We should make the final adjustment by using ratchet."
+          }
+        },
+        {
+          "element": "p",
+          "properties": {
+            "text": "We should stop turning the ratchet when it starts slipping."
+          }
+        },
+        {
+          "element": "p",
+          "properties": {
+            "text": "We should take the reading of diameter at various places of the wire."
+          }
+        }
+      ]
+    }
+  ]
+}

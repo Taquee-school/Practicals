@@ -1,3 +1,4 @@
 export declare const practicalsPanel: HTMLDivElement;
-export declare function practicalsHashHandler(attr: string[]): void;
+/** The hash handler for practicals page */
+export declare function hashHandler(attr: string[]): void;
 //# sourceMappingURL=page.d.ts.map

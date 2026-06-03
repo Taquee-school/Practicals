@@ -57,6 +57,7 @@ const fileContainer = createElement("div", {
 });
 const class12_filesList = new Map([
     ["class", "12"],
+    ["subject", "physics"],
     ["Ohms Law", "ohms_law"],
     ["PN Junction", "pn_junction"],
     ["Meter Bridge", "meter_bridge"],
@@ -69,6 +70,7 @@ const class12_filesList = new Map([
 ]);
 const class11_filesList = new Map([
     ["class", "11"],
+    ["subject", "physics"],
     ["Screw Gauge", "screw_gauge"],
     ["Vernier Calipers", "vernier_calipers"],
     ["Parallelogram", "parallelogram"],
@@ -80,17 +82,17 @@ const class11_filesList = new Map([
 ]);
 const filesList = class12_filesList;
 filesList.forEach((path, name) => {
-    if (name === "class")
+    if (name === "class" || name === "subject")
         return;
     const btn = createElement("button", {
         className: "file-btn",
     }, [
-        createElement("i", { className: "ph-fill ph-folder" }),
+        createElement("i", { className: "ph-fill ph-file" }),
         createElement("p", { textContent: name }),
     ]);
     fileContainer.appendChild(btn);
     btn.addEventListener("click", () => {
-        window.location.hash = `#practicals&class=${filesList.get("class")}&practical=${path}`;
+        window.location.hash = `#practicals&class=${filesList.get("class")}&subject=physics&practical=${path}`;
     });
 });
 contentDiv.append(fileContainer);

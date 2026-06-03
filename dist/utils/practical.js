@@ -158,4 +158,11 @@ export function createColumn(header, numberOfRows, idPattern, type, value, input
     }
     return column;
 }
+export function createChemistryColumn(type) {
+    let column = createDiv(`observation-table-column ${type}`);
+    let columnHeader = createDiv("observation-table-column-header");
+    columnHeader.appendChild(createTextField("observation-table-column-header-text", type));
+    column.appendChild(columnHeader);
+    return column;
+}
 //# sourceMappingURL=practical.js.map

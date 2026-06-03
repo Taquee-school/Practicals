@@ -1,15 +1,17 @@
-let acidicGroup2Div = createDiv("practical-file", "chemistry-practical");
+import { createDiv, createTextField, createChemistryColumn } from "../../utils/practical.js";
+
+export const experimentDiv = createDiv("practical-file", "chemistry-practical");
 
 let ag2_reagentDiv = createDiv("practical-section-text-div");
-acidicGroup2Div.appendChild(ag2_reagentDiv);
+experimentDiv.appendChild(ag2_reagentDiv);
 ag2_reagentDiv.appendChild(createTextField("practical-section-text", "Reagent: "));
 ag2_reagentDiv.appendChild(createTextField("practical-section-value", "Conc. H2SO4"));
 
 // #region Chloride Table
-acidicGroup2Div.appendChild(createTextField("observation-table-header", "chloride"));
+experimentDiv.appendChild(createTextField("observation-table-header", "chloride"));
 
 let ag2_chlorideTable = createDiv("observation-table");
-acidicGroup2Div.appendChild(ag2_chlorideTable);
+experimentDiv.appendChild(ag2_chlorideTable);
 
 // #region Experiment
 let ag2_chlorideExperimentDiv = createChemistryColumn("experiment");
@@ -66,10 +68,10 @@ ag2_chlorideInference3Div.appendChild(createTextField("observation-table-text", 
 
 
 // #region Bromide Table
-acidicGroup2Div.appendChild(createTextField("observation-table-header", "bromide"));
+experimentDiv.appendChild(createTextField("observation-table-header", "bromide"));
 
 let ag2_bromideTable = createDiv("observation-table");
-acidicGroup2Div.appendChild(ag2_bromideTable);
+experimentDiv.appendChild(ag2_bromideTable);
 
 // #region Experiment
 let ag2_bromideExperimentDiv = createChemistryColumn("experiment");
@@ -113,10 +115,10 @@ ag2_bromideInference2Div.appendChild(createTextField("observation-table-text", "
 
 
 // #region Nitrate Table
-acidicGroup2Div.appendChild(createTextField("observation-table-header", "nitrate"));
+experimentDiv.appendChild(createTextField("observation-table-header", "nitrate"));
 
 let ag2_nitrateTable = createDiv("observation-table");
-acidicGroup2Div.appendChild(ag2_nitrateTable);
+experimentDiv.appendChild(ag2_nitrateTable);
 
 // #region Experiment
 let ag2_nitrateExperimentDiv = createChemistryColumn("experiment");
@@ -160,10 +162,10 @@ ag2_nitrateInference2Div.appendChild(createTextField("observation-table-text", "
 
 
 // #region Iodide Table
-acidicGroup2Div.appendChild(createTextField("observation-table-header", "iodide"));
+experimentDiv.appendChild(createTextField("observation-table-header", "iodide"));
 
 let ag2_iodideTable = createDiv("observation-table");
-acidicGroup2Div.appendChild(ag2_iodideTable);
+experimentDiv.appendChild(ag2_iodideTable);
 
 // #region Experiment
 let ag2_iodideExperimentDiv = createChemistryColumn("experiment");

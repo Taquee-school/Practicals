@@ -69,25 +69,31 @@ const fileContainer = createElement("div", {
 });
 
 const filesList = new Map<string, string>([
-  ["Screw Gauge", ""],
-  ["Vernier Calipers", ""],
-  ["Parallelogram", ""],
-  ["Spherometer", ""],
-  ["Simple Pendulum", ""],
-  ["Sonometer", ""],
-  ["Helical Spring", ""],
-  ["Resonance Tube", ""],
+  ["Acid group-1", "acid_group_1"],
+  ["Acid group-2", "acid_group_2"],
+  ["Acid group-3", "acid_group_3"],
+  ["Basic group-0", "basic_group_0"],
+  ["Basic group-1", "basic_group_1"],
+  ["Basic group-2", "basic_group_2"],
+  ["Basic group-3", "basic_group_3"],
+  ["Basic group-4", "basic_group_4"],
+  ["Basic group-5", "basic_group_5"],
+  ["Basic group-6", "basic_group_6"],
 ]);
 
 filesList.forEach((path, name) => {
   const btn = createElement("button", {
     className: "file-btn",
   }, [
-    createElement("i", { className: "ph-fill ph-folder" }),
+    createElement("i", { className: "ph-fill ph-file" }),
     createElement("p", { textContent: name }),
   ]);
   fileContainer.appendChild( btn );
-  if (path) return;
+  
+  btn.addEventListener("click", () => {
+    window.location.hash = `#practicals&subject=chemistry&practical=${path}`
+  });
+
 });
 
 contentDiv.append( fileContainer );

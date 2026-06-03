@@ -5,7 +5,7 @@ import { homePanel } from "./pages/home-panel/page.js";
 import { physicsPanel } from "./pages/home-panel/inner-panels/physics-panel/physics-panel.js";
 import { chemistryPanel } from "./pages/home-panel/inner-panels/chemistry-panel/chemistry-panel.js";
 
-import { practicalsPanel, practicalsHashHandler } from "./pages/practicals-panel/page.js";
+import { practicalsPanel, hashHandler as practicalsHashHandler } from "./pages/practicals-panel/page.js";
 
 import { settingsPanel } from "./pages/settings-panel/page.js";
 import { themePanel } from "./pages/settings-panel/inner-panels/theme-panel.js";

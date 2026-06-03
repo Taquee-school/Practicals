@@ -217,3 +217,13 @@ export function createColumn(
 
   return column;
 }
+
+export function createChemistryColumn(type) {
+  let column = createDiv(`observation-table-column ${type}`);
+  
+  let columnHeader = createDiv("observation-table-column-header");
+  columnHeader.appendChild(createTextField("observation-table-column-header-text", type));
+  column.appendChild(columnHeader);
+  
+  return column;
+}
