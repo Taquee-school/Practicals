@@ -1,4 +1,4 @@
-import { createDiv, createInput, createTextField, createImg, physicsFilePath_class12, createInputDiv, createTableColumn, toggleEffect, createButton, createIcon, createPAS } from "../../../utils/practical.js";
+import { createDiv, createInput, createTextField, createImg, base, createInputDiv, createTableColumn, toggleEffect, createButton, createIcon, createPAS } from "../../../utils/practical.js";
 
 export const experimentDiv = createDiv("practical-file", "physics-practical");
 
@@ -71,8 +71,8 @@ let pnj_diagramDiv = createDiv("practical-section");
 experimentDiv.appendChild(pnj_diagramDiv);
 
 pnj_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
-pnj_diagramDiv.appendChild(createImg("practical-file-diagram", "light", "/diagrams/class-12/light/pn junction.jpg"));
-pnj_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", "/diagrams/class-12/dark/pn junction.jpg"));
+pnj_diagramDiv.appendChild(createImg("practical-file-diagram", "light", base+"/diagrams/class-12/light/pn junction.jpg"));
+pnj_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", base+"/diagrams/class-12/dark/pn junction.jpg"));
 // #endregion Diagram
 
 // #region Objective

@@ -1,4 +1,4 @@
-import { createDiv, createInput, createTextField, createImg, physicsFilePath_class12, createTableColumn, toggleEffect, createButton, createIcon, createPAS, createInputDiv } from "../../../utils/practical.js";
+import { createDiv, createInput, createTextField, createImg, base, createTableColumn, toggleEffect, createButton, createIcon, createPAS, createInputDiv } from "../../../utils/practical.js";
 
 export const experimentDiv = createDiv("practical-file", "physics-practical");
 
@@ -66,8 +66,8 @@ experimentDiv.appendChild(hdf_diagramDiv);
 
 hdf_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-hdf_diagramDiv.appendChild(createImg("practical-file-diagram", "light", "/diagrams/class-12/light/half deflection.jpg"));
-hdf_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", "/diagrams/class-12/dark/half deflection.jpg"));
+hdf_diagramDiv.appendChild(createImg("practical-file-diagram", "light", base+"/diagrams/class-12/light/half deflection.jpg"));
+hdf_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", base+"/diagrams/class-12/dark/half deflection.jpg"));
 // #endregion Diagram
 
 // #region Objective

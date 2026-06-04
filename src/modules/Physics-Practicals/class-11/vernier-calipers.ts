@@ -1,4 +1,4 @@
-import { createDiv, createInput, createTextField, physicsFilePath_class11, createPAS, createInputDiv, createTableColumn, createButton, createIcon } from "../../../utils/practical.js";
+import { createDiv, createInput, createTextField, base, createPAS, createInputDiv, createTableColumn, createButton, createIcon } from "../../../utils/practical.js";
 
 
 export const experimentDiv = createDiv("practical-file", "physics-practical");
@@ -243,11 +243,11 @@ vnc_diagramDiv.appendChild(
 
 let vnc_diagram_light = document.createElement("img");
 vnc_diagram_light.className = "practical-file-diagram", "light";
-vnc_diagram_light.src = "/diagrams/class-11/light/vernier calipers.jpg";
+vnc_diagram_light.src = base+"/diagrams/class-11/light/vernier calipers.jpg";
 vnc_diagramDiv.appendChild(vnc_diagram_light);
 let vnc_diagram_dark = document.createElement("img");
 vnc_diagram_dark.className = "practical-file-diagram", "dark";
-vnc_diagram_dark.src = "/diagrams/class-11/dark/vernier calipers.jpg";
+vnc_diagram_dark.src = base+"/diagrams/class-11/dark/vernier calipers.jpg";
 vnc_diagramDiv.appendChild(vnc_diagram_dark);
 
 let vnc_objectiveDiv = createDiv("practical-section");

@@ -1,4 +1,4 @@
-import { createDiv, createTextField, physicsFilePath_class11, createInput, createPAS, createInputDiv, createTableColumn } from "../../../utils/practical.js";
+import { createDiv, createTextField, base, createInput, createPAS, createInputDiv, createTableColumn } from "../../../utils/practical.js";
 
 // #region Functions
 let spm_rowCount = 0;
@@ -21,11 +21,11 @@ spm_diagramDiv.appendChild(
 
 let spm_diagram_light = document.createElement("img");
 spm_diagram_light.className = "practical-file-diagram", "light";
-spm_diagram_light.src = "/diagrams/class-11/light/spherometer.jpg";
+spm_diagram_light.src = base+"/diagrams/class-11/light/spherometer.jpg";
 spm_diagramDiv.appendChild(spm_diagram_light);
 let spm_diagram_dark = document.createElement("img");
 spm_diagram_dark.className = "practical-file-diagram", "dark";
-spm_diagram_dark.src = "/diagrams/class-11/dark/spherometer.jpg";
+spm_diagram_dark.src = base+"/diagrams/class-11/dark/spherometer.jpg";
 spm_diagramDiv.appendChild(spm_diagram_dark);
 
 let spm_objectiveDiv = createDiv("practical-section");

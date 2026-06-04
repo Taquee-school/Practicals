@@ -1,4 +1,4 @@
-import { createDiv, createInput, createTextField, createImg, physicsFilePath_class12, createButton, createIcon, createPAS, createInputDiv, createTableColumn, toggleEffect } from "../../../utils/practical.js";
+import { createDiv, createInput, createTextField, createImg, base, createButton, createIcon, createPAS, createInputDiv, createTableColumn, toggleEffect } from "../../../utils/practical.js";
 
 export const experimentDiv = createDiv("practical-file", "physics-practical");
 
@@ -81,8 +81,8 @@ experimentDiv.appendChild(cvm_diagramDiv);
 
 cvm_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-cvm_diagramDiv.appendChild(createImg("practical-file-diagram", "light", "/diagrams/class-12/light/convex mirror.jpg"));
-cvm_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", "/diagrams/class-12/dark/convex mirror.jpg"));
+cvm_diagramDiv.appendChild(createImg("practical-file-diagram", "light", base+"/diagrams/class-12/light/convex mirror.jpg"));
+cvm_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", base+"/diagrams/class-12/dark/convex mirror.jpg"));
 
 let cvm_moreDiagramBtn = createButton(null, "practical-section-more-button", createIcon("fill", "images-square"),"More Diagrams", cvm_showDiagrams);
 // cvm_diagramDiv.appendChild(cvm_moreDiagramBtn);

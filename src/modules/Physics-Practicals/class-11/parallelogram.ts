@@ -1,4 +1,4 @@
-import { createDiv, createTextField, createInput, createPAS, createInputDiv, createTableColumn, physicsFilePath_class11 } from "../../../utils/practical.js";
+import { createDiv, createTextField, createInput, createPAS, createInputDiv, createTableColumn, base } from "../../../utils/practical.js";
 
 // #region Functions
 let prl_rowCount = 0;
@@ -22,11 +22,11 @@ prl_diagramDiv.appendChild(
 
 let prl_diagram_light = document.createElement("img");
 prl_diagram_light.className = "practical-file-diagram", "light";
-prl_diagram_light.src = "/diagrams/class-11/light/parallelogram.jpg";
+prl_diagram_light.src = base+"/diagrams/class-11/light/parallelogram.jpg";
 prl_diagramDiv.appendChild(prl_diagram_light);
 let prl_diagram_dark = document.createElement("img");
 prl_diagram_dark.className = "practical-file-diagram", "dark";
-prl_diagram_dark.src = "/diagrams/class-11/dark/parallelogram.jpg";
+prl_diagram_dark.src = base+"/diagrams/class-11/dark/parallelogram.jpg";
 prl_diagramDiv.appendChild(prl_diagram_dark);
 
 let prl_objectiveDiv = createDiv("practical-section");

@@ -1,4 +1,4 @@
-import { createDiv, createTextField, physicsFilePath_class11, createInput, createPAS, createInputDiv, createTableColumn } from "../../../utils/practical.js";
+import { createDiv, createTextField, base, createInput, createPAS, createInputDiv, createTableColumn } from "../../../utils/practical.js";
 
 // #region Functions
 let spl_rowCount = 0;
@@ -22,11 +22,11 @@ spl_diagramDiv.appendChild(
 
 let spl_diagram_light = document.createElement("img");
 spl_diagram_light.className = "practical-file-diagram", "light";
-spl_diagram_light.src = "/diagrams/class-11/light/simple pendulum.jpg";
+spl_diagram_light.src = base+"/diagrams/class-11/light/simple pendulum.jpg";
 spl_diagramDiv.appendChild(spl_diagram_light);
 let spl_diagram_dark = document.createElement("img");
 spl_diagram_dark.className = "practical-file-diagram", "dark";
-spl_diagram_dark.src = "/diagrams/class-11/dark/simple pendulum.jpg";
+spl_diagram_dark.src = base+"/diagrams/class-11/dark/simple pendulum.jpg";
 spl_diagramDiv.appendChild(spl_diagram_dark);
 
 let spl_objectiveDiv = createDiv("practical-section");

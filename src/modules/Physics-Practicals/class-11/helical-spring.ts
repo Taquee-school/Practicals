@@ -1,4 +1,4 @@
-import { createDiv, createTextField, physicsFilePath_class11, createInput, createPAS, createInputDiv, createTableColumn } from "../../../utils/practical.js";
+import { createDiv, createTextField, base, createInput, createPAS, createInputDiv, createTableColumn } from "../../../utils/practical.js";
 
 // #region Functions
 let hls_rowCount = 0;
@@ -22,11 +22,11 @@ hls_diagramDiv.appendChild(
 
 let hls_diagram_light = document.createElement("img");
 hls_diagram_light.className = "practical-file-diagram", "light";
-hls_diagram_light.src = "/diagrams/class-11/light/helical spring.jpg";
+hls_diagram_light.src = base+"/diagrams/class-11/light/helical spring.jpg";
 hls_diagramDiv.appendChild(hls_diagram_light);
 let hls_diagram_dark = document.createElement("img");
 hls_diagram_dark.className = "practical-file-diagram", "dark";
-hls_diagram_dark.src = "/diagrams/class-11/dark/helical spring.jpg";
+hls_diagram_dark.src = base+"/diagrams/class-11/dark/helical spring.jpg";
 hls_diagramDiv.appendChild(hls_diagram_dark);
 
 let hls_objectiveDiv = createDiv("practical-section");

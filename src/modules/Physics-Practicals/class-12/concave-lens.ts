@@ -1,4 +1,4 @@
-import { createDiv, createInput, createTextField, createImg, physicsFilePath_class12, createButton, createIcon, createPAS, createInputDiv, createTableColumn, toggleEffect } from "../../../utils/practical.js";
+import { createDiv, createInput, createTextField, createImg, base, createButton, createIcon, createPAS, createInputDiv, createTableColumn, toggleEffect } from "../../../utils/practical.js";
 
 export const experimentDiv = createDiv("practical-file", "physics-practical");
 
@@ -122,8 +122,8 @@ experimentDiv.appendChild(ccl_diagramDiv);
 
 ccl_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-ccl_diagramDiv.appendChild(createImg("practical-file-diagram", "light", "/diagrams/class-12/light/concave lens.jpg"));
-ccl_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", "/diagrams/class-12/dark/concave lens.jpg"));
+ccl_diagramDiv.appendChild(createImg("practical-file-diagram", "light", base+"/diagrams/class-12/light/concave lens.jpg"));
+ccl_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", base+"/diagrams/class-12/dark/concave lens.jpg"));
 
 let ccl_moreDiagramBtn = createButton(null, "practical-section-more-button", createIcon("fill", "images-square"),"More Diagrams", ccl_showDiagrams);
 // ccl_diagramDiv.appendChild(ccl_moreDiagramBtn);

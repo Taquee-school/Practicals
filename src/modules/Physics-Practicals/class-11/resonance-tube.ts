@@ -1,4 +1,4 @@
-import { createDiv, createTextField, physicsFilePath_class11, createInput, createPAS, createInputDiv, createTableColumn } from "../../../utils/practical.js";
+import { createDiv, createTextField, base, createInput, createPAS, createInputDiv, createTableColumn } from "../../../utils/practical.js";
 
 // #region Functions
 let rst_rowCount = 0;
@@ -22,11 +22,11 @@ rst_diagramDiv.appendChild(
 
 let rst_diagram_light = document.createElement("img");
 rst_diagram_light.className = "practical-file-diagram", "light";
-rst_diagram_light.src = "/diagrams/class-11/light/resonance tube.jpg";
+rst_diagram_light.src = base+"/diagrams/class-11/light/resonance tube.jpg";
 rst_diagramDiv.appendChild(rst_diagram_light);
 let rst_diagram_dark = document.createElement("img");
 rst_diagram_dark.className = "practical-file-diagram", "dark";
-rst_diagram_dark.src = "/diagrams/class-11/dark/resonance tube.jpg";
+rst_diagram_dark.src = base+"/diagrams/class-11/dark/resonance tube.jpg";
 rst_diagramDiv.appendChild(rst_diagram_dark);
 
 let rst_objectiveDiv = createDiv("practical-section");
