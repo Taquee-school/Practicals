@@ -1,11 +1,13 @@
 
+export const base = import.meta.env.BASE_URL;
+
 const physicsFilePath = "./src/assets/Physics-Practicals/"
 export const physicsFilePath_class11 = physicsFilePath + "class-11/";
 export const physicsFilePath_class12 = physicsFilePath;
 
-export function toggleEffect(el) {return el}
+export function toggleEffect(el: any) {return el}
 
-export function createDiv(className, id = null) {
+export function createDiv(className: string, id?: string) {
   let div = document.createElement("div");
   if (className) {
     div.className = className;
@@ -16,20 +18,20 @@ export function createDiv(className, id = null) {
   return div;
 }
 
-export function createTextField(className, content) {
+export function createTextField(className: string|null, content: string) {
   let p = document.createElement("p");
-  p.className = className;
+  p.className = className ?? "";
   p.textContent = content;
 
   return p;
 }
 
 export function createButton(
-  id = null,
-  className = null,
-  icon = null,
-  text = null,
-  clickFunction = null
+  id: string|null = null,
+  className: string|null = null,
+  icon: HTMLElement|null = null,
+  text: string|null = null,
+  clickFunction: (() => any)|null = null
 ) {
   let button = document.createElement("button");
   if (id) {
@@ -52,7 +54,7 @@ export function createButton(
   return button;
 }
 
-export function createIcon(type = null, name, clickFunction = null, id = null) {
+export function createIcon(type: string|null = null, name: string, clickFunction?: () => any, id?: string) {
   if (!type) {
     type = "regular";
   }
@@ -66,7 +68,7 @@ export function createIcon(type = null, name, clickFunction = null, id = null) {
   return icon;
 }
 
-export function addScript(path, id) {
+export function addScript(path: string, id: string) {
   if (document.getElementById(id)) return;
   let newScipt = document.createElement("script");
   newScipt.id = id;
@@ -75,7 +77,7 @@ export function addScript(path, id) {
   return newScipt;
 }
 
-export function addStyle(path, id) {
+export function addStyle(path: string, id: string) {
   if (document.getElementById(id)) return;
   let newStyle = document.createElement("link");
   newStyle.id = id;
@@ -85,7 +87,7 @@ export function addStyle(path, id) {
   return newStyle;
 }
 
-export function createImg(className, mode, path) {
+export function createImg(className: string, mode: string, path: string) {
   const imgWrapper = createDiv(`img-wrapper ${mode} loading-img`);
 
   imgWrapper.appendChild(createTextField("img-error-text", "Error loading image"));
@@ -100,7 +102,7 @@ export function createImg(className, mode, path) {
 }
 
 
-export function createPAS(number, content, contentIsDiv = false) {
+export function createPAS(number: string, content: HTMLElement|string, contentIsDiv = false) {
   let div = document.createElement("div");
   div.className = "pas-div";
 
@@ -113,6 +115,7 @@ export function createPAS(number, content, contentIsDiv = false) {
   No.textContent = `${number}.`;
 
   if (contentIsDiv) {
+    content = content as HTMLElement
     div.appendChild(content);
     content.style.width = "80%";
   } else {
@@ -122,29 +125,29 @@ export function createPAS(number, content, contentIsDiv = false) {
 
     let p = document.createElement("p");
     pDiv.appendChild(p);
-    p.textContent = content;
+    p.textContent = content as string;
   }
 
   return div;
 }
 
 export function createInput(
-  id,
-  type,
+  id: string|null,
+  type: string,
   value = 0,
-  inputFunction = null,
+  inputFunction?: (() => any)|null,
   readOnly = false
 ) {
   let input = document.createElement("input");
   if (id) input.id = id;
   input.type = type;
-  input.value = value;
-  input.oninput = inputFunction;
+  input.value = String(value);
+  if (inputFunction) input.oninput = inputFunction;
   input.readOnly = readOnly;
   return input;
 }
 
-export function createInputDiv(label, inputElement, extraLabel = null) {
+export function createInputDiv(label: string, inputElement: HTMLElement, extraLabel: string|null = null) {
   let div = document.createElement("div");
   div.className = "practical-section-input-div";
 
@@ -162,7 +165,7 @@ export function createInputDiv(label, inputElement, extraLabel = null) {
   return div;
 }
 
-export function createTableColumn(header) {
+export function createTableColumn(header: string) {
   let column = document.createElement("div");
   column.className = "observation-table-column";
 
@@ -175,12 +178,12 @@ export function createTableColumn(header) {
 }
 
 export function createColumn(
-  header,
-  numberOfRows,
-  idPattern,
-  type,
-  value,
-  inputFunction,
+  header: string,
+  numberOfRows: number,
+  idPattern: string,
+  type: string,
+  value: any,
+  inputFunction: () => any,
   readOnly = false
 ) {
   let column = document.createElement("div");
@@ -218,7 +221,7 @@ export function createColumn(
   return column;
 }
 
-export function createChemistryColumn(type) {
+export function createChemistryColumn(type: string) {
   let column = createDiv(`observation-table-column ${type}`);
   
   let columnHeader = createDiv("observation-table-column-header");
