@@ -165,8 +165,14 @@ function getPath(ei: ExperimentInfo): boolean {
 async function showPractical(path: string) {
   contentDiv.innerHTML = "";
 
-  const { experimentDiv } = await import(`../../modules/${path}`);
-  contentDiv.appendChild( experimentDiv );
+  const modules = import.meta.glob("../../modules/**/*.js");
+
+  const fullPath = `../../modules/${path}`;
+  const src = modules[fullPath];
+  if (!src) return;
+  
+  const module: any = await src();
+  contentDiv.appendChild( module.experimentDiv );
 }
 //#endregion hash handler
 
