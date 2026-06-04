@@ -99,8 +99,8 @@ experimentDiv.appendChild(ohl_diagramDiv);
 
 ohl_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
 
-ohl_diagramDiv.appendChild(createImg("practical-file-diagram", "light", physicsFilePath_class12 + "class-12/assets/diagrams/light/ohms law.jpg"));
-ohl_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", physicsFilePath_class12 + "class-12/assets/diagrams/dark/ohms law.jpg"));
+ohl_diagramDiv.appendChild(createImg("practical-file-diagram", "light", "/diagrams/class-12/light/ohms law.jpg"));
+ohl_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", "/diagrams/class-12/dark/ohms law.jpg"));
 // #endregion Diagram
 
 // #region Objective

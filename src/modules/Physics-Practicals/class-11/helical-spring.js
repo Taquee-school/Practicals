@@ -22,11 +22,11 @@ hls_diagramDiv.appendChild(
 
 let hls_diagram_light = document.createElement("img");
 hls_diagram_light.className = "practical-file-diagram", "light";
-hls_diagram_light.src = physicsFilePath_class11 + "class-11/assets/diagrams/light/helical spring.jpg";
+hls_diagram_light.src = "/diagrams/class-11/light/helical spring.jpg";
 hls_diagramDiv.appendChild(hls_diagram_light);
 let hls_diagram_dark = document.createElement("img");
 hls_diagram_dark.className = "practical-file-diagram", "dark";
-hls_diagram_dark.src = physicsFilePath_class11 + "class-11/assets/diagrams/dark/helical spring.jpg";
+hls_diagram_dark.src = "/diagrams/class-11/dark/helical spring.jpg";
 hls_diagramDiv.appendChild(hls_diagram_dark);
 
 let hls_objectiveDiv = createDiv("practical-section");

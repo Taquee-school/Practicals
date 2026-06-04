@@ -22,11 +22,11 @@ rst_diagramDiv.appendChild(
 
 let rst_diagram_light = document.createElement("img");
 rst_diagram_light.className = "practical-file-diagram", "light";
-rst_diagram_light.src = physicsFilePath_class11 + "class-11/assets/diagrams/light/resonance tube.jpg";
+rst_diagram_light.src = "/diagrams/class-11/light/resonance tube.jpg";
 rst_diagramDiv.appendChild(rst_diagram_light);
 let rst_diagram_dark = document.createElement("img");
 rst_diagram_dark.className = "practical-file-diagram", "dark";
-rst_diagram_dark.src = physicsFilePath_class11 + "class-11/assets/diagrams/dark/resonance tube.jpg";
+rst_diagram_dark.src = "/diagrams/class-11/dark/resonance tube.jpg";
 rst_diagramDiv.appendChild(rst_diagram_dark);
 
 let rst_objectiveDiv = createDiv("practical-section");

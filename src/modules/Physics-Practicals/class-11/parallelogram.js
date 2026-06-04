@@ -22,11 +22,11 @@ prl_diagramDiv.appendChild(
 
 let prl_diagram_light = document.createElement("img");
 prl_diagram_light.className = "practical-file-diagram", "light";
-prl_diagram_light.src = physicsFilePath_class11 + "class-11/assets/diagrams/light/parallelogram.jpg";
+prl_diagram_light.src = "/diagrams/class-11/light/parallelogram.jpg";
 prl_diagramDiv.appendChild(prl_diagram_light);
 let prl_diagram_dark = document.createElement("img");
 prl_diagram_dark.className = "practical-file-diagram", "dark";
-prl_diagram_dark.src = physicsFilePath_class11 + "class-11/assets/diagrams/dark/parallelogram.jpg";
+prl_diagram_dark.src = "/diagrams/class-11/dark/parallelogram.jpg";
 prl_diagramDiv.appendChild(prl_diagram_dark);
 
 let prl_objectiveDiv = createDiv("practical-section");

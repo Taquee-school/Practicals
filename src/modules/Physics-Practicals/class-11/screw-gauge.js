@@ -97,11 +97,11 @@ scg_diagramDiv.appendChild(
 
 let scg_diagram_light = document.createElement("img");
 scg_diagram_light.className = "practical-file-diagram", "light";
-scg_diagram_light.src = physicsFilePath_class11 + "assets/diagrams/light/screw gauge.jpg";
+scg_diagram_light.src = "/diagrams/class-11/light/screw gauge.jpg";
 scg_diagramDiv.appendChild(scg_diagram_light);
 let scg_diagram_dark = document.createElement("img");
 scg_diagram_dark.className = "practical-file-diagram", "dark";
-scg_diagram_dark.src = physicsFilePath_class11 + "assets/diagrams/dark/screw gauge.jpg";
+scg_diagram_dark.src = "/diagrams/class-11/dark/screw gauge.jpg";
 scg_diagramDiv.appendChild(scg_diagram_dark);
 
 let scg_objectiveDiv = createDiv("practical-section");

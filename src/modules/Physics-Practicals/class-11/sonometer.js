@@ -21,11 +21,11 @@ snm_diagramDiv.appendChild(
 
 let snm_diagram_light = document.createElement("img");
 snm_diagram_light.className = "practical-file-diagram", "light";
-snm_diagram_light.src = physicsFilePath_class11 + "class-11/assets/diagrams/light/sonometer.jpg";
+snm_diagram_light.src = "/diagrams/class-11/light/sonometer.jpg";
 snm_diagramDiv.appendChild(snm_diagram_light);
 let snm_diagram_dark = document.createElement("img");
 snm_diagram_dark.className = "practical-file-diagram", "dark";
-snm_diagram_dark.src = physicsFilePath_class11 + "class-11/assets/diagrams/dark/sonometer.jpg";
+snm_diagram_dark.src = "/diagrams/class-11/dark/sonometer.jpg";
 snm_diagramDiv.appendChild(snm_diagram_dark);
 
 let snm_objectiveDiv = createDiv("practical-section");
