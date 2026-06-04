@@ -41,7 +41,7 @@ type HashMap = Record<string,string>
 type HashMapSource = Record<string, Record<string, string>>
 
 const class12_physics_practicals: HashMap = {
-  "path": "../../assets/Physics-Practicals/class-12/",
+  "path": "Physics-Practicals/class-12/",
   "ohms_law": "ohms-law",
   "pn_junction": "pn-junction",
   "meter_bridge": "meter-bridge",
@@ -54,7 +54,7 @@ const class12_physics_practicals: HashMap = {
 }
 
 const class11_physics_practicals: HashMap = {
-  "path": "../../assets/Physics-Practicals/class-11/",
+  "path": "Physics-Practicals/class-11/",
   "screw_gauge": "screw-gauge",
   "vernier_calipers": "vernier-calipers",
   "parallelogram": "parallelogram",
@@ -66,7 +66,7 @@ const class11_physics_practicals: HashMap = {
 }
 
 const chemistry_practicals: HashMap = {
-  "path": "../../assets/Chemistry-Practicals/",
+  "path": "Chemistry-Practicals/",
   "acid_group_1": "acid-group-1",
   "acid_group_2": "acid-group-2",
   "acid_group_3": "acid-group-3",
@@ -165,7 +165,7 @@ function getPath(ei: ExperimentInfo): boolean {
 async function showPractical(path: string) {
   contentDiv.innerHTML = "";
 
-  const { experimentDiv } = await import(path);
+  const { experimentDiv } = await import(`../../modules/${path}`);
   contentDiv.appendChild( experimentDiv );
 }
 //#endregion hash handler
