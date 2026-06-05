@@ -3,9 +3,9 @@ import { base, createInput, createDiv, createTextField, createPAS, createInputDi
 export const experimentDiv = createDiv("practical-file", "physics-practical");
 
 // #region Functions
-let scg_leastCount: any = null;
+let scg_leastCount = null;
 let scg_zeroError = null;
-let scg_density: any = null;
+let scg_density = null;
 let scg_rowCount = 0;
 
 function measureEssentials_scg() {
