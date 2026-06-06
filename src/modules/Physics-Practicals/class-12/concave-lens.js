@@ -15,9 +15,10 @@ import {
 export const experimentDiv = createDiv("practical-file", "physics-practical");
 
 // #region Functions
-let ccl_lengthOfNeedle = null;
-let ccl_distanceMirrorObject = null;
-let ccl_distanceMirrorImage = null;
+
+// let ccl_lengthOfNeedle = null;
+// let ccl_distanceMirrorObject = null;
+// let ccl_distanceMirrorImage = null;
 
 let ccl_indexCorrectionU = 0;
 let ccl_indexCorrectionV = 0;
@@ -72,7 +73,7 @@ function measureFocalLength_ccl() {
     }
   }
 
-  focalLength = sumF / ccl_rowCount;
+  let focalLength = sumF / ccl_rowCount;
   ccl_focalLengthCalculatedInput.value = focalLength.toFixed(3);
 }
 
@@ -207,6 +208,7 @@ let ccl_moreDiagramBtn = createButton(
   "More Diagrams",
   ccl_showDiagrams,
 );
+ccl_moreDiagramBtn.remove();
 // ccl_diagramDiv.appendChild(ccl_moreDiagramBtn);
 
 function ccl_showDiagrams() {
@@ -307,7 +309,7 @@ ccl_observationDiv.appendChild(
 
 ccl_observationDiv.appendChild(createPAS("a)", "For u:"));
 
-ccl_movedDiv1 = createDiv("practical-section-content");
+let ccl_movedDiv1 = createDiv("practical-section-content");
 ccl_observationDiv.appendChild(ccl_movedDiv1);
 
 let ccl_distanceMirrorObjectInput = createInput(

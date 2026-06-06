@@ -15,9 +15,10 @@ import {
 export const experimentDiv = createDiv("practical-file", "physics-practical");
 
 // #region Functions
-let ccm_lengthOfNeedle = null;
-let ccm_distanceMirrorObject = null;
-let ccm_distanceMirrorImage = null;
+
+// let ccm_lengthOfNeedle = null;
+// let ccm_distanceMirrorObject = null;
+// let ccm_distanceMirrorImage = null;
 
 let ccm_indexCorrectionU = 0;
 let ccm_indexCorrectionV = 0;
@@ -65,7 +66,7 @@ function measureFocalLength_ccm() {
     sumF += f;
   }
 
-  focalLength = sumF / ccm_rowCount;
+  let focalLength = sumF / ccm_rowCount;
   ccm_focalLengthCalculatedInput.value = focalLength.toFixed(3);
 }
 
@@ -200,6 +201,7 @@ let ccm_moreDiagramBtn = createButton(
   "More Diagrams",
   ccm_showDiagrams,
 );
+ccm_moreDiagramBtn.remove();
 // ccm_diagramDiv.appendChild(ccm_moreDiagramBtn);
 
 function ccm_showDiagrams() {

@@ -14,9 +14,10 @@ import {
 export const experimentDiv = createDiv("practical-file", "physics-practical");
 
 // #region Functions
-let cvl_lengthOfNeedle = null;
-let cvl_distanceLensObject = null;
-let cvl_distanceLensImage = null;
+
+// let cvl_lengthOfNeedle = null;
+// let cvl_distanceLensObject = null;
+// let cvl_distanceLensImage = null;
 
 let cvl_indexCorrectionU = 0;
 let cvl_indexCorrectionV = 0;
@@ -64,7 +65,7 @@ function measureFocalLength_cvl() {
     sumF += f;
   }
 
-  focalLength = sumF / cvl_rowCount;
+  let focalLength = sumF / cvl_rowCount;
   cvl_focalLengthCalculatedInput.value = focalLength.toFixed(3);
 }
 
@@ -187,6 +188,7 @@ let cvl_moreDiagramBtn = createButton(
   "More Diagrams",
   cvl_showDiagrams,
 );
+cvl_moreDiagramBtn.remove();
 // cvl_diagramDiv.appendChild(cvl_moreDiagramBtn);
 
 function cvl_showDiagrams() {

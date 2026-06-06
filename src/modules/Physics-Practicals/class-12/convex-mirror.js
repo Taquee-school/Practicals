@@ -15,7 +15,8 @@ import {
 export const experimentDiv = createDiv("practical-file", "physics-practical");
 
 // #region Functions
-let cvm_lengthOfNeedle = null;
+
+// let cvm_lengthOfNeedle = null;
 let cvm_indexCorrection = 0;
 let cvm_rowCount = 0;
 
@@ -33,8 +34,8 @@ function measureFocalLength_cvm() {
   let sumMI = 0;
 
   for (let i = 1; i <= cvm_rowCount; i++) {
-    let O = parseFloat(document.getElementById(`cvm-table-O-${i}`).value) || 0;
-    let L = parseFloat(document.getElementById(`cvm-table-L-${i}`).value) || 0;
+    // let O = parseFloat(document.getElementById(`cvm-table-O-${i}`).value) || 0;
+    // let L = parseFloat(document.getElementById(`cvm-table-L-${i}`).value) || 0;
     let M = parseFloat(document.getElementById(`cvm-table-M-${i}`).value) || 0;
     let I = parseFloat(document.getElementById(`cvm-table-I-${i}`).value) || 0;
     let MI = I - M;
@@ -149,6 +150,7 @@ let cvm_moreDiagramBtn = createButton(
   "More Diagrams",
   cvm_showDiagrams,
 );
+cvm_moreDiagramBtn.remove();
 // cvm_diagramDiv.appendChild(cvm_moreDiagramBtn);
 
 function cvm_showDiagrams() {

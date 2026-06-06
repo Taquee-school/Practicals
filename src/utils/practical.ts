@@ -4,7 +4,15 @@ const physicsFilePath = "./src/assets/Physics-Practicals/";
 export const physicsFilePath_class11 = physicsFilePath + "class-11/";
 export const physicsFilePath_class12 = physicsFilePath;
 
-export function toggleEffect(el: any) {
+const decimalPlaceInScientificNotation = 2;
+export function changeToStandard(text: string) {
+  const num = parseFloat(text);
+  const order = Math.floor(Math.log10(num));
+  const standard = num / Math.pow(10, order);
+  return `${standard.toFixed(decimalPlaceInScientificNotation)}x10^${order}`;
+}
+
+export function toggleEffect(el: HTMLElement) {
   return el;
 }
 

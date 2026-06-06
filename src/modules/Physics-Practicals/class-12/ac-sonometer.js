@@ -83,7 +83,6 @@ function measureFrequency_acs() {
       document.getElementById(`acs-table-l2-${i}`).classList.remove("invalid");
     }
 
-    let V = 0;
     let M = acs_masspul;
     let T = parseFloat(document.getElementById(`acs-table-T-${i}`).value) || 0;
     let l1 =
@@ -105,7 +104,7 @@ function measureFrequency_acs() {
       }
       continue;
     }
-    V = (T / M) ** 0.5 / (4 * (L / 100));
+    let V = (T / M) ** 0.5 / (4 * (L / 100));
 
     document.getElementById(`acs-table-V-${i}`).value = V.toFixed(3);
     v_sum += V;

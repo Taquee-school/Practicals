@@ -4,6 +4,7 @@ import {
   createTextField,
   createImg,
   base,
+  changeToStandard,
   createPAS,
   createInputDiv,
   createTableColumn,
@@ -580,7 +581,7 @@ let mbr_masspulInput = createInput(
   null,
   true,
 );
-
+mbr_masspulInput.remove();
 let mbr_resultDiv = createDiv("practical-section");
 experimentDiv.appendChild(mbr_resultDiv);
 
