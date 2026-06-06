@@ -1,4 +1,16 @@
-import { createDiv, createInput, createTextField, createImg, base, createButton, createIcon, createPAS, createInputDiv, createTableColumn, toggleEffect } from "../../../utils/practical.js";
+import {
+  createDiv,
+  createInput,
+  createTextField,
+  createImg,
+  base,
+  createButton,
+  createIcon,
+  createPAS,
+  createInputDiv,
+  createTableColumn,
+  toggleEffect,
+} from "../../../utils/practical.js";
 
 export const experimentDiv = createDiv("practical-file", "physics-practical");
 
@@ -33,7 +45,6 @@ function measureEssentials_ccl() {
 function measureFocalLength_ccl() {
   let sumF = 0;
 
-
   for (let i = 1; i <= ccl_rowCount; i++) {
     let P = parseFloat(document.getElementById(`ccl-table-P-${i}`).value) || 0;
     let O = parseFloat(document.getElementById(`ccl-table-O-${i}`).value) || 0;
@@ -55,10 +66,9 @@ function measureFocalLength_ccl() {
     if (
       f >
       (ccl_indexCorrectionU * ccl_indexCorrectionV) /
-      (ccl_indexCorrectionU + ccl_indexCorrectionV)
+        (ccl_indexCorrectionU + ccl_indexCorrectionV)
     ) {
       sumF += f;
-
     }
   }
 
@@ -67,52 +77,103 @@ function measureFocalLength_ccl() {
 }
 
 function ccl_addRow() {
-    ccl_rowCount++;
-    setTimeout(() => {
-        let inp = createInput(`ccl-s-no-${ccl_rowCount}`, "number", ccl_rowCount, null, true);
-        ccl_sNoColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 10);
-    setTimeout(() => {
-        let inp = createInput(`ccl-table-P-${ccl_rowCount}`, "number", 75, measureFocalLength_ccl);
-        ccl_PColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 50);
-    setTimeout(() => {
-        let inp = createInput(`ccl-table-O-${ccl_rowCount}`, "number", 0, measureFocalLength_ccl);
-        ccl_OColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 100);
-    setTimeout(() => {
-        let inp = createInput(`ccl-table-I-${ccl_rowCount}`, "number", 0, measureFocalLength_ccl);
-        ccl_IColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 150);
-    setTimeout(() => {
-        let inp = createInput(`ccl-table-obj-obs-${ccl_rowCount}`, "number", 0, null, true);
-        ccl_UObsColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 200);
-    setTimeout(() => {
-        let inp = createInput(`ccl-table-obj-cor-${ccl_rowCount}`, "number", 0, null, true);
-        ccl_UCorColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 250);
-    setTimeout(() => {
-        let inp = createInput(`ccl-table-img-obs-${ccl_rowCount}`, "number", 0, null, true);
-        ccl_IObsColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 300);
-    setTimeout(() => {
-        let inp = createInput(`ccl-table-img-cor-${ccl_rowCount}`, "number", 0, null, true);
-        ccl_ICorColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 350);
-    setTimeout(() => {
-        let inp = createInput(`ccl-table-focal-length-${ccl_rowCount}`, "number", 0, null, true);
-        ccl_FColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 400);
+  ccl_rowCount++;
+  setTimeout(() => {
+    let inp = createInput(
+      `ccl-s-no-${ccl_rowCount}`,
+      "number",
+      ccl_rowCount,
+      null,
+      true,
+    );
+    ccl_sNoColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 10);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccl-table-P-${ccl_rowCount}`,
+      "number",
+      75,
+      measureFocalLength_ccl,
+    );
+    ccl_PColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 50);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccl-table-O-${ccl_rowCount}`,
+      "number",
+      0,
+      measureFocalLength_ccl,
+    );
+    ccl_OColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 100);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccl-table-I-${ccl_rowCount}`,
+      "number",
+      0,
+      measureFocalLength_ccl,
+    );
+    ccl_IColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 150);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccl-table-obj-obs-${ccl_rowCount}`,
+      "number",
+      0,
+      null,
+      true,
+    );
+    ccl_UObsColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 200);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccl-table-obj-cor-${ccl_rowCount}`,
+      "number",
+      0,
+      null,
+      true,
+    );
+    ccl_UCorColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 250);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccl-table-img-obs-${ccl_rowCount}`,
+      "number",
+      0,
+      null,
+      true,
+    );
+    ccl_IObsColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 300);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccl-table-img-cor-${ccl_rowCount}`,
+      "number",
+      0,
+      null,
+      true,
+    );
+    ccl_ICorColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 350);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccl-table-focal-length-${ccl_rowCount}`,
+      "number",
+      0,
+      null,
+      true,
+    );
+    ccl_FColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 400);
 }
 // #endregion Functions
 
@@ -120,18 +181,48 @@ function ccl_addRow() {
 let ccl_diagramDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccl_diagramDiv);
 
-ccl_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
+ccl_diagramDiv.appendChild(
+  createTextField("practical-section-header", "DIAGRAM:"),
+);
 
-ccl_diagramDiv.appendChild(createImg("practical-file-diagram", "light", base+"/diagrams/class-12/light/concave lens.jpg"));
-ccl_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", base+"/diagrams/class-12/dark/concave lens.jpg"));
+ccl_diagramDiv.appendChild(
+  createImg(
+    "practical-file-diagram",
+    "light",
+    base + "/diagrams/class-12/light/concave lens.jpg",
+  ),
+);
+ccl_diagramDiv.appendChild(
+  createImg(
+    "practical-file-diagram",
+    "dark",
+    base + "/diagrams/class-12/dark/concave lens.jpg",
+  ),
+);
 
-let ccl_moreDiagramBtn = createButton(null, "practical-section-more-button", createIcon("fill", "images-square"),"More Diagrams", ccl_showDiagrams);
+let ccl_moreDiagramBtn = createButton(
+  null,
+  "practical-section-more-button",
+  createIcon("fill", "images-square"),
+  "More Diagrams",
+  ccl_showDiagrams,
+);
 // ccl_diagramDiv.appendChild(ccl_moreDiagramBtn);
 
 function ccl_showDiagrams() {
-  for (let i=1; i <= 6; i++) {
-    ccl_diagramDiv.appendChild(createImg("practical-file-more-diagram light", `Physics-Practicals/class-12/diagrams/light/diagram${i}.jpg`));
-    ccl_diagramDiv.appendChild(createImg("practical-file-more-diagram dark", `Physics-Practicals/class-12/diagrams/dark/diagram${i}.jpg`));
+  for (let i = 1; i <= 6; i++) {
+    ccl_diagramDiv.appendChild(
+      createImg(
+        "practical-file-more-diagram light",
+        `Physics-Practicals/class-12/diagrams/light/diagram${i}.jpg`,
+      ),
+    );
+    ccl_diagramDiv.appendChild(
+      createImg(
+        "practical-file-more-diagram dark",
+        `Physics-Practicals/class-12/diagrams/dark/diagram${i}.jpg`,
+      ),
+    );
   }
 }
 // #endregion Diagram
@@ -141,14 +232,14 @@ let ccl_objectiveDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccl_objectiveDiv);
 
 ccl_objectiveDiv.appendChild(
-  createTextField("practical-section-header", "OBJECT:")
+  createTextField("practical-section-header", "OBJECT:"),
 );
 
 ccl_objectiveDiv.appendChild(
   createTextField(
     "practical-section-content",
-    "To find the focal length of a concave lens using a convex lens."
-  )
+    "To find the focal length of a concave lens using a convex lens.",
+  ),
 );
 // #endregion Objective
 
@@ -157,14 +248,14 @@ let ccl_apparatusDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccl_apparatusDiv);
 
 ccl_apparatusDiv.appendChild(
-  createTextField("practical-section-header", "APPARATUS USED:")
+  createTextField("practical-section-header", "APPARATUS USED:"),
 );
 
 ccl_apparatusDiv.appendChild(
   createTextField(
     "practical-section-content",
-    "An optical bench with four uprights, two needles, a concave lens, a convex lens of f < f of concave lens, a knitting needle and a meter scale."
-  )
+    "An optical bench with four uprights, two needles, a concave lens, a convex lens of f < f of concave lens, a knitting needle and a meter scale.",
+  ),
 );
 // #endregion Apparatus
 
@@ -173,24 +264,18 @@ let ccl_formulaDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccl_formulaDiv);
 
 ccl_formulaDiv.appendChild(
-  createTextField("practical-section-header", "FORMULA USED:")
+  createTextField("practical-section-header", "FORMULA USED:"),
 );
 
 ccl_formulaDiv.appendChild(
-  createTextField("practical-main-formula", "1/f = 1/v - 1/u")
+  createTextField("practical-main-formula", "1/f = 1/v - 1/u"),
 );
 
 ccl_formulaDiv.appendChild(
-  createTextField(
-    "practical-section-content",
-    "u: distance between I and L2"
-  )
+  createTextField("practical-section-content", "u: distance between I and L2"),
 );
 ccl_formulaDiv.appendChild(
-  createTextField(
-    "practical-section-content",
-    "v: distance between I' and L2"
-  )
+  createTextField("practical-section-content", "v: distance between I' and L2"),
 );
 // #endregion Formula
 
@@ -199,14 +284,14 @@ let ccl_observationDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccl_observationDiv);
 
 ccl_observationDiv.appendChild(
-  createTextField("practical-section-header", "OBSERVATION:")
+  createTextField("practical-section-header", "OBSERVATION:"),
 );
 
 let ccl_lengthOfNeedleInput = createInput(
   "ccl-length-of-knitting-needle-input",
   "number",
   0,
-  measureEssentials_ccl
+  measureEssentials_ccl,
 );
 ccl_observationDiv.appendChild(
   createPAS(
@@ -214,13 +299,13 @@ ccl_observationDiv.appendChild(
     createInputDiv(
       "Actual Length of the knitting needle (x): ",
       ccl_lengthOfNeedleInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
-ccl_observationDiv.appendChild(createPAS("a)", "For u:"))
+ccl_observationDiv.appendChild(createPAS("a)", "For u:"));
 
 ccl_movedDiv1 = createDiv("practical-section-content");
 ccl_observationDiv.appendChild(ccl_movedDiv1);
@@ -229,7 +314,7 @@ let ccl_distanceMirrorObjectInput = createInput(
   "ccl-distance-between-mirror-and-object-input",
   "number",
   0,
-  measureEssentials_ccl
+  measureEssentials_ccl,
 );
 ccl_observationDiv.appendChild(
   createPAS(
@@ -237,17 +322,17 @@ ccl_observationDiv.appendChild(
     createInputDiv(
       "Observed distance between object needle and lens when needle is inserted between them, y: ",
       ccl_distanceMirrorObjectInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let ccl_indexErrorUInput = createInput(
   "ccl-index-error-u-input",
   "number",
   0,
-  measureEssentials_ccl
+  measureEssentials_ccl,
 );
 ccl_observationDiv.appendChild(
   createPAS(
@@ -255,10 +340,10 @@ ccl_observationDiv.appendChild(
     createInputDiv(
       "Index error for u, e1 = (y - x) : ",
       ccl_indexErrorUInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let ccl_indexCorrectionUInput = createInput(
@@ -266,7 +351,7 @@ let ccl_indexCorrectionUInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 ccl_observationDiv.appendChild(
   createPAS(
@@ -274,10 +359,10 @@ ccl_observationDiv.appendChild(
     createInputDiv(
       "Index correction for u, -(e1) = (x - y) :",
       ccl_indexCorrectionUInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 ccl_observationDiv.appendChild(createPAS("b)", "For v:"));
@@ -289,7 +374,7 @@ let ccl_distanceMirrorImageInput = createInput(
   "ccl-distance-between-mirror-and-image-input",
   "number",
   0,
-  measureEssentials_ccl
+  measureEssentials_ccl,
 );
 ccl_movedDiv2.appendChild(
   createPAS(
@@ -297,10 +382,10 @@ ccl_movedDiv2.appendChild(
     createInputDiv(
       "Observed distance between image needle and lens when needle is inserted between them, z:",
       ccl_distanceMirrorImageInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let ccl_indexErrorVInput = createInput(
@@ -308,7 +393,7 @@ let ccl_indexErrorVInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 ccl_movedDiv2.appendChild(
   createPAS(
@@ -316,10 +401,10 @@ ccl_movedDiv2.appendChild(
     createInputDiv(
       "Index error for v = e2 = (z-x) :",
       ccl_indexErrorVInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let ccl_indexCorrectionVInput = createInput(
@@ -327,7 +412,7 @@ let ccl_indexCorrectionVInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 ccl_movedDiv2.appendChild(
   createPAS(
@@ -335,17 +420,17 @@ ccl_movedDiv2.appendChild(
     createInputDiv(
       "Index correction for v = -(e2) :",
       ccl_indexCorrectionVInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 ccl_observationDiv.appendChild(
   createTextField(
     "observation-table-header",
-    "Table for the measurement of focal length of mirror"
-  )
+    "Table for the measurement of focal length of mirror",
+  ),
 );
 let ccl_distanceTableDiv = createDiv("observation-table-div");
 ccl_observationDiv.appendChild(ccl_distanceTableDiv);
@@ -381,7 +466,17 @@ const ccl_FColumn = createTableColumn("f = uv/(u+v) (cm)");
 ccl_distanceTable.appendChild(ccl_FColumn);
 
 ccl_addRow();
-ccl_distanceTableDiv.appendChild(toggleEffect(createButton("ccl-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", ccl_addRow)));
+ccl_distanceTableDiv.appendChild(
+  toggleEffect(
+    createButton(
+      "ccl-add-row-btn",
+      "add-row-btn toggle-effect ",
+      createIcon("bold", "plus"),
+      "Add Row",
+      ccl_addRow,
+    ),
+  ),
+);
 
 // #endregion Observation
 
@@ -390,13 +485,13 @@ let ccl_resultDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccl_resultDiv);
 
 ccl_resultDiv.appendChild(
-  createTextField("practical-section-header", "RESULT:")
+  createTextField("practical-section-header", "RESULT:"),
 );
 
 let ccl_focalLengthCalculatedInput = createInput(
   "ccl-mean-focal-length-calculated-input",
   "number",
-  0
+  0,
 );
 ccl_resultDiv.appendChild(
   createPAS(
@@ -404,16 +499,16 @@ ccl_resultDiv.appendChild(
     createInputDiv(
       "Mean value of focal length by computations found to be: ",
       ccl_focalLengthCalculatedInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let ccl_focalLengthGraphInput = createInput(
   "ccl-mean-focal-length-by-graph-input",
   "number",
-  0
+  0,
 );
 ccl_resultDiv.appendChild(
   createPAS(
@@ -421,10 +516,10 @@ ccl_resultDiv.appendChild(
     createInputDiv(
       "The focal length of the given cocave mirror as determined by plotting graph(Hyperbola) between 'u' and 'v' is found to be: ",
       ccl_focalLengthGraphInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 // #endregion Result
@@ -434,7 +529,7 @@ let ccl_precautionsDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccl_precautionsDiv);
 
 ccl_precautionsDiv.appendChild(
-  createTextField("practical-section-header", "PRECAUTIONS:")
+  createTextField("practical-section-header", "PRECAUTIONS:"),
 );
 
 ccl_precautionsDiv.appendChild(createPAS("1", ""));
@@ -450,7 +545,7 @@ let ccl_SOEDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccl_SOEDiv);
 
 ccl_SOEDiv.appendChild(
-  createTextField("practical-section-header", "SOURCES OF ERRORS:")
+  createTextField("practical-section-header", "SOURCES OF ERRORS:"),
 );
 
 ccl_SOEDiv.appendChild(createPAS("1", ""));
@@ -460,5 +555,3 @@ ccl_SOEDiv.appendChild(createPAS("4", ""));
 ccl_SOEDiv.appendChild(createPAS("5", ""));
 
 // #endregion Sources of Errors
-
-

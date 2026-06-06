@@ -8,17 +8,17 @@ export function createSlider(label: string, slider: HTMLInputElement) {
 
   const header = createElement("div", {
     id: "slider-header",
-    className: "slider-header"
+    className: "slider-header",
   });
   const sliderLabel = createElement("p", { textContent: label });
-  header.appendChild( sliderLabel );
+  header.appendChild(sliderLabel);
 
   const content = createElement("div", {
-    className: "content slider-content"
+    className: "content slider-content",
   });
   slider.className = "slider-input";
-  content.append( slider );
-  sliderDiv.append( header, content );
+  content.append(slider);
+  sliderDiv.append(header, content);
 
   return sliderDiv;
 }

@@ -1,4 +1,16 @@
-import { createDiv, createInput, createTextField, createImg, base, createButton, createIcon, createPAS, createInputDiv, createTableColumn, toggleEffect } from "../../../utils/practical.js";
+import {
+  createDiv,
+  createInput,
+  createTextField,
+  createImg,
+  base,
+  createButton,
+  createIcon,
+  createPAS,
+  createInputDiv,
+  createTableColumn,
+  toggleEffect,
+} from "../../../utils/practical.js";
 
 export const experimentDiv = createDiv("practical-file", "physics-practical");
 
@@ -58,52 +70,103 @@ function measureFocalLength_ccm() {
 }
 
 function ccm_addRow() {
-    ccm_rowCount++;
-    setTimeout(() => {
-        let inp = createInput(`ccm-s-no-${ccm_rowCount}`, "number", ccm_rowCount, null, true);
-        ccm_sNoColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 10);
-    setTimeout(() => {
-        let inp = createInput(`ccm-table-P-${ccm_rowCount}`, "number", 0, measureFocalLength_ccm);
-        ccm_PColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 50);
-    setTimeout(() => {
-        let inp = createInput(`ccm-table-O-${ccm_rowCount}`, "number", 0, measureFocalLength_ccm);
-        ccm_OColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 100);
-    setTimeout(() => {
-        let inp = createInput(`ccm-table-I-${ccm_rowCount}`, "number", 0, measureFocalLength_ccm);
-        ccm_IColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 150);
-    setTimeout(() => {
-        let inp = createInput(`ccm-table-U-obs-${ccm_rowCount}`, "number", 0, null, true);
-        ccm_UObsColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 200);
-    setTimeout(() => {
-        let inp = createInput(`ccm-table-U-cor-${ccm_rowCount}`, "number", 0, null, true);
-        ccm_UCorColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 250);
-    setTimeout(() => {
-        let inp = createInput(`ccm-table-I-obs-${ccm_rowCount}`, "number", 0, null, true);
-        ccm_IObsColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 300);
-    setTimeout(() => {
-        let inp = createInput(`ccm-table-I-cor-${ccm_rowCount}`, "number", 0, null, true);
-        ccm_ICorColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 350);
-    setTimeout(() => {
-        let inp = createInput(`ccm-table-F-${ccm_rowCount}`, "number", 0, null, true);
-        ccm_FColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 400);
+  ccm_rowCount++;
+  setTimeout(() => {
+    let inp = createInput(
+      `ccm-s-no-${ccm_rowCount}`,
+      "number",
+      ccm_rowCount,
+      null,
+      true,
+    );
+    ccm_sNoColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 10);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccm-table-P-${ccm_rowCount}`,
+      "number",
+      0,
+      measureFocalLength_ccm,
+    );
+    ccm_PColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 50);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccm-table-O-${ccm_rowCount}`,
+      "number",
+      0,
+      measureFocalLength_ccm,
+    );
+    ccm_OColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 100);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccm-table-I-${ccm_rowCount}`,
+      "number",
+      0,
+      measureFocalLength_ccm,
+    );
+    ccm_IColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 150);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccm-table-U-obs-${ccm_rowCount}`,
+      "number",
+      0,
+      null,
+      true,
+    );
+    ccm_UObsColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 200);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccm-table-U-cor-${ccm_rowCount}`,
+      "number",
+      0,
+      null,
+      true,
+    );
+    ccm_UCorColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 250);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccm-table-I-obs-${ccm_rowCount}`,
+      "number",
+      0,
+      null,
+      true,
+    );
+    ccm_IObsColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 300);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccm-table-I-cor-${ccm_rowCount}`,
+      "number",
+      0,
+      null,
+      true,
+    );
+    ccm_ICorColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 350);
+  setTimeout(() => {
+    let inp = createInput(
+      `ccm-table-F-${ccm_rowCount}`,
+      "number",
+      0,
+      null,
+      true,
+    );
+    ccm_FColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 400);
 }
 // #endregion Functions
 
@@ -111,18 +174,48 @@ function ccm_addRow() {
 let ccm_diagramDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccm_diagramDiv);
 
-ccm_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
+ccm_diagramDiv.appendChild(
+  createTextField("practical-section-header", "DIAGRAM:"),
+);
 
-ccm_diagramDiv.appendChild(createImg("practical-file-diagram", "light", base+"/diagrams/class-12/light/concave mirror.jpg"));
-ccm_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", base+"/diagrams/class-12/dark/concave mirror.jpg"));
+ccm_diagramDiv.appendChild(
+  createImg(
+    "practical-file-diagram",
+    "light",
+    base + "/diagrams/class-12/light/concave mirror.jpg",
+  ),
+);
+ccm_diagramDiv.appendChild(
+  createImg(
+    "practical-file-diagram",
+    "dark",
+    base + "/diagrams/class-12/dark/concave mirror.jpg",
+  ),
+);
 
-let ccm_moreDiagramBtn = createButton(null, "practical-section-more-button", createIcon("fill", "images-square"),"More Diagrams", ccm_showDiagrams);
+let ccm_moreDiagramBtn = createButton(
+  null,
+  "practical-section-more-button",
+  createIcon("fill", "images-square"),
+  "More Diagrams",
+  ccm_showDiagrams,
+);
 // ccm_diagramDiv.appendChild(ccm_moreDiagramBtn);
 
 function ccm_showDiagrams() {
-  for (let i=1; i <= 6; i++) {
-    ccm_diagramDiv.appendChild(createImg("practical-file-more-diagram light", `Physics-Practicals/class-12/diagrams/light/diagram${i}.jpg`));
-    ccm_diagramDiv.appendChild(createImg("practical-file-more-diagram dark", `Physics-Practicals/class-12/diagrams/dark/diagram${i}.jpg`));
+  for (let i = 1; i <= 6; i++) {
+    ccm_diagramDiv.appendChild(
+      createImg(
+        "practical-file-more-diagram light",
+        `Physics-Practicals/class-12/diagrams/light/diagram${i}.jpg`,
+      ),
+    );
+    ccm_diagramDiv.appendChild(
+      createImg(
+        "practical-file-more-diagram dark",
+        `Physics-Practicals/class-12/diagrams/dark/diagram${i}.jpg`,
+      ),
+    );
   }
 }
 // #endregion Diagram
@@ -132,14 +225,14 @@ let ccm_objectiveDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccm_objectiveDiv);
 
 ccm_objectiveDiv.appendChild(
-  createTextField("practical-section-header", "OBJECT:")
+  createTextField("practical-section-header", "OBJECT:"),
 );
 
 ccm_objectiveDiv.appendChild(
   createTextField(
     "practical-section-content",
-    "To find the value of 'v' for different values of 'u' in case of a concave mirror and hence, to find the focal length 'f' of the mirrors by plotting graph between 'u' & 'v'."
-  )
+    "To find the value of 'v' for different values of 'u' in case of a concave mirror and hence, to find the focal length 'f' of the mirrors by plotting graph between 'u' & 'v'.",
+  ),
 );
 // #endregion Objective
 
@@ -148,14 +241,14 @@ let ccm_apparatusDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccm_apparatusDiv);
 
 ccm_apparatusDiv.appendChild(
-  createTextField("practical-section-header", "APPARATUS USED:")
+  createTextField("practical-section-header", "APPARATUS USED:"),
 );
 
 ccm_apparatusDiv.appendChild(
   createTextField(
     "practical-section-content",
-    "An optical bench along with three uprights, one mirror holder, two needles, concave mirror, a knitting needle and a meter scale."
-  )
+    "An optical bench along with three uprights, one mirror holder, two needles, concave mirror, a knitting needle and a meter scale.",
+  ),
 );
 // #endregion Apparatus
 
@@ -164,31 +257,31 @@ let ccm_formulaDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccm_formulaDiv);
 
 ccm_formulaDiv.appendChild(
-  createTextField("practical-section-header", "FORMULA USED:")
+  createTextField("practical-section-header", "FORMULA USED:"),
 );
 
 ccm_formulaDiv.appendChild(
   createTextField(
     "practical-section-content",
-    "The relation between the object distance 'u' and the image distance 'v' and the focal length 'f' of a concave mirror is given by"
-  )
+    "The relation between the object distance 'u' and the image distance 'v' and the focal length 'f' of a concave mirror is given by",
+  ),
 );
 
 ccm_formulaDiv.appendChild(
-  createTextField("practical-main-formula", "1/f = 1/v + 1/u")
+  createTextField("practical-main-formula", "1/f = 1/v + 1/u"),
 );
 
 ccm_formulaDiv.appendChild(createTextField("practical-section-content", "Or"));
 
 ccm_formulaDiv.appendChild(
-  createTextField("practical-main-formula", "f = uv/(u+v)")
+  createTextField("practical-main-formula", "f = uv/(u+v)"),
 );
 
 ccm_formulaDiv.appendChild(
   createTextField(
     "practical-section-content",
-    "In the case of concave mirrors, for real images both 'u' & 'v' are negative as per new Cartesian sign convention. The focal length 'f' is also negative."
-  )
+    "In the case of concave mirrors, for real images both 'u' & 'v' are negative as per new Cartesian sign convention. The focal length 'f' is also negative.",
+  ),
 );
 // #endregion Formula
 
@@ -197,14 +290,14 @@ let ccm_observationDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccm_observationDiv);
 
 ccm_observationDiv.appendChild(
-  createTextField("practical-section-header", "OBSERVATION:")
+  createTextField("practical-section-header", "OBSERVATION:"),
 );
 
 let ccm_lengthOfNeedleInput = createInput(
   "ccm-length-of-knitting-needle-input",
   "number",
   0,
-  measureEssentials_ccm
+  measureEssentials_ccm,
 );
 ccm_observationDiv.appendChild(
   createPAS(
@@ -212,17 +305,17 @@ ccm_observationDiv.appendChild(
     createInputDiv(
       "Length of knitting needle (x): ",
       ccm_lengthOfNeedleInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let ccm_distanceMirrorObjectInput = createInput(
   "ccm-distance-between-mirror-and-object-input",
   "number",
   0,
-  measureEssentials_ccm
+  measureEssentials_ccm,
 );
 ccm_observationDiv.appendChild(
   createPAS(
@@ -230,17 +323,17 @@ ccm_observationDiv.appendChild(
     createInputDiv(
       "Observed distance between the mirror and the object needle 'O' when the Knitting needle is introduced between them (y): ",
       ccm_distanceMirrorObjectInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let ccm_distanceMirrorImageInput = createInput(
   "ccm-distance-between-mirror-and-image-input",
   "number",
   0,
-  measureEssentials_ccm
+  measureEssentials_ccm,
 );
 ccm_observationDiv.appendChild(
   createPAS(
@@ -248,10 +341,10 @@ ccm_observationDiv.appendChild(
     createInputDiv(
       "Observed distance between the mirror and the iamge needle 'I' when the Knitting needle is introduced between them (z): ",
       ccm_distanceMirrorImageInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let ccm_indexErrorUInput = createInput(
@@ -259,7 +352,7 @@ let ccm_indexErrorUInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 ccm_observationDiv.appendChild(
   createPAS(
@@ -267,10 +360,10 @@ ccm_observationDiv.appendChild(
     createInputDiv(
       "Index error for 'u' = e1 = (y-x):",
       ccm_indexErrorUInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let ccm_indexCorrectionUInput = createInput(
@@ -278,7 +371,7 @@ let ccm_indexCorrectionUInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 ccm_observationDiv.appendChild(
   createPAS(
@@ -286,10 +379,10 @@ ccm_observationDiv.appendChild(
     createInputDiv(
       "Index correction for 'u' = (-e1):",
       ccm_indexCorrectionUInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let ccm_indexErrorVInput = createInput(
@@ -297,7 +390,7 @@ let ccm_indexErrorVInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 ccm_observationDiv.appendChild(
   createPAS(
@@ -305,10 +398,10 @@ ccm_observationDiv.appendChild(
     createInputDiv(
       "Index error for 'v' = e2 = (z-x):",
       ccm_indexErrorVInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let ccm_indexCorrectionVInput = createInput(
@@ -316,7 +409,7 @@ let ccm_indexCorrectionVInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 ccm_observationDiv.appendChild(
   createPAS(
@@ -324,17 +417,17 @@ ccm_observationDiv.appendChild(
     createInputDiv(
       "Index correction for 'v' = (-e2):",
       ccm_indexCorrectionVInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 ccm_observationDiv.appendChild(
   createTextField(
     "observation-table-header",
-    "Table for the measurement of focal length of mirror"
-  )
+    "Table for the measurement of focal length of mirror",
+  ),
 );
 let ccm_distanceTableDiv = createDiv("observation-table-div");
 ccm_observationDiv.appendChild(ccm_distanceTableDiv);
@@ -370,7 +463,17 @@ const ccm_FColumn = createTableColumn("f = uv/(u+v) (cm)");
 ccm_distanceTable.appendChild(ccm_FColumn);
 
 ccm_addRow();
-ccm_distanceTableDiv.appendChild(toggleEffect(createButton("ccm-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", ccm_addRow)));
+ccm_distanceTableDiv.appendChild(
+  toggleEffect(
+    createButton(
+      "ccm-add-row-btn",
+      "add-row-btn toggle-effect ",
+      createIcon("bold", "plus"),
+      "Add Row",
+      ccm_addRow,
+    ),
+  ),
+);
 // #endregion Observation
 
 // #region Result
@@ -378,13 +481,13 @@ let ccm_resultDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccm_resultDiv);
 
 ccm_resultDiv.appendChild(
-  createTextField("practical-section-header", "RESULT:")
+  createTextField("practical-section-header", "RESULT:"),
 );
 
 let ccm_focalLengthCalculatedInput = createInput(
   "ccm-mean-focal-length-calculated-input",
   "number",
-  0
+  0,
 );
 ccm_resultDiv.appendChild(
   createPAS(
@@ -392,16 +495,16 @@ ccm_resultDiv.appendChild(
     createInputDiv(
       "Mean value of focal length by computations found to be: ",
       ccm_focalLengthCalculatedInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let ccm_focalLengthGraphInput = createInput(
   "ccm-mean-focal-length-by-graph-input",
   "number",
-  0
+  0,
 );
 ccm_resultDiv.appendChild(
   createPAS(
@@ -409,10 +512,10 @@ ccm_resultDiv.appendChild(
     createInputDiv(
       "The focal length of the given cocave mirror as determined by plotting graph(Hyperbola) between 'u' and 'v' is found to be: ",
       ccm_focalLengthGraphInput,
-      "cm."
+      "cm.",
     ),
-    true
-  )
+    true,
+  ),
 );
 // #endregion Result
 
@@ -421,7 +524,7 @@ let ccm_precautionsDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccm_precautionsDiv);
 
 ccm_precautionsDiv.appendChild(
-  createTextField("practical-section-header", "PRECAUTIONS:")
+  createTextField("practical-section-header", "PRECAUTIONS:"),
 );
 
 ccm_precautionsDiv.appendChild(createPAS("1", ""));
@@ -436,7 +539,7 @@ let ccm_SOEDiv = createDiv("practical-section");
 experimentDiv.appendChild(ccm_SOEDiv);
 
 ccm_SOEDiv.appendChild(
-  createTextField("practical-section-header", "SOURCES OF ERRORS:")
+  createTextField("practical-section-header", "SOURCES OF ERRORS:"),
 );
 
 ccm_SOEDiv.appendChild(createPAS("1", ""));

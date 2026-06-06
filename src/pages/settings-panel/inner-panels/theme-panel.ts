@@ -14,20 +14,24 @@ const panelBar = createElement("div", {
 const panelNameDiv = createElement("div", {
   className: "panel-name-div",
 });
-const backBtn = createElement("button", {
-  title: "Back",
-  className: "toggle",
-}, [ createElement("i", { className: "ph-bold ph-caret-left" }) ]);
+const backBtn = createElement(
+  "button",
+  {
+    title: "Back",
+    className: "toggle",
+  },
+  [createElement("i", { className: "ph-bold ph-caret-left" })],
+);
 backBtn.addEventListener("click", () => {
-  window.location.hash = "#settings"
+  window.location.hash = "#settings";
 });
 const panelName = createElement("p", {
   className: "panel-name",
   textContent: "Theme",
 });
-panelNameDiv.append( backBtn, panelName );
+panelNameDiv.append(backBtn, panelName);
 
-panelBar.append( panelNameDiv );
+panelBar.append(panelNameDiv);
 //#endregion panel bar
 
 //#region content
@@ -37,32 +41,45 @@ const contentDiv = createElement("div", {
 });
 
 // MARK: dark
-const darkOption = createElement("button", {
-  id: "dark-btn-theme",
-  className: "radio-option",
-}, [
-  createElement("i", { className: "ph-bold ph-circle" }),
-  createElement("p", { textContent: "Dark" }),
-]);
-darkOption.addEventListener("click", () => { chooseTheme("dark") })
+const darkOption = createElement(
+  "button",
+  {
+    id: "dark-btn-theme",
+    className: "radio-option",
+  },
+  [
+    createElement("i", { className: "ph-bold ph-circle" }),
+    createElement("p", { textContent: "Dark" }),
+  ],
+);
+darkOption.addEventListener("click", () => {
+  chooseTheme("dark");
+});
 
 // MARK: light
-const lightOption = createElement("button", {
-  id: "light-btn-theme",
-  className: "radio-option selected",
-}, [
-  createElement("i", { className: "ph-fill ph-radio-button" }),
-  createElement("p", { textContent: "Light" }),
-]);
-lightOption.addEventListener("click", () => { chooseTheme("light") })
+const lightOption = createElement(
+  "button",
+  {
+    id: "light-btn-theme",
+    className: "radio-option selected",
+  },
+  [
+    createElement("i", { className: "ph-fill ph-radio-button" }),
+    createElement("p", { textContent: "Light" }),
+  ],
+);
+lightOption.addEventListener("click", () => {
+  chooseTheme("light");
+});
 
-contentDiv.append( darkOption, lightOption );
-
+contentDiv.append(darkOption, lightOption);
 
 //#region functions
 
 function syncUI(theme: string) {
-  const btn = contentDiv.querySelector<HTMLButtonElement>(`#${theme}-btn-theme`);
+  const btn = contentDiv.querySelector<HTMLButtonElement>(
+    `#${theme}-btn-theme`,
+  );
   if (btn) setTheme(btn);
 }
 
@@ -90,14 +107,17 @@ function setTheme(option: HTMLButtonElement) {
 }
 
 function chooseTheme(theme: string) {
-  document.dispatchEvent( new CustomEvent("theme-change-request", { detail: {
-    theme: theme,
-  }}));
+  document.dispatchEvent(
+    new CustomEvent("theme-change-request", {
+      detail: {
+        theme: theme,
+      },
+    }),
+  );
 }
 
 //#endregion functions
 
-
 //#endregion content
 
-themePanel.append( panelBar, contentDiv );
+themePanel.append(panelBar, contentDiv);

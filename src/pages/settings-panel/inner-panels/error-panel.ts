@@ -14,20 +14,24 @@ const panelBar = createElement("div", {
 const panelNameDiv = createElement("div", {
   className: "panel-name-div",
 });
-const backBtn = createElement("button", {
-  title: "Back",
-  className: "toggle",
-}, [ createElement("i", { className: "ph-bold ph-caret-left" }) ]);
+const backBtn = createElement(
+  "button",
+  {
+    title: "Back",
+    className: "toggle",
+  },
+  [createElement("i", { className: "ph-bold ph-caret-left" })],
+);
 backBtn.addEventListener("click", () => {
-  window.location.hash = "#settings"
+  window.location.hash = "#settings";
 });
 const panelName = createElement("p", {
   className: "panel-name",
   textContent: "Error",
 });
-panelNameDiv.append( backBtn, panelName );
+panelNameDiv.append(backBtn, panelName);
 
-panelBar.append( panelNameDiv );
+panelBar.append(panelNameDiv);
 //#endregion panel bar
 
 //#region content
@@ -45,13 +49,17 @@ const text2 = createElement("p", {
   textContent: "You need a github account to submit your issue.",
 });
 
-const reportAnchor = createElement("a", {
-  className: "anchor-btn",
-  href: "https://github.com/Noor-Taquee/Practicals/issues",
-  target: "_blank",
-}, [ createElement("p", { textContent: "Open Github" }) ]);
+const reportAnchor = createElement(
+  "a",
+  {
+    className: "anchor-btn",
+    href: "https://github.com/Noor-Taquee/Practicals/issues",
+    target: "_blank",
+  },
+  [createElement("p", { textContent: "Open Github" })],
+);
 
-contentDiv.append( text1, text2, reportAnchor );
+contentDiv.append(text1, text2, reportAnchor);
 //#endregion content
 
-errorPanel.append( panelBar, contentDiv );
+errorPanel.append(panelBar, contentDiv);

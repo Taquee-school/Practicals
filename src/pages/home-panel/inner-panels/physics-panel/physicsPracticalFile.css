@@ -27,9 +27,16 @@
 #physics-practical .img-wrapper.loading-img {
   height: 50vmin;
   width: 90vmin;
-  background: linear-gradient(135deg, var(--secondary-bg), var(--secondary-bg), var(--accent), var(--secondary-bg), var(--secondary-bg));
+  background: linear-gradient(
+    135deg,
+    var(--secondary-bg),
+    var(--secondary-bg),
+    var(--accent),
+    var(--secondary-bg),
+    var(--secondary-bg)
+  );
   background-size: 400% 400%;
-  animation: background-gradient 1.0s ease infinite;
+  animation: background-gradient 1s ease infinite;
 }
 
 #physics-practical .img-wrapper:not(.error-img) .img-error-text {
@@ -48,7 +55,6 @@
   display: none;
 }
 
-
 #physics-practical .img-wrapper.loading-img img,
 #physics-practical .img-wrapper.error-img img {
   display: none;
@@ -60,7 +66,7 @@
   margin: 0;
   padding: 0;
   border: none;
-  background: transparent
+  background: transparent;
 }
 [data-orientation="horizontal"] #physics-practical .practical-file-diagram {
   height: 50dvh;

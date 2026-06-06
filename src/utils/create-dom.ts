@@ -1,4 +1,3 @@
-
 export function createElement<K extends keyof HTMLElementTagNameMap>(
   name: K,
   props: Partial<HTMLElementTagNameMap[K]> = {},

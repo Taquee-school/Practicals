@@ -18,10 +18,14 @@ document.addEventListener("theme-change-request", (e) => {
   localStorage.setItem("theme", newTheme);
   updateDeviceColors();
   requestAnimationFrame(() => {
-    document.dispatchEvent(new CustomEvent("theme-change", { detail: {
-      theme: newTheme,
-    }}));
-  })
+    document.dispatchEvent(
+      new CustomEvent("theme-change", {
+        detail: {
+          theme: newTheme,
+        },
+      }),
+    );
+  });
 });
 
 // MARK: palette
@@ -32,18 +36,21 @@ document.addEventListener("palette-change-request", (e) => {
   localStorage.setItem("palette", newPalette);
   updateDeviceColors();
   requestAnimationFrame(() => {
-    document.dispatchEvent(new CustomEvent("palette-change", { detail: {
-      palette: newPalette,
-    }}));
-  })
+    document.dispatchEvent(
+      new CustomEvent("palette-change", {
+        detail: {
+          palette: newPalette,
+        },
+      }),
+    );
+  });
 });
-
 
 // MARK: orientation
 app.dataset.orientation = "vertical";
 function checkOrientation() {
-  app.dataset.orientation = window.innerHeight < window.innerWidth ? 
-  "horizontal" : "vertical";
+  app.dataset.orientation =
+    window.innerHeight < window.innerWidth ? "horizontal" : "vertical";
 }
 window.addEventListener("load", checkOrientation);
 window.addEventListener("resize", checkOrientation);
@@ -51,22 +58,26 @@ window.addEventListener("resize", checkOrientation);
 // MARK: accessibility
 document.addEventListener("accessibility-change-request", (e) => {
   const { font, header, icon } = (e as CustomEvent).detail;
-  
+
   app.style.setProperty("--font-scale", font);
   localStorage.setItem("font-scale", font);
-  
+
   app.style.setProperty("--header-scale", header);
   localStorage.setItem("header-scale", header);
-  
+
   app.style.setProperty("--icon-scale", icon);
   localStorage.setItem("icon-scale", icon);
-  
+
   requestAnimationFrame(() => {
-    document.dispatchEvent( new CustomEvent("accessibility-change", { detail: {
-      fontScale: font,
-      headerScale: header,
-      iconScale: icon,
-    }}) );
+    document.dispatchEvent(
+      new CustomEvent("accessibility-change", {
+        detail: {
+          fontScale: font,
+          headerScale: header,
+          iconScale: icon,
+        },
+      }),
+    );
   });
 });
 //#endregion app
@@ -75,4 +86,4 @@ export const panelContainer = createElement("div", {
   className: "panel-container",
 });
 
-app.append( panelContainer, navBar );
+app.append(panelContainer, navBar);

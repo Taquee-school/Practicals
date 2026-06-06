@@ -15,20 +15,24 @@ const panelBar = createElement("div", {
 const panelNameDiv = createElement("div", {
   className: "panel-name-div",
 });
-const backBtn = createElement("button", {
-  title: "Back",
-  className: "toggle",
-}, [ createElement("i", { className: "ph-bold ph-caret-left" }) ]);
+const backBtn = createElement(
+  "button",
+  {
+    title: "Back",
+    className: "toggle",
+  },
+  [createElement("i", { className: "ph-bold ph-caret-left" })],
+);
 backBtn.addEventListener("click", () => {
-  window.location.hash = "#settings"
+  window.location.hash = "#settings";
 });
 const panelName = createElement("p", {
   className: "panel-name",
   textContent: "Theme",
 });
-panelNameDiv.append( backBtn, panelName );
+panelNameDiv.append(backBtn, panelName);
 
-panelBar.append( panelNameDiv );
+panelBar.append(panelNameDiv);
 //#endregion panel bar
 
 //#region content
@@ -88,20 +92,23 @@ const iconScaleSliderDiv = createSlider("Icon Scale", iconScaleSlider);
 iconScaleSlider.addEventListener("input", () => {
   currentIconScale = iconScaleSlider.value;
   changeAccessibility();
-})
+});
 
-function syncUI() {
-}
+function syncUI() {}
 
 function changeAccessibility() {
-  document.dispatchEvent( new CustomEvent("accessibility-change-request", { detail: {
-    fontScale: currentFontScale,
-    headerScale: currentHeaderScale,
-    iconScale: currentIconScale,
-  }}) );
+  document.dispatchEvent(
+    new CustomEvent("accessibility-change-request", {
+      detail: {
+        fontScale: currentFontScale,
+        headerScale: currentHeaderScale,
+        iconScale: currentIconScale,
+      },
+    }),
+  );
 }
 
-contentDiv.append( fontScaleSliderDiv, headerScaleSliderDiv, iconScaleSliderDiv );
+contentDiv.append(fontScaleSliderDiv, headerScaleSliderDiv, iconScaleSliderDiv);
 //#endregion content
 
-accessibilityPanel.append( panelBar, contentDiv );
+accessibilityPanel.append(panelBar, contentDiv);

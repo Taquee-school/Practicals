@@ -1,13 +1,20 @@
-import { createDiv, createTextField, base, createInput, createPAS, createInputDiv, createTableColumn } from "../../../utils/practical.js";
+import {
+  createDiv,
+  createTextField,
+  base,
+  createInput,
+  createPAS,
+  createInputDiv,
+  createTableColumn,
+} from "../../../utils/practical.js";
 
 // #region Functions
 let spl_rowCount = 0;
 
-function measureEssentials_spl() {
-}
+function measureEssentials_spl() {}
 
 function spl_addRow() {
-    spl_rowCount++;
+  spl_rowCount++;
 }
 // #endregion Functions
 
@@ -17,23 +24,23 @@ let spl_diagramDiv = createDiv("practical-section");
 experimentDiv.appendChild(spl_diagramDiv);
 
 spl_diagramDiv.appendChild(
-  createTextField("practical-section-header", "DIAGRAM:")
+  createTextField("practical-section-header", "DIAGRAM:"),
 );
 
 let spl_diagram_light = document.createElement("img");
-spl_diagram_light.className = "practical-file-diagram", "light";
-spl_diagram_light.src = base+"/diagrams/class-11/light/simple pendulum.jpg";
+((spl_diagram_light.className = "practical-file-diagram"), "light");
+spl_diagram_light.src = base + "/diagrams/class-11/light/simple pendulum.jpg";
 spl_diagramDiv.appendChild(spl_diagram_light);
 let spl_diagram_dark = document.createElement("img");
-spl_diagram_dark.className = "practical-file-diagram", "dark";
-spl_diagram_dark.src = base+"/diagrams/class-11/dark/simple pendulum.jpg";
+((spl_diagram_dark.className = "practical-file-diagram"), "dark");
+spl_diagram_dark.src = base + "/diagrams/class-11/dark/simple pendulum.jpg";
 spl_diagramDiv.appendChild(spl_diagram_dark);
 
 let spl_objectiveDiv = createDiv("practical-section");
 experimentDiv.appendChild(spl_objectiveDiv);
 
 spl_objectiveDiv.appendChild(
-  createTextField("practical-section-header", "OBJECT:")
+  createTextField("practical-section-header", "OBJECT:"),
 );
 
 spl_objectiveDiv.appendChild(createTextField("practical-section-content", ""));
@@ -42,7 +49,7 @@ let spl_apparatusDiv = createDiv("practical-section");
 experimentDiv.appendChild(spl_apparatusDiv);
 
 spl_apparatusDiv.appendChild(
-  createTextField("practical-section-header", "APPARATUS USED:")
+  createTextField("practical-section-header", "APPARATUS USED:"),
 );
 
 spl_apparatusDiv.appendChild(createTextField("practical-section-content", ""));
@@ -51,7 +58,7 @@ let spl_formulaDiv = createDiv("practical-section");
 experimentDiv.appendChild(spl_formulaDiv);
 
 spl_formulaDiv.appendChild(
-  createTextField("practical-section-header", "FORMULA USED:")
+  createTextField("practical-section-header", "FORMULA USED:"),
 );
 
 spl_formulaDiv.appendChild(createTextField("practical-main-formula", ""));
@@ -67,41 +74,41 @@ let spl_observationDiv = createDiv("practical-section");
 experimentDiv.appendChild(spl_observationDiv);
 
 spl_observationDiv.appendChild(
-  createTextField("practical-section-header", "OBSERVATION:")
+  createTextField("practical-section-header", "OBSERVATION:"),
 );
 
 let spl_mainScaleDivInput = createInput(
   "spl-distance-moved-by-circular-scale-input",
   "number",
   0,
-  measureEssentials_spl
+  measureEssentials_spl,
 );
 spl_observationDiv.appendChild(
   createPAS(
     "1",
     createInputDiv(
       "Distance moved by the circular scale along the main scale(x): ",
-      spl_mainScaleDivInput
+      spl_mainScaleDivInput,
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let spl_vernierScaleDivInput = createInput(
   "spl-revolution-of-circular-scale-input",
   "number",
   0,
-  measureEssentials_spl
+  measureEssentials_spl,
 );
 spl_observationDiv.appendChild(
   createPAS(
     "2",
     createInputDiv(
       "Number of Total revolutions made by the circular is scared along many scale (y): ",
-      spl_vernierScaleDivInput
+      spl_vernierScaleDivInput,
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let spl_leastCountInput = createInput(
@@ -109,7 +116,7 @@ let spl_leastCountInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 spl_observationDiv.appendChild(
   createPAS(
@@ -117,10 +124,10 @@ spl_observationDiv.appendChild(
     createInputDiv(
       "Least Count of the screw Gauge (L.C) = (Pitch/n): ",
       spl_leastCountInput,
-      "mm"
+      "mm",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 spl_observationDiv.appendChild(createPAS("6", "Zero Error"));
@@ -132,30 +139,30 @@ let spl_ze1Input = createInput(
   "spl-zero-error-1-input",
   "number",
   0,
-  measureEssentials_spl
+  measureEssentials_spl,
 );
 spl_zeroErrorDiv.appendChild(
-  createPAS("a", createInputDiv("Zero Error: ", spl_ze1Input), true)
+  createPAS("a", createInputDiv("Zero Error: ", spl_ze1Input), true),
 );
 
 let spl_ze2Input = createInput(
   "spl-zero-error-2-input",
   "number",
   0,
-  measureEssentials_spl
+  measureEssentials_spl,
 );
 spl_zeroErrorDiv.appendChild(
-  createPAS("b", createInputDiv("Zero Error: ", spl_ze2Input), true)
+  createPAS("b", createInputDiv("Zero Error: ", spl_ze2Input), true),
 );
 
 let spl_ze3Input = createInput(
   "spl-zero-error-3-input",
   "number",
   0,
-  measureEssentials_spl
+  measureEssentials_spl,
 );
 spl_zeroErrorDiv.appendChild(
-  createPAS("c", createInputDiv("Zero Error: ", spl_ze3Input), true)
+  createPAS("c", createInputDiv("Zero Error: ", spl_ze3Input), true),
 );
 
 let spl_meanZeroErrorInput = createInput(
@@ -163,14 +170,14 @@ let spl_meanZeroErrorInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 spl_observationDiv.appendChild(
   createPAS(
     "7",
     createInputDiv("Mean zero error: ", spl_meanZeroErrorInput),
-    true
-  )
+    true,
+  ),
 );
 
 let spl_zeroCorrectionInput = createInput(
@@ -178,14 +185,14 @@ let spl_zeroCorrectionInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 spl_observationDiv.appendChild(
   createPAS(
     "8",
     createInputDiv("Zero correction: ", spl_zeroCorrectionInput),
-    true
-  )
+    true,
+  ),
 );
 
 let spl_diameterTableDiv = createDiv("observation-table-div");
@@ -202,40 +209,40 @@ spl_addRow();
 let spl_meanDiameterInput = createInput(
   "spl-mean-observed-diameter-input",
   "number",
-  0
+  0,
 );
 spl_observationDiv.appendChild(
-  createInputDiv("Mean observed diameter: ", spl_meanDiameterInput, "mm")
+  createInputDiv("Mean observed diameter: ", spl_meanDiameterInput, "mm"),
 );
 
 let spl_correctedDiameterInput = createInput(
   "spl-corrected-diameter-input",
   "number",
-  0
+  0,
 );
 spl_observationDiv.appendChild(
-  createInputDiv("corrected diameter: ", spl_correctedDiameterInput, "mm")
+  createInputDiv("corrected diameter: ", spl_correctedDiameterInput, "mm"),
 );
 
 let spl_resultDiv = createDiv("practical-section");
 experimentDiv.appendChild(spl_resultDiv);
 
 spl_resultDiv.appendChild(
-  createTextField("practical-section-header", "RESULT:")
+  createTextField("practical-section-header", "RESULT:"),
 );
 
 let spl_masspulInput = createInput(
   "spl-mass-per-unit-length-input",
   "number",
-  0
+  0,
 );
 spl_masspulInput.style.width = "100px";
 spl_resultDiv.appendChild(
   createInputDiv(
     "The mass per unit length of the wire is found to be: ",
     spl_masspulInput,
-    "kg/m"
-  )
+    "kg/m",
+  ),
 );
 
 let spl_precautionsDiv = createDiv("practical-section");
@@ -244,8 +251,8 @@ experimentDiv.appendChild(spl_precautionsDiv);
 spl_precautionsDiv.appendChild(
   createTextField(
     "practical-section-header",
-    "PRECAUTIONS AND SOURCES OF ERRORS:"
-  )
+    "PRECAUTIONS AND SOURCES OF ERRORS:",
+  ),
 );
 
 spl_precautionsDiv.appendChild(createPAS("1", ""));

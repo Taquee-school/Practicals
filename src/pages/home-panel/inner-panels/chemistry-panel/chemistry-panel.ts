@@ -14,10 +14,14 @@ const topBar = createElement("div", {
 const panelNameDiv = createElement("div", {
   className: "panel-name-div",
 });
-const backBtn = createElement("button", {
-  title: "Back",
-  className: "toggle",
-}, [ createElement("i", { className: "ph-bold ph-caret-left" }) ]);
+const backBtn = createElement(
+  "button",
+  {
+    title: "Back",
+    className: "toggle",
+  },
+  [createElement("i", { className: "ph-bold ph-caret-left" })],
+);
 backBtn.addEventListener("click", () => {
   window.location.hash = "#home";
 });
@@ -25,7 +29,7 @@ const panelName = createElement("p", {
   className: "panel-name",
   textContent: "Practical",
 });
-panelNameDiv.append( backBtn, panelName );
+panelNameDiv.append(backBtn, panelName);
 
 const utilityDiv = createElement("div", {
   className: "utility-div",
@@ -38,26 +42,37 @@ const searchBar = createElement("input", {
   placeholder: "Search",
 });
 
-const searchBtn = createElement("button", {
-  className: "toggle",
-}, [ createElement("i", { className: "ph-bold ph-magnifying-glass" }) ]);
+const searchBtn = createElement(
+  "button",
+  {
+    className: "toggle",
+  },
+  [createElement("i", { className: "ph-bold ph-magnifying-glass" })],
+);
 
-const flowToggle = createElement("button", {
-  className: "file-flow-toggle toggle",
-}, [ createElement("i", { className: "ph-fill ph-squares-four" }) ]);
+const flowToggle = createElement(
+  "button",
+  {
+    className: "file-flow-toggle toggle",
+  },
+  [createElement("i", { className: "ph-fill ph-squares-four" })],
+);
 
 flowToggle.addEventListener("click", () => {
   const isGrid = fileContainer.classList.contains("grid");
-  fileContainer.classList.replace( isGrid?"grid":"list", isGrid?"list":"grid" );
+  fileContainer.classList.replace(
+    isGrid ? "grid" : "list",
+    isGrid ? "list" : "grid",
+  );
   const icon = flowToggle.querySelector("i");
   if (icon) {
     icon.className = isGrid ? "ph-fill ph-rows" : "ph-fill ph-squares-four";
   }
 });
 
-utilityDiv.append( searchBtn, flowToggle );
+utilityDiv.append(searchBtn, flowToggle);
 
-topBar.append( panelNameDiv, utilityDiv );
+topBar.append(panelNameDiv, utilityDiv);
 //#endregion top bar
 
 //#region content
@@ -84,21 +99,24 @@ const filesList = new Map<string, string>([
 ]);
 
 filesList.forEach((path, name) => {
-  const btn = createElement("button", {
-    className: "file-btn",
-  }, [
-    createElement("i", { className: "ph-fill ph-file" }),
-    createElement("p", { textContent: name }),
-  ]);
-  fileContainer.appendChild( btn );
-  
-  btn.addEventListener("click", () => {
-    window.location.hash = `#practicals&subject=chemistry&practical=${path}`
-  });
+  const btn = createElement(
+    "button",
+    {
+      className: "file-btn",
+    },
+    [
+      createElement("i", { className: "ph-fill ph-file" }),
+      createElement("p", { textContent: name }),
+    ],
+  );
+  fileContainer.appendChild(btn);
 
+  btn.addEventListener("click", () => {
+    window.location.hash = `#practicals&subject=chemistry&practical=${path}`;
+  });
 });
 
-contentDiv.append( fileContainer );
+contentDiv.append(fileContainer);
 //#endregion content
 
-chemistryPanel.append( topBar, contentDiv );
+chemistryPanel.append(topBar, contentDiv);

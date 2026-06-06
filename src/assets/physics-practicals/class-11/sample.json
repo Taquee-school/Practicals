@@ -2,9 +2,9 @@
   "experiment": [
     {
       "header": "Objective",
-      "content":[
+      "content": [
         {
-          "element":"p",
+          "element": "p",
           "properties": {
             "text": ""
           }
@@ -13,9 +13,9 @@
     },
     {
       "header": "Apparatus Used",
-      "content":[
+      "content": [
         {
-          "element":"p",
+          "element": "p",
           "properties": {
             "text": ""
           }
@@ -24,9 +24,9 @@
     },
     {
       "header": "Formula Used",
-      "content":[
+      "content": [
         {
-          "element":"p",
+          "element": "p",
           "properties": {
             "text": ""
           }
@@ -35,7 +35,7 @@
     },
     {
       "header": "Observation",
-      "content":[
+      "content": [
         {
           "element": "p",
           "children": [
@@ -62,9 +62,9 @@
         {
           "element": "table",
           "header": "",
-          "columns":[
+          "columns": [
             {
-              "header":"S.no",
+              "header": "S.no",
               "id": "",
               "readOnly": true
             }
@@ -74,7 +74,7 @@
     },
     {
       "header": "Result",
-      "content":[
+      "content": [
         {
           "element": "p",
           "children": [
@@ -102,9 +102,9 @@
     },
     {
       "header": "Precautions & sources of error",
-      "content":[
+      "content": [
         {
-          "element":"p",
+          "element": "p",
           "properties": {
             "text": ""
           }

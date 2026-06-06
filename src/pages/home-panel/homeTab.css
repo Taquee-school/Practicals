@@ -1,4 +1,3 @@
-
 .file-container-header {
   margin: 8px 8px 0;
   padding: 8px;
@@ -28,8 +27,7 @@
   height: fit-content;
   margin: 0 8px 8px;
   padding: 8px;
-  
-  
+
   &.grid {
     display: grid;
     grid-auto-flow: row;
@@ -51,41 +49,45 @@
 .file-container.list .file-btn {
   height: fit-content;
   width: 100%;
-  
+
   padding: 8px;
   border-radius: 12px;
-  
+
   gap: 8px;
 
-  i { font-size: 30px; }
+  i {
+    font-size: 30px;
+  }
 }
 
 .file-container.grid .file-btn {
   flex-grow: 0;
   height: 120px;
   width: 120px;
-  
+
   padding: 16px;
   border-radius: 20px;
 
   flex-direction: column;
   gap: 2px;
 
-  i { font-size: 60px; }
+  i {
+    font-size: 60px;
+  }
 }
 
 .file-btn {
   cursor: default;
   touch-action: manipulation;
-  
+
   border: none;
-  
+
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  
+
   background-color: transparent;
-  
+
   p {
     font: var(--primary-font);
     font-size: 14px;
@@ -148,7 +150,7 @@
 }
 
 .practicals-list.list-view button:active {
-  border-radius: calc(var(--button-height)/2);
+  border-radius: calc(var(--button-height) / 2);
 }
 
 .practicals-list.grid-view button {

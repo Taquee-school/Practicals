@@ -1,4 +1,16 @@
-import { createDiv, createInput, createTextField, createImg, base, createInputDiv, createTableColumn, toggleEffect, createButton, createIcon, createPAS } from "../../../utils/practical.js";
+import {
+  createDiv,
+  createInput,
+  createTextField,
+  createImg,
+  base,
+  createInputDiv,
+  createTableColumn,
+  toggleEffect,
+  createButton,
+  createIcon,
+  createPAS,
+} from "../../../utils/practical.js";
 
 export const experimentDiv = createDiv("practical-file", "physics-practical");
 
@@ -22,7 +34,7 @@ function measureResistance_pnj() {
     let v_div =
       parseFloat(document.getElementById(`pnj-table-v-div-${i}`).value) || 0;
 
-      let c = a_div * pnj_ammeterLc;
+    let c = a_div * pnj_ammeterLc;
     let v = v_div * pnj_voltmeterLc;
     document.getElementById(`pnj-table-current-${i}`).value = c.toFixed(1);
     document.getElementById(`pnj-table-voltage-${i}`).value = v.toFixed(3);
@@ -37,32 +49,60 @@ function measureResistance_pnj() {
 }
 
 function pnj_addRow() {
-    pnj_rowCount++;
-    setTimeout(() => {
-        let inp = createInput(`pnj-s-no-${pnj_rowCount}`, "number", pnj_rowCount, null, true);
-        pnj_sNoColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 10);
-    setTimeout(() => {
-        let inp = createInput(`pnj-table-v-div-${pnj_rowCount}`, "number", 0, measureResistance_pnj);
-        pnj_vDivColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 50);
-    setTimeout(() => {
-        let inp = createInput(`pnj-table-voltage-${pnj_rowCount}`, "number", 0, null, true);
-        pnj_voltageColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 100);
-    setTimeout(() => {
-        let inp = createInput(`pnj-table-a-div-${pnj_rowCount}`, "number", 0, measureResistance_pnj);
-        pnj_aDivColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 150);
-    setTimeout(() => {
-        let inp = createInput(`pnj-table-current-${pnj_rowCount}`, "number", 0, null, true);
-        pnj_currentColumn.appendChild(inp);
-        inp.style.animation = "appear 0.5s ease";
-    }, 200);
+  pnj_rowCount++;
+  setTimeout(() => {
+    let inp = createInput(
+      `pnj-s-no-${pnj_rowCount}`,
+      "number",
+      pnj_rowCount,
+      null,
+      true,
+    );
+    pnj_sNoColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 10);
+  setTimeout(() => {
+    let inp = createInput(
+      `pnj-table-v-div-${pnj_rowCount}`,
+      "number",
+      0,
+      measureResistance_pnj,
+    );
+    pnj_vDivColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 50);
+  setTimeout(() => {
+    let inp = createInput(
+      `pnj-table-voltage-${pnj_rowCount}`,
+      "number",
+      0,
+      null,
+      true,
+    );
+    pnj_voltageColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 100);
+  setTimeout(() => {
+    let inp = createInput(
+      `pnj-table-a-div-${pnj_rowCount}`,
+      "number",
+      0,
+      measureResistance_pnj,
+    );
+    pnj_aDivColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 150);
+  setTimeout(() => {
+    let inp = createInput(
+      `pnj-table-current-${pnj_rowCount}`,
+      "number",
+      0,
+      null,
+      true,
+    );
+    pnj_currentColumn.appendChild(inp);
+    inp.style.animation = "appear 0.5s ease";
+  }, 200);
 }
 // #endregion Functions
 
@@ -70,9 +110,23 @@ function pnj_addRow() {
 let pnj_diagramDiv = createDiv("practical-section");
 experimentDiv.appendChild(pnj_diagramDiv);
 
-pnj_diagramDiv.appendChild(createTextField("practical-section-header", "DIAGRAM:"));
-pnj_diagramDiv.appendChild(createImg("practical-file-diagram", "light", base+"/diagrams/class-12/light/pn junction.jpg"));
-pnj_diagramDiv.appendChild(createImg("practical-file-diagram", "dark", base+"/diagrams/class-12/dark/pn junction.jpg"));
+pnj_diagramDiv.appendChild(
+  createTextField("practical-section-header", "DIAGRAM:"),
+);
+pnj_diagramDiv.appendChild(
+  createImg(
+    "practical-file-diagram",
+    "light",
+    base + "/diagrams/class-12/light/pn junction.jpg",
+  ),
+);
+pnj_diagramDiv.appendChild(
+  createImg(
+    "practical-file-diagram",
+    "dark",
+    base + "/diagrams/class-12/dark/pn junction.jpg",
+  ),
+);
 // #endregion Diagram
 
 // #region Objective
@@ -80,14 +134,14 @@ let pnj_objectiveDiv = createDiv("practical-section");
 experimentDiv.appendChild(pnj_objectiveDiv);
 
 pnj_objectiveDiv.appendChild(
-  createTextField("practical-section-header", "OBJECTIVE:")
+  createTextField("practical-section-header", "OBJECTIVE:"),
 );
 
 pnj_objectiveDiv.appendChild(
   createTextField(
     "practical-section-content",
-    "To draw the characteristics curve of a forward biased P-N junction diode and hence to determine the static and dynamic resistance of the same."
-  )
+    "To draw the characteristics curve of a forward biased P-N junction diode and hence to determine the static and dynamic resistance of the same.",
+  ),
 );
 // #endregion Objective
 
@@ -96,14 +150,14 @@ let pnj_apparatusDiv = createDiv("practical-section");
 experimentDiv.appendChild(pnj_apparatusDiv);
 
 pnj_apparatusDiv.appendChild(
-  createTextField("practical-section-header", "APPARATUS USED:")
+  createTextField("practical-section-header", "APPARATUS USED:"),
 );
 
 pnj_apparatusDiv.appendChild(
   createTextField(
     "practical-section-content",
-    "A P-N junction Diode, a battery eliminator (0-2V), rheostat, a milli-ammeter, a voltmeter, connecting wire etc."
-  )
+    "A P-N junction Diode, a battery eliminator (0-2V), rheostat, a milli-ammeter, a voltmeter, connecting wire etc.",
+  ),
 );
 // #endregion Apparatus
 
@@ -112,41 +166,41 @@ let pnj_formulaDiv = createDiv("practical-section");
 experimentDiv.appendChild(pnj_formulaDiv);
 
 pnj_formulaDiv.appendChild(
-  createTextField("practical-section-header", "FORMULA USED:")
+  createTextField("practical-section-header", "FORMULA USED:"),
 );
 
 pnj_formulaDiv.appendChild(
   createTextField(
     "practical-section-content",
-    "The static resistance of the junction diode is given by:"
-  )
+    "The static resistance of the junction diode is given by:",
+  ),
 );
 
 pnj_formulaDiv.appendChild(
-  createTextField("practical-main-formula", "R(static) = V(av)/I(av)")
-);
-
-pnj_formulaDiv.appendChild(
-  createTextField(
-    "practical-section-content",
-    "Here V(av) and I(av) are the average values of voltage and current respectively over a segment (starting from origin) of V-I plot."
-  )
+  createTextField("practical-main-formula", "R(static) = V(av)/I(av)"),
 );
 
 pnj_formulaDiv.appendChild(
   createTextField(
     "practical-section-content",
-    "Whereas, the dynamic resistance of the junction is given by:"
-  )
+    "Here V(av) and I(av) are the average values of voltage and current respectively over a segment (starting from origin) of V-I plot.",
+  ),
+);
+
+pnj_formulaDiv.appendChild(
+  createTextField(
+    "practical-section-content",
+    "Whereas, the dynamic resistance of the junction is given by:",
+  ),
 );
 pnj_formulaDiv.appendChild(
-  createTextField("practical-main-formula", "R(dynamic) = ∆V/∆I")
+  createTextField("practical-main-formula", "R(dynamic) = ∆V/∆I"),
 );
 pnj_formulaDiv.appendChild(
   createTextField(
     "practical-section-content",
-    "Where, ∆V and ∆I are the changes in applied voltage and current, calculated by drawing a tangent on the V-I plot (to find its slope)."
-  )
+    "Where, ∆V and ∆I are the changes in applied voltage and current, calculated by drawing a tangent on the V-I plot (to find its slope).",
+  ),
 );
 // #endregion Formula
 
@@ -155,54 +209,54 @@ let pnj_observationDiv = createDiv("practical-section");
 experimentDiv.appendChild(pnj_observationDiv);
 
 pnj_observationDiv.appendChild(
-  createTextField("practical-section-header", "OBSERVATION:")
+  createTextField("practical-section-header", "OBSERVATION:"),
 );
 
 let pnj_voltmeterRangeInput = createInput(
   "pnj-voltmeter-range-input",
   "number",
   0,
-  null
+  null,
 );
 pnj_observationDiv.appendChild(
-  createInputDiv("Range of voltmeter: ", pnj_voltmeterRangeInput, "V")
+  createInputDiv("Range of voltmeter: ", pnj_voltmeterRangeInput, "V"),
 );
 
 let pnj_voltmeterLcInput = createInput(
   "pnj-voltmeter-least-count-input",
   "number",
   0,
-  measureEssentials_pnj
+  measureEssentials_pnj,
 );
 pnj_observationDiv.appendChild(
-  createInputDiv("Least count of voltmeter: ", pnj_voltmeterLcInput, "V")
+  createInputDiv("Least count of voltmeter: ", pnj_voltmeterLcInput, "V"),
 );
 
 let pnj_ammeterRangeInput = createInput(
   "pnj-ammeter-range-input",
   "number",
   0,
-  null
+  null,
 );
 pnj_observationDiv.appendChild(
-  createInputDiv("Range of ammeter: ", pnj_ammeterRangeInput, "mA")
+  createInputDiv("Range of ammeter: ", pnj_ammeterRangeInput, "mA"),
 );
 
 let pnj_ammeterLcInput = createInput(
   "pnj-ammeter-least-count-input",
   "number",
   0,
-  measureEssentials_pnj
+  measureEssentials_pnj,
 );
 pnj_observationDiv.appendChild(
-  createInputDiv("Least count of ammeter: ", pnj_ammeterLcInput, "mA")
+  createInputDiv("Least count of ammeter: ", pnj_ammeterLcInput, "mA"),
 );
 
 pnj_observationDiv.appendChild(
   createTextField(
     "observation-table-header",
-    "Table for the measurement of current"
-  )
+    "Table for the measurement of current",
+  ),
 );
 let pnj_characteristicsTableDiv = createDiv("observation-table-div");
 pnj_observationDiv.appendChild(pnj_characteristicsTableDiv);
@@ -227,7 +281,17 @@ pnj_characteristicsTable.appendChild(pnj_currentColumn);
 
 pnj_addRow();
 
-pnj_characteristicsTableDiv.appendChild(toggleEffect(createButton("pnj-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", pnj_addRow)));
+pnj_characteristicsTableDiv.appendChild(
+  toggleEffect(
+    createButton(
+      "pnj-add-row-btn",
+      "add-row-btn toggle-effect ",
+      createIcon("bold", "plus"),
+      "Add Row",
+      pnj_addRow,
+    ),
+  ),
+);
 // #endregion Observation
 
 // #region Result
@@ -235,14 +299,14 @@ let pnj_resultDiv = createDiv("practical-section");
 experimentDiv.appendChild(pnj_resultDiv);
 
 pnj_resultDiv.appendChild(
-  createTextField("practical-section-header", "RESULT:")
+  createTextField("practical-section-header", "RESULT:"),
 );
 
 pnj_resultDiv.appendChild(
   createPAS(
     "1",
-    "The V-I characteristics of a p-n junction is not a straight line, therefore p-n junction diode is a non-ohmic resistance in nature."
-  )
+    "The V-I characteristics of a p-n junction is not a straight line, therefore p-n junction diode is a non-ohmic resistance in nature.",
+  ),
 );
 
 let pnj_staticResistanceInput = createInput(
@@ -250,7 +314,7 @@ let pnj_staticResistanceInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 
 let pnj_dynamicResistanceInput = createInput(
@@ -258,7 +322,7 @@ let pnj_dynamicResistanceInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 
 let pnj_resultPDiv = createDiv("practical-section");
@@ -285,35 +349,35 @@ let pnj_precautionsDiv = createDiv("practical-section");
 experimentDiv.appendChild(pnj_precautionsDiv);
 
 pnj_precautionsDiv.appendChild(
-  createTextField("practical-section-header", "PRECAUTIONS:")
+  createTextField("practical-section-header", "PRECAUTIONS:"),
 );
 
 pnj_precautionsDiv.appendChild(
-  createPAS("1", "All connections should be tight and neat.")
+  createPAS("1", "All connections should be tight and neat."),
 );
 pnj_precautionsDiv.appendChild(
   createPAS(
     "2",
-    "Voltmeter and milli-ammeter of appropriate least counts and ranges should be selected."
-  )
+    "Voltmeter and milli-ammeter of appropriate least counts and ranges should be selected.",
+  ),
 );
 pnj_precautionsDiv.appendChild(
   createPAS(
     "3",
-    "The pointer of meters should either be adjusted to read zero, when no current is passing through them, or zero error of the instrument should be taken into account."
-  )
+    "The pointer of meters should either be adjusted to read zero, when no current is passing through them, or zero error of the instrument should be taken into account.",
+  ),
 );
 pnj_precautionsDiv.appendChild(
   createPAS(
     "4",
-    "The battery connections of p-n junction diode should be checked and in forward biasing, it should be ensured that p is connected to positive and n to the negative of the battery."
-  )
+    "The battery connections of p-n junction diode should be checked and in forward biasing, it should be ensured that p is connected to positive and n to the negative of the battery.",
+  ),
 );
 pnj_precautionsDiv.appendChild(
   createPAS(
     "5",
-    "Never cross the limits specified by the manufacturer otherwise the diode will get damaged."
-  )
+    "Never cross the limits specified by the manufacturer otherwise the diode will get damaged.",
+  ),
 );
 // #endregion Precautions
 
@@ -322,17 +386,14 @@ let pnj_soeDiv = createDiv("practical-section");
 experimentDiv.appendChild(pnj_soeDiv);
 
 pnj_soeDiv.appendChild(
-  createTextField("practical-section-header", "SOURCES OF ERRORS:")
+  createTextField("practical-section-header", "SOURCES OF ERRORS:"),
 );
 
 pnj_soeDiv.appendChild(createPAS("1", "The diode is not suitably biased."));
 pnj_soeDiv.appendChild(
-  createPAS("2", "Zero error is not correctly estimated.")
+  createPAS("2", "Zero error is not correctly estimated."),
 );
 pnj_soeDiv.appendChild(
-  createPAS("3", "Current is fixed through the diode for long duration.")
+  createPAS("3", "Current is fixed through the diode for long duration."),
 );
 // #endregion Sources of Errors
-
-
-

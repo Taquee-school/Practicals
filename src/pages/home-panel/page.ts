@@ -19,7 +19,7 @@ const panelName = createElement("p", {
   className: "panel-name",
   textContent: "Home",
 });
-panelNameDiv.append( panelName );
+panelNameDiv.append(panelName);
 
 const utilityDiv = createElement("div", {
   className: "utility-div",
@@ -32,22 +32,29 @@ const searchBar = createElement("input", {
   placeholder: "Search",
 });
 
-const flowToggle = createElement("button", {
-  className: "file-flow-toggle toggle",
-}, [ createElement("i", { className: "ph-fill ph-squares-four" }) ]);
+const flowToggle = createElement(
+  "button",
+  {
+    className: "file-flow-toggle toggle",
+  },
+  [createElement("i", { className: "ph-fill ph-squares-four" })],
+);
 
 flowToggle.addEventListener("click", () => {
   const isGrid = fileContainer.classList.contains("grid");
-  fileContainer.classList.replace( isGrid?"grid":"list", isGrid?"list":"grid" );
+  fileContainer.classList.replace(
+    isGrid ? "grid" : "list",
+    isGrid ? "list" : "grid",
+  );
   const icon = flowToggle.querySelector("i");
   if (icon) {
     icon.className = isGrid ? "ph-fill ph-rows" : "ph-fill ph-squares-four";
   }
 });
 
-utilityDiv.append( flowToggle );
+utilityDiv.append(flowToggle);
 
-panelBar.append( panelNameDiv, utilityDiv );
+panelBar.append(panelNameDiv, utilityDiv);
 //#endregion panel bar
 
 //#region content
@@ -55,49 +62,59 @@ const contentDiv = createElement("div", {
   className: "content-div",
 });
 
-
 // header
 const fileContainer_header = createElement("div", {
   className: "file-container-header",
 });
 
-fileContainer_header.append( );
-
+fileContainer_header.append();
 
 const fileContainer = createElement("div", {
   className: "file-container grid",
-});  
+});
 
-const physicsBtn = createElement("button", {
-  className: "file-btn",
-}, [
-  createElement("i", { className: "ph-fill ph-folder" }),
-  createElement("p", { textContent: "Physics Practicals" }),
-]);
+const physicsBtn = createElement(
+  "button",
+  {
+    className: "file-btn",
+  },
+  [
+    createElement("i", { className: "ph-fill ph-folder" }),
+    createElement("p", { textContent: "Physics Practicals" }),
+  ],
+);
 physicsBtn.addEventListener("click", () => {
-  window.location.hash = "#home/PhysicsPracticals"
+  window.location.hash = "#home/PhysicsPracticals";
 });
 
-const chemistryBtn = createElement("button", {
-  className: "file-btn",
-}, [
-  createElement("i", { className: "ph-fill ph-folder" }),
-  createElement("p", { textContent: "Chemistry Practicals" }),
-]);
+const chemistryBtn = createElement(
+  "button",
+  {
+    className: "file-btn",
+  },
+  [
+    createElement("i", { className: "ph-fill ph-folder" }),
+    createElement("p", { textContent: "Chemistry Practicals" }),
+  ],
+);
 chemistryBtn.addEventListener("click", () => {
-  window.location.hash = "#home/ChemistryPracticals"
+  window.location.hash = "#home/ChemistryPracticals";
 });
 
-const computerBtn = createElement("button", {
-  className: "file-btn",
-}, [
-  createElement("i", { className: "ph-fill ph-folder" }),
-  createElement("p", { textContent: "Computer Practicals" }),
-]);
+const computerBtn = createElement(
+  "button",
+  {
+    className: "file-btn",
+  },
+  [
+    createElement("i", { className: "ph-fill ph-folder" }),
+    createElement("p", { textContent: "Computer Practicals" }),
+  ],
+);
 
-fileContainer.append( physicsBtn, chemistryBtn, computerBtn );
+fileContainer.append(physicsBtn, chemistryBtn, computerBtn);
 
-contentDiv.append( fileContainer );
+contentDiv.append(fileContainer);
 //#endregion content
 
-homePanel.append( panelBar, contentDiv );
+homePanel.append(panelBar, contentDiv);

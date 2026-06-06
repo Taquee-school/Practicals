@@ -1,4 +1,14 @@
-import { base, createInput, createDiv, createTextField, createPAS, createInputDiv, createTableColumn, createButton, createIcon } from "../../../utils/practical.js";
+import {
+  base,
+  createInput,
+  createDiv,
+  createTextField,
+  createPAS,
+  createInputDiv,
+  createTableColumn,
+  createButton,
+  createIcon,
+} from "../../../utils/practical.js";
 
 export const experimentDiv = createDiv("practical-file", "physics-practical");
 
@@ -61,17 +71,33 @@ function measureDiameter_scg() {
 function scg_addRow() {
   scg_rowCount++;
   setTimeout(() => {
-    let inp = createInput(`scg-s-no-${scg_rowCount}`, "number", scg_rowCount, null, true);
+    let inp = createInput(
+      `scg-s-no-${scg_rowCount}`,
+      "number",
+      scg_rowCount,
+      null,
+      true,
+    );
     scg_sNoColumn.appendChild(inp);
     inp.style.animation = "appear 0.5s ease";
   }, 10);
   setTimeout(() => {
-    let inp = createInput(`scg-msr-${scg_rowCount}`, "number", 0, measureDiameter_scg);
+    let inp = createInput(
+      `scg-msr-${scg_rowCount}`,
+      "number",
+      0,
+      measureDiameter_scg,
+    );
     scg_msrColumn.appendChild(inp);
     inp.style.animation = "appear 0.5s ease";
   }, 50);
   setTimeout(() => {
-    let inp = createInput(`scg-div-${scg_rowCount}`, "number", 0, measureDiameter_scg);
+    let inp = createInput(
+      `scg-div-${scg_rowCount}`,
+      "number",
+      0,
+      measureDiameter_scg,
+    );
     scg_csrColumn.appendChild(inp);
     inp.style.animation = "appear 0.5s ease";
   }, 100);
@@ -92,132 +118,132 @@ let scg_diagramDiv = createDiv("practical-section");
 experimentDiv.appendChild(scg_diagramDiv);
 
 scg_diagramDiv.appendChild(
-  createTextField("practical-section-header", "DIAGRAM:")
+  createTextField("practical-section-header", "DIAGRAM:"),
 );
 
 let scg_diagram_light = document.createElement("img");
-scg_diagram_light.className = "practical-file-diagram", "light";
-scg_diagram_light.src = base+"/diagrams/class-11/light/screw gauge.jpg";
+((scg_diagram_light.className = "practical-file-diagram"), "light");
+scg_diagram_light.src = base + "/diagrams/class-11/light/screw gauge.jpg";
 scg_diagramDiv.appendChild(scg_diagram_light);
 let scg_diagram_dark = document.createElement("img");
-scg_diagram_dark.className = "practical-file-diagram", "dark";
-scg_diagram_dark.src = base+"/diagrams/class-11/dark/screw gauge.jpg";
+((scg_diagram_dark.className = "practical-file-diagram"), "dark");
+scg_diagram_dark.src = base + "/diagrams/class-11/dark/screw gauge.jpg";
 scg_diagramDiv.appendChild(scg_diagram_dark);
 
 let scg_objectiveDiv = createDiv("practical-section");
 experimentDiv.appendChild(scg_objectiveDiv);
 
 scg_objectiveDiv.appendChild(
-  createTextField("practical-section-header", "OBJECTIVE:")
+  createTextField("practical-section-header", "OBJECTIVE:"),
 );
 
 scg_objectiveDiv.appendChild(
   createTextField(
     "practical-section-content",
-    "To determine the mass per unit length of a given wire, by measuring its diameter, using a screw gauge."
-  )
+    "To determine the mass per unit length of a given wire, by measuring its diameter, using a screw gauge.",
+  ),
 );
 
 let scg_apparatusDiv = createDiv("practical-section");
 experimentDiv.appendChild(scg_apparatusDiv);
 
 scg_apparatusDiv.appendChild(
-  createTextField("practical-section-header", "APPARATUS USED:")
+  createTextField("practical-section-header", "APPARATUS USED:"),
 );
 
 scg_apparatusDiv.appendChild(
-  createTextField("practical-section-content", "A screw gauge, a thin wire.")
+  createTextField("practical-section-content", "A screw gauge, a thin wire."),
 );
 
 let scg_formulaDiv = createDiv("practical-section");
 experimentDiv.appendChild(scg_formulaDiv);
 
 scg_formulaDiv.appendChild(
-  createTextField("practical-section-header", "FORMULA USED:")
+  createTextField("practical-section-header", "FORMULA USED:"),
 );
 
 scg_formulaDiv.appendChild(
-  createTextField("practical-main-formula", "m = πd²¶/4")
+  createTextField("practical-main-formula", "m = πd²¶/4"),
 );
 
 scg_formulaDiv.appendChild(
-  createTextField("practical-section-content", "Where,")
+  createTextField("practical-section-content", "Where,"),
 );
 
 let scg_formulaBelonging = createDiv("moved-div");
 scg_formulaDiv.appendChild(scg_formulaBelonging);
 
 scg_formulaBelonging.appendChild(
-  createTextField("", "m = mass per unit length of the wire.")
+  createTextField("", "m = mass per unit length of the wire."),
 );
 scg_formulaBelonging.appendChild(
-  createTextField("", "d = diameter of the wire.")
+  createTextField("", "d = diameter of the wire."),
 );
 scg_formulaBelonging.appendChild(
-  createTextField("", "¶ = Density of the material of the wire.")
+  createTextField("", "¶ = Density of the material of the wire."),
 );
 
 let scg_observationDiv = createDiv("practical-section");
 experimentDiv.appendChild(scg_observationDiv);
 
 scg_observationDiv.appendChild(
-  createTextField("practical-section-header", "OBSERVATION:")
+  createTextField("practical-section-header", "OBSERVATION:"),
 );
 
 let scg_dByCsrInput = createInput(
   "scg-distance-moved-by-circular-scale-input",
   "number",
   0,
-  measureEssentials_scg
+  measureEssentials_scg,
 );
 scg_observationDiv.appendChild(
   createPAS(
     "1",
     createInputDiv(
       "Distance moved by the circular scale along the main scale(x): ",
-      scg_dByCsrInput
+      scg_dByCsrInput,
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let scg_revByCsrInput = createInput(
   "scg-revolution-of-circular-scale-input",
   "number",
   0,
-  measureEssentials_scg
+  measureEssentials_scg,
 );
 scg_observationDiv.appendChild(
   createPAS(
     "2",
     createInputDiv(
       "Number of Total revolutions made by the circular scale along main scale (y): ",
-      scg_revByCsrInput
+      scg_revByCsrInput,
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let scg_pitchInput = createInput("scg-pitch-input", "number", 0, null, true);
 scg_observationDiv.appendChild(
-  createPAS("3", createInputDiv("Pitch (x/y): ", scg_pitchInput), true)
+  createPAS("3", createInputDiv("Pitch (x/y): ", scg_pitchInput), true),
 );
 
 let scg_divOfCsrInput = createInput(
   "scg-division-of-circular-scale-input",
   "number",
   0,
-  measureEssentials_scg
+  measureEssentials_scg,
 );
 scg_observationDiv.appendChild(
   createPAS(
     "4",
     createInputDiv(
       "Total number of divisions of circular scale (n): ",
-      scg_divOfCsrInput
+      scg_divOfCsrInput,
     ),
-    true
-  )
+    true,
+  ),
 );
 
 let scg_leastCountInput = createInput(
@@ -225,7 +251,7 @@ let scg_leastCountInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 scg_observationDiv.appendChild(
   createPAS(
@@ -233,10 +259,10 @@ scg_observationDiv.appendChild(
     createInputDiv(
       "Least Count of the screw Gauge (L.C) = (Pitch/n): ",
       scg_leastCountInput,
-      "mm"
+      "mm",
     ),
-    true
-  )
+    true,
+  ),
 );
 
 scg_observationDiv.appendChild(createPAS("6", "Zero Error"));
@@ -248,30 +274,30 @@ let scg_ze1Input = createInput(
   "scg-zero-error-1-input",
   "number",
   0,
-  measureEssentials_scg
+  measureEssentials_scg,
 );
 scg_zeroErrorDiv.appendChild(
-  createPAS("a", createInputDiv("Zero Error: ", scg_ze1Input), true)
+  createPAS("a", createInputDiv("Zero Error: ", scg_ze1Input), true),
 );
 
 let scg_ze2Input = createInput(
   "scg-zero-error-2-input",
   "number",
   0,
-  measureEssentials_scg
+  measureEssentials_scg,
 );
 scg_zeroErrorDiv.appendChild(
-  createPAS("b", createInputDiv("Zero Error: ", scg_ze2Input), true)
+  createPAS("b", createInputDiv("Zero Error: ", scg_ze2Input), true),
 );
 
 let scg_ze3Input = createInput(
   "scg-zero-error-3-input",
   "number",
   0,
-  measureEssentials_scg
+  measureEssentials_scg,
 );
 scg_zeroErrorDiv.appendChild(
-  createPAS("c", createInputDiv("Zero Error: ", scg_ze3Input), true)
+  createPAS("c", createInputDiv("Zero Error: ", scg_ze3Input), true),
 );
 
 let scg_meanzeInput = createInput(
@@ -279,10 +305,10 @@ let scg_meanzeInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 scg_observationDiv.appendChild(
-  createPAS("7", createInputDiv("Mean zero error: ", scg_meanzeInput), true)
+  createPAS("7", createInputDiv("Mean zero error: ", scg_meanzeInput), true),
 );
 
 let scg_zeroCorrectionInput = createInput(
@@ -290,36 +316,36 @@ let scg_zeroCorrectionInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 scg_observationDiv.appendChild(
   createPAS(
     "8",
     createInputDiv("Zero correction: ", scg_zeroCorrectionInput),
-    true
-  )
+    true,
+  ),
 );
 
 let scg_densityInput = createInput(
   "scg-density-input",
   "number",
   7850,
-  measureEssentials_scg
+  measureEssentials_scg,
 );
 scg_densityInput.style.width = "100px";
 scg_observationDiv.appendChild(
   createPAS(
     "9",
     createInputDiv("Density of the material: ", scg_densityInput, "kg/m³"),
-    true
-  )
+    true,
+  ),
 );
 
 scg_observationDiv.appendChild(
   createTextField(
     "observation-table-header",
-    "Table for the measurement of diameter of wire"
-  )
+    "Table for the measurement of diameter of wire",
+  ),
 );
 let scg_diameterTableDiv = createDiv("observation-table-div");
 scg_observationDiv.appendChild(scg_diameterTableDiv);
@@ -343,17 +369,25 @@ const scg_diameterColumn = createTableColumn("Observed diameter");
 scg_diameterTable.appendChild(scg_diameterColumn);
 
 scg_addRow();
-scg_diameterTableDiv.appendChild(createButton("scg-add-row-btn", "add-row-btn toggle-effect ", createIcon("bold", "plus"), "Add Row", scg_addRow));
+scg_diameterTableDiv.appendChild(
+  createButton(
+    "scg-add-row-btn",
+    "add-row-btn toggle-effect ",
+    createIcon("bold", "plus"),
+    "Add Row",
+    scg_addRow,
+  ),
+);
 
 let scg_meanDiameterInput = createInput(
   "scg-mean-observed-diameter-input",
   "number",
   0,
   null,
-  true
+  true,
 );
 scg_observationDiv.appendChild(
-  createInputDiv("Mean observed diameter: ", scg_meanDiameterInput, "mm")
+  createInputDiv("Mean observed diameter: ", scg_meanDiameterInput, "mm"),
 );
 
 let scg_correctedDiameterInput = createInput(
@@ -361,17 +395,17 @@ let scg_correctedDiameterInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 scg_observationDiv.appendChild(
-  createInputDiv("corrected diameter: ", scg_correctedDiameterInput, "mm")
+  createInputDiv("corrected diameter: ", scg_correctedDiameterInput, "mm"),
 );
 
 let scg_resultDiv = createDiv("practical-section");
 experimentDiv.appendChild(scg_resultDiv);
 
 scg_resultDiv.appendChild(
-  createTextField("practical-section-header", "RESULT:")
+  createTextField("practical-section-header", "RESULT:"),
 );
 
 let scg_masspulInput = createInput(
@@ -379,15 +413,15 @@ let scg_masspulInput = createInput(
   "number",
   0,
   null,
-  true
+  true,
 );
 scg_masspulInput.style.width = "100px";
 scg_resultDiv.appendChild(
   createInputDiv(
     "The mass per unit length of the wire is found to be: ",
     scg_masspulInput,
-    "kg/m"
-  )
+    "kg/m",
+  ),
 );
 
 let scg_precautionsDiv = createDiv("practical-section");
@@ -396,37 +430,34 @@ experimentDiv.appendChild(scg_precautionsDiv);
 scg_precautionsDiv.appendChild(
   createTextField(
     "practical-section-header",
-    "PRECAUTIONS AND SOURCES OF ERRORS:"
-  )
+    "PRECAUTIONS AND SOURCES OF ERRORS:",
+  ),
 );
 
 scg_precautionsDiv.appendChild(
   createPAS(
     "1",
-    "We should check the working of the screw gauge to ensure the free movement of the screw"
-  )
+    "We should check the working of the screw gauge to ensure the free movement of the screw",
+  ),
 );
 scg_precautionsDiv.appendChild(
-  createPAS("2", "We should check the functioning of the ratchet.")
+  createPAS("2", "We should check the functioning of the ratchet."),
 );
 scg_precautionsDiv.appendChild(
   createPAS(
     "3",
-    "The screw gauge should always be rotated in the same direction to avoid backlash errors."
-  )
+    "The screw gauge should always be rotated in the same direction to avoid backlash errors.",
+  ),
 );
 scg_precautionsDiv.appendChild(
-  createPAS("4", "We should make the final adjustment by using ratchet.")
+  createPAS("4", "We should make the final adjustment by using ratchet."),
 );
 scg_precautionsDiv.appendChild(
-  createPAS("5", "We should stop turning the ratchet when it starts slipping.")
+  createPAS("5", "We should stop turning the ratchet when it starts slipping."),
 );
 scg_precautionsDiv.appendChild(
   createPAS(
     "6",
-    "We should take the reading of diameter at various places of the wire."
-  )
+    "We should take the reading of diameter at various places of the wire.",
+  ),
 );
-
-
-

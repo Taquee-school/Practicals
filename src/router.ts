@@ -5,7 +5,10 @@ import { homePanel } from "./pages/home-panel/page.js";
 import { physicsPanel } from "./pages/home-panel/inner-panels/physics-panel/physics-panel.js";
 import { chemistryPanel } from "./pages/home-panel/inner-panels/chemistry-panel/chemistry-panel.js";
 
-import { practicalsPanel, hashHandler as practicalsHashHandler } from "./pages/practicals-panel/page.js";
+import {
+  practicalsPanel,
+  hashHandler as practicalsHashHandler,
+} from "./pages/practicals-panel/page.js";
 
 import { settingsPanel } from "./pages/settings-panel/page.js";
 import { themePanel } from "./pages/settings-panel/inner-panels/theme-panel.js";
@@ -14,60 +17,64 @@ import { accessibilityPanel } from "./pages/settings-panel/inner-panels/accessib
 import { errorPanel } from "./pages/settings-panel/inner-panels/error-panel.js";
 import { aboutPanel } from "./pages/settings-panel/inner-panels/about-panel.js";
 
-type HashHandler = (attr: string[]) => void
+type HashHandler = (attr: string[]) => void;
 
-type Route = Record<string, [HTMLDivElement, Route?, hashHandler?: HashHandler]>
+type Route = Record<
+  string,
+  [HTMLDivElement, Route?, hashHandler?: HashHandler]
+>;
 
 const homeRoute: Route = {
-  "PhysicsPracticals": [physicsPanel],
-  "ChemistryPracticals": [chemistryPanel],
-}
+  PhysicsPracticals: [physicsPanel],
+  ChemistryPracticals: [chemistryPanel],
+};
 
 const settingsRoute: Route = {
-  "theme": [themePanel],
-  "palette": [palettePanel],
-  "accessibility": [accessibilityPanel],
-  "report": [errorPanel],
-  "about": [aboutPanel],
-}
+  theme: [themePanel],
+  palette: [palettePanel],
+  accessibility: [accessibilityPanel],
+  report: [errorPanel],
+  about: [aboutPanel],
+};
 
 const mainRoute: Route = {
-  ""            : [homePanel, homeRoute],
-  "#home"       : [homePanel, homeRoute],
-  "#practicals"  : [practicalsPanel, , practicalsHashHandler],
-  "#settings"   : [settingsPanel, settingsRoute],
-}
+  "": [homePanel, homeRoute],
+  "#home": [homePanel, homeRoute],
+  "#practicals": [practicalsPanel, , practicalsHashHandler],
+  "#settings": [settingsPanel, settingsRoute],
+};
 
-function defaultHash() { window.location.hash = "#home";}
+function defaultHash() {
+  window.location.hash = "#home";
+}
 
 function handle() {
   const hashParts = window.location.hash.split("&");
   // [#home/physicspanel, practical=screw_gauge, class=11,]
-  
+
   const locationHash = hashParts[0] ?? "";
   const attributesHash = hashParts.slice(1);
-  const fun: HashHandler|undefined = handleLocaton(locationHash);
+  const fun: HashHandler | undefined = handleLocaton(locationHash);
   if (!fun) return;
-  if (attributesHash.length >= 1)
-  fun(hashParts.slice(1));
+  if (attributesHash.length >= 1) fun(hashParts.slice(1));
   // [ practical=screw_gauge, class=11 ]
 }
 
 function handleLocaton(locationString: string) {
-  let fun: undefined|HashHandler;
+  let fun: undefined | HashHandler;
   if (!locationString) {
     defaultHash();
     return;
-  };
+  }
   // #home/physicspanel
-  
+
   const location = locationString?.split("/");
   // [#home, physicspanel]
-  let parentRoute: Route|undefined = mainRoute;
-  
+  let parentRoute: Route | undefined = mainRoute;
+
   location.forEach((path, index) => {
     if (!parentRoute) return;
-    
+
     const lce = parentRoute[path];
     if (!lce) {
       defaultHash();
@@ -78,7 +85,10 @@ function handleLocaton(locationString: string) {
     const currentPanel = lce[0];
     if (index == 0) {
       fun = lce[2];
-      navBar.style.setProperty("--focus-no", String(currentPanel.dataset.index));
+      navBar.style.setProperty(
+        "--focus-no",
+        String(currentPanel.dataset.index),
+      );
     }
     if (index == location.length - 1) {
       showPanel(currentPanel);
@@ -88,13 +98,9 @@ function handleLocaton(locationString: string) {
   return fun;
 }
 
-
-function showPanel(
-  newPanel: HTMLDivElement,
-  animation = true,
-) {
+function showPanel(newPanel: HTMLDivElement, animation = true) {
   if (panelContainer.firstChild)
-  panelContainer.removeChild(panelContainer.firstChild);
+    panelContainer.removeChild(panelContainer.firstChild);
   panelContainer.appendChild(newPanel);
   if (animation) return;
 }

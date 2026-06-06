@@ -1,63 +1,63 @@
 #chemistry-practical .practical-section-text-div {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 #chemistry-practical .practical-section-text {
-    font: var(--primary-font);
-    font-weight: 600;
+  font: var(--primary-font);
+  font-weight: 600;
 }
 
 #chemistry-practical .practical-section-value {
-    font: var(--primary-font);
+  font: var(--primary-font);
 }
 
 #chemistry-practical .observation-table {
-    width: 100%;
-    display: flex;
-    margin: 10px 0;
+  width: 100%;
+  display: flex;
+  margin: 10px 0;
 }
 
 #chemistry-practical .observation-table-header {
-    font: var(--primary-font);
-    font-weight: 600;
-    margin: 20px 0 0 5px;
+  font: var(--primary-font);
+  font-weight: 600;
+  margin: 20px 0 0 5px;
 }
 
 #chemistry-practical .observation-table-column {
-    box-sizing: border-box;
-    border: 1px solid var(--border-color);
-    display: flex;
-    flex-direction: column;
+  box-sizing: border-box;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
 }
 
 #chemistry-practical .observation-table-column.experiment {
-    width: 35%;
+  width: 35%;
 }
 #chemistry-practical .observation-table-column.observation {
-    width: 35%;
+  width: 35%;
 }
 #chemistry-practical .observation-table-column.inference {
-    width: 30%;
+  width: 30%;
 }
 
 #chemistry-practical .observation-table-column-header {
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: center;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: center;
 }
 
 #chemistry-practical .observation-table-column-header-text {
-    font: var(--primary-font);
+  font: var(--primary-font);
 }
 
 #chemistry-practical .observation-table-inner-div {
-    height: 150px;
-    width: 100%;
-    overflow-y: scroll;
-    box-sizing: border-box;
-    padding: 0 0 0 5px;
+  height: 150px;
+  width: 100%;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  padding: 0 0 0 5px;
 }
 #chemistry-practical .observation-table-inner-div::-webkit-scrollbar {
-    display: none;
+  display: none;
 }

@@ -1,28 +1,36 @@
 const physicsFilePath = "src/Physics-Practicals/";
 
-addStyle(physicsFilePath + "physicsPracticalFile.css", "physics-practical-style").onload = () => {
+((addStyle(
+  physicsFilePath + "physicsPracticalFile.css",
+  "physics-practical-style",
+).onload = () => {
   if (physicsTabContent.contains(loadingTab)) {
     physicsTabContent.removeChild(loadingTab);
   }
   load12th_practicals();
-},{once: true};
-
+}),
+  { once: true });
 
 // #region UI Functions
 function createImg(className, mode, path) {
   const imgWrapper = createDiv(`img-wrapper ${mode} loading-img`);
 
-  imgWrapper.appendChild(createTextField("img-error-text", "Error loading image"));
+  imgWrapper.appendChild(
+    createTextField("img-error-text", "Error loading image"),
+  );
 
   let img = document.createElement("img");
   img.className = className;
   img.src = path;
-  img.onload = () => { imgWrapper.classList.remove("loading-img"); }
-  img.onerror = () => { imgWrapper.classList.replace("loading-img", "error-img"); }
+  img.onload = () => {
+    imgWrapper.classList.remove("loading-img");
+  };
+  img.onerror = () => {
+    imgWrapper.classList.replace("loading-img", "error-img");
+  };
   imgWrapper.appendChild(img);
   return imgWrapper;
 }
-
 
 function createPAS(number, content, contentIsDiv = false) {
   let div = document.createElement("div");
@@ -57,7 +65,7 @@ function createInput(
   type,
   value = 0,
   inputFunction = null,
-  readOnly = false
+  readOnly = false,
 ) {
   let input = document.createElement("input");
   if (id) input.id = id;
@@ -105,7 +113,7 @@ function createColumn(
   type,
   value,
   inputFunction,
-  readOnly = false
+  readOnly = false,
 ) {
   let column = document.createElement("div");
   column.className = "observation-table-column";
@@ -124,17 +132,17 @@ function createColumn(
             type,
             value[i - 1],
             inputFunction,
-            readOnly
-          )
+            readOnly,
+          ),
         );
       } else {
         column.appendChild(
-          createInput(null, type, value[i - 1], inputFunction, readOnly)
+          createInput(null, type, value[i - 1], inputFunction, readOnly),
         );
       }
     } else {
       column.appendChild(
-        createInput(`${idPattern}-${i}`, type, value, inputFunction, readOnly)
+        createInput(`${idPattern}-${i}`, type, value, inputFunction, readOnly),
       );
     }
   }
@@ -163,17 +171,25 @@ physicsTabContent.appendChild(physicsPracticalsList);
 
 function load11th_practicals() {
   let class11_list = createDiv("button-container practicals-list list-view");
-  physicsPracticalsList.appendChild(createTextField("practicals-list-class-header", "Class 11"));
+  physicsPracticalsList.appendChild(
+    createTextField("practicals-list-class-header", "Class 11"),
+  );
   physicsPracticalsList.appendChild(class11_list);
 
-
-  let bn_screwGauge = createListButton(class11_list, "screw-gauge-btn", "Screw Gauge");
+  let bn_screwGauge = createListButton(
+    class11_list,
+    "screw-gauge-btn",
+    "Screw Gauge",
+  );
   bn_screwGauge.addEventListener("click", () => {
     try {
       openFile(screwGaugeDiv, "Screw Gauge");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-11/screwGauge.js", "screw-gauge-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-11/screwGauge.js",
+        "screw-gauge-script",
+      ).onload = () => {
         openFile(screwGaugeDiv, "Screw Gauge");
       };
     }
@@ -181,13 +197,20 @@ function load11th_practicals() {
       "https://drive.google.com/file/d/1lBkIvbWmfZWRDs6etad8C4U_xo8DQn25/preview";
   });
 
-  let bn_vernierCalipers = createListButton(class11_list, "vernier-calipers-btn", "Vernier Calipers");
+  let bn_vernierCalipers = createListButton(
+    class11_list,
+    "vernier-calipers-btn",
+    "Vernier Calipers",
+  );
   bn_vernierCalipers.addEventListener("click", () => {
     try {
       openFile(vernierCalipersDiv, "Vernier Calipers");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-11/vernierCalipers.js", "vernier-calipers-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-11/vernierCalipers.js",
+        "vernier-calipers-script",
+      ).onload = () => {
         openFile(vernierCalipersDiv, "Vernier Calipers");
       };
     }
@@ -195,14 +218,21 @@ function load11th_practicals() {
       "https://drive.google.com/file/d/1ZMe6Il6GPCpOwDmVozfzEH7xWi6AZvEn/preview";
   });
 
-  let bn_sonometer = createListButton(class11_list, "sonometer-btn", "Sonometer");
+  let bn_sonometer = createListButton(
+    class11_list,
+    "sonometer-btn",
+    "Sonometer",
+  );
   bn_sonometer.addEventListener("click", () => {
     try {
       openFile(sonometerDiv, "Sonometer");
       helpVideoText.style.display = "none";
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-11/sonometer.js", "sonometer-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-11/sonometer.js",
+        "sonometer-script",
+      ).onload = () => {
         openFile(sonometerDiv, "Sonometer");
       };
     }
@@ -211,28 +241,42 @@ function load11th_practicals() {
     helpVideoText.style.display = "none";
   });
 
-  let bn_parallelogram = createListButton(class11_list, "parallelogram-btn", "Parallelogram");
+  let bn_parallelogram = createListButton(
+    class11_list,
+    "parallelogram-btn",
+    "Parallelogram",
+  );
   bn_parallelogram.addEventListener("click", () => {
     try {
       openFile(parallelogramDiv, "Parallelogram");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-11/parallelogram.js", "parallelogram-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-11/parallelogram.js",
+        "parallelogram-script",
+      ).onload = () => {
         openFile(parallelogramDiv, "Parallelogram");
       };
     }
     videoFrame.src =
-    "https://drive.google.com/file/d/1e52vBtlWzb3vhqnFmYRSVS3NfdGcy0eT/preview";
+      "https://drive.google.com/file/d/1e52vBtlWzb3vhqnFmYRSVS3NfdGcy0eT/preview";
     helpVideoText.style.display = "none";
   });
 
-  let bn_simplePendulum = createListButton(class11_list, "simple-pendulum-btn", "Simple Pendulum");
+  let bn_simplePendulum = createListButton(
+    class11_list,
+    "simple-pendulum-btn",
+    "Simple Pendulum",
+  );
   bn_simplePendulum.addEventListener("click", () => {
     try {
       openFile(simplePendulumDiv, "Simple Pendulum");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-11/simplePendulum.js", "simple-pendulum-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-11/simplePendulum.js",
+        "simple-pendulum-script",
+      ).onload = () => {
         openFile(simplePendulumDiv, "Simple Pendulum");
       };
     }
@@ -241,13 +285,20 @@ function load11th_practicals() {
     helpVideoText.style.display = "none";
   });
 
-  let bn_spherometer = createListButton(class11_list, "spherometer-btn", "Spherometer");
+  let bn_spherometer = createListButton(
+    class11_list,
+    "spherometer-btn",
+    "Spherometer",
+  );
   bn_spherometer.addEventListener("click", () => {
     try {
       openFile(spherometerDiv, "Spherometer");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-11/spherometer.js", "spherometer-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-11/spherometer.js",
+        "spherometer-script",
+      ).onload = () => {
         openFile(spherometerDiv, "Spherometer");
       };
     }
@@ -255,14 +306,20 @@ function load11th_practicals() {
     helpVideoText.style.display = "flex";
   });
 
-
-  let bn_helicalSpring = createListButton(class11_list, "helical-spring-btn", "Helical Spring");
+  let bn_helicalSpring = createListButton(
+    class11_list,
+    "helical-spring-btn",
+    "Helical Spring",
+  );
   bn_helicalSpring.addEventListener("click", () => {
     try {
       openFile(helicalSpringDiv, "Helical Spring");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-11/helicalSpring.js", "helical-spring-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-11/helicalSpring.js",
+        "helical-spring-script",
+      ).onload = () => {
         openFile(helicalSpringDiv, "Helical Spring");
       };
     }
@@ -270,13 +327,20 @@ function load11th_practicals() {
     helpVideoText.style.display = "flex";
   });
 
-  let bn_resonanceTube = createListButton(class11_list, "resonance-tube-btn", "Resonance Tube");
+  let bn_resonanceTube = createListButton(
+    class11_list,
+    "resonance-tube-btn",
+    "Resonance Tube",
+  );
   bn_resonanceTube.addEventListener("click", () => {
     try {
       openFile(resonanceTubeDiv, "Resonance Tube");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-11/resonanceTube.js", "resonance-tube-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-11/resonanceTube.js",
+        "resonance-tube-script",
+      ).onload = () => {
         openFile(resonanceTubeDiv, "Resonance Tube");
       };
     }
@@ -287,9 +351,10 @@ function load11th_practicals() {
 
 function load12th_practicals() {
   let class12_list = createDiv("button-container practicals-list list-view");
-  physicsPracticalsList.appendChild(createTextField("practicals-list-class-header", "Class 12"));
+  physicsPracticalsList.appendChild(
+    createTextField("practicals-list-class-header", "Class 12"),
+  );
   physicsPracticalsList.appendChild(class12_list);
-
 
   let bn_ohmsLaw = createListButton(class12_list, "ohms-law-btn", "Ohm's Law");
   bn_ohmsLaw.addEventListener("click", () => {
@@ -297,7 +362,10 @@ function load12th_practicals() {
       openFile(ohmsLawDiv, "Ohm's Law");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-12/ohmsLaw.js", "ohms-law-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-12/ohmsLaw.js",
+        "ohms-law-script",
+      ).onload = () => {
         openFile(ohmsLawDiv, "Ohm's Law");
       };
     }
@@ -305,13 +373,20 @@ function load12th_practicals() {
     helpVideoText.style.display = "flex";
   });
 
-  let bn_pnJunction = createListButton(class12_list, "pn-junction-btn", "PN Junction");
+  let bn_pnJunction = createListButton(
+    class12_list,
+    "pn-junction-btn",
+    "PN Junction",
+  );
   bn_pnJunction.addEventListener("click", () => {
     try {
       openFile(pnJunctionDiv, "PN Junction");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-12/pnJunction.js", "pn-junction-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-12/pnJunction.js",
+        "pn-junction-script",
+      ).onload = () => {
         openFile(pnJunctionDiv, "PN Junction");
       };
     }
@@ -319,13 +394,20 @@ function load12th_practicals() {
     helpVideoText.style.display = "flex";
   });
 
-  let bn_meterBridge = createListButton(class12_list, "meter-bridge-btn", "Meter Bridge");
+  let bn_meterBridge = createListButton(
+    class12_list,
+    "meter-bridge-btn",
+    "Meter Bridge",
+  );
   bn_meterBridge.addEventListener("click", () => {
     try {
       openFile(meterBridgeDiv, "Meter Bridge");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-12/meterBridge.js", "meter-bridge-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-12/meterBridge.js",
+        "meter-bridge-script",
+      ).onload = () => {
         openFile(meterBridgeDiv, "Meter Bridge");
       };
     }
@@ -333,13 +415,20 @@ function load12th_practicals() {
     helpVideoText.style.display = "flex";
   });
 
-  let bn_halfDeflection = createListButton(class12_list, "half-deflection-btn", "Half Deflection");
+  let bn_halfDeflection = createListButton(
+    class12_list,
+    "half-deflection-btn",
+    "Half Deflection",
+  );
   bn_halfDeflection.addEventListener("click", () => {
     try {
       openFile(halfDeflectionDiv, "Half Deflection");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-12/halfDeflection.js", "half-deflection-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-12/halfDeflection.js",
+        "half-deflection-script",
+      ).onload = () => {
         openFile(halfDeflectionDiv, "Half Deflection");
       };
     }
@@ -347,13 +436,20 @@ function load12th_practicals() {
     helpVideoText.style.display = "flex";
   });
 
-  let bn_acsonometer = createListButton(class12_list, "ac-sonometer-btn", "AC Sonometer");
+  let bn_acsonometer = createListButton(
+    class12_list,
+    "ac-sonometer-btn",
+    "AC Sonometer",
+  );
   bn_acsonometer.addEventListener("click", () => {
     try {
       openFile(acSonometerDiv, "AC Sonometer");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-12/acSonometer.js", "ac-sonometer-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-12/acSonometer.js",
+        "ac-sonometer-script",
+      ).onload = () => {
         openFile(acSonometerDiv, "AC Sonometer");
       };
     }
@@ -361,13 +457,20 @@ function load12th_practicals() {
     helpVideoText.style.display = "flex";
   });
 
-  let convexLens = createListButton(class12_list, "convex-lens-btn", "Convex Lens");
+  let convexLens = createListButton(
+    class12_list,
+    "convex-lens-btn",
+    "Convex Lens",
+  );
   convexLens.addEventListener("click", () => {
     try {
       openFile(convexLensDiv, "Convex Lens");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-12/convexLens.js", "convex-lens-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-12/convexLens.js",
+        "convex-lens-script",
+      ).onload = () => {
         openFile(convexLensDiv, "Convex Lens");
       };
     }
@@ -375,13 +478,20 @@ function load12th_practicals() {
     helpVideoText.style.display = "flex";
   });
 
-  let concaveMirror = createListButton(class12_list, "concave-mirror-btn", "Concave Mirror");
+  let concaveMirror = createListButton(
+    class12_list,
+    "concave-mirror-btn",
+    "Concave Mirror",
+  );
   concaveMirror.addEventListener("click", () => {
     try {
       openFile(concaveMirrorDiv, "Concave Mirror");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-12/concaveMirror.js", "concave-mirror-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-12/concaveMirror.js",
+        "concave-mirror-script",
+      ).onload = () => {
         openFile(concaveMirrorDiv, "Concave Mirror");
       };
     }
@@ -389,13 +499,20 @@ function load12th_practicals() {
     helpVideoText.style.display = "flex";
   });
 
-  let convexMirror = createListButton(class12_list, "convex-mirror-btn", "Convex Mirror");
+  let convexMirror = createListButton(
+    class12_list,
+    "convex-mirror-btn",
+    "Convex Mirror",
+  );
   convexMirror.addEventListener("click", () => {
     try {
       openFile(convexMirrorDiv, "Convex Mirror");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-12/convexMirror.js", "convex-mirror-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-12/convexMirror.js",
+        "convex-mirror-script",
+      ).onload = () => {
         openFile(convexMirrorDiv, "Convex Mirror");
       };
     }
@@ -403,13 +520,20 @@ function load12th_practicals() {
     helpVideoText.style.display = "flex";
   });
 
-  let concaveLens = createListButton(class12_list, "concave-lens-btn", "Concave Lens");
+  let concaveLens = createListButton(
+    class12_list,
+    "concave-lens-btn",
+    "Concave Lens",
+  );
   concaveLens.addEventListener("click", () => {
     try {
       openFile(concaveLensDiv, "Concave Lens");
     } catch {
       showPracticalLoading();
-      addScript(physicsFilePath + "class-12/concaveLens.js", "concave-lens-script").onload = () => {
+      addScript(
+        physicsFilePath + "class-12/concaveLens.js",
+        "concave-lens-script",
+      ).onload = () => {
         openFile(concaveLensDiv, "Concave Lens");
       };
     }

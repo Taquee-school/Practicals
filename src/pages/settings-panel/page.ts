@@ -15,11 +15,13 @@ const topBar = createElement("div", {
 const panelNameDiv = createElement("div", {
   className: "panel-name-div",
 });
-const backBtn = createElement("button", {
-  className: "toggle",
-}, [
-  createElement("i", { className: "ph-bold ph-caret-left" })
-]);
+const backBtn = createElement(
+  "button",
+  {
+    className: "toggle",
+  },
+  [createElement("i", { className: "ph-bold ph-caret-left" })],
+);
 backBtn.addEventListener("click", () => {
   window.location.hash = "#home";
 });
@@ -27,9 +29,9 @@ const panelName = createElement("p", {
   className: "panel-name",
   textContent: "Settings",
 });
-panelNameDiv.append( backBtn, panelName );
+panelNameDiv.append(backBtn, panelName);
 
-topBar.append( panelNameDiv );
+topBar.append(panelNameDiv);
 //#endregion top bar
 
 //#region content
@@ -43,59 +45,85 @@ const buttonContainer = createElement("div", {
   className: "button-container list-view",
 });
 
-const themeBtn = createElement("button", {
-  className: "action-btn",
-}, [
-  createElement("i", { className: "ph-bold ph-paint-roller" }),
-  createElement("p", { textContent: "Theme" }),
-]);
+const themeBtn = createElement(
+  "button",
+  {
+    className: "action-btn",
+  },
+  [
+    createElement("i", { className: "ph-bold ph-paint-roller" }),
+    createElement("p", { textContent: "Theme" }),
+  ],
+);
 themeBtn.addEventListener("click", () => {
-  window.location.hash = "#settings/theme"
+  window.location.hash = "#settings/theme";
 });
 
-const paletteBtn = createElement("button", {
-  className: "action-btn",
-}, [
-  createElement("i", { className: "ph-bold ph-palette" }),
-  createElement("p", { textContent: "Palette" }),
-]);
+const paletteBtn = createElement(
+  "button",
+  {
+    className: "action-btn",
+  },
+  [
+    createElement("i", { className: "ph-bold ph-palette" }),
+    createElement("p", { textContent: "Palette" }),
+  ],
+);
 paletteBtn.addEventListener("click", () => {
-  window.location.hash = "#settings/palette"
+  window.location.hash = "#settings/palette";
 });
 
-const accessibilityBtn = createElement("button", {
-  className: "action-btn",
-}, [
-  createElement("i", { className: "ph-bold ph-eye" }),
-  createElement("p", { textContent: "Accessibility" }),
-]);
+const accessibilityBtn = createElement(
+  "button",
+  {
+    className: "action-btn",
+  },
+  [
+    createElement("i", { className: "ph-bold ph-eye" }),
+    createElement("p", { textContent: "Accessibility" }),
+  ],
+);
 accessibilityBtn.addEventListener("click", () => {
-  window.location.hash = "#settings/accessibility"
+  window.location.hash = "#settings/accessibility";
 });
 
-const errorBtn = createElement("button", {
-  className: "action-btn",
-}, [
-  createElement("i", { className: "ph-bold ph-bug" }),
-  createElement("p", { textContent: "Report Error" }),
-]);
+const errorBtn = createElement(
+  "button",
+  {
+    className: "action-btn",
+  },
+  [
+    createElement("i", { className: "ph-bold ph-bug" }),
+    createElement("p", { textContent: "Report Error" }),
+  ],
+);
 errorBtn.addEventListener("click", () => {
-  window.location.hash = "#settings/report"
+  window.location.hash = "#settings/report";
 });
 
-const aboutBtn = createElement("button", {
-  className: "action-btn",
-}, [
-  createElement("i", { className: "ph-bold ph-info" }),
-  createElement("p", { textContent: "About" }),
-]);
+const aboutBtn = createElement(
+  "button",
+  {
+    className: "action-btn",
+  },
+  [
+    createElement("i", { className: "ph-bold ph-info" }),
+    createElement("p", { textContent: "About" }),
+  ],
+);
 aboutBtn.addEventListener("click", () => {
-  window.location.hash = "#settings/about"
+  window.location.hash = "#settings/about";
 });
 
-buttonContainer.append( themeBtn, paletteBtn, accessibilityBtn, errorBtn, aboutBtn );
+buttonContainer.append(
+  themeBtn,
+  paletteBtn,
+  accessibilityBtn,
+  errorBtn,
+  aboutBtn,
+);
 
-contentDiv.append( iconDiv, buttonContainer );
+contentDiv.append(iconDiv, buttonContainer);
 //#endregion content
 
-settingsPanel.append( topBar, contentDiv );
+settingsPanel.append(topBar, contentDiv);
