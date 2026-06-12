@@ -21,7 +21,7 @@ type HashHandler = (attr: string[]) => void;
 
 type Route = Record<
   string,
-  [HTMLDivElement, Route?, hashHandler?: HashHandler]
+  [HTMLDivElement, (Route | null)?, hashHandler?: HashHandler]
 >;
 
 const homeRoute: Route = {
@@ -40,7 +40,7 @@ const settingsRoute: Route = {
 const mainRoute: Route = {
   "": [homePanel, homeRoute],
   "#home": [homePanel, homeRoute],
-  "#practicals": [practicalsPanel, , practicalsHashHandler],
+  "#practicals": [practicalsPanel, null, practicalsHashHandler],
   "#settings": [settingsPanel, settingsRoute],
 };
 
@@ -70,7 +70,7 @@ function handleLocaton(locationString: string) {
 
   const location = locationString?.split("/");
   // [#home, physicspanel]
-  let parentRoute: Route | undefined = mainRoute;
+  let parentRoute: Route | undefined | null = mainRoute;
 
   location.forEach((path, index) => {
     if (!parentRoute) return;
