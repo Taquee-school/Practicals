@@ -4,7 +4,7 @@
 }
 
 .loading-text {
-  font: var(--primary-text-font);
+  font: var(--primary-font);
 }
 
 .loading-icon {
@@ -12,7 +12,7 @@
 }
 
 .spin {
-  animation: spin infinite 500ms linear;
+  animation: spin infinite 650ms linear;
 }
 
 @keyframes spin {
