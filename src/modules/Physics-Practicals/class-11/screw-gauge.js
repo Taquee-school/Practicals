@@ -62,7 +62,7 @@ function measureDiameter_scg() {
   let d_corrected = d_mean + (parseFloat(scg_zeroCorrectionInput.value) || 0);
   scg_correctedDiameterInput.value = d_corrected.toFixed(4);
 
-  massPerUnitLength =
+  const massPerUnitLength =
     (3.14 * (d_corrected / 1000) * (d_corrected / 1000) * scg_density) / 4;
 
   scg_masspulInput.value = massPerUnitLength.toFixed(10);
@@ -122,11 +122,11 @@ scg_diagramDiv.appendChild(
 );
 
 let scg_diagram_light = document.createElement("img");
-((scg_diagram_light.className = "practical-file-diagram"), "light");
+scg_diagram_light.className = "practical-file-diagram light";
 scg_diagram_light.src = base + "/diagrams/class-11/light/screw gauge.jpg";
 scg_diagramDiv.appendChild(scg_diagram_light);
 let scg_diagram_dark = document.createElement("img");
-((scg_diagram_dark.className = "practical-file-diagram"), "dark");
+scg_diagram_dark.className = "practical-file-diagram dark";
 scg_diagram_dark.src = base + "/diagrams/class-11/dark/screw gauge.jpg";
 scg_diagramDiv.appendChild(scg_diagram_dark);
 

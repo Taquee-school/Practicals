@@ -28,11 +28,11 @@ spm_diagramDiv.appendChild(
 );
 
 let spm_diagram_light = document.createElement("img");
-((spm_diagram_light.className = "practical-file-diagram"), "light");
+spm_diagram_light.className = "practical-file-diagram light";
 spm_diagram_light.src = base + "/diagrams/class-11/light/spherometer.jpg";
 spm_diagramDiv.appendChild(spm_diagram_light);
 let spm_diagram_dark = document.createElement("img");
-((spm_diagram_dark.className = "practical-file-diagram"), "dark");
+spm_diagram_dark.className = "practical-file-diagram dark";
 spm_diagram_dark.src = base + "/diagrams/class-11/dark/spherometer.jpg";
 spm_diagramDiv.appendChild(spm_diagram_dark);
 
