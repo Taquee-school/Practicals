@@ -16,7 +16,7 @@
   "editor.insertSpaces": true,
   "editor.detectIndentation": true,
 
-  // "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -32,7 +32,7 @@
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   // Forces snippets to show up at the top of the autocomplete box
-  "editor.snippetSuggestions": "top",
+  "editor.snippetSuggestions": "inline",
 
   // Enables snippet autocompletion inside text, code, strings, and markdown
   "editor.quickSuggestions": {

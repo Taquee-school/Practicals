@@ -28,11 +28,11 @@ spl_diagramDiv.appendChild(
 );
 
 let spl_diagram_light = document.createElement("img");
-((spl_diagram_light.className = "practical-file-diagram"), "light");
+spl_diagram_light.className = "practical-file-diagram light";
 spl_diagram_light.src = base + "/diagrams/class-11/light/simple pendulum.jpg";
 spl_diagramDiv.appendChild(spl_diagram_light);
 let spl_diagram_dark = document.createElement("img");
-((spl_diagram_dark.className = "practical-file-diagram"), "dark");
+spl_diagram_dark.className = "practical-file-diagram dark";
 spl_diagram_dark.src = base + "/diagrams/class-11/dark/simple pendulum.jpg";
 spl_diagramDiv.appendChild(spl_diagram_dark);
 

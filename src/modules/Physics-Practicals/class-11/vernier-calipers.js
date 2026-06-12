@@ -370,11 +370,11 @@ vnc_diagramDiv.appendChild(
 );
 
 let vnc_diagram_light = document.createElement("img");
-((vnc_diagram_light.className = "practical-file-diagram"), "light");
+vnc_diagram_light.className = "practical-file-diagram light";
 vnc_diagram_light.src = base + "/diagrams/class-11/light/vernier calipers.jpg";
 vnc_diagramDiv.appendChild(vnc_diagram_light);
 let vnc_diagram_dark = document.createElement("img");
-((vnc_diagram_dark.className = "practical-file-diagram"), "dark");
+vnc_diagram_dark.className = "practical-file-diagram dark";
 vnc_diagram_dark.src = base + "/diagrams/class-11/dark/vernier calipers.jpg";
 vnc_diagramDiv.appendChild(vnc_diagram_dark);
 

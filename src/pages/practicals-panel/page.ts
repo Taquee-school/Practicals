@@ -1,3 +1,7 @@
+import "./page.css";
+
+import { errorScreen, showError } from "../../components/error/script.js";
+import { loader } from "../../components/loader/script.js";
 import { createElement } from "../../utils/create-dom.js";
 
 export const practicalsPanel = createElement("div", {
@@ -105,7 +109,7 @@ type ExperimentInfo = {
 };
 
 /** The hash handler for practicals page */
-export function hashHandler(attr: string[]) {
+export async function hashHandler(attr: string[]) {
   const experimentInfo: ExperimentInfo = {
     subject: "",
     eclass: "",
@@ -130,7 +134,34 @@ export function hashHandler(attr: string[]) {
     return;
   }
 
-  showPractical(response);
+  const response2 = await showPractical(response);
+  if (!response2.ok) {
+    const icon = createElement("i", {
+      className: "ph-bold ph-link-break",
+    });
+
+    const btn = createElement(
+      "button",
+      {
+        title: "Retry",
+        id: "retry-btn",
+        className: "error-btn",
+      },
+      [
+        createElement("i", { className: "ph-bold ph-arrow-counter-clockwise" }),
+        createElement("p", {
+          textContent: "retry",
+        }),
+      ],
+    );
+    btn.addEventListener("click", () => {
+      hashHandler(attr);
+    });
+
+    showError(response2.message, icon, btn);
+    contentDiv.innerHTML = "";
+    contentDiv.appendChild(errorScreen);
+  }
 }
 
 function getPath(ei: ExperimentInfo): false | string {
@@ -156,22 +187,50 @@ function getPath(ei: ExperimentInfo): false | string {
 
   const pathExtension = practicalMap["path"]!;
 
-  showPractical(pathExtension + word + ".js");
   return pathExtension + word + ".js";
 }
 
-/** It takes the experiment file path and displays it. */
-async function showPractical(path: string) {
-  contentDiv.innerHTML = "";
+const modules = import.meta.glob("../../modules/**/*.js");
 
-  const modules = import.meta.glob("../../modules/**/*.js");
+type ErrorResponse = {
+  ok: false;
+  retry: boolean;
+  message: string;
+};
+type SuccessResponse = {
+  ok: true;
+};
+
+/** It takes the experiment file path and displays it. */
+async function showPractical(
+  path: string,
+): Promise<ErrorResponse | SuccessResponse> {
+  contentDiv.innerHTML = "";
+  contentDiv.appendChild(loader);
 
   const fullPath = `../../modules/${path}`;
   const src = modules[fullPath];
-  if (!src) return;
-
-  const module: any = await src();
-  contentDiv.appendChild(module.experimentDiv);
+  if (!src) {
+    return {
+      ok: false,
+      retry: false,
+      message: "file not found",
+    };
+  }
+  try {
+    const module: any = await src();
+    if (contentDiv.contains(loader)) contentDiv.removeChild(loader);
+    contentDiv.appendChild(module.experimentDiv);
+    return {
+      ok: true,
+    };
+  } catch {
+    return {
+      ok: false,
+      retry: true,
+      message: "network error",
+    };
+  }
 }
 //#endregion hash handler
 
