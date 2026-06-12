@@ -133,35 +133,7 @@ export async function hashHandler(attr: string[]) {
     window.location.hash = "#home";
     return;
   }
-
-  const response2 = await showPractical(response);
-  if (!response2.ok) {
-    const icon = createElement("i", {
-      className: "ph-bold ph-link-break",
-    });
-
-    const btn = createElement(
-      "button",
-      {
-        title: "Retry",
-        id: "retry-btn",
-        className: "error-btn",
-      },
-      [
-        createElement("i", { className: "ph-bold ph-arrow-counter-clockwise" }),
-        createElement("p", {
-          textContent: "retry",
-        }),
-      ],
-    );
-    btn.addEventListener("click", () => {
-      hashHandler(attr);
-    });
-
-    showError(response2.message, icon, btn);
-    contentDiv.innerHTML = "";
-    contentDiv.appendChild(errorScreen);
-  }
+  showPractical(response);
 }
 
 function getPath(ei: ExperimentInfo): false | string {
@@ -199,15 +171,13 @@ type ErrorResponse = {
 };
 type SuccessResponse = {
   ok: true;
+  element: HTMLDivElement;
 };
 
 /** It takes the experiment file path and displays it. */
-async function showPractical(
+async function loadModule(
   path: string,
 ): Promise<ErrorResponse | SuccessResponse> {
-  contentDiv.innerHTML = "";
-  contentDiv.appendChild(loader);
-
   const fullPath = `../../modules/${path}`;
   const src = modules[fullPath];
   if (!src) {
@@ -219,10 +189,9 @@ async function showPractical(
   }
   try {
     const module: any = await src();
-    if (contentDiv.contains(loader)) contentDiv.removeChild(loader);
-    contentDiv.appendChild(module.experimentDiv);
     return {
       ok: true,
+      element: module.experimentDiv as HTMLDivElement,
     };
   } catch {
     return {
@@ -230,6 +199,55 @@ async function showPractical(
       retry: true,
       message: "network error",
     };
+  }
+}
+
+async function showPractical(path: string, wait = 200) {
+  contentDiv.innerHTML = "";
+  contentDiv.appendChild(loader);
+
+  const response2 = await loadModule(path);
+
+  if (!response2.ok) {
+    if (response2.retry) {
+      const icon = createElement("i", {
+        className: "ph-bold ph-link-break",
+      });
+
+      const retrybtn = createElement(
+        "button",
+        {
+          title: "Retry",
+          id: "retry-btn",
+          className: "error-btn",
+        },
+        [
+          createElement("i", {
+            className: "ph-bold ph-arrow-counter-clockwise",
+          }),
+          createElement("p", {
+            textContent: "retry",
+          }),
+        ],
+      );
+
+      retrybtn.addEventListener("click", async () => {
+        contentDiv.innerHTML = "";
+        contentDiv.appendChild(loader);
+        setTimeout(() => {
+          showPractical(path, wait * 1.5);
+        }, wait);
+      });
+      showError(response2.message, icon, retrybtn);
+    } else {
+      showError(response2.message);
+    }
+
+    contentDiv.innerHTML = "";
+    contentDiv.appendChild(errorScreen);
+  } else {
+    if (contentDiv.contains(loader)) contentDiv.removeChild(loader);
+    contentDiv.appendChild(response2.element);
   }
 }
 //#endregion hash handler
