@@ -12,11 +12,31 @@ function updateDeviceColors() {
 
 // MARK: theme
 app.dataset.theme = "light";
-document.addEventListener("theme-change-request", (e) => {
-  const newTheme = (e as CustomEvent).detail.theme as string;
+
+const themes = ["light", "dark"];
+
+document.addEventListener("theme-change-request", (ev) => {
+  const e = ev as CustomEvent<{ theme: string; source: string }>;
+  const newTheme = e.detail.theme;
+  const source = e.detail.source ?? "settings";
+
+  if (!themes.includes(newTheme)) {
+    requestAnimationFrame(() => {
+      document.dispatchEvent(
+        new CustomEvent("palette-change-error", {
+          detail: {
+            error: "Palette is not valid",
+            source: source,
+          },
+        }),
+      );
+    });
+  }
+
   app.dataset.theme = newTheme;
-  localStorage.setItem("theme", newTheme);
+  if (source != "local-storage") localStorage.setItem("theme", newTheme);
   updateDeviceColors();
+
   requestAnimationFrame(() => {
     document.dispatchEvent(
       new CustomEvent("theme-change", {
@@ -30,11 +50,31 @@ document.addEventListener("theme-change-request", (e) => {
 
 // MARK: palette
 app.dataset.palette = "default";
-document.addEventListener("palette-change-request", (e) => {
-  const newPalette = (e as CustomEvent).detail.palette as string;
+
+const palettes = ["default", "lime", "blue", "pink"];
+
+document.addEventListener("palette-change-request", (ev) => {
+  const e = ev as CustomEvent<{ palette: string; source: string }>;
+  const newPalette = e.detail.palette;
+  const source = e.detail.source ?? "settings";
+
+  if (!palettes.includes(newPalette)) {
+    requestAnimationFrame(() => {
+      document.dispatchEvent(
+        new CustomEvent("palette-change-error", {
+          detail: {
+            error: "Palette is not valid",
+            source: source,
+          },
+        }),
+      );
+    });
+  }
+
   app.dataset.palette = newPalette;
-  localStorage.setItem("palette", newPalette);
+  if (source != "local-storage") localStorage.setItem("palette", newPalette);
   updateDeviceColors();
+
   requestAnimationFrame(() => {
     document.dispatchEvent(
       new CustomEvent("palette-change", {
