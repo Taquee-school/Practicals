@@ -189,6 +189,12 @@ async function loadModule(
   }
   try {
     const module: any = await src();
+    if (!module.experimentDiv)
+      return {
+        ok: false,
+        message: "Module Error",
+        retry: false,
+      };
     return {
       ok: true,
       element: module.experimentDiv as HTMLDivElement,
