@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches: ["ts-vite"]
+    branches: ["master"]
   workflow_dispatch:
 
 permissions:
